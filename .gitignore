@@ -1,1 +1,1 @@
-/servlet-context.xml
+src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
