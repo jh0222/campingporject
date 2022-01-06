@@ -23,6 +23,7 @@
 	
 	<context:component-scan base-package="com.fi.pj" />
 	
-	
+	123
+
 	
 </beans:beans>
