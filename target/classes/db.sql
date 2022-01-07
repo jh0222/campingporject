@@ -395,7 +395,7 @@ create sequence recipe_board_reply_seq;
 
 insert into recipe_board_reply_table values(recipe_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210');
 
-select * from recipe_board_reply_table;
+select * from recipe_board_reply_table; 
 
 
 
