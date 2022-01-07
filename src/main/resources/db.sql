@@ -48,8 +48,8 @@ select * from boss_TABLE;
 
 3. 캠핑 테이블
 create table camping_table(
-	cam_bo_no number(5) primary key,
-	cam_no number(5) not null,
+	cam_no number(5) primary key,
+	cam_bo_no number(5) not null,
 	cam_name varchar2(30 char) not null,
 	cam_txt varchar2(200 char) not null,
 	cam_phonenumber varchar2(30 char) not null,
