@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-hi
+<button onclick="location.href = 'login.go'">로그인</button>
+<button onclick="location.href = 'join.go'">회원가입</button>
 </body>
 </html>
