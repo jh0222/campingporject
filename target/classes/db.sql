@@ -18,12 +18,13 @@ create table user_table(
 	u_address varchar2(100 char) not null,
 	u_phonenumber varchar2(30 char) not null,
 	u_birth date not null,
-	u_picture varchar2(200 char) not null
+	u_picture varchar2(200 char) not null,
+	u_discount number(5) not null
 );
 
 create sequence user_seq;
 
-insert into user_table values(user_seq.nextval,'김태희','kim','k1234!','kim1234@naver.com','서울특별시 종로구','01012341234','19970101','a.jpg');
+insert into user_table values(user_seq.nextval,'김태희','kim','k1234!','kim1234@naver.com','서울특별시 종로구','01012341234','19970101','a.jpg',0);
 
 select * from USER_TABLE;
 
@@ -37,12 +38,13 @@ create table boss_table(
 	bo_address varchar2(100 char) not null,
 	bo_phonenumber varchar2(30 char) not null,
 	bo_birth date not null,
-	bo_picture varchar2(200 char) not null
+	bo_picture varchar2(200 char) not null,
+	bo_discount number(5) not null
 );
 
 create sequence boss_seq;
 
-insert into boss_table values(boss_seq.nextval,'김연아','kim2','k12345!','kim12345@naver.com','서울특별시 종로구','01012341235','19970101','a.jpg');
+insert into boss_table values(boss_seq.nextval,'김연아','kim2','k12345!','kim12345@naver.com','서울특별시 종로구','01012341235','19970101','a.jpg',0);
 
 select * from boss_TABLE;
 
@@ -186,7 +188,7 @@ insert into foodproduct_registration_table values(foodproduct_registration_seq.n
 
 select * from foodproduct_registration_table;
 
-10. 캠핑용품 등록(관리자만)
+10. 캠핑용품 구매목록
 /*
  * 하나만 선택되도록 radio box
  * 새로운 배송지가 null값이면 기존배송지 아니면 새로운 배송지가 뜨도록 만들기
@@ -210,7 +212,7 @@ insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',1,'캠핑�
 
 select * from guest_product_buy_table;
 
-11. 밀키트 등록(관리자만)
+11. 밀키트 구매목록
 /*
  * 하나만 선택되도록 radio box
  * 새로운 배송지가 null값이면 기존배송지 아니면 새로운 배송지가 뜨도록 만들기
