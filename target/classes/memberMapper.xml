@@ -13,4 +13,8 @@
 		select count(*) from user_table where u_id = #{u_id}
 	</select>
 	
+	<insert id="Userjoin" parameterType="com.fi.pj.member.UserMember">
+		insert into user_table values(user_seq.nextval,#{u_name},#{u_id},#{u_pw},#{u_email},#{u_address},#{u_phonenumber},#{u_birth},#{u_picture},0)
+	</insert>
+	
 </mapper>

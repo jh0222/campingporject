@@ -10,6 +10,8 @@ public interface MemberMapper {
 	public UserMember getMemberByUID(Login l);
 	//로그인 아이디 찾기(사장님)
 	public BossMember getMemberByBOID(Login l);
+
+	public int Userjoin(UserMember m);
 	
 
 }

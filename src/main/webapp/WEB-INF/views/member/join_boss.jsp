@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="member.join"
+	<form action="bossmember.join"
 		method="post" enctype="multipart/form-data"
 		name="joinForm" onsubmit="return joinCheck();">
 		<table id="joinTable">

@@ -36,28 +36,37 @@ public class MemberController {
 		return "main";
 	}
 	
-	//회원가입 페이지로
+	//회원가입 페이지로(사용자)
 	@RequestMapping(value = "join.usergo", method = RequestMethod.GET)
 	public String JoinUserGo(HttpServletRequest req) {
 		req.setAttribute("contentPage", "member/join_user.jsp");
 		return "main";
 	}
 	
-	//회원가입 페이지로
+	//회원가입 페이지로(사장님)
 	@RequestMapping(value = "join.bossgo", method = RequestMethod.GET)
 	public String JoinBossGo(HttpServletRequest req) {
 		req.setAttribute("contentPage", "member/join_boss.jsp");
 		return "main";
 	}
 	
-	//회원가입 하기
-	@RequestMapping(value = "member.join", method = RequestMethod.POST)
-	public String memberJoin(UserMember m, HttpServletRequest req) {
-		mDAO.join(m, req);
+	//회원가입 하기(사용자)
+	@RequestMapping(value = "usermember.join", method = RequestMethod.POST)
+	public String usermemberJoin(UserMember m, HttpServletRequest req) {
+		mDAO.userjoin(m, req);
 		mDAO.loginCheck(req);
 		req.setAttribute("contentPage", "main.jsp");
 		return "main";
 	}
+	
+	//회원가입 하기(사장님)
+		@RequestMapping(value = "bossmember.join", method = RequestMethod.POST)
+		public String memberJoin(BossMember m, HttpServletRequest req) {
+			mDAO.bossrjoin(m, req);
+			mDAO.loginCheck(req);
+			req.setAttribute("contentPage", "main.jsp");
+			return "main";
+		}
 	
 	//아이디 중복확인
 	@RequestMapping(value = "member.get", 
@@ -69,8 +78,7 @@ public class MemberController {
 	
 	//로그아웃
 	@RequestMapping(value = "member.logout", method = RequestMethod.GET)
-	public String logout(UserMember m, HttpServletRequest req) {
-		
+	public String logout(UserMember m, HttpServletRequest req) {		
 		mDAO.logout(req);
 		mDAO.loginCheck(req);
 		req.setAttribute("contentPage", "home.jsp");
