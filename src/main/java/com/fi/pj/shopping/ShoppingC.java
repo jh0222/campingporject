@@ -37,13 +37,22 @@ public class ShoppingC {
 		return "main";
 	}
 	
-	@RequestMapping(value = "reg.product", method = RequestMethod.GET)
-	public String createproduct(Product p,HttpServletRequest req) {
-		//등록하고 전체조회
+	@RequestMapping(value = "regproduct.go", method = RequestMethod.GET )
+	public String regproductgo(HttpServletRequest req) {
 		
+		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+		req.setAttribute("shoppigListPage", "../admin/ProductReg.jsp");
+		return "main";
+	}
+	
+	@RequestMapping(value = "reg.product", method = RequestMethod.POST )
+	public String regproduct(Product p,HttpServletRequest req) {
+		//등록하고 전체조회
 		sdao.regProduct(p,req);   
 		sdao.getAllProduct(req);
-		return "admin/ProductReg";
+		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+		req.setAttribute("shoppigListPage", "../shopping/campingProduct_Page.jsp");
+		return "main";
 	}
 	
 }

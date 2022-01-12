@@ -10,7 +10,7 @@
 </head>
 <body>
 <h3>캠핑용품페이지</h3>
-<button onClick="location.href='reg.product'">상품등록</button>
+<button onClick="location.href='regproduct.go'">상품등록</button>
 
 <h3>상품목록</h3>
     <table border="1">
@@ -24,7 +24,7 @@
         <tr>
             <td><img src="resources/img/${p.p_picture }" style="width:120px; height: 110px;"></td>
             <td>${p.p_name }</td>
-            <td>   <fmt:formatNumber value="${p.p_price}" pattern="###,###,###" type="currency"/>
+            <td>   <fmt:formatNumber value="${p.p_price}" type="currency"/> ${p_txt }
             </td>
         </tr>
         </c:forEach>
