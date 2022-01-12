@@ -170,7 +170,6 @@ create table product_registration_table(
 create sequence product_registration_seq;
 
 insert into product_registration_table values(product_registration_seq.nextval,'캠핑용품',10000,'b.jpg','캠핑용품입니다');
-insert into product_registration_table values(product_registration_seq.nextval,'텐트',100000,'a.jpg','캠핑용품입니다');
 
 select * from product_registration_table;
 

@@ -1,17 +1,13 @@
 package com.fi.pj.shopping;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ShoppingC {
-	@Autowired
-	private ShoppingDAO sdao;
 
 	@RequestMapping(value = "shopping.go", method = RequestMethod.GET)
 	public String shoppingmain(HttpServletRequest req) {
@@ -23,8 +19,7 @@ public class ShoppingC {
 	@RequestMapping(value = "camping.product", method = RequestMethod.GET)
 	public String shoppingcamping(HttpServletRequest req) {
 		
-		sdao.getAllProduct(req);
-		
+		ShoppingDAO.createProduct(req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/campingProduct_Page.jsp");
 		return "main";
@@ -38,21 +33,10 @@ public class ShoppingC {
 		return "main";
 	}
 	
-	@RequestMapping(value = "reg.product", method = RequestMethod.GET)
-	public String createproduct(Product p,HttpServletRequest req) {
-		//등록하고 전체조회
-		
-		sdao.regProduct(p,req);   
-		sdao.getAllProduct(req);
-		return "shopping/regProduct";
+	@RequestMapping(value = "create.product", method = RequestMethod.GET)
+	public String createproduct(HttpServletRequest req) {
+	
+		return "shopping/createProduct";
 	}
 	
-/*	@RequestMapping(value = "/reg.product", method = RequestMethod.POST)
-	public String reg(Product p, HttpServletRequest req) {
-		//등록하고 전체조회
-		pdao.regProduct(p,req);   
-		pdao.getAllProduct(req);
-		return "index";
-	}
-	*/
 }
