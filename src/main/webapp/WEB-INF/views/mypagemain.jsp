@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<button href="mypagemain">마이페이지</button>
+
 </body>
 </html>
