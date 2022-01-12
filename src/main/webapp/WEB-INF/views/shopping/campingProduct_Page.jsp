@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,32 +10,21 @@
 </head>
 <body>
 <h3>캠핑용품페이지</h3>
-<button onClick="location.href='create.product'">상품등록</button>
+<button onClick="location.href='reg.product'">상품등록</button>
 
 <h3>상품목록</h3>
     <table border="1">
         <tr>
-            <th>상품ID</th>
             <th>사진</th>
             <th>상품명</th>
             <th>가격</th>
         </tr>
         
-        <c:forEach var="p" items="${list}">
+        <c:forEach var="p" items="${products}">
         <tr>
-            <td>
-                ${p.productId} <!-- 상품ID -->
-            </td>
-            <td>
-                <a href="${path}/shopping/productdetail/${p.productId}">
-                    <img src="${path}/images/${p.productUrl}" width="120ox" height="110px">
-                </a>
-            </td>
-            <td>
-                <a href="${path}/shop/product/detail/${p.productId}">${p.productName}</a>
-            </td>
-            <td>
-                <fmt:formatNumber value="${p.productPrice}" pattern="###,###,###"/>
+            <td><img src="resources/img/${p.p_picture }" style="width:120px; height: 110px;"></td>
+            <td>${p.p_name }</td>
+            <td>   <fmt:formatNumber value="${p.p_price}" pattern="###,###,###" type="currency"/>
             </td>
         </tr>
         </c:forEach>

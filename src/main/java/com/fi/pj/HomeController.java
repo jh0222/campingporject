@@ -23,7 +23,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "home.go", method = RequestMethod.GET)
-	public String homepage() {
+	public String homego() {
 		
 		return "main";
 	}
