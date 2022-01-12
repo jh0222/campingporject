@@ -12,6 +12,8 @@
 		<a href="camping.product">캠핑용품</a>
 		<a href="camping.milkit">밀키트</a>
 	</div>
+	
+	<button onClick="location.href='regProduct.jsp'">jsp페이지이동</button>
 
 	<jsp:include page="${shoppigListPage }"></jsp:include>
 </body>
