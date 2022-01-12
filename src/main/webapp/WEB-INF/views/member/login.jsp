@@ -23,8 +23,8 @@
 		</table>
 	</form>
 
-	<a>아이디찾기</a>
-	<a>비밀번호찾기</a>
-	<a href="location.href='join.go'">회원가입</a	>
+	<button onclick="location.href='idsearch.go'">아이디찾기</button>
+	<button onclick="location.href='pwsearch.go'">비밀번호찾기</button>
+	<button onclick="location.href='join.go'">회원가입</button>
 </body>
 </html>

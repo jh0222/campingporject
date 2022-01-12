@@ -14,51 +14,43 @@
 		<table id="joinTable">
 			<tr>
 				<td colspan="2" align="center">
-					회원가입
+					사용자 회원가입
 				</td>
 			</tr>
 			<tr>
 				<td>ID</td>
 				<td>
-					<input name="u_id" placeholder="필수, 영어/숫자만" maxlength="10" autocomplete="off" autofocus="autofocus">
-					<button id="idchk" onclick="Idck()">중복확인</button>
+					<input id="id" name="id" placeholder="필수, 영어/숫자만" maxlength="10" autocomplete="off" autofocus="autofocus">
+					<button id="Idckbtn" onclick="connectJoinIdInputEvent()">중복확인</button>
+					<input type="hidden" id="idDoubleChk"/>
+					
 				</td>
 			</tr>
 			<tr>
 				<td>PW</td>
-				<td><input name="u_pw" placeholder="필수, 숫자 하나이상 반드시" type="password" maxlength="10" autocomplete="off"></td>
+				<td>
+					<input name="pw" placeholder="필수, 숫자 하나이상 반드시" type="password" maxlength="10" autocomplete="off">
+				</td>
 			</tr>
 			<tr>
 				<td>PW확인</td>
-				<td><input name="u_pwChk" placeholder="필수, 숫자 하나이상 반드시" type="password" maxlength="10" autocomplete="off"></td>
+				<td><input name="pwChk" placeholder="필수, 숫자 하나이상 반드시" type="password" maxlength="10" autocomplete="off"></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input name="u_name" placeholder="필수" maxlength="10" autocomplete="off"></td>
+				<td><input name="name" placeholder="필수" maxlength="10" autocomplete="off"></td>
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<!-- <td>
-					<input name="email1"> @ <input name="email2" placeholder="직접입력">
-					<select name="email2">
-						<option value="직접입력">직접입력</option>
-                   		<option value="naver.com">naver.com</option>
-		                <option value="daum.net">daum.net</option>
-		                <option value="gmail.com">gmail.com</option>
-		                <option value="hanmail.net">hanmail.net</option>
-		                <option value="nate.com">nate.com</option>
-            		</select>
-				</td> -->
 				<td>
-					<input placeholder="이메일입력" type="text" id="user_email" required><span id="middle">@</span><input placeholder="직접입력" type="text" id="email_address" list="user_email_address">
-					<datalist id="user_email_address">
+					<input placeholder="이메일입력" type="text" name="email" required><span id="middle">@</span><input placeholder="직접입력" type="text" name="email_address" list="email_address_list">
+					<datalist id="email_address_list">
 						<option value="naver.com"></option>
 						<option value="daum.com"></option>
 						<option value="google.com"></option>						
 						<option value="hanmail.net"></option>
 		                <option value="nate.com"></option>
 					</datalist>
-					<input type="hidden" id="totalemail" name="u_email" value="">
 				</td>
 			</tr>
 			<tr>
@@ -73,24 +65,7 @@
 			<tr> 
 				<td>생년월일</td> 
 				<td>
-					<select name="year">
-						<c:forEach var="i" begin="1910" end="2022">
-	                   		<option value="${i }">${i }</option>	                   		
-						</c:forEach>
-					</select>
-					년 
-					<select name="month">
-						<c:forEach var="i" begin="1" end="12">							
-	                   		<option value="${i }">${i }</option>	                   		
-						</c:forEach>
-					</select>
-					월
-					<select name="date">
-						<c:forEach var="i" begin="1" end="31">
-	                   		<option value="${i }">${i }</option>	                   		
-						</c:forEach>
-					</select>
-					일
+				  	<input min="1910-01-01" max="2021-12-31" type="date" name="birth"/> 
 				</td>				
 			</tr>
 			<tr>
@@ -110,7 +85,7 @@
 			</tr>
 			<tr>
 				<td class="td1">프로필 사진</td>
-				<td class="td2"><input name="u_picture" type="file"></td>
+				<td class="td2"><input name="picture" type="file"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" style="background-color: #FFFFFF;">

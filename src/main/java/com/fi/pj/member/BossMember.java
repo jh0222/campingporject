@@ -1,6 +1,6 @@
 package com.fi.pj.member;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class BossMember {
 	public int bo_no;

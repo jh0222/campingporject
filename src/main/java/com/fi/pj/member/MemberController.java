@@ -55,16 +55,16 @@ public class MemberController {
 	public String usermemberJoin(UserMember m, HttpServletRequest req) {
 		mDAO.userjoin(m, req);
 		mDAO.loginCheck(req);
-		req.setAttribute("contentPage", "main.jsp");
+		req.setAttribute("contentPage", "home.jsp");
 		return "main";
 	}
 	
 	//회원가입 하기(사장님)
 		@RequestMapping(value = "bossmember.join", method = RequestMethod.POST)
 		public String memberJoin(BossMember m, HttpServletRequest req) {
-			mDAO.bossrjoin(m, req);
+			mDAO.bossjoin(m, req);
 			mDAO.loginCheck(req);
-			req.setAttribute("contentPage", "main.jsp");
+			req.setAttribute("contentPage", "home.jsp");
 			return "main";
 		}
 	
@@ -72,8 +72,15 @@ public class MemberController {
 	@RequestMapping(value = "member.get", 
 			method = RequestMethod.GET, 
 			produces = "application/json; charset=utf-8")
-	public @ResponseBody int memberGet(UserMember m, HttpServletRequest req) {
-		return mDAO.getMemberNum(m, req);
+	public @ResponseBody int memberGet(UserMember m, BossMember b, HttpServletRequest req) {
+		return mDAO.getMemberNum(m, b, req);
+	}
+	
+	//아이디 찾기 페이지로
+	@RequestMapping(value = "idsearch.go", method = RequestMethod.GET)
+	public String IdsearchGo(HttpServletRequest req) {
+		req.setAttribute("contentPage", "member/idsearch.jsp");
+		return "main";
 	}
 	
 	//로그아웃

@@ -1,21 +1,30 @@
-function Idck() {
-		var u_id = $(this).val();
+function connectJoinIdInputEvent() {
+
+	$("#Idckbtn").click(function() {
+		var id = $("#id").val();
 		$.ajax({
 			url : "member.get",
 			data : {
-				"u_id" : u_id
+				"u_id" : id,
+				"bo_id" : id
 			},
 			success : function(data) {
 				console.log(data);
+//				if (data.member.length == 1) {
 				if (data == 1) {
-					alert("중복된 아이디입니다.");
+					$("#Idckbtn").html('사용불가능한 아이디입니다');
+					$("#Idckbtn").css("color", "#F44336");
+					document.joinForm.id.value="";
+					document.joinForm.id.focus();					
 				} else {
-					$("#idchk").attr("value", "Y");
-					alert("사용가능한 아이디입니다.");					
+					$("#Idckbtn").html('사용가능한 아이디입니다');
+					$("#Idckbtn").css("color", "black");
+					document.joinForm.idDoubleChk.value="true"
 				}
 			}
 		});
-}
+	});
+}	
 
 function connectAddrSearchEvent() {
 	$("#addrSearchBtn").click(function() {
@@ -31,6 +40,6 @@ function connectAddrSearchEvent() {
 
 
 $(function() {
-	connectAddrSearchEvent();
 	connectJoinIdInputEvent();
+	connectAddrSearchEvent();
 });
