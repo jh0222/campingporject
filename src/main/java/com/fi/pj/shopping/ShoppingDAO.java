@@ -61,5 +61,11 @@ public class ShoppingDAO {
 		
 	}
 
+	public void searchProduct(Product p, HttpServletRequest req) {
+		
+		req.setAttribute("products",ss.getMapper(ShoppingMapper.class).ProductSearch(p)); 
+		
+	}
+
 
 }

@@ -8,4 +8,6 @@ public interface ShoppingMapper {
 
 	public int regProduct(Product p);
 
+	public List<Product> ProductSearch(Product p);
+	
 }
