@@ -1,5 +1,7 @@
 package com.fi.pj.user_mypage;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,7 +16,8 @@ public class User_mypageDAO {
 		
 		// 개인정보 조회
 		MyMapper mm = ss.getMapper(MyMapper.class);
-		mm.showAllmypage();
+		List<Usermypage> users = mm.showAllmypage();
+		request.setAttribute("user", users);
 	}
 
 }
