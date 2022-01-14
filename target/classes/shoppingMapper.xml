@@ -14,4 +14,12 @@
 	select * from product_registration_table where p_name like '%'||#{p_name}||'%'
 </select>
 
+<delete id="delProduct" parameterType="com.fi.pj.shopping.Product">
+	delete product_registration_table where p_no = #{p_no}
+</delete>
+
+<select id="getProduct" resultType="com.fi.pj.shopping.Product">
+	select * from product_registration_table where p_no = #{p_no}
+</select>
+
 </mapper>

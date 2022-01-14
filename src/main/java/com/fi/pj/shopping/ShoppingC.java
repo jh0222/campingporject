@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 @Controller
 public class ShoppingC {
 	@Autowired
@@ -63,4 +64,12 @@ public class ShoppingC {
 		return "main";
 	}
 	
+	@RequestMapping(value = "del.product", method = RequestMethod.GET)
+	public String delMenuDo(Product p,HttpServletRequest req) {
+		sdao.delMenu(req, p);
+		sdao.getAllProduct(req);
+		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+		req.setAttribute("shoppigListPage", "../shopping/campingProduct_Page.jsp");
+		return "main";
+	}
 }

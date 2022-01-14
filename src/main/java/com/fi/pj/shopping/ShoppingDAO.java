@@ -1,5 +1,7 @@
 package com.fi.pj.shopping;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -67,5 +69,29 @@ public class ShoppingDAO {
 		
 	}
 
+	public void delMenu(HttpServletRequest req, Product p) {
+		try { 
+			String path = req.getSession().getServletContext().getRealPath("resources/img");
+			System.out.println(path);
+			Product pp = ss.getMapper(ShoppingMapper.class).getProduct(p); 
+			System.out.println(pp.getP_picture()); 
+			String fileName = pp.getP_picture();
+			File f = new File(path + "/" + fileName);
+			
+			if(ss.getMapper(ShoppingMapper.class).delProduct(p) == 1) { 
+				System.out.println("삭제 성공");
+				f.delete(); 
+				req.setAttribute("r", "삭제 성공!");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("r", "db서버문제..");
+			
+		}
+		
+	}
+		
+		
+	}
 
-}

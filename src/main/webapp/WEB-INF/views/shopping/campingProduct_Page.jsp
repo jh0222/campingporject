@@ -7,6 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>캠핑용품</title>
+<script type="text/javascript">
+function del(no) {
+	let ok = confirm('해당상품을 삭제 합니까?');
+	if(ok) {
+		location.href = "del.product?p_no=" + no;
+	}
+}
+</script>
 </head>
 <body>
 	<table style="margin-top:15px">
@@ -24,7 +32,7 @@
 	</table>
 	
 	<h3>상품목록</h3>
-	<table border="1">
+	<table border="0">
 		<tr>
 			<th>사진</th>
 			<th>상품명</th>
@@ -35,12 +43,12 @@
 			<tr>
 				<td><img src="resources/img/${p.p_picture }"
 					style="width: 120px; height: 110px;"></td>
-				</div>
 				<td>${p.p_name }</td>
-				</div>
 				<td><fmt:formatNumber value="${p.p_price}" type="currency" />
 					${p_txt }
-					</div></td>
+					</td>
+					<td><button onclick="del(${p.p_no})">삭제</button></td>
+				
 			</tr>
 		</c:forEach>
 	</table>
