@@ -20,4 +20,11 @@ public class HomeController {
 		return "main";
 	}
 	
+	@RequestMapping(value = "home", method = RequestMethod.GET)
+	public String homego(HttpServletRequest req) {
+		mDAO.loginCheck(req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "main";
+	}
+	
 }

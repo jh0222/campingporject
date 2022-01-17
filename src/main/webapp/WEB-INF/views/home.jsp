@@ -8,5 +8,8 @@
 </head>
 <body>
 hi
+<button onclick="location.href='freeboard.go'">자유게시판</button>
+<button onclick="location.href='campingtip.go'">캠핑장 꿀팁</button>
+<button onclick="location.href='recipe.go'">레시피</button>
 </body>
 </html>

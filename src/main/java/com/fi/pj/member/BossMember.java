@@ -3,16 +3,16 @@ package com.fi.pj.member;
 import java.util.Date;
 
 public class BossMember {
-	public int bo_no;
-	public String bo_name;
-	public String bo_id;
-	public String bo_pw;
-	public String bo_email;
-	public String bo_address;
-	public String bo_phonenumber;
-	public Date bo_birth;
-	public String bo_picture;
-	public int bo_discount;
+	private int bo_no;
+	private String bo_name;
+	private String bo_id;
+	private String bo_pw;
+	private String bo_email;
+	private String bo_address;
+	private String bo_phonenumber;
+	private Date bo_birth;
+	private String bo_picture;
+	private int bo_discount;
 	
 	public BossMember() {
 		// TODO Auto-generated constructor stub

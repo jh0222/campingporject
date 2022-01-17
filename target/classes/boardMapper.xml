@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fi.pj.board.BoardMapper">
+	<select id="getAllfreeboard" resultType="com.fi.pj.board.Freeboard">
+		select * from free_board_table order by f_no desc
+	</select>
+	
+	<select id="FbSearch_subject" resultType="com.fi.pj.board.Freeboard" parameterType="com.fi.pj.board.Search">
+		select * from free_board_table where f_subject like '%'||#{search}||'%' order by f_no desc 
+	</select>
+	
+	<select id="FbSearch_id" resultType="com.fi.pj.board.Freeboard" parameterType="com.fi.pj.board.Search">
+		select * from free_board_table where f_u_id like '%'||#{search}||'%' order by f_no desc 
+	</select>
+	
+	<select id="getonefreeboard" resultType="com.fi.pj.board.Freeboard" parameterType="com.fi.pj.board.Freeboard">
+		select * from free_board_table where f_no=#{f_no}
+	</select>
+	
+	<insert id="FbInsert" parameterType="com.fi.pj.board.Freeboard">
+		insert into free_board_table values(free_board_seq.nextval,#{f_u_id},#{f_subject},#{f_txt},#{f_picture},#{f_readcount},sysdate)
+	</insert> 
+	
+	<update id="FbUpdate" parameterType="com.fi.pj.board.Freeboard">
+		update free_board_table set f_subject=#{f_subject},f_txt=#{f_txt},f_picture=#{f_picture}
+		where f_no = #{f_no}
+	</update>
+	
+	<delete id="FbDelete" parameterType="com.fi.pj.board.Freeboard">
+		delete from free_board_table where f_no = #{f_no}
+	</delete>
+	
+	<insert id="FbreplyInsert" parameterType="com.fi.pj.board.FbReply">
+		insert into free_board_reply_table
+		values(free_board_reply_seq.nextval,#{fr_f_no},#{fr_u_id},null,null,#{fr_replytxt},sysdate)
+	</insert>
+	
+	<select id="getfbreply" resultType="com.fi.pj.board.FbReply" parameterType="com.fi.pj.board.Freeboard">
+		select * from free_board_reply_table where fr_f_no=#{f_no} order by fr_no asc
+	</select>
+	
+	<delete id="FrDelete" parameterType="com.fi.pj.board.FbReply">
+		delete from free_board_reply_table where fr_no = #{fr_no}
+	</delete>
+</mapper>

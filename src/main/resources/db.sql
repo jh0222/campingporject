@@ -330,6 +330,7 @@ create sequence free_board_reply_seq;
 insert into free_board_reply_table values(free_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210');
 
 select * from free_board_reply_table;
+select * from free_board_reply_table where fr_f_no=41;
 
 18. 캠핑팁게시판
 create table campingtip_board_table(	
