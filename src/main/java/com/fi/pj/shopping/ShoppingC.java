@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
+
 @Controller
 public class ShoppingC {
 	@Autowired
@@ -47,7 +48,7 @@ public class ShoppingC {
 	}
 	
 	@RequestMapping(value = "reg.product", method = RequestMethod.POST )
-	public String regproduct(Product p,HttpServletRequest req) {
+	public String regProduct(Product p,HttpServletRequest req) {
 		sdao.regProduct(p,req);   
 		sdao.getAllProduct(req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
@@ -56,7 +57,7 @@ public class ShoppingC {
 	}
 	
 	@RequestMapping(value = "search.product", method = RequestMethod.GET )
-	public String searchproduct(Product p,HttpServletRequest req) {
+	public String searchProduct(Product p,HttpServletRequest req) {
 		sdao.searchProduct(p,req);   
 		//sdao.getAllProduct(req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
@@ -66,10 +67,19 @@ public class ShoppingC {
 	
 	@RequestMapping(value = "del.product", method = RequestMethod.GET)
 	public String delMenuDo(Product p,HttpServletRequest req) {
-		sdao.delMenu(req, p);
+		sdao.delProduct(req, p);
 		sdao.getAllProduct(req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/campingProduct_Page.jsp");
+		return "main";
+	}
+	
+	@RequestMapping(value = "detail.product", method = RequestMethod.GET)
+	public String datailProduct(Product p, HttpServletRequest req) {
+		
+		sdao.getProduct(req, p);
+		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
 		return "main";
 	}
 }

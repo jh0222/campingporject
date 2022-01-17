@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<div align="center">
+	<div align="center" style="position:absolute; right:1120px; fixed;">
 		<a href="camping.product">캠핑용품</a>
 		<a href="camping.milkit">밀키트</a>
 	</div>

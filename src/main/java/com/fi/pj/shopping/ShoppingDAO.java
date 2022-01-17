@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -69,7 +70,7 @@ public class ShoppingDAO {
 		
 	}
 
-	public void delMenu(HttpServletRequest req, Product p) {
+	public void delProduct(HttpServletRequest req, Product p) {
 		try { 
 			String path = req.getSession().getServletContext().getRealPath("resources/img");
 			System.out.println(path);
@@ -89,6 +90,15 @@ public class ShoppingDAO {
 			req.setAttribute("r", "db서버문제..");
 			
 		}
+		
+	}
+
+	public void getProduct(HttpServletRequest req, Product p) {
+		
+		ShoppingMapper mm = ss.getMapper(ShoppingMapper.class); 
+			Product product = mm.detailProduct(p);  
+			req.setAttribute("p", product );
+		
 		
 	}
 		
