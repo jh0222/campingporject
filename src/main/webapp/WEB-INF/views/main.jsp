@@ -3,7 +3,7 @@
 <title>Insert title here</title>
 <html>
 <head>
-<button href="mypagemain">마이페이지</button>
+
 <script type="text/javascript" src="resources/js/jquery.js"></script>
 <script type="text/javascript" src="resources/js/site_jquery.js"></script>
 <script type="text/javascript" src="resources/js/member.js"></script>
@@ -13,6 +13,7 @@
 <body>
 ${result }
 <jsp:include page="${loginPage }"></jsp:include>
+<button onclick="location.href='mypage'">마이페이지</button>
 <hr>
 <jsp:include page="${contentPage }"></jsp:include>
 

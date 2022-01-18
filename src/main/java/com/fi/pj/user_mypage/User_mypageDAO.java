@@ -15,7 +15,7 @@ public class User_mypageDAO {
 	public void getAllmypage(HttpServletRequest request) {
 		
 		// 개인정보 조회
-		MyMapper mm = ss.getMapper(MyMapper.class);
+		MypageMapper mm = ss.getMapper(MypageMapper.class);
 		List<Usermypage> users = mm.showAllmypage();
 		request.setAttribute("user", users);
 	}

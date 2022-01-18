@@ -192,8 +192,9 @@ select * from foodproduct_registration_table;
 /*
  * 하나만 선택되도록 radio box
  * 새로운 배송지가 null값이면 기존배송지 아니면 새로운 배송지가 뜨도록 만들기
- * */
+ */
 drop table guest_product_buy_table;
+
 create table guest_product_buy_table(		
 	b_no number(5) primary key, /*(주문번호)*/
 	b_u_bo_id varchar2(20 char) not null,
@@ -238,12 +239,12 @@ select * from guest_foodproduct_buy_table;
 
 12. 캠핑용품 장바구니
 create table guest_product_basket_table(
-	ba_no number(5) primary key,
-	ba_p_no	number(5) not null,
-	ba_u_bo_id varchar2(20 char) not null,
-	ba_p_name varchar2(20 char) not null,
+	ba_no number(5) primary key, /*캠핑용품 장바구니 번호*/
+	ba_p_no	number(5) not null,  /* 캠핑용품 등록 번호*/
+	ba_u_bo_id varchar2(20 char) not null, /* 사용자와 사장 id*/
+	ba_p_name varchar2(20 char) not null, /*캠핑용품 이름*/
 	ba_price number(5) not null, /*(수량*p_price)*/
-	ba_number number(5) not null
+	ba_number number(5) not null /* 갯수 */
 );
 
 create sequence product_basket_seq;
@@ -254,12 +255,12 @@ select * from guest_product_basket_table;
 
 13. 밀키트 장바구니
 create table guest_foodproduct_basket_table(
-	fba_no number(5) primary key,
-	fba_fp_no	number(5) not null,
-	fba_u_bo_id varchar2(20 char) not null,
-	fba_fp_name varchar2(20 char) not null,
+	fba_no number(5) primary key, /*밀키트 장바구니 번호*/
+	fba_fp_no number(5) not null, /*밀키트 등록 번호*/
+	fba_u_bo_id varchar2(20 char) not null, /*사용자와 사장 id*/
+	fba_fp_name varchar2(20 char) not null,/*밀키트 이름*/
 	fba_price number(5) not null, /*(수량*p_price)*/
-	fba_number number(5) not null
+	fba_number number(5) not null /*갯수*/
 );
 
 create sequence foodproduct_basket_seq;

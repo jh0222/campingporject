@@ -46,7 +46,8 @@
 		<beans:property name="mapperLocations">
 			<beans:list>
 
-				<beans:value>classpath:mapper.xml</beans:value>
+				<beans:value>classpath:MypageMapper.xml</beans:value>
+				<beans:value>classpath:CartMapper.xml</beans:value>
 
 			</beans:list>
 		</beans:property>
