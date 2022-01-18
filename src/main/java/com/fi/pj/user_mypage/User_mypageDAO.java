@@ -19,5 +19,4 @@ public class User_mypageDAO {
 		List<Usermypage> users = mm.showAllmypage();
 		request.setAttribute("user", users);
 	}
-
 }

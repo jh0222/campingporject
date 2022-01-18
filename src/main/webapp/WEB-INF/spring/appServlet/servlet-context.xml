@@ -33,7 +33,6 @@
 		<beans:property name="username" value="c##jmy" />
 		<beans:property name="password" value="jmy" />
 
-	
 	</beans:bean>
 
 	<beans:bean id="transactionManager"
@@ -46,11 +45,9 @@
 		<beans:property name="typeAliasesPackage" value="com.fi.pj" />
 		<beans:property name="mapperLocations">
 			<beans:list>
-<<<<<<< HEAD
+
 				<beans:value>classpath:mapper.xml</beans:value>
-=======
-				<beans:value>classpath:memberMapper.xml</beans:value>
->>>>>>> 78574e39bde603c3f2b1118a0e254d8de03b5de6
+
 			</beans:list>
 		</beans:property>
 	</beans:bean>
