@@ -1,6 +1,5 @@
 package com.fi.pj.shopping;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,8 @@ public class ShoppingC {
 	private ShoppingDAO sdao;
 
 	@RequestMapping(value = "shopping.go", method = RequestMethod.GET)
-	public String shoppingmain(HttpServletRequest req) {
+	public String shoppinggo(HttpServletRequest req) {
+		
 	
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		return "main";
@@ -79,6 +79,26 @@ public class ShoppingC {
 		
 		sdao.getProduct(req, p);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
+		return "main";
+	}
+	
+	@RequestMapping(value = "updateproduct.go", method = RequestMethod.GET)
+	public String updateProductgo(Product p, HttpServletRequest req) {
+		
+		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+		req.setAttribute("shoppigListPage", "../shopping/updateProduct.jsp");
+		
+		return "main";
+	}
+	
+	@RequestMapping(value = "update.product", method = RequestMethod.POST)
+	public String updateProduct(HttpServletRequest req ,Product p) {
+		System.out.println("111111111");
+		sdao.updateProduct(req, p);
+		System.out.println("2222222222");
+		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+		System.out.println("3333333333");
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
 		return "main";
 	}

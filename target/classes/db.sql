@@ -166,12 +166,13 @@ create table product_registration_table(
 	p_picture varchar2(200 char) not null,
 	p_txt varchar2(200 char) not null
 );
+
 create sequence product_registration_table_seq;
 select * from product_registration_table;
 
 drop table product_registration_table;
 ALTER SEQUENCE product_registration_table_seq INCREMENT BY 1;   --시퀀시값 초기화(1로)
-insert into product_registration_table values(product_registration_table_seq.nextval,'캠핑용품',10000,'b.jpg','캠핑용품입니다');
+insert into product_registration_table values(product_registration_table_seq.nextval,'캠핑용품',10000,'b.jpg','캠핑용품입니다');   
 
 9. 밀키트 등록(관리자만)
 create table foodproduct_registration_table(

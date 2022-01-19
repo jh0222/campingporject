@@ -15,5 +15,7 @@ public interface ShoppingMapper {
 	public int delProduct(Product p);
 
 	public Product detailProduct(Product p);
+
+	public int updateProduct(Product p);
 	
 }

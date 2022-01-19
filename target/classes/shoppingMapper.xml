@@ -6,8 +6,8 @@
 </select>
 
 <insert id="regProduct" parameterType="com.fi.pj.shopping.Product">
-	insert into product_registration_table(p_no,p_name,p_picture,p_price,p_txt)
-	values (product_registration_table_seq.nextval,#{p_name},#{p_picture},#{p_price},#{p_txt})
+	insert into product_registration_table(p_no,p_name,p_price,p_picture,p_txt)
+	values (product_registration_table_seq.nextval,#{p_name},#{p_price},#{p_picture},#{p_txt})
 </insert>
 
 <select id="ProductSearch" resultType="com.fi.pj.shopping.Product"> 
@@ -25,5 +25,15 @@
 <select id="detailProduct" resultType="com.fi.pj.shopping.Product"> 
 		select * from product_registration_table where p_no = #{p_no}
 </select>
+
+<update id="updateProduct" parameterType="com.fi.pj.shopping.Product" >
+ update product_registration_table
+  set
+   p_picture = #{p_picture}
+   p_name = #{p_name},
+   p_price = #{p_price},
+   p_txt - #{p_txt}
+  where p_no = #{p_no}
+</update>
 
 </mapper>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품등록</title>
 </head>
 <body>
 <body>
@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <td>상품이미지</td>
-            <td><input type="file" name="p_picture"></td> 
+            <td><input type="file" name="p_picture"><td>
         </tr>
         <tr>
             <td colspan="2" align="center">
