@@ -8,8 +8,6 @@
 </head>
 <body>
 
-<<<<<<< HEAD
-=======
 	<div class="full">
 		<div class="container">
 			<div class="area_inputs wow fadeIn">
@@ -66,6 +64,5 @@
 		</div>
 	</div>
 
->>>>>>> 6b758e7f64ddf43f1809ff7d47c3023f1c7127fe
 </body>
 </html>

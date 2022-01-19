@@ -16,15 +16,10 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest req) {
-
-		mDAO.loginCheck(req);
-		
-		//req.setAttribute("loginPage", "login.jsp");
-
 		mDAO.loginCheck(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "main";
-	}
+	}  
 	
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String homego(HttpServletRequest req) {

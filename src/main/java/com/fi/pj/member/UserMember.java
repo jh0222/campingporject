@@ -3,7 +3,6 @@ package com.fi.pj.member;
 import java.util.Date;
 
 public class UserMember {
-
 	private int u_no;
 	private String u_name;
 	private String u_id;
@@ -14,7 +13,6 @@ public class UserMember {
 	private Date u_birth;
 	private String u_picture;
 	private int u_discount;
-
 	
 	public UserMember() {
 		// TODO Auto-generated constructor stub
@@ -114,5 +112,5 @@ public class UserMember {
 		this.u_picture = u_picture;
 		this.u_discount = u_discount;
 	}
-
+	
 }

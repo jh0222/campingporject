@@ -13,12 +13,6 @@ public class HomeController {
 	@Autowired
 	private User_mypageDAO mdao;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpServletRequest request) {
-		
-		return "main";
-	}
-	
 	@RequestMapping(value = "/user_mypage", method = RequestMethod.GET) // 개인정보 표시
 	public String mypage(HttpServletRequest request) {
 		

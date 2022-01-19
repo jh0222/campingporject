@@ -12,8 +12,9 @@ public interface MemberMapper {
 	public BossMember getMemberByBOID(Login l);
 	public Root getMemberByR(Login l);
 
-
 	//회원가입
 	public int Userjoin(UserMember m);
 	public int Bossjoin(BossMember m);
+	
+
 }

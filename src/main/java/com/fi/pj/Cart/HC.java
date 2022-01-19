@@ -12,12 +12,7 @@ public class HC {
 
 	@Autowired
 	private CartDAO sdao;
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpServletRequest request) {
-		
-		return "main";
-	}
+
 	
 	@RequestMapping(value = "Cart", method = RequestMethod.GET)
 	public String Cart(HttpServletRequest request) {

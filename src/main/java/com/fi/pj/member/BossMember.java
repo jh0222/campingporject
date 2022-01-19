@@ -3,7 +3,6 @@ package com.fi.pj.member;
 import java.util.Date;
 
 public class BossMember {
-
 	private int bo_no;
 	private String bo_name;
 	private String bo_id;

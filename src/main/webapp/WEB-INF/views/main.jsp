@@ -36,15 +36,5 @@ ${result }
 		</tr>
 	</table>
 	
-	<table id="siteContentArea">
-		<tr>
-			<td><jsp:include page="${contentPage} }"></jsp:include></td>
-		</tr>
-	</table>
-	<table id="siteLoginArea">
-		<tr>
-			<td><jsp:include page="${loginPage} }"></jsp:include></td>
-		</tr>
-	</table>
 </body>
 </html>
