@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 <script type="text/javascript" src="resources/js/go.js"></script>
 
