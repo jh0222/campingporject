@@ -29,10 +29,15 @@
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
 			value="jdbc:oracle:thin:@localhost:1521:xe" />
+<<<<<<< HEAD
 
 		<beans:property name="username" value="c##jmy" />
 		<beans:property name="password" value="jmy" />
 
+=======
+		<beans:property name="username" value="c##mj" />
+		<beans:property name="password" value="mj" />
+>>>>>>> c91ac862e616c5a18826a98668d48d5ba230d326
 	</beans:bean>
 
 	<beans:bean id="transactionManager"
@@ -45,10 +50,14 @@
 		<beans:property name="typeAliasesPackage" value="com.fi.pj" />
 		<beans:property name="mapperLocations">
 			<beans:list>
+<<<<<<< HEAD
 
 				<beans:value>classpath:MypageMapper.xml</beans:value>
 				<beans:value>classpath:CartMapper.xml</beans:value>
 
+=======
+				<beans:value>classpath:PlacePayMapper.xml</beans:value>
+>>>>>>> c91ac862e616c5a18826a98668d48d5ba230d326
 			</beans:list>
 		</beans:property>
 	</beans:bean>
