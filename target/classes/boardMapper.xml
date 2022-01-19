@@ -29,17 +29,26 @@
 	<delete id="FbDelete" parameterType="com.fi.pj.board.Freeboard">
 		delete from free_board_table where f_no = #{f_no}
 	</delete>
+
+	<insert id="FbreplyInsert2" parameterType="com.fi.pj.board.FbReply">
+		insert into free_board_reply_table
+		values(free_board_reply_seq.nextval,#{fr_f_no},#{fr_u_id},#{fr_owner_no},#{fr_owner_id},#{fr_replytxt},sysdate,#{fr_depth},#{fr_picture})
+	</insert>
 	
 	<insert id="FbreplyInsert" parameterType="com.fi.pj.board.FbReply">
 		insert into free_board_reply_table
-		values(free_board_reply_seq.nextval,#{fr_f_no},#{fr_u_id},null,null,#{fr_replytxt},sysdate)
+		values(free_board_reply_seq.nextval,#{fr_f_no},#{fr_u_id},null,null,#{fr_replytxt},sysdate,#{fr_depth},#{fr_picture})
 	</insert>
 	
 	<select id="getfbreply" resultType="com.fi.pj.board.FbReply" parameterType="com.fi.pj.board.Freeboard">
-		select * from free_board_reply_table where fr_f_no=#{f_no} order by fr_no asc
+		select * from free_board_reply_table where fr_f_no=#{f_no} and fr_owner_no is null order by fr_no asc
 	</select>
 	
 	<delete id="FrDelete" parameterType="com.fi.pj.board.FbReply">
 		delete from free_board_reply_table where fr_no = #{fr_no}
 	</delete>
+	
+	<select id="getfbrreply" resultType="com.fi.pj.board.FbReply" parameterType="com.fi.pj.board.Freeboard">
+		select * from free_board_reply_table where fr_f_no=#{f_no} and fr_owner_no is not null order by fr_no asc
+	</select>
 </mapper>

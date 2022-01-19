@@ -10,6 +10,8 @@ public class FbReply {
 	private String fr_owner_id;
 	private String fr_replytxt;
 	private Date fr_date;
+	private int fr_depth;
+	private String fr_picture;
 	
 	public FbReply() {
 		// TODO Auto-generated constructor stub
@@ -71,8 +73,24 @@ public class FbReply {
 		this.fr_date = fr_date;
 	}
 
+	public int getFr_depth() {
+		return fr_depth;
+	}
+
+	public void setFr_depth(int fr_depth) {
+		this.fr_depth = fr_depth;
+	}
+
+	public String getFr_picture() {
+		return fr_picture;
+	}
+
+	public void setFr_picture(String fr_picture) {
+		this.fr_picture = fr_picture;
+	}
+
 	public FbReply(int fr_no, int fr_f_no, String fr_u_id, int fr_owner_no, String fr_owner_id, String fr_replytxt,
-			Date fr_date) {
+			Date fr_date, int fr_depth, String fr_picture) {
 		super();
 		this.fr_no = fr_no;
 		this.fr_f_no = fr_f_no;
@@ -81,6 +99,8 @@ public class FbReply {
 		this.fr_owner_id = fr_owner_id;
 		this.fr_replytxt = fr_replytxt;
 		this.fr_date = fr_date;
+		this.fr_depth = fr_depth;
+		this.fr_picture = fr_picture;
 	}
-	
+
 }

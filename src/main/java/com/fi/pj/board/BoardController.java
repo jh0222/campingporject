@@ -126,6 +126,7 @@ public class BoardController {
 		mDAO.loginCheck(req);
 		bDAO.getonefreeboard(fb, req);
 		bDAO.getfbreply(fb,req);
+		bDAO.getfbrreply(fb,req);
 		req.setAttribute("contentPage", "board/freeboard_one.jsp");
 		return "main";
 	}
@@ -137,10 +138,11 @@ public class BoardController {
 		mDAO.loginCheck(req);
 		bDAO.getonefreeboard(fb, req);
 		bDAO.getfbreply(fb,req);
+		bDAO.getfbrreply(fb,req);
 		req.setAttribute("contentPage", "board/freeboard_one.jsp");
 		return "main";
 	}
-	
+	  
 	//자유게시판 댓글 삭제
 	@RequestMapping(value = "fr.delete", method = RequestMethod.GET)
 	public String FreeboardwriteDelete(Freeboard fb, FbReply fr, HttpServletRequest req) {	
@@ -148,9 +150,11 @@ public class BoardController {
 		mDAO.loginCheck(req);
 		bDAO.getonefreeboard(fb, req);
 		bDAO.getfbreply(fb,req);
+		bDAO.getfbrreply(fb,req);
 		req.setAttribute("contentPage", "board/freeboard_one.jsp");
 		return "main";
 	}
+	
 	
 }
 

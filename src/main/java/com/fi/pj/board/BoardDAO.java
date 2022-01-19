@@ -27,6 +27,7 @@ public class BoardDAO {
 		req.setAttribute("fb", fb);
 	}
 
+	//자유게시판 등록
 	public void fbinsert(Freeboard fb, HttpServletRequest req) {
 		String path = req.getSession().getServletContext().getRealPath("resources/img");
 		MultipartRequest mr = null;
@@ -107,19 +108,23 @@ public class BoardDAO {
 
 	//자유게시판 댓글 등록
 	public void fbreplyinsert(FbReply fr, HttpServletRequest req) {
-		int fr_f_no = Integer.parseInt(req.getParameter("fr_f_no"));
-		String fr_u_id = req.getParameter("fr_u_id");		
-		String fr_replytxt = req.getParameter("fr_replytxt");
-
-		fr.setFr_f_no(fr_f_no);
-		fr.setFr_u_id(fr_u_id);
-		fr.setFr_replytxt(fr_replytxt);
-		
-		if (ss.getMapper(BoardMapper.class).FbreplyInsert(fr) == 1) {
-			req.setAttribute("result", "등록성공");
-		} else {
-			req.setAttribute("result", "등록실패");
-		}
+			String fr_owner_id = req.getParameter("fr_owner_id");
+			//대댓글
+			if (fr_owner_id != null) {
+				if (ss.getMapper(BoardMapper.class).FbreplyInsert2(fr) == 1) {
+					req.setAttribute("result", "등록성공");
+				} else {
+					req.setAttribute("result", "등록실패");
+				}
+			} 
+			//댓글
+			else { 
+				if (ss.getMapper(BoardMapper.class).FbreplyInsert(fr) == 1) {
+					req.setAttribute("result", "등록성공");
+				} else {
+					req.setAttribute("result", "등록실패");
+				}
+			}
 	}
 
 	//자유게시판 댓글 보기
@@ -135,6 +140,11 @@ public class BoardDAO {
 		} else {
 			req.setAttribute("result", "삭제실패");
 		}
+	}
+
+	public void getfbrreply(Freeboard fb, HttpServletRequest req) {
+		List<FbReply> frr = ss.getMapper(BoardMapper.class).getfbrreply(fb);
+		req.setAttribute("frr", frr);		
 	}
 
 }
