@@ -135,10 +135,22 @@ public class BoardDAO {
 
 	//자유게시판 댓글 삭제
 	public void frdelete(FbReply fr, HttpServletRequest req) {
-		if (ss.getMapper(BoardMapper.class).FrDelete(fr) == 1) {
-			req.setAttribute("result", "삭제성공");
+		int depth = Integer.parseInt(req.getParameter("fr_depth"));
+		System.out.println(depth);
+		if(depth == 3 && ss.getMapper(BoardMapper.class).FrDelete_update_select(fr) > 0) {
+			//삭제할 댓글에 대댓글이 있을경우
+			System.out.println(ss.getMapper(BoardMapper.class).FrDelete_update_select(fr));
+			if (ss.getMapper(BoardMapper.class).FrDelete_update(fr) == 1) {
+				req.setAttribute("result", "삭제성공");
+			} else {
+				req.setAttribute("result", "삭제실패");
+			}			
 		} else {
-			req.setAttribute("result", "삭제실패");
+			if (ss.getMapper(BoardMapper.class).FrDelete(fr) == 1) {
+				req.setAttribute("result", "삭제성공");
+			} else {
+				req.setAttribute("result", "삭제실패");
+			}
 		}
 	}
 

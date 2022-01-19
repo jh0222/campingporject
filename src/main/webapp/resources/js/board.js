@@ -9,10 +9,10 @@ function fbdelete(n) {
 	}
 }
 
-function frdelete(n,no) {
+function frdelete(n,no,depth) {
 	var ok = confirm("삭제하시겠습니까?");
 	if (ok) {
-		location.href = "fr.delete?fr_no=" + n +"&f_no=" + no;
+		location.href = "fr.delete?fr_no=" + n +"&f_no=" + no + "&fr_depth?" + fr_depth;
 	}
 }
 

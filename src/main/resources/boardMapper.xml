@@ -48,6 +48,15 @@
 		delete from free_board_reply_table where fr_no = #{fr_no}
 	</delete>
 	
+	<update id="FrDelete_update" parameterType="com.fi.pj.board.FbReply">
+		update free_board_reply_table set fr_u_id='(알수없음)',fr_picture='x',fr_replytxt='삭제된 댓글입니다'
+		where fr_no = #{fr_no}
+	</update>
+	
+	<select id="FrDelete_update_select">
+		select count(*)	from free_board_reply_table where fr_owner_no=#{fr_no}
+	</select>
+	
 	<select id="getfbrreply" resultType="com.fi.pj.board.FbReply" parameterType="com.fi.pj.board.Freeboard">
 		select * from free_board_reply_table where fr_f_no=#{f_no} and fr_owner_no is not null order by fr_no asc
 	</select>

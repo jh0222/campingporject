@@ -32,10 +32,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td>${fb.f_txt }</td>
+				<td colspan="4">${fb.f_txt }</td>
 			</tr>
 			<tr>
-				<td><img src="resources/img/${fb.f_picture }" width="100" height="100"></td>
+				<td colspan="4" align="center"><img src="resources/img/${fb.f_picture }" width="200" height="100"></td>
 			</tr>
 			<c:if test="${fb.f_u_id == sessionScope.loginMember.u_id 
 						|| fb.f_u_id == sessionScope.loginMember2.bo_id 
@@ -60,18 +60,14 @@
 						${sessionScope.loginMember2.bo_picture }
 						${sessionScope.loginMember3.root_picture }" width="30" height="30">
 						<input type="hidden" name="fr_picture" 
-						value="${sessionScope.loginMember.u_picture }
-						${sessionScope.loginMember2.bo_picture }
-						${sessionScope.loginMember3.root_picture }">
+						value="${sessionScope.loginMember.u_picture }${sessionScope.loginMember2.bo_picture }${sessionScope.loginMember3.root_picture }">				
 					</td>					
 					<td>
 						${sessionScope.loginMember.u_id }
 						${sessionScope.loginMember2.bo_id }
 						${sessionScope.loginMember3.root_name }					
 						<input type="hidden" name="fr_u_id"
-						value="${sessionScope.loginMember.u_id }
-						${sessionScope.loginMember2.bo_id }
-						${sessionScope.loginMember3.root_name }">
+						value="${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }${sessionScope.loginMember3.root_name }">
 					</td>
 				</tr>
 				<tr><td><input name="fr_replytxt"></td></tr>
@@ -79,61 +75,64 @@
 					<td colspan="2">
 						<input type="hidden" name="fr_f_no" value="${fb.f_no}">
 						<input type="hidden" name="f_no" value="${fb.f_no}">
-						<input type="hidden" name="fr_depth" value="3">
-						
+						<input type="hidden" name="fr_depth" value="3">		
+										
 						<button>등록</button>
 					</td>
 				</tr>
 			</table>
 		</form>
 		</c:if>
-				
-		<c:forEach var="fr" items="${fr }">			
-		<!-- 댓글 select -->	
-		[댓글]
+			
+			
+	<c:forEach var="fr" items="${fr }">	
+		[댓글]		
+		<!-- 댓글 select -->			
 			<table border="1">	
 				<tr><td colspan="3" style="background-color:red;">댓글</td></tr>	
 				<tr>
 					<td>
 						<img src="resources/img/${fr.fr_picture }" width="30" height="30">
+					</td>
 					<td>${fr.fr_u_id }</td>
 					<td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${fr.fr_date }"/></td>					
 				</tr>
 				<tr>
-					<td colspan="3">${fr.fr_replytxt }</td>
-					<c:if test="${fr.fr_u_id == sessionScope.loginMember.u_id 
+					<td colspan="3">${fr.fr_replytxt }</td>								
+				</tr>
+				<c:if test="${fr.fr_u_id == sessionScope.loginMember.u_id 
 						|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
 						|| sessionScope.loginMember3 != null}">
-						<td><button>수정</button><button onclick="frdelete(${fr.fr_no},${fb.f_no});">삭제</button></td>
-					</c:if>					
-				</tr>			
+					<tr>
+						<td colspan="3">
+							<button>수정</button>
+							<button onclick="frdelete(${fr.fr_no},${fb.f_no},${fr.fr_depth });">삭제</button>
+						</td>	
+					</tr>	
+				</c:if>		
 			</table>
-			
-		[답글달기]
+
 		<c:if test="${sessionScope.loginMember.u_id != null
 				|| sessionScope.loginMember2.bo_id != null
 				|| sessionScope.loginMember3 != null}">
 		<!-- 대댓글 inset -->
 			<form action="fb_replyinsert">
 				<table id="replyreply" border="1">
+					<tr><td colspan="2">답글작성</td></tr>
 					<tr>
 						<td rowspan="2">
 							<img src="resources/img/${sessionScope.loginMember.u_picture }
 							${sessionScope.loginMember2.bo_picture }
 							${sessionScope.loginMember3.root_picture }" width="30" height="30">
 							<input type="hidden" name="fr_picture" 
-							value="${sessionScope.loginMember.u_picture }
-							${sessionScope.loginMember2.bo_picture }
-							${sessionScope.loginMember3.root_picture }">
+							value="${sessionScope.loginMember.u_picture }${sessionScope.loginMember2.bo_picture }${sessionScope.loginMember3.root_picture }">
 						</td>
 						<td>
 							${sessionScope.loginMember.u_id }
 							${sessionScope.loginMember2.bo_id }
 							${sessionScope.loginMember3.root_name }
 							<input type="hidden" name="fr_u_id"
-							value="${sessionScope.loginMember.u_id }
-							${sessionScope.loginMember2.bo_id }
-							${sessionScope.loginMember3.root_name }">
+							value="${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }${sessionScope.loginMember3.root_name }">					
 						</td>
 					</tr>
 					<tr><td><input name="fr_replytxt"></td></tr>
@@ -150,14 +149,15 @@
 				</table>
 			</form>
 		</c:if>
-			
-		[대댓글]
+					
 		<!-- 대댓글 select겸 insert -->
 		<c:forEach var="frr" items="${frr }">
-		<c:if test="${frr.fr_owner_no == fr.fr_no }">	
-			<form action="fb_replyinsert">				
+		<c:if test="${frr.fr_owner_no == fr.fr_no }">				
 			<table border="1">
 				<tr>
+					<td>
+						<img src="resources/img/${frr.fr_picture }" width="30" height="30">
+					</td>
 					<c:if test="${frr.fr_depth == 1 }">
 						<td style="color:red; background-color:yellow;">${frr.fr_owner_id }</td>
 					</c:if>					
@@ -167,10 +167,19 @@
 					<c:if test="${frr.fr_u_id == sessionScope.loginMember.u_id 
 						|| frr.fr_u_id == sessionScope.loginMember2.bo_id 
 						|| sessionScope.loginMember3 != null}">
-						<td><button>수정</button><button onclick="frdelete(${fr.fr_no},${fb.f_no});">삭제</button></td>
+						<td>
+							<button>수정</button>
+							<button onclick="frdelete(${frr.fr_no},${fb.f_no},${frr.fr_depth });">삭제</button>
+						</td>
 					</c:if>	
 					<td><button>답글</button></td>
 				</tr>
+			</table>
+			<c:if test="${sessionScope.loginMember.u_id != null
+						|| sessionScope.loginMember2.bo_id != null
+						|| sessionScope.loginMember3 != null}">
+			<form action="fb_replyinsert">				
+			<table border="1">
 				<tr>							
 					<td style="color:red;">
 						${frr.fr_u_id }							
@@ -180,18 +189,14 @@
 						${sessionScope.loginMember2.bo_picture }
 						${sessionScope.loginMember3.root_picture }" width="30" height="30">
 						<input type="hidden" name="fr_picture" 
-						value="${sessionScope.loginMember.u_picture }
-						${sessionScope.loginMember2.bo_picture }
-						${sessionScope.loginMember3.root_picture }">
+						value="${sessionScope.loginMember.u_picture }${sessionScope.loginMember2.bo_picture }${sessionScope.loginMember3.root_picture }">
 					</td>
 					<td>
 						${sessionScope.loginMember.u_id }
 						${sessionScope.loginMember2.bo_id }
 						${sessionScope.loginMember3.root_name }
 						<input type="hidden" name="fr_u_id"
-						value="${sessionScope.loginMember.u_id }
-						${sessionScope.loginMember2.bo_id }
-						${sessionScope.loginMember3.root_name }">
+						value="${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }${sessionScope.loginMember3.root_name }">
 						<input name="fr_replytxt">
 					</td>
 					<td>
@@ -199,11 +204,13 @@
 						<input type="hidden" name="fr_owner_no" value="${fr.fr_no }">
 						<input type="hidden" name="fr_owner_id" value="${frr.fr_u_id }">
 						<input type="hidden" name="fr_depth" value="1">
+						<input type="hidden" name="f_no" value="${fb.f_no}">
 						<button>등록</button>
 					</td>
 				</tr>
 			</table>
-			</form>	
+			</form>
+			</c:if>	
 		</c:if>
 		</c:forEach>				
 	</c:forEach>

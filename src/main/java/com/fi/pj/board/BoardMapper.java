@@ -33,9 +33,17 @@ public interface BoardMapper {
 
 	//자유게시판 댓글 삭제
 	public int FrDelete(FbReply fr);
+	//자유게시판 댓글 대댓글이 있는지 없는지 확인
+	public int FrDelete_update_select(FbReply fr);
+	//자유게시판 댓글 삭제로 수정하기
+	public int FrDelete_update(FbReply fr);
 	
 	//자유게시판 대댓글 보기
 	public List<FbReply> getfbrreply(Freeboard fb);
+
+	
+
+	
 
 	
 
