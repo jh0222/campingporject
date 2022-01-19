@@ -8,13 +8,10 @@
 	<select id="getMemberByBOID" parameterType="com.fi.pj.member.Login" resultType="com.fi.pj.member.BossMember">
 		select * from boss_table where bo_id = #{id}
 	</select>
-<<<<<<< HEAD
-=======
 	
 	<select id="getMemberByR" parameterType="com.fi.pj.member.Login" resultType="com.fi.pj.member.Root">
 		select * from root_table where root_id = #{id}
 	</select>
->>>>>>> 6b758e7f64ddf43f1809ff7d47c3023f1c7127fe
 
 	<select id="getMemberNum" parameterType="com.fi.pj.member.UserMember" resultType="java.lang.Integer">
 		select count(*) from user_table where u_id = #{u_id}

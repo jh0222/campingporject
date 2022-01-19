@@ -3,37 +3,19 @@
 <title>Insert title here</title>
 <html>
 <head>
-<<<<<<< HEAD
-
-<script type="text/javascript" src="resources/js/jquery.js"></script>
-<script type="text/javascript" src="resources/js/site_jquery.js"></script>
-<script type="text/javascript" src="resources/js/member.js"></script>
-<script type="text/javascript" src="resources/js/validCheck.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-</head>
-<body>
-<<<<<<< HEAD
-${result }
-<jsp:include page="${loginPage }"></jsp:include>
-<button onclick="location.href='mypage'">마이페이지</button>
-=======
-<meta charset="UTF-8">
 <script type="text/javascript" src="resources/js/jquery.js"></script>
 <script type="text/javascript" src="resources/js/site_jquery.js"></script>
 <script type="text/javascript" src="resources/js/member.js"></script>
 <script type="text/javascript" src="resources/js/board.js"></script>
 <script type="text/javascript" src="resources/js/validCheck.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<title>Insert title here</title>
 </head>
 <body>
 ${result }
 <jsp:include page="${loginPage }"></jsp:include>
->>>>>>> 6b758e7f64ddf43f1809ff7d47c3023f1c7127fe
+
 <hr>
 <jsp:include page="${contentPage }"></jsp:include>
-
-=======
 	
 	<table id="siteMenuArea">
 	<tr>
@@ -64,7 +46,5 @@ ${result }
 			<td><jsp:include page="${loginPage} }"></jsp:include></td>
 		</tr>
 	</table>
-	
->>>>>>> c91ac862e616c5a18826a98668d48d5ba230d326
 </body>
 </html>

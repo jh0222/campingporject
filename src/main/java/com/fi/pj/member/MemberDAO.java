@@ -9,11 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -27,10 +22,8 @@ public class MemberDAO {
 	public void login(Login l, HttpServletRequest req) {
 		UserMember dbMember = ss.getMapper(MemberMapper.class).getMemberByUID(l);
 		BossMember dbMember2 = ss.getMapper(MemberMapper.class).getMemberByBOID(l);
-<<<<<<< HEAD
-=======
 		Root dbMember3 = ss.getMapper(MemberMapper.class).getMemberByR(l);
->>>>>>> 6b758e7f64ddf43f1809ff7d47c3023f1c7127fe
+
 		
 		if (dbMember != null) {
 			if (l.pw.equals(dbMember.getU_pw())) {
@@ -46,8 +39,7 @@ public class MemberDAO {
 			} else {
 				req.setAttribute("result", "로그인 실패(PW오류)");
 			}
-<<<<<<< HEAD
-=======
+
 		} else if (dbMember3 != null) {
 			if (l.pw.equals(dbMember3.getRoot_pw())) {				
 				req.getSession().setAttribute("loginMember3", dbMember3);
@@ -55,7 +47,6 @@ public class MemberDAO {
 			} else {
 				req.setAttribute("result", "로그인 실패(PW오류)");
 			}
->>>>>>> 6b758e7f64ddf43f1809ff7d47c3023f1c7127fe
 		} else {
 			req.setAttribute("result", "로그인 실패(미가입ID)");
 		}
@@ -66,15 +57,13 @@ public class MemberDAO {
 	public boolean loginCheck(HttpServletRequest req) {
 		UserMember m = (UserMember) req.getSession().getAttribute("loginMember");
 		BossMember b = (BossMember) req.getSession().getAttribute("loginMember2");
-<<<<<<< HEAD
 		if (m != null) {
 			req.setAttribute("loginPage", "member/loginSuccess_user.jsp");
 			return true;
 		} else if (b != null) {
 			req.setAttribute("loginPage", "member/loginSuccess_boss.jsp");
-=======
-		Root r = (Root) req.getSession().getAttribute("loginMember3");
-		
+		}
+			Root r = (Root) req.getSession().getAttribute("loginMember3");
 		if (m != null) {
 			req.setAttribute("loginPage", "member/loginSuccess.jsp");
 			return true;
@@ -83,7 +72,6 @@ public class MemberDAO {
 			return true;
 		} else if (r != null) {
 			req.setAttribute("loginPage", "member/loginSuccess.jsp");
->>>>>>> 6b758e7f64ddf43f1809ff7d47c3023f1c7127fe
 			return true;
 		} else {
 			req.setAttribute("loginPage", "member/logout.jsp");
@@ -103,10 +91,8 @@ public class MemberDAO {
 	public void logout(HttpServletRequest req) {
 		req.getSession().setAttribute("loginMember", null);
 		req.getSession().setAttribute("loginMember2", null);
-<<<<<<< HEAD
-=======
 		req.getSession().setAttribute("loginMember3", null);
->>>>>>> 6b758e7f64ddf43f1809ff7d47c3023f1c7127fe
+
 	}
 
 	//사용자 회원가입

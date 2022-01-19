@@ -12,6 +12,7 @@ insert into root_table values('root','1234','관리자','sky.jpg');
 select * from root_table;
 
 1. 사용자 디비
+drop table user_table;
 create table user_table(
 	u_no number(5) primary key,
 	u_name varchar2(20 char) not null,
@@ -32,6 +33,8 @@ insert into user_table values(user_seq.nextval,'김태희','kim','k1234!','kim12
 select * from USER_TABLE;
 
 2. 사장 테이블
+drop table boss_table;
+
 create table boss_table(
 	bo_no number(5) primary key,
 	bo_name varchar2(20 char) not null,
