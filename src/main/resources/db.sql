@@ -240,34 +240,40 @@ insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',1,'캠
 select * from guest_foodproduct_buy_table;
 
 12. 캠핑용품 장바구니
+drop table guest_product_basket_table;
+
 create table guest_product_basket_table(
 	ba_no number(5) primary key,
 	ba_p_no	number(5) not null,
 	ba_u_bo_id varchar2(20 char) not null,
 	ba_p_name varchar2(20 char) not null,
+	ba_p_picture varchar2(200 char) not null,
 	ba_price number(5) not null, /*(수량*p_price)*/
 	ba_number number(5) not null
 );
 
 create sequence product_basket_seq;
 
-insert into guest_product_basket_table values(product_basket_seq.nextval,1,'kim','캠핑용품',10000,1);
+insert into guest_product_basket_table values(product_basket_seq.nextval,1,'kim','캠핑용품', 'a.jpg', 10000, 1);
 
 select * from guest_product_basket_table;
 
 13. 밀키트 장바구니
+drop table guest_foodproduct_basket_table;
+
 create table guest_foodproduct_basket_table(
 	fba_no number(5) primary key,
 	fba_fp_no	number(5) not null,
 	fba_u_bo_id varchar2(20 char) not null,
 	fba_fp_name varchar2(20 char) not null,
+	fba_fp_picture varchar2(200 char) not null,
 	fba_price number(5) not null, /*(수량*p_price)*/
 	fba_number number(5) not null
 );
 
 create sequence foodproduct_basket_seq;
 
-insert into guest_foodproduct_basket_table values(foodproduct_basket_seq.nextval,1,'kim','캠핑용품',10000,1);
+insert into guest_foodproduct_basket_table values(foodproduct_basket_seq.nextval,1,'kim','캠핑용품', 'a.jpg', 10000,1);
 
 select * from guest_foodproduct_basket_table;
 
