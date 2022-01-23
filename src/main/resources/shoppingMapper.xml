@@ -29,11 +29,21 @@
 <update id="updateProduct" parameterType="com.fi.pj.shopping.Product" >
  update product_registration_table
   set
-   p_picture = #{p_picture}
+   p_picture = #{p_picture},
    p_name = #{p_name},
    p_price = #{p_price},
-   p_txt - #{p_txt}
+   p_txt = #{p_txt}
   where p_no = #{p_no}
 </update>
 
+
+<!-- 리뷰 -->
+
+<select id="getAllProductReview" resultType="com.fi.pj.shopping.ProductReview">
+	select * from product_review_table order by pr_no DESC
+</select>
+
+<select id="Productreview_id_select" parameterType="com.fi.pj.shopping.Reviewinsert" resultType="Integer" >
+	select count(*) from guest_product_buy_table where b_u_bo_id = #{id} and b_p_no = #{p_no}
+</select>
 </mapper>

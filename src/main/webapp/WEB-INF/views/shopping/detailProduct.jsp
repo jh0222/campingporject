@@ -13,9 +13,9 @@
 
 		<h2>상품 상세정보</h2>
 		<td>
-			<table>
+			<table border="0">
 				<tr>
-					<td><img src="resources/img/${p.p_picture }" width="100%"
+					<td><img src="resources/img/${p.p_picture }" width="90%"
 					height="auto"></td>
 				<tr>
 			</table>
@@ -51,26 +51,36 @@
 							</form>
 							<button>구매하기</button>
 							<button
-								onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}'">수정하기</button>
-
+								onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }'">수정하기</button>
 						</td>
 					</tr>
 		
 				</table>
 
-
-				<!--  <table>
-			<tr>
-				<td><img src="resources/img/${p.p_picture }" width="200px";
-					height="auto"></td>
-			<tr>
-		</table>
-		</tr>
-		</td>
-		</tr>
-	</table> -->
 				</td>
 			</table>
+			<hr size="3">
 			<h2>상품 리뷰</h2>
+			<table border="1">
+			<jsp:include page="${reviewPage }"></jsp:include>
+			<table border="1" style="width: 1107px; margin-left: 167px;">
+				<tr>
+					<th>no</th>
+					<th>ID</th>
+					<th>내용</th>
+					<th>date</th>		
+				</tr>
+		
+					<c:forEach var="p" items="${productreviews }">
+				<tr>
+					<td>${p.pr_no }</td>
+					<td>${p.pr_u_id }</td>
+					<td>${p.pr_txt }</td>
+					<td><fmt:formatDate value="${p.pr_date }" dateStyle="short"/></td> <!-- 날짜기입 -->
+				</tr>
+					</c:forEach>
+			</table>
+			</table>
+			
 </body>
 </html>

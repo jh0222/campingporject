@@ -29,7 +29,11 @@ create sequence user_seq;
 
 insert into user_table values(user_seq.nextval,'김태희','kim','k1234!','kim1234@naver.com','서울특별시 종로구','01012341234','19970101','a.jpg',0);
 
+alter table user_table modify u_id varchar2(20 char) unique; --추가
+
 select * from USER_TABLE;
+
+
 
 2. 사장 테이블
 create table boss_table(
@@ -216,6 +220,8 @@ insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',1,'캠핑�
 
 select * from guest_product_buy_table;
 
+select count(*) from guest_product_buy_table where b_u_bo_id = 'kim' and b_p_no = 1;
+
 11. 밀키트 구매목록
 /*
  * 하나만 선택되도록 radio box
@@ -239,7 +245,7 @@ create sequence g_fp_buy_seq;
 insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_foodproduct_buy_table;
-
+------------------------------------------------------
 12. 캠핑용품 장바구니
 create table guest_product_basket_table(
 	ba_no number(5) primary key,
@@ -255,6 +261,17 @@ create sequence product_basket_seq;
 insert into guest_product_basket_table values(product_basket_seq.nextval,1,'kim','캠핑용품',10000,1);
 
 select * from guest_product_basket_table;
+--------------------------------------------------------
+12-1. 캠핑용품 장바구니
+create table guest_product_basket_table(
+	ba_cart_id NUMBER NOT NULL PRIMARY KEY,
+	ba_user_id varchar2(50) not null,
+	ba_product_id NUMBER not null,
+	ba_amount NUMBER DEFAULT 0
+);
+create sequence seq_cart START with 10 increment by 1;
+commit;
+
 
 13. 밀키트 장바구니
 create table guest_foodproduct_basket_table(
@@ -275,7 +292,7 @@ select * from guest_foodproduct_basket_table;
 14. 캠핑용품 리뷰
 create table product_review_table(	
 	pr_no number(5)	primary key,
-	pr_u_bo_id varchar2(20 char) not null,
+	pr_u_id varchar2(20 char) not null,
 	pr_txt varchar2(100 char) not null,
 	pr_date	date not null
 );
@@ -283,8 +300,11 @@ create table product_review_table(
 create sequence product_review_seq;
 
 insert into product_review_table values(product_review_seq.nextval,'kim','좋아요','20220301');
+ 
+ALTER TABLE product_review_table ADD CONSTRAINT fk_pr_u_id FOREIGN KEY(pr_u_id) REFERENCES user_table(u_id);
 
 select * from product_review_table;
+
 
 15. 밀키트 리뷰
 create table foodproduct_review_table(	

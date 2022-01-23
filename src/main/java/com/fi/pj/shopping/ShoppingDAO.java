@@ -75,7 +75,7 @@ public class ShoppingDAO {
 		
 	}
 
-	public void delProduct(HttpServletRequest req, Product p) {
+	public void delProduct(Product p, HttpServletRequest req) {
 		try { 
 			String path = req.getSession().getServletContext().getRealPath("resources/img");
 			System.out.println(path);
@@ -98,7 +98,7 @@ public class ShoppingDAO {
 		
 	}
 
-	public void getProduct(HttpServletRequest req, Product p) {
+	public void getProduct( Product p, HttpServletRequest req) {
 		
 		ShoppingMapper mm = ss.getMapper(ShoppingMapper.class); 
 			Product product = mm.detailProduct(p);  
@@ -106,72 +106,66 @@ public class ShoppingDAO {
 		
 		
 	}
-	public void updateProduct(HttpServletRequest req, Product p) {
-		try { 
-						
-						String path = req.getSession().getServletContext().getRealPath("resources/img");
-						System.out.println(path);
-						MultipartRequest mr = null;
-						String oldFile = p.getP_picture();
-						String newFile = null;
-					try {
-						mr = new MultipartRequest(req, path, 31457280, "utf-8", new DefaultFileRenamePolicy());
-						newFile = mr.getFilesystemName("p_picture");  //실제 업로드된 사진 가져옴
-						if (newFile == null) { //사진 첨부하지 않으면
-							newFile = oldFile; //기존 똑같은 파일명 넣어줌
-						} else {
-							newFile = URLEncoder.encode(newFile, "utf-8");
-							newFile = newFile.replace("+", " ");
-						}
-					} catch (Exception e)	{
-						e.printStackTrace();
-						req.setAttribute("r", "수정실패");
-						return;
-					}
-					
-					/*-----------------------------------------------------------------*/
-					try {
-						String name = mr.getParameter("p_name");
-						int price = Integer.parseInt(mr.getParameter("p_price"));
-						String txt = mr.getParameter("p_txt");
 	
-						System.out.println(name);
-						System.out.println(price);
-						System.out.println(txt);
-				
-						p.setP_name(name); 
-						p.setP_price(price);
-						p.setP_txt(txt); 
-						
-						if(ss.getMapper(ShoppingMapper.class).updateProduct(p) == 1) { 
-							System.out.println("수정 성공");
-							req.setAttribute("r", "수정 성공!");
-							if (!oldFile.equals(newFile)) { //oldFile과 newFile이 같지않으면
-								oldFile = URLDecoder.decode(oldFile, "utf-8");
-								new File(path + "/" + oldFile).delete(); //기존에 있던 oldfile 삭제
-							}
-						} else {
-							req.setAttribute("result", "수정실패");
-							if (!oldFile.equals(newFile)) { //oidFile과 newFile이 같지않으면
-								newFile = URLDecoder.decode(newFile, "utf-8"); 
-								new File(path + "/" + newFile).delete(); //기존에 있던 newFile 삭제
-						}
-					}
-			  } catch (Exception e) {
-				  e.printStackTrace();
-				  req.setAttribute("r", "수정실패"); 
-				  if (!oldFile.equals(newFile)) {//oidFile과 newFile이 같지않으면
-					  try {
-							newFile = URLDecoder.decode(newFile, "utf-8");
-						} catch (UnsupportedEncodingException e1) {
-						}
-						new File(path + "/" + newFile).delete();   //기존에 있던 newFile 삭제
-				  }
 	
-		
-			  }
-		}finally {
+	
+	public void updateProduct(Product p, HttpServletRequest req) {
+		String path = req.getSession().getServletContext().getRealPath("resources/img");
+        MultipartRequest mr = null;
+        try {
+            mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+        } catch (Exception e) {
+            e.printStackTrace();
+            req.setAttribute("result", "등록실패");
+            return;
+        }
+
+        try {
+        	String name = mr.getParameter("p_name");
+			int price = Integer.parseInt(mr.getParameter("p_price"));
+			String txt = mr.getParameter("p_txt");
+			String newpicture = mr.getFilesystemName("p_picture2");
+			String oldpicture = mr.getParameter("p_picture");
 			
+			p.setP_name(name); 
+			p.setP_price(price);
+			p.setP_txt(txt); 
+			if(newpicture != null) {
+                p.setP_picture(newpicture);
+            } else {
+            	p.setP_picture(oldpicture);
+            }
+			
+			if(ss.getMapper(ShoppingMapper.class).updateProduct(p) == 1) { 				
+				req.setAttribute("r", "수정 성공!");
+			} else {
+				req.setAttribute("result", "수정실패");
+			}
+			
+        } catch (Exception e) {
+            e.printStackTrace();
+            String fileName = mr.getFilesystemName("p_picture2");
+            new File(path + "/" + fileName).delete();
+            req.setAttribute("result", "수정실패");
+        }
+		
+	}
+	
+	
+	//리뷰
+	public void getAllProductReview(HttpServletRequest req) {
+		
+		req.setAttribute("productreviews",ss.getMapper(ShoppingMapper.class).getAllProductReview());
+		
+		
+	}
+
+
+	public void reviewwrite(Reviewinsert ri, HttpServletRequest req) {
+		System.out.println(ri.getId());
+		String id = req.getParameter("id");
+		if(ss.getMapper(ShoppingMapper.class).Productreview_id_select(ri) == 1) {
+			req.setAttribute("reviewPage", "../shopping/campingproduct_review.jsp");
 		}
 	}
 }

@@ -20,6 +20,7 @@ public class Product {
 		this.p_txt = p_txt;
 	}
 
+
 	public int getP_no() {
 		return p_no;
 	}

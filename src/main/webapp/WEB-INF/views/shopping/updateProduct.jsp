@@ -8,10 +8,10 @@
 </head>
 <body>  
 <h3>상품수정</h3>
-<form action="update.product" enctype="multipart/form-data" method="post">
+<form action="update.product?p_no=${p.p_no }" enctype="multipart/form-data" method="post">
     <table border="1">
         <tr>	
-            <td>상품명</td> ${Product} 
+            <td>상품명</td>
             <td><input type="text" name="p_name" value="${p.p_name}"></td>
         </tr>
         <tr>
@@ -24,7 +24,10 @@
         </tr>
         <tr>
             <td>상품이미지</td>
-            <td><input type="file" name="p_picture"><td>
+            <td><img src="resources/img/${p.p_picture }" width="200px;" height="100px;" name="p_picture">
+            	<input name= "p_picture" type="hidden" value= "${p.p_picture}">
+            	<input type="file" name= "p_picture2">
+            <td>
  		
         </tr> 
         <tr>
@@ -34,11 +37,7 @@
         </tr>
     </table>
     
-    <table>
-			<tr>
-				<td><img src="resources/img/${p.p_picture }" width="200px;" height="100px;"></td>
-			<tr>
-		</table>
+
 	
 </form>
 </body>
