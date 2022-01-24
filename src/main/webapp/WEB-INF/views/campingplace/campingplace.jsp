@@ -7,22 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>CampingPlace</title>
-<script type="text/javascript" src="resources/js/go.js"></script>
-
 </head>
 <body>
 <h2>캠핑장 목록</h2>
+${result }
 <table border="1">
 	<tr>
 		<th>이름</th>
 		<th>상세설명</th>
 		<th>연락처</th>
-		<th>가격</th>
+		<th>가격</th>3
 		<th>주소</th>
 	</tr>
 	<c:forEach var="c" items="${places}">
 		<tr>
-			<td>${c.cam_name }</td>
+			<td><a href='placedetail.go?cam_no=${c.cam_no }'>${c.cam_name }</a></td>
 			<td>${c.cam_txt }</td>
 			<td>${c.cam_phonenumber }</td>
 			<td><fmt:formatNumber value="${c.cam_price}" pattern="###,###,###" type="currency" /></td>
@@ -30,5 +29,8 @@
 		</tr>
 	</c:forEach>
 </table>
+<c:if test="${sessionScope.loginMember3.root_id != null || sessionScope.loginMember2.bo_id != null}">
+	<button onclick="location.href='placereg.go'">캠핑장 등록하기</button>
+</c:if>
 </body>
 </html>
