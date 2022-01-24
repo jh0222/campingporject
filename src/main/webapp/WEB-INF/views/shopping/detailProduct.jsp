@@ -49,7 +49,10 @@
 								</select>&nbsp;
 								<button>장바구니 담기</button>
 							</form>
-							<button>구매하기</button>
+							<button id="check_module" type="button">결제하기</button>
+							<button onClick="location.href='orderproduct.go?p_no=${p.p_no}'">결제하기2</button>
+							
+
 							<button
 								onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }'">수정하기</button>
 						</td>
@@ -81,6 +84,36 @@
 					</c:forEach>
 			</table>
 			</table>
+			
+			
+			
+			
+			<script>
+$("#check_module").click(function () {
+var IMP = window.IMP; // 생략가능
+IMP.init('imp46581722');
+IMP.request_pay({
+pg: 'inicis', 
+pay_method: 'card',
+merchant_uid: 'merchant_' + new Date().getTime(),
+//https://docs.iamport.kr/implementation/payment
+
+name: '주문명:${p.p_name}',
+amount: ${p.p_price},
+//가격
+}, function (rsp) {
+console.log(rsp);
+if (rsp.success) { //if 결제성공하면
+var msg = '결제가 완료되었습니다.';
+//alert('[결제금액:]'+rsp.paid_amount);
+} else { //else 결제실패하면
+var msg = '결제에 실패하였습니다.';
+//alert('[에러]'+rsp.error_msg);
+}
+alert(msg);
+});
+});
+</script>
 			
 </body>
 </html>

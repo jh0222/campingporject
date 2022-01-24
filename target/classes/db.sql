@@ -25,11 +25,12 @@ create table user_table(
 	u_discount number(5) not null
 );
 
+DROP TABLE user_table CASCADE CONSTRAINTS;
+
 create sequence user_seq;
 
 insert into user_table values(user_seq.nextval,'김태희','kim','k1234!','kim1234@naver.com','서울특별시 종로구','01012341234','19970101','a.jpg',0);
 
-alter table user_table modify u_id varchar2(20 char) unique; --추가
 
 select * from USER_TABLE;
 
@@ -216,11 +217,11 @@ create table guest_product_buy_table(
 
 create sequence g_p_buy_seq;
 
-insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',122,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_product_buy_table;
 
-select count(*) from guest_product_buy_table where b_u_bo_id = 'kim' and b_p_no = 1;
+select count(*) from guest_product_buy_table where b_u_bo_id = 'kim' and b_p_no = 122;
 
 11. 밀키트 구매목록
 /*
@@ -256,6 +257,7 @@ create table guest_product_basket_table(
 	ba_number number(5) not null
 );
 
+DROP TABLE guest_product_basket_table CASCADE CONSTRAINTS;
 create sequence product_basket_seq;
 
 insert into guest_product_basket_table values(product_basket_seq.nextval,1,'kim','캠핑용품',10000,1);
@@ -271,7 +273,7 @@ create table guest_product_basket_table(
 );
 create sequence seq_cart START with 10 increment by 1;
 commit;
-
+select * from gu
 
 13. 밀키트 장바구니
 create table guest_foodproduct_basket_table(

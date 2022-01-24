@@ -163,10 +163,14 @@ public class ShoppingDAO {
 
 	public void reviewwrite(Reviewinsert ri, HttpServletRequest req) {
 		System.out.println(ri.getId());
-		String id = req.getParameter("id");
-		if(ss.getMapper(ShoppingMapper.class).Productreview_id_select(ri) == 1) {
+		if(ss.getMapper(ShoppingMapper.class).Productreview_id_select(ri) >= 1) {
 			req.setAttribute("reviewPage", "../shopping/campingproduct_review.jsp");
 		}
+	}
+
+	public void paymentProduct(Product p, HttpServletRequest req) {
+		
+		
 	}
 }
 						

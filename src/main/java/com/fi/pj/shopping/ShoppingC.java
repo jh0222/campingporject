@@ -102,9 +102,7 @@ public class ShoppingC {
 		sdao.reviewwrite(ri,req);
 		
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
-		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
-		//req.setAttribute("reviewPage", "../shopping/campingproduct_review.jsp");
-
+		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
 		return "main";
 	}
 	
@@ -141,5 +139,16 @@ public class ShoppingC {
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
 		return "main";
 	}
+	
+	//캠핑용품 구매페이지
+		@RequestMapping(value = "orderproduct.go", method = RequestMethod.GET)
+		public String paymentproductgo(Product p, HttpServletRequest req) {
+			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+			req.setAttribute("shoppigListPage", "../shopping/orderProduct.jsp");
+			return "main";
+		}
+		
+		
+	
 	
 }
