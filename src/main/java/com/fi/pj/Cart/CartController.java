@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CartController {
@@ -15,11 +14,11 @@ public class CartController {
 	private CartDAO sdao;
 
 	// 카트 목록
-	@RequestMapping(value = "/Cart", method = RequestMethod.GET)
+	@RequestMapping(value = "Cart", method = RequestMethod.GET)
 	public String Cart(HttpServletRequest request) {
 		
-		sdao.getcampingCart(request);
-		sdao.getmealkitCart(request);
+		sdao.Ccartlist(request);
+		sdao.Mcartlist(request);
 		request.setAttribute("contentPage", "cart/cart.jsp");
 		return "main";
 	}

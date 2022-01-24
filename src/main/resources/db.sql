@@ -56,22 +56,24 @@ select * from boss_TABLE;
  * db에서 가져올때 cam_no=cam_no -> update cam_number-headcont
 */
 drop table camping_table;
+
 create table camping_table(
-	cam_no number(5) primary key,
-	cam_bo_id varchar2(20 char) not null,
-	cam_name varchar2(30 char) not null,
-	cam_txt varchar2(200 char) not null,
-	cam_phonenumber varchar2(30 char) not null,
-	cam_price number(10) not null,
-	cam_address varchar2(100 char) not null,
-	cam_latitude varchar2(30 char) not null,	/*위도*/
-	cam_longitude varchar2(30 char) not null,	/*경도*/
-	cam_headcount number(5) not null	
+    cam_no number(5) primary key,
+    cam_bo_id varchar2(20 char) not null,
+    cam_name varchar2(30 char) not null,
+    cam_picture varchar2(200 char) not null,
+    cam_txt varchar2(200 char) not null,
+    cam_phonenumber varchar2(30 char) not null,
+    cam_price number(10) not null,
+    cam_address varchar2(100 char) not null,
+    cam_latitude varchar2(30 char) not null,  /*위도*/  
+    cam_longitude varchar2(30 char) not null,  /*경도*/
+    cam_headcount number(5) not null
 );
 
 create sequence camping_seq;
 
-insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40);
+insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','cam.jpg','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40);
 
 select * from camping_table;
 
@@ -195,7 +197,7 @@ select * from foodproduct_registration_table;
 /*
  * 하나만 선택되도록 radio box
  * 새로운 배송지가 null값이면 기존배송지 아니면 새로운 배송지가 뜨도록 만들기
- * */
+*/
 drop table guest_product_buy_table;
 create table guest_product_buy_table(		
 	b_no number(5) primary key, /*(주문번호)*/
@@ -243,8 +245,8 @@ select * from guest_foodproduct_buy_table;
 drop table guest_product_basket_table;
 
 create table guest_product_basket_table(
-	ba_no number(5) primary key,
-	ba_p_no	number(5) not null,
+	ba_no number(5) primary key,	/*장바구니에 담은 캠핑용품의 고유번호로 delete할때 사용*/
+	ba_p_no	number(5) not null,		/*등록된 캠핑용품의 상품번호로 select할때 사용*/
 	ba_u_bo_id varchar2(20 char) not null,
 	ba_p_name varchar2(20 char) not null,
 	ba_p_picture varchar2(200 char) not null,
@@ -273,7 +275,7 @@ create table guest_foodproduct_basket_table(
 
 create sequence foodproduct_basket_seq;
 
-insert into guest_foodproduct_basket_table values(foodproduct_basket_seq.nextval,1,'kim','캠핑용품', 'a.jpg', 10000,1);
+insert into guest_foodproduct_basket_table values(foodproduct_basket_seq.nextval,1,'kim','밀키트', 'a.jpg', 10000,1);
 
 select * from guest_foodproduct_basket_table;
 

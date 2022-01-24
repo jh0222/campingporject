@@ -17,7 +17,7 @@
 			<td>(${sessionScope.loginMember.u_name })</td>
 			<td>
 				<button onclick="location.href='Cart'">장바구니</button>
-				<button onclick="goMemberInfo()">내 정보</button>
+				<button onclick="location.href='User_Mypage'">내 정보</button>
 				<button onclick="logout()">로그아웃</button>
 			</td>
 		<tr>
@@ -30,7 +30,7 @@
 			<td>(${sessionScope.loginMember2.bo_name })</td>
 			<td>
 				<button onclick="location.href='Cart'">장바구니</button>
-				<button onclick="goMemberInfo()">내 정보</button>
+				<button onclick="location.href='Boss_Mypage'">내 정보</button>
 				<button onclick="logout()">로그아웃</button>
 			</td>
 		<tr>
@@ -43,7 +43,7 @@
 			<td>(관리자)</td>
 			<td>
 				<button onclick="location.href='Cart'">장바구니</button>
-				<button onclick="goMemberInfo()">내 정보</button>
+				<button onclick="location.href='Manager_Mypage'">내 정보</button>
 				<button onclick="logout()">로그아웃</button>
 			</td>
 		<tr>

@@ -6,40 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+
 <ul>
- <li>
+<li>
   <div class="allCheck">
    <input type="checkbox" name="allCheck" id="allCheck" /><label for="allCheck">모두 선택</label> 
-   <script>
-	$("#allCheck").click(function(){
- 		var chk = $("#allCheck").prop("checked");
- 		if(chk) {
-  			$(".chBox").prop("checked", true);
- 		} else {
-  			$(".chBox").prop("checked", false);
- 		}
-	});
-  </script>
   </div>
   
   <div class="delBtn">
    <button type="button" class="selectDelete_btn">선택 삭제</button> 
   </div>
  </li>
-
+ 
  <c:forEach items="${Cartlist}" var="c">
  
  <li>
   <div class="checkBox">
    <input type="checkbox" name="chBox" class="chBox" data-cartNum="${c.ba_no}" />
-   <script>
- 	$(".chBox").click(function(){
-  		$("#allCheck").prop("checked", false);
- 	});
-  </script>
   </div>
  
   <div class="thumb">
@@ -58,7 +43,9 @@
    </div>
   </div>   
  </li>
+ 
  </c:forEach>
+ 
 </ul>
 
 <hr>
@@ -74,7 +61,7 @@
   </div>
  </li>
 
- <c:forEach items="${Cartlist}" var="c">
+ <c:forEach items="${Mcartlist}" var="c">
  
  <li>
   <div class="checkBox">
@@ -97,8 +84,8 @@
    </div>
   </div>   
  </li>
- </c:forEach>
-</ul>
+</c:forEach>
 
+</ul>
 </body>
 </html>

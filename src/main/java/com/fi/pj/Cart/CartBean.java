@@ -1,7 +1,6 @@
 package com.fi.pj.Cart;
 
 public class CartBean {
-	private String u_id;
 	
 	private String ba_u_bo_id;
 	private int ba_no;
@@ -23,11 +22,10 @@ public class CartBean {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CartBean(String u_id, String ba_u_bo_id, int ba_no, int ba_p_no, String ba_p_name, String ba_p_picture,
+	public CartBean(String ba_u_bo_id, int ba_no, int ba_p_no, String ba_p_name, String ba_p_picture,
 			int ba_price, int ba_number, int fba_no, int fba_fp_no, String fba_u_bo_id, String fba_fp_name,
 			String fba_fp_picture, int fba_price, int fba_number) {
 		super();
-		this.u_id = u_id;
 		this.ba_u_bo_id = ba_u_bo_id;
 		this.ba_no = ba_no;
 		this.ba_p_no = ba_p_no;
@@ -42,14 +40,6 @@ public class CartBean {
 		this.fba_fp_picture = fba_fp_picture;
 		this.fba_price = fba_price;
 		this.fba_number = fba_number;
-	}
-
-	public String getU_id() {
-		return u_id;
-	}
-
-	public void setU_id(String u_id) {
-		this.u_id = u_id;
 	}
 
 	public String getBa_u_bo_id() {

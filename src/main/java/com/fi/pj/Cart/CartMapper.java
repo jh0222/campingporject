@@ -7,9 +7,9 @@ public interface CartMapper {
 	// select는 List<Bean명>
 	// insert, update, delete는 int
 	
-	public List<CartBean> Ccartlist();
+	public List<CartBean> Ccartlist(String val);
 
-	public List<CartBean> Mcartlist();
+	public List<CartBean> Mcartlist(String v);
 /*
 	public int deleteCcartlist();
 	
