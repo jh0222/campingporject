@@ -101,9 +101,9 @@ public class BoardController {
 	
 	//자유게시판 수정
 	@RequestMapping(value = "fbwrite.update", method = RequestMethod.POST)
-	public String FreeboardwriteUdate(Freeboard fb, HttpServletRequest req) {	
-		bDAO.fbupdate(fb,req);
+	public String FreeboardwriteUdate(Freeboard fb, HttpServletRequest req) {			
 		mDAO.loginCheck(req);
+		bDAO.fbupdate(fb,req);
 		bDAO.getAllfreeboard(req);
 		req.setAttribute("contentPage", "board/freeboard.jsp");
 		return "main";

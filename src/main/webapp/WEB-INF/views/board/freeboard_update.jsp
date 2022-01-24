@@ -25,8 +25,8 @@
 			<tr>
 				<td>사진</td>
 				<td>
-					<img src="resources/img/${fb.f_picture }" style="weight:30%; height:20%;">
-					<input name="picture" type="hidden" value="${fb.f_picture }">
+					<img src="resources/img/${fb.f_picture }"  width="200" height="100">
+					<input name="f_picture" type="hidden" value="${fb.f_picture }">
 					<input name="picture" type="file">
 				</td>
 			</tr>

@@ -77,16 +77,46 @@ public class BoardDAO {
 		}
 		
 	}
-
+	
 	//자유게시판 수정
 	public void fbupdate(Freeboard fb, HttpServletRequest req) {
-		
-			if (ss.getMapper(BoardMapper.class).FbUpdate(fb) == 1) {
-				req.setAttribute("result", "등록성공");
+		String path = req.getSession().getServletContext().getRealPath("resources/img");
+		MultipartRequest mr = null;
+		try {
+			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("result", "등록실패");
+			return;
+		}
+
+		try {
+			String f_subject = mr.getParameter("subject");
+			String f_txt = mr.getParameter("txt");			
+			String newpicture = mr.getFilesystemName("picture");
+			System.out.println(newpicture);
+			String oldpicture = mr.getParameter("f_picture");
+			
+			fb.setF_subject(f_subject);
+			fb.setF_txt(f_txt);
+			if(newpicture != null) {
+				fb.setF_picture(newpicture);
 			} else {
-				req.setAttribute("result", "등록실패");
+				fb.setF_picture(oldpicture);
 			}
-		
+			
+			if (ss.getMapper(BoardMapper.class).FbUpdate(fb) == 1) {
+				req.setAttribute("result", "수정성공");
+			} else {
+				req.setAttribute("result", "수정실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			String fileName = mr.getFilesystemName("picture");
+			new File(path + "/" + fileName).delete();
+			req.setAttribute("result", "수정실패");
+		}
 		
 	}
 
@@ -136,15 +166,31 @@ public class BoardDAO {
 	//자유게시판 댓글 삭제
 	public void frdelete(FbReply fr, HttpServletRequest req) {
 		int depth = Integer.parseInt(req.getParameter("fr_depth"));
+		int fr_s = ss.getMapper(BoardMapper.class).FrDelete_update_select(fr);
 		System.out.println(depth);
-		if(depth == 3 && ss.getMapper(BoardMapper.class).FrDelete_update_select(fr) > 0) {
+		
+		if(depth == 3 && fr_s > 0) {
 			//삭제할 댓글에 대댓글이 있을경우
-			System.out.println(ss.getMapper(BoardMapper.class).FrDelete_update_select(fr));
+			System.out.println(fr_s);
 			if (ss.getMapper(BoardMapper.class).FrDelete_update(fr) == 1) {
 				req.setAttribute("result", "삭제성공");
 			} else {
 				req.setAttribute("result", "삭제실패");
 			}			
+		} 
+		//대댓글이며 댓글이 알수없음이고 해당 댓글에 대댓글이 하나라면
+		else if(depth != 3 
+				&& ss.getMapper(BoardMapper.class).FrDelete_r_select(fr) == 1
+				&& ss.getMapper(BoardMapper.class).FrDelete_3_select(fr) == 1) {
+			System.out.println("2:"+ss.getMapper(BoardMapper.class).FrDelete_r_select(fr));
+			System.out.println("3:"+ss.getMapper(BoardMapper.class).FrDelete_3_select(fr));
+			System.out.println("4:"+fr.getFr_owner_no());
+			if (ss.getMapper(BoardMapper.class).FrDelete(fr) == 1 
+				&& ss.getMapper(BoardMapper.class).Fr3Delete(fr) == 1) {
+				req.setAttribute("result", "삭제성공");
+			} else {
+				req.setAttribute("result", "삭제실패");
+			}						
 		} else {
 			if (ss.getMapper(BoardMapper.class).FrDelete(fr) == 1) {
 				req.setAttribute("result", "삭제성공");
@@ -158,5 +204,7 @@ public class BoardDAO {
 		List<FbReply> frr = ss.getMapper(BoardMapper.class).getfbrreply(fb);
 		req.setAttribute("frr", frr);		
 	}
+
+	
 
 }

@@ -42,7 +42,7 @@
 						|| sessionScope.loginMember3 != null}">
 				<tr>
 					<td><button onclick="location.href='fbwrite.updatego?f_no=${fb.f_no}'">수정</button></td>
-					<td><button onclick="fbdelete(${fb.f_no});">삭제</button></td>
+					<td><button onclick="fbdelete(${fb.f_no} });">삭제</button></td>
 				</tr>
 			</c:if>
 		</table>
@@ -105,7 +105,7 @@
 						|| sessionScope.loginMember3 != null}">
 					<tr>
 						<td colspan="3">
-							<button>수정</button>
+							<button onclick="frupdate(${fr.fr_u_id},${fr.fr_txt })">수정</button>
 							<button onclick="frdelete(${fr.fr_no},${fb.f_no},${fr.fr_depth });">삭제</button>
 						</td>	
 					</tr>	
@@ -169,7 +169,7 @@
 						|| sessionScope.loginMember3 != null}">
 						<td>
 							<button>수정</button>
-							<button onclick="frdelete(${frr.fr_no},${fb.f_no},${frr.fr_depth });">삭제</button>
+							<button onclick="frrdelete(${frr.fr_no},${fb.f_no},${frr.fr_depth },${frr.fr_owner_no });">삭제</button>
 						</td>
 					</c:if>	
 					<td><button>답글</button></td>
@@ -214,7 +214,29 @@
 		</c:if>
 		</c:forEach>				
 	</c:forEach>
-		
+
+	<table id="snsWriteArea" style="bottom: -150px">
+		<tr>
+			<td align="center"><span id="snsWriteFormSummoner"><img
+					src="resources/img/write_update.png"
+					width=30 height=30>
+			</span></td>
+		</tr>
+		<tr>
+			<td align="center">
+				<form name="snsWriteForm" action="sns.write" method="post">
+					<table id="snsWriteTable">
+						<tr>
+							<td id="swtTd1"><textarea name="s_txt" maxlength="200"></textarea></td>
+							<td id="swtTd2"><button>수정</button></td>
+						</tr>
+					</table>
+				</form>
+
+			</td>
+		</tr>
+	</table>
+
 		
 </body>
 </html>

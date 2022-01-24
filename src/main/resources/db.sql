@@ -57,21 +57,22 @@ select * from boss_TABLE;
 */
 drop table camping_table;
 create table camping_table(
-	cam_no number(5) primary key,
-	cam_bo_id varchar2(20 char) not null,
-	cam_name varchar2(30 char) not null,
-	cam_txt varchar2(200 char) not null,
-	cam_phonenumber varchar2(30 char) not null,
-	cam_price number(10) not null,
-	cam_address varchar2(100 char) not null,
-	cam_latitude varchar2(30 char) not null,	/*위도*/
-	cam_longitude varchar2(30 char) not null,	/*경도*/
-	cam_headcount number(5) not null	
+    cam_no number(5) primary key,
+    cam_bo_id varchar2(20 char) not null,
+    cam_name varchar2(30 char) not null,
+    cam_picture varchar2(200 char) not null,
+    cam_txt varchar2(200 char) not null,
+    cam_phonenumber varchar2(30 char) not null,
+    cam_price number(10) not null,
+    cam_address varchar2(100 char) not null,
+    cam_latitude varchar2(30 char) not null,   
+    cam_longitude varchar2(30 char) not null,    
+    cam_headcount number(5) not null
 );
 
 create sequence camping_seq;
 
-insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40);
+insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','cam.jpg','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40);
 
 select * from camping_table;
 
@@ -327,7 +328,11 @@ create table free_board_reply_table(
 	fr_replytxt	varchar2(100 char) not null,
 	fr_date	date not null,
 	fr_depth number(5) not null,
-	fr_picture varchar2(200 char) not null
+	fr_picture varchar2(200 char) not null,
+	constraint free
+		foreign key(fr_f_no)
+		references free_board_table(f_no)
+		on delete cascade
 );
 
 create sequence free_board_reply_seq;
@@ -335,7 +340,10 @@ create sequence free_board_reply_seq;
 insert into free_board_reply_table values(free_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
 
 select * from free_board_reply_table;
-
+select count(*) from free_board_reply_table where fr_owner_no=
+select fr_no from free_board_reply_table where fr_u_id='(알수없음)';
+select count(*) from free_board_reply_table where fr_owner_no=411;
+select count(*) from free_board_reply_table where fr_u_id='(알수없음)' and fr_no=403;
 18. 캠핑팁게시판
 create table campingtip_board_table(	
 	tip_no number(5) primary key,

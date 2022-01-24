@@ -37,9 +37,36 @@ function connectAddrSearchEvent() {
 	});
 }
 
+function r_reply() {
+	var FormVisible = false;
+
+	$("#rreply").click(function() {
+		if (FormVisible) {
+			$("#replyreply").css("bottom", "-150px");
+		} else {
+			$("#replyreply").css("bottom", "10px");
+		}
+		FormVisible = !FormVisible;
+	});
+}
+
+function connectSNSWriteFormSummonEvent() {
+	var snsWriteFormVisible = false;
+
+	$("#snsWriteFormSummoner").click(function() {
+		if (snsWriteFormVisible) {
+			$("#snsWriteArea").css("bottom", "-150px");
+		} else {
+			$("#snsWriteArea").css("bottom", "10px");
+		}
+		snsWriteFormVisible = !snsWriteFormVisible;
+	});
+}
 
 
 $(function() {
 	connectJoinIdInputEvent();
 	connectAddrSearchEvent();
+	r_reply();
+	connectSNSWriteFormSummonEvent();
 });
