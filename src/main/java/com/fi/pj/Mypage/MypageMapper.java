@@ -2,10 +2,8 @@ package com.fi.pj.Mypage;
 
 import java.util.List;
 
-public class MypageMapper {
+public interface MypageMapper {
 
-	public List<MypageBean> showUserinform() {
-		return null;
-	}
+	List<MypageBean> showinformation();
 	
 }

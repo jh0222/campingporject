@@ -11,29 +11,29 @@ public class MypageController {
 	
 	private MypageDAO mdao;
 	
+	// 사용자 마이페이지
 	@RequestMapping(value = "/User_Mypage", method = RequestMethod.GET)
 	public String User(HttpServletRequest request) {
 		
-		mdao.getAllUserinformation(request);
-		
+		mdao.getUser_infor(request);
 		request.setAttribute("contentPage", "mypage/user.jsp");
 		return "main";
 	}
 	
+	// 사장님 마이페이지
 	@RequestMapping(value = "/Boss_Mypage", method = RequestMethod.GET)
 	public String Boss(HttpServletRequest request) {
 		
-		mdao.getAllBossinformation(request);
-		
+		mdao.getBoss_infor(request);
 		request.setAttribute("contentPage", "mypage/boss.jsp");
 		return "main";
 	}
 	
+	// 관리자 마이페이지
 	@RequestMapping(value = "/Manager_Mypage", method = RequestMethod.GET)
 	public String Manager(HttpServletRequest request) {
 		
-		mdao.getAllManagerinformation(request);
-		
+		mdao.getManager_infor(request);
 		request.setAttribute("contentPage", "mypage/manager.jsp");
 		return "main";
 	}

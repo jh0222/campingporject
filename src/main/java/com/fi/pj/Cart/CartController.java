@@ -13,24 +13,21 @@ public class CartController {
 	@Autowired
 	private CartDAO sdao;
 
-	// 카트 목록
-	@RequestMapping(value = "Cart", method = RequestMethod.GET)
-	public String Cart(HttpServletRequest request) {
-		
+	// 사용자 장바구니 전체 목록
+	@RequestMapping(value = "UserCart", method = RequestMethod.GET)
+	public String User_Cart(HttpServletRequest request) {
 		sdao.Ccartlist(request);
 		sdao.Mcartlist(request);
-		request.setAttribute("contentPage", "cart/cart.jsp");
+		request.setAttribute("contentPage", "cart/user_cart.jsp");
 		return "main";
 	}
-/*
-	// 카트 목록 삭제
-		@RequestMapping(value = "/deleteCart", method = RequestMethod.POST)
-		public String deleteCart(HttpServletRequest request) {
-			
-			sdao.deleteCcart(request);
-			sdao.deleteMcart(request);
-			
-			return "Cart";
-		}
-*/
+	
+	// 사장 장바구니 전체 목록
+	@RequestMapping(value = "BossCart", method = RequestMethod.GET)
+	public String Boss_Cart(HttpServletRequest request) {
+		sdao.BCcartlist(request);
+		sdao.BMcartlist(request);
+		request.setAttribute("contentPage", "cart/boss_cart.jsp");
+		return "main";
+	}
 }

@@ -113,5 +113,4 @@ public class BossMember {
 		this.bo_discount = bo_discount;
 	}
 
-	
 }

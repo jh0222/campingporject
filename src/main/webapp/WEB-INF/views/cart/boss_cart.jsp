@@ -6,9 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css" href="cart/Cart.css"></style>
+<script src="/resources/js/jquery.js"></script>
 </head>
 <body>
-
+<h1>캠핑용품</h1>
 <ul>
 <li>
   <div class="allCheck">
@@ -20,7 +22,7 @@
   </div>
  </li>
  
- <c:forEach items="${Cartlist}" var="c">
+ <c:forEach items="${Ccartlist}" var="c">
  
  <li>
   <div class="checkBox">
@@ -50,10 +52,11 @@
 
 <hr>
 
+<h1>밀키트</h1>
 <ul>
  <li>
   <div class="allCheck">
-   <input type="checkbox" name="allCheck" id="allCheck" /><label for="allCheck">모두 선택</label> 
+   <input type="checkbox" name="allCheck" id="allCheck" /><label for="allCheck">모두 선택</label>  
   </div>
   
   <div class="delBtn">
