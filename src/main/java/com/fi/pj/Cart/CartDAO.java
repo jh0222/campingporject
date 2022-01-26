@@ -20,7 +20,7 @@ public class CartDAO {
 	// 사용자 캠핑도구 장바구니 전체 조회
 	public void Ccartlist(HttpServletRequest request) {
 		CartMapper mm = ss.getMapper(CartMapper.class);
-		UserMember member = (UserMember) request.getSession().getAttribute("loginMember");
+		UserMember member = (UserMember) request.getSession().getAttribute("loginMember"); // 로그인된 사용자의 정보를 member에 저장
 		System.out.println(member.getU_id());
 		List<CartBean> Ccartlist = mm.Ccartlist(member.getU_id());
 		request.setAttribute("Ccartlist", Ccartlist);

@@ -14,33 +14,35 @@ public class MypageController {
 	private MypageDAO mdao;
 	
 	// 사용자 마이페이지
-	@RequestMapping(value = "/UserMypage", method = RequestMethod.GET)
+	@RequestMapping(value = "/Mypage.User", method = RequestMethod.GET)
 	public String UserMypage(HttpServletRequest request) {
 		
-		mdao.getUserinformation(request);
+		mdao.Userinformation(request);
+		mdao.Userreserve(request);
 		
 		request.setAttribute("contentPage", "mypage/UserMypage.jsp");
 		return "main";
 	}
 	
+
 	// 사장 마이페이지
-		@RequestMapping(value = "/BossMypage", method = RequestMethod.GET)
-		public String BossMypage(HttpServletRequest request) {
+	@RequestMapping(value = "/Mypage.Boss", method = RequestMethod.GET)
+	public String BossMypage(HttpServletRequest request) {
 			
-			mdao.getBossinformation(request);
+		mdao.getBossinformation(request);
 			
-			request.setAttribute("contentPage", "mypage/BossMypage.jsp");
-			return "main";
-		}
+		request.setAttribute("contentPage", "mypage/BossMypage.jsp");
+		return "main";
+	}
 	
 	// 관리자 마이페이지
-		@RequestMapping(value = "/ManagerMypage", method = RequestMethod.GET)
-		public String ManagerMypage(HttpServletRequest request) {
+	@RequestMapping(value = "/Mypage.Manager", method = RequestMethod.GET)
+	public String ManagerMypage(HttpServletRequest request) {
 			
-			mdao.getManagerinformation(request);
+		mdao.getManagerinformation(request);
 			
-			request.setAttribute("contentPage", "mypage/ManagerMypage.jsp");
-			return "main";
-		}
+		request.setAttribute("contentPage", "mypage/ManagerMypage.jsp");
+		return "main";
+	}
 	
 }

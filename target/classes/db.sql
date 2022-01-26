@@ -83,6 +83,8 @@ startdate~enddate예약되어있으면 처음부터 막아놓기,어제 날짜 �
 dbex) where sysdate> and startdate< enddate>  where cam_number			
 */
 
+drop table reservation_table;
+
 create table reservation_table(
 	r_no number(5) primary key,
 	r_cam_no number(5) not null,
@@ -90,6 +92,7 @@ create table reservation_table(
 	r_u_name varchar2(20 char) not null,
 	r_u_phonenumber varchar2(30 char) not null,
 	r_cam_name varchar2(30 char) not null,
+	r_cam_picture varchar2(200 char) not null,   /* 캠핑장 사진 추가*/
 	r_campingstartdate date not null,
 	r_campingenddate date not null,
 	r_campingheadcount number(5) not null,
@@ -100,7 +103,7 @@ create table reservation_table(
 
 create sequence reservation_seq;
 
-insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
+insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 
 select * from reservation_table;
 

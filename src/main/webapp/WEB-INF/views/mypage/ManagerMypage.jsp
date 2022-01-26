@@ -10,18 +10,18 @@
 	<table border="1">
 		<tr>
 			<td>ID</td>
-			<td>${inf.root_id }</td>
+			<td>${manager.root_id }</td>
 		</tr>
 		<tr>
 			<td>PW</td>
-			<td>${inf.root_pw }</td>
+			<td>${manager.root_pw }</td>
 		</tr>
 		<tr>
 			<td>이름</td>
-			<td>${inf.root_name }</td>
+			<td>${manager.root_name }</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center">${inf.root_picture }</td>
+			<td colspan="2" align="center">${manager.root_picture }</td>
 		</tr>
 	</table>
 

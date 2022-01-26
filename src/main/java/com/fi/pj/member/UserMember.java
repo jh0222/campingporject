@@ -112,5 +112,5 @@ public class UserMember {
 		this.u_picture = u_picture;
 		this.u_discount = u_discount;
 	}
-	
+
 }
