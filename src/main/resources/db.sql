@@ -217,7 +217,7 @@ create table guest_product_buy_table(
 
 create sequence g_p_buy_seq;
 
-insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',122,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',142,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_product_buy_table;
 

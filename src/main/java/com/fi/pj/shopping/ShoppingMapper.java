@@ -21,5 +21,11 @@ public interface ShoppingMapper {
 	public List<ProductReview> getAllProductReview();
 
 	public int Productreview_id_select(Reviewinsert ri);
+
+	public int regProductreview(ProductReview pr);
+
+	public int delProductreview(ProductReview pr);
+
+	public int updateProductreview(ProductReview pr);
 	
 }

@@ -11,7 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.fi.pj.member.LoginMember;
+import com.fi.pj.member.UserMember;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -152,7 +153,7 @@ public class ShoppingDAO {
 	}
 	
 	
-	//리뷰
+	//리뷰목록
 	public void getAllProductReview(HttpServletRequest req) {
 		
 		req.setAttribute("productreviews",ss.getMapper(ShoppingMapper.class).getAllProductReview());
@@ -160,18 +161,51 @@ public class ShoppingDAO {
 		
 	}
 
-
-	public void reviewwrite(Reviewinsert ri, HttpServletRequest req) {
+	//(구매계정)리뷰등록
+	public void reviewwrite(Reviewinsert ri, Product p, HttpServletRequest req) {
+		UserMember member =  (UserMember) req.getSession().getAttribute("loginMember");
+		ri.setId(member.getU_id());
 		System.out.println(ri.getId());
 		if(ss.getMapper(ShoppingMapper.class).Productreview_id_select(ri) >= 1) {
 			req.setAttribute("reviewPage", "../shopping/campingproduct_review.jsp");
 		}
 	}
 
-	public void paymentProduct(Product p, HttpServletRequest req) {
-		
+	public void regProductreview(ProductReview pr, HttpServletRequest req) {
+		System.out.println(pr.getPr_u_id() + "?!!!!!!!!!!!!!!!!!!");
+		if(ss.getMapper(ShoppingMapper.class).regProductreview(pr) == 1) { 
+			System.out.println("등록성공");
+			req.setAttribute("r", "등록 성공");
+		} else {
+			req.setAttribute("r", "등록 실패..");
+		}
 		
 	}
-}
+
+	public void delProductreview(ProductReview pr, HttpServletRequest req) {
+		
+		if (ss.getMapper(ShoppingMapper.class).delProductreview(pr) == 1) {  
+			System.out.println("삭제성공");
+			req.setAttribute("r", "삭제 성공");
+		} else {
+			req.setAttribute("r", "삭제 실패..");
+		}
+	}
+
+	public void updateProductreview(ProductReview pr, HttpServletRequest req) {
+			
+			if (ss.getMapper(ShoppingMapper.class).updateProductreview(pr) == 1) {  
+				System.out.println("리뷰수정 성공");
+				req.setAttribute("r", "수정 성공");
+			} else {
+				req.setAttribute("r", "수정 실패..");
+			}
+			
+		}
+		
+	}
+		
+	
+
 						
 	
