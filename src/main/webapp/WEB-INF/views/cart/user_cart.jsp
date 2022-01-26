@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css" href="cart/Cart.css"></style>
-<script src="/resources/js/cart.js"></script>
+<script src="/resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <h1>캠핑용품</h1>
@@ -17,8 +17,38 @@
    <input type="checkbox" name="allCheck" id="allCheck" /><label for="allCheck">모두 선택</label> 
   </div>
   
+  <script>
+	$("#allCheck").click(function(){
+ 		var chk = $("#allCheck").prop("checked");
+ 			if(chk) {
+  			$(".chBox").prop("checked", true);
+ 			} else {
+  			$(".chBox").prop("checked", false);
+ 		}
+	});
+   </script>
   <div class="delBtn">
    <button type="button" class="selectDelete_btn">선택 삭제</button> 
+   <script>
+   	$(".selectDelete_btn").click(function(){
+	   var confirm_val = confirm("정말 삭제하시겠습니까?");
+	   
+	   if(confirm_val) {
+	    var checkArr = new Array();
+	    
+	    $("input[class='chBox']:checked").each(function(){
+	     checkArr.push($(this).attr("data-cartNum"));
+	    });
+	     
+	    $.ajax({
+	     url : "/pj/UserdeleteCart", // 전송 페이지
+	     type : "post",          
+	     data : { chbox : checkArr }, // 전송할 데이터
+	     success : function(){
+	      location.href = "/pj/UserCart"; // 전송에 성공하면 실행될 코드
+	     }
+	    });
+   </script>
   </div>
  </li>
  <c:choose>
@@ -27,10 +57,15 @@
  </c:when>
  <c:otherwise>
  <c:forEach items="${Ccartlist}" var="c">
- 
  <li>
   <div class="checkBox">
    <input type="checkbox" name="chBox" class="chBox" data-cartNum="${c.ba_no}" />
+  
+   <script>
+ 	$(".chBox").click(function(){
+  		$("#allCheck").prop("checked", false);
+ 	});
+   </script>
   </div>
  
   <div class="thumb">

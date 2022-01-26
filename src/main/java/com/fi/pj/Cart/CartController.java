@@ -30,4 +30,15 @@ public class CartController {
 		request.setAttribute("contentPage", "cart/boss_cart.jsp");
 		return "main";
 	}
+	
+	// 사용자 장바구니 삭제
+		@RequestMapping(value = "UserdeleteCart", method = RequestMethod.POST)
+		public String User_Del_Cart(HttpServletRequest request) {
+			sdao.DelCcartlist(request);
+			sdao.DelMcartlist(request);
+			request.setAttribute("contentPage", "cart/boss_cart.jsp");
+			return "main";
+		}
+	
+	
 }

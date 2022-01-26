@@ -2,11 +2,11 @@ package com.fi.pj.Mypage;
 
 import java.util.Date;
 
-public class MypageBean {
+public class Information {
 	private String root_id;
 	private String root_pw;
 	private String root_name;
-	private String root_priture;
+	private String root_picture;
 	
 	private int u_no;
 	private String u_name;
@@ -30,11 +30,11 @@ public class MypageBean {
 	private String bo_picture;
 	private int bo_discount;
 	
-	public MypageBean() {
+	public Information() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public MypageBean(String root_id, String root_pw, String root_name, String root_priture, int u_no, String u_name,
+	public Information(String root_id, String root_pw, String root_name, String root_picture, int u_no, String u_name,
 			String u_id, String u_pw, String u_email, String u_address, String u_phonenumber, Date u_birth,
 			String u_picture, int u_discount, int bo_no, String bo_name, String bo_id, String bo_pw, String bo_email,
 			String bo_address, String bo_phonenumber, Date bo_birth, String bo_picture, int bo_discount) {
@@ -42,7 +42,7 @@ public class MypageBean {
 		this.root_id = root_id;
 		this.root_pw = root_pw;
 		this.root_name = root_name;
-		this.root_priture = root_priture;
+		this.root_picture = root_picture;
 		this.u_no = u_no;
 		this.u_name = u_name;
 		this.u_id = u_id;
@@ -82,11 +82,11 @@ public class MypageBean {
 	public void setRoot_name(String root_name) {
 		this.root_name = root_name;
 	}
-	public String getRoot_priture() {
-		return root_priture;
+	public String getRoot_picture() {
+		return root_picture;
 	}
-	public void setRoot_priture(String root_priture) {
-		this.root_priture = root_priture;
+	public void setRoot_picture(String root_priture) {
+		this.root_picture = root_priture;
 	}
 	public int getU_no() {
 		return u_no;

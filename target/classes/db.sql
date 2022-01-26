@@ -249,7 +249,7 @@ create table guest_product_basket_table(
 	ba_p_no	number(5) not null,
 	ba_u_bo_id varchar2(20 char) not null,
 	ba_p_name varchar2(20 char) not null,
-	ba_p_picture varchar2(20 char) not null,
+	ba_p_picture varchar2(200 char) not null,
 	ba_price number(5) not null, /*(수량*p_price)*/
 	ba_number number(5) not null
 );

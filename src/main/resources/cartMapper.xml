@@ -35,13 +35,13 @@
 	</select>
 
 	<delete id="delCcartlist" parameterType="com.fi.pj.Cart.CartBean">
-		delete * from guest_product_basket_table
+		delete from guest_product_basket_table
 		where ba_no = #{ba_no}
 	</delete>
 	<!-- 캠핑용품 번호와 아이디가 일치하는 캠핑용품 삭제 -->
 	
 	<delete id="delMcartlist" parameterType="com.fi.pj.Cart.CartBean">
-		delete * from guest_foodproduct_basket_table
+		delete from guest_foodproduct_basket_table
 		where fba_no = #{fba_no}
 	</delete>
 	<!-- 캠핑용품 번호와 아이디가 일치하는 캠핑용품 삭제 -->

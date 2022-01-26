@@ -1,34 +1,35 @@
 package com.fi.pj.Mypage;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class MypageDAO {
 
 	@Autowired
 	private SqlSession ss;
+
+	// 사용자 개인정보 조회
+	public void getUserinformation(HttpServletRequest request) {
+		MypageMapper mm = ss.getMapper(MypageMapper.class).getUserpage();
+		
+	}
+
+	// 사장 개인정보 조회
+	public void getBossinformation(HttpServletRequest request) {
 	
-	// user 개인정보 조회
-	public void getUser_infor(HttpServletRequest request) {
-		MypageMapper mm = ss.getMapper(MypageMapper.class);
-		List<MypageBean> Mypagelist = mm.showinformation();
-		request.setAttribute("Mypagelist", Mypagelist);
-	}
-
-	public void getBoss_infor(HttpServletRequest request) {
-		// TODO Auto-generated method stub
 		
 	}
 
-	public void getManager_infor(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
+	// 관리자 개인정보 조회
+	public void getManagerinformation(HttpServletRequest request) {
+		request.setAttribute("inf", ss.getMapper(MypageMapper.class).getManagerPage());
 	}
+
+
 
 }

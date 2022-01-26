@@ -17,7 +17,7 @@ public class CartDAO {
 	@Autowired /*sql세션 땡겨오기*/
 	private SqlSession ss;
 
-	// 캠핑도구 장바구니 전체 조회
+	// 사용자 캠핑도구 장바구니 전체 조회
 	public void Ccartlist(HttpServletRequest request) {
 		CartMapper mm = ss.getMapper(CartMapper.class);
 		UserMember member = (UserMember) request.getSession().getAttribute("loginMember");
@@ -26,7 +26,7 @@ public class CartDAO {
 		request.setAttribute("Ccartlist", Ccartlist);
 	}
 	
-	// 밀키트 장바구니 전체 조회
+	// 사용자 밀키트 장바구니 전체 조회
 		public void Mcartlist(HttpServletRequest request) {
 			CartMapper mm = ss.getMapper(CartMapper.class);
 			UserMember member = (UserMember) request.getSession().getAttribute("loginMember");
@@ -38,8 +38,6 @@ public class CartDAO {
 		public void BCcartlist(HttpServletRequest request) {
 			CartMapper mm = ss.getMapper(CartMapper.class);
 			BossMember bossmember = (BossMember) request.getSession().getAttribute("loginMember2");
-			System.out.println(bossmember);
-			System.out.println(bossmember.getBo_id());
 			List<CartBean> Ccartlist = mm.BCcartlist(bossmember.getBo_id());
 			request.setAttribute("Ccartlist", Ccartlist);
 		}
@@ -51,18 +49,17 @@ public class CartDAO {
 			List<CartBean> Mcartlist = mm.BMcartlist(bossmember.getBo_id()); 
 			request.setAttribute("Mcartlist", Mcartlist);
 		}
-		
-	// 캠핑도구 장바구니 삭제
-	public void delCcart(HttpServletRequest request) {
-		
+	
+	// 사용자 캠핑도구 장바구니 삭제
+	public void DelCcartlist(HttpServletRequest request) {
 		CartMapper mm = ss.getMapper(CartMapper.class);
 		
 	}
 
-	// 밀키트 장바구니 삭제
-	public void delMcart(HttpServletRequest request) {
+	// 사용자 밀키트 장바구니 삭제
+	public void DelMcartlist(HttpServletRequest request) {
 		CartMapper mm = ss.getMapper(CartMapper.class);
-		
+	
 	}
 
 
