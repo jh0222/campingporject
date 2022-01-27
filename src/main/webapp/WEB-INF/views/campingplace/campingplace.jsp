@@ -16,12 +16,12 @@ ${result }
 		<th>이름</th>
 		<th>상세설명</th>
 		<th>연락처</th>
-		<th>가격</th>3
+		<th>가격</th>
 		<th>주소</th>
 	</tr>
 	<c:forEach var="c" items="${places}">
 		<tr>
-			<td><a href='placedetail.go?cam_no=${c.cam_no }'>${c.cam_name }</a></td>
+			<td><a href='placedetail.go?cam_no=${c.cam_no }&c_cam_no=${c.cam_no }'>${c.cam_name }</a></td>
 			<td>${c.cam_txt }</td>
 			<td>${c.cam_phonenumber }</td>
 			<td><fmt:formatNumber value="${c.cam_price}" pattern="###,###,###" type="currency" /></td>

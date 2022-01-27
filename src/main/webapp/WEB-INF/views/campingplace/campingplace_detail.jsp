@@ -5,11 +5,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+$(function() {
+	$('#star a').click(function(){ 
+		 $(this).parent().children("a").removeClass("on");    
+		 $(this).addClass("on").prevAll("a").addClass("on");
+		 console.log($(this).attr("value"));
+	});
+});
+
+
+</script>
+<style type="text/css">
+#star a{
+   text-decoration: none;
+   color: gray;
+  }
+  #star a.on{
+   color: red;
+  } 
+</style>
 <meta charset="UTF-8">
 <title>CampingPlace</title>
 </head>
 <body>
+
 ${result }
+<br>
+<div style="float:left">
 <table border="1">
 	<tr>
 		<th>이름</th>
@@ -32,31 +55,53 @@ ${result }
 			<td><button onclick="location.href='placeup.go?cam_no=${places.cam_no}'">수정</button></td>
 		</c:if>
 	</tr>
-
 </table>
-<h4>캠핑장 리뷰</h4>
-<c:if test="${sessionScope.loginMember.u_id }">
-<table border="1">
+</div>
+
+<div style="float:right">
+<c:if test=""></c:if>
+<form action="review.Reg">
+<table border="1" style="width:500;">
 	<tr>
-		<td>ID</td> 
-		<td colspan="2">				
-			<input name="review" >
+		<td>ID:${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}</td> 
+		<td>별점
+			<p id="star"> <!-- 부모 -->
+			   <a href="#"><input type="hidden" name="c_campingstar" value="1">★</a> <!-- 자식들-->
+			   <a href="#"><input type="hidden" name="c_campingstar" value="2">★</a>
+			   <a href="#"><input type="hidden" name="c_campingstar" value="3">★</a>
+			   <a href="#"><input type="hidden" name="c_campingstar" value="4">★</a>
+			   <a href="#"><input type="hidden" name="c_campingstar" value="5">★</a>
+			   
+			<p>
+		</td>	
+		<td width="200" height="100"><textarea name="c_campingreview"></textarea></td>
+	
+		<td>
+			<input type="hidden" name="c_cam_no" value="${places.cam_no }">
+			<input type="hidden" name="cam_no" value="${places.cam_no }">
+			<input type="hidden" name="c_u_id" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}">
+			<input onclick="return star" type="submit" name="submit" value="등록">
 		</td>
-		<td> 
-		<button onclick="location.href='review.Reg'">리뷰등록</button></td>
 	</tr>
 </table>
-</c:if>
 
-<table border="1">
+</form>
+
+<table border="1" style="width:500;" >
 	<c:forEach var="r" items="${reviews}">
 	<tr>
-		<td>${r.c_u_id }</td>
-	</tr>
-	<tr>
-		<td>${r.c_campingreview }</td>
+		<td width="50"align="center">${r.c_u_id }</td>
+		<td width="200" height="50">${r.c_campingreview }</td>
+		<td width="50" align="center">${r.c_campingstar }</td>
+		
+		<c:if test="${sessionScope.loginMember.u_id == r.c_u_id}">
+		<td colspan="2" width="100" align="center">
+		<button onclick="reviewdelete(${r.c_no},${places.cam_no });">삭제</button>
+		<button>수정</button></td>
+		</c:if>
 	</tr>
 	</c:forEach>
 </table>
+</div>
 </body>
 </html>

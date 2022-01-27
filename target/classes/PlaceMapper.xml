@@ -27,9 +27,16 @@
 </select>
 
 <select id ="getAllReview" resultType="com.fi.pj.campingplace.placeReview" parameterType="com.fi.pj.campingplace.placeReview">
-	select * from campingreview_table where c_cam_no = ${c_cam_no}
+	select * from campingreview_table where c_cam_no = ${c_cam_no} order by c_no desc
 </select>
 
+<insert id="ReviewReg" parameterType="com.fi.pj.campingplace.placeReview" >
+	insert into campingreview_table
+	values(campingreview_seq.nextval,#{c_cam_no},#{c_u_id}
+	,#{c_campingreview},#{c_campingstar},sysdate)
+</insert>
 
-
+<delete id="ReviewDel" parameterType="com.fi.pj.campingplace.placeReview">
+	delete from campingreview_table where c_no = ${c_no}
+</delete>
 </mapper>

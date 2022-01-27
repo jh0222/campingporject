@@ -2,6 +2,9 @@ package com.fi.pj.campingplace;
 
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,20 +73,33 @@ public class CampingplaceC {
 	}
 	
 	@RequestMapping(value = "placedetail.go", method = RequestMethod.GET)
-	public String placeDetailGo(Campingplace p, HttpServletRequest req) {
+	public String placeDetailGo(Campingplace p,placeReview pr, HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		cdao.getOnePlace(p,req);
+		cdao.getAllReview(pr, req);
 		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
 		return "main";
 	}
 	
 
 	
-	@RequestMapping(value = "review.Reg", method = RequestMethod.POST)
-	public String reviewReg(Campingplace p, HttpServletRequest req) {
+	@RequestMapping(value = "review.Reg", method = RequestMethod.GET)
+	public String reviewReg(Campingplace p, placeReview pr, HttpServletRequest req) {
+		mDAO.loginCheck(req);		
+		cdao.regReview(pr, req);
+		cdao.getOnePlace(p,req);
+		cdao.getAllReview(pr, req);
+		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
+		return "main";
+		
+	}
+	
+	@RequestMapping(value = "review.del", method = RequestMethod.GET)
+	public String reviewDel(Campingplace p, placeReview pr, HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		cdao.getAllReview(p, req);
-		cdao.regReview(p, req);
+		cdao.delReview(pr, req);
+		cdao.getOnePlace(p,req);
+		cdao.getAllReview(pr, req);
 		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
 		return "main";
 	}

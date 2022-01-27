@@ -4,4 +4,4 @@ function placedelete(no) {
 	if(ok){
 		location.href='place.del?cam_no=' + no;
 	}
-}3
+}

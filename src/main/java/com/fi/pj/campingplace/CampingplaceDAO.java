@@ -77,6 +77,7 @@ public class CampingplaceDAO {
 	}
 
 	public void delPlace(Campingplace p, HttpServletRequest req) {
+		
 		if (ss.getMapper(PlaceMapper.class).PlaceDel(p) == 1) {
 			req.setAttribute("result", "삭제성공");
 		} else {
@@ -155,19 +156,27 @@ public class CampingplaceDAO {
 		
 	}
 
-	public void regReview(Campingplace p, HttpServletRequest req) {
-		if (ss.getMapper(PlaceMapper.class).ReviewReg(p) == 1) {
-			req.setAttribute("result", "리뷰등록성공");
+	public void regReview(placeReview pr, HttpServletRequest req) {
+		if (ss.getMapper(PlaceMapper.class).ReviewReg(pr) == 1) {
+			req.setAttribute("result", "등록성공");
 		} else {
-			req.setAttribute("result", "리뷰등록실패");
+			req.setAttribute("result", "등록실패");
 		}
-		req.setAttribute("places", ss.getMapper(PlaceMapper.class).getOnePlace(p));
-
 	}
 
-	public void getAllReview(Campingplace p, HttpServletRequest req) {
-		req.setAttribute("reviews", ss.getMapper(PlaceMapper.class).getOnePlace(p));
+	public void getAllReview(placeReview pr, HttpServletRequest req) {
+		req.setAttribute("reviews", ss.getMapper(PlaceMapper.class).getAllReview(pr));
 		
+	}
+
+	public void delReview(placeReview pr, HttpServletRequest req) {
+		if (ss.getMapper(PlaceMapper.class).ReviewDel(pr) == 1) {
+			req.setAttribute("result", "삭제성공");
+		} else {
+			req.setAttribute("result", "삭제실패");
+		}
+		req.setAttribute("reviews", ss.getMapper(PlaceMapper.class).getAllReview(pr));
+
 	}
 
 	

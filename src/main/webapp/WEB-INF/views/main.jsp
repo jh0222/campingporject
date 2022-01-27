@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="resources/js/go.js"></script>
 <script type="text/javascript" src="resources/js/place.js"></script>
+<script type="text/javascript" src="resources/js/place_review.js"></script>
 <script type="text/javascript" src="resources/js/jquery.js"></script>
 <script type="text/javascript" src="resources/js/site_jquery.js"></script>
 <script type="text/javascript" src="resources/js/member.js"></script>
