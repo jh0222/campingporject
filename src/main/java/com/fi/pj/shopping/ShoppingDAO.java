@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -102,7 +103,7 @@ public class ShoppingDAO {
 	public void getProduct( Product p, HttpServletRequest req) {
 		
 		ShoppingMapper mm = ss.getMapper(ShoppingMapper.class); 
-			Product product = mm.detailProduct(p);  
+			Product product = mm.getProduct(p);  
 			req.setAttribute("p", product );
 		
 		
@@ -172,7 +173,7 @@ public class ShoppingDAO {
 	}
 
 	public void regProductreview(ProductReview pr, HttpServletRequest req) {
-		System.out.println(pr.getPr_u_id() + "?!!!!!!!!!!!!!!!!!!");
+		System.out.println(pr.getPr_u_id() + "리뷰등록(id출력)");
 		if(ss.getMapper(ShoppingMapper.class).regProductreview(pr) == 1) { 
 			System.out.println("등록성공");
 			req.setAttribute("r", "등록 성공");
@@ -202,6 +203,32 @@ public class ShoppingDAO {
 			}
 			
 		}
+
+
+	public void basketregProduct(ProductBasket pb, HttpServletRequest req) {
+		try { 
+					
+			System.out.println(pb.getBa_p_no());
+			System.out.println(pb.getBa_p_name());
+			System.out.println(pb.getBa_p_picture());
+			System.out.println(pb.getBa_number());
+			System.out.println(pb.getBa_u_bo_id());
+			System.out.println(pb.getBa_no());
+			
+			
+			if(ss.getMapper(ShoppingMapper.class).basketregProduct(pb) == 1) { 
+				System.out.println("등록 성공");
+				req.setAttribute("r", "등록 성공!");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("r", "db서버문제..");
+			
+		}
+		
+		
+	}
 		
 	}
 		

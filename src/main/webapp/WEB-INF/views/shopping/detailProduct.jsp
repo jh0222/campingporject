@@ -16,7 +16,7 @@ function delreview(no) {
 }
 
 function updatereview(no) {
-	let txt = prompt("수정할 내용");
+	let txt = prompt("수정할 내용을 적어주세요","${pr_txt}");
 	if(txt != ""){
 		location.href = "update.productreview?pr_no=" + no + "&pr_txt=" + txt + "&p_no=" + ${p.p_no};
 	}
@@ -60,15 +60,33 @@ function change () {
 	sum.value = parseInt(hm.value) * sell_price;
 }  
 
+//주문하기 + 장바구니
+  function mySubmit(index) {
+    if (index == 1) {
+      document.form.action='orderproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_price=${p.p_price }&p_picture=${p.p_picture }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }';
+    }
+    if (index == 2) {
+       if(confirm("상품을 장바구니에 추가하시겠습니까?")) {	
+    	let price = document.getElementById('sum').value; //id값   
+    	let amount = document.form.amount.value; //name값
+    	
+    	alert(amount);
+    	document.form.method = 'POST'
+    	document.form.action='productbasket.go?ba_p_no=${p.p_no}&ba_p_name=${p.p_name}&ba_price='+price+'&ba_p_picture=${p.p_picture }&ba_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&ba_number='+amount;
+       
+       }else {
+    	document.form.reset();
+    }
+    }
+    document.form.submit();
+  }
+
 </script>
-
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body onload="init();">
-
-	<table border="0" width="100%">
+	<table border="0" width="100%" >
 
 		<h2>상품 상세정보</h2> 
 		<td>
@@ -96,31 +114,48 @@ function change () {
 						<td>${p.p_txt }</td>
 					</tr>
 					<tr>
-					<td colspan="2" align="center"><button onClick="location.href='orderproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_price=${p.p_price }&p_picture=${p.p_picture }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'">주문하기</button>
+					<td colspan="2" align="center">
 					<button onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }'">수정하기</button>
-					<button>장바구니</button></td>
+					</td>
 					
 					</tr>
 					
 					</table>
-					<table border="1">
+					<!-- ---------------------------------------------------------------------------------->
+					<!--  <form action="orderproduct.go" name="form" method="get"> -->
+					<form name="form" method="GET" enctype="multipart/form-data"> 
+					<table border="1" style="border-collapse: collapse";>
 					<tr>
 					<td align="center"> 
-					
-					<form name="form" method="get">
-					수량 : <input type=hidden name="sell_price" value="${p.p_price }">
-					<input type="text" name="amount" value="1" size="3" onchange="change();">
-					<input type="button" value=" + " onclick="plus();"><input type="button" value=" - " onclick="minus();"><br>
-					금액 : <input type="text" name="sum" size="11" readonly>원
-					</form>
-
+						<table border="1" style="border-collapse: collapse";>
+						<tr>
+							<td>
+								수량 : <input type=hidden name="sell_price" value="${p.p_price }">
+									 <input type="text" name="amount" value="1" size="3" onchange="change();">
+									 <input type="button" value=" + " onclick="plus();"><input type="button" value=" - " onclick="minus();"><br>
+								금액 : <input type="text" name="sum" id="sum" size="11" readonly>원
+									 <input type="hidden" name="p_no" value="${p.p_no}">
+									 <input type="hidden" name="p_name" value="${p.p_name}">
+									 <input type="hidden" name="p_price" value="${p.p_price }">
+									 <input type="hidden" name="p_picture" value="${p.p_picture }">
+									 <input type="hidden" name="u_id" value="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }">
+									 
+							</td>
+						</tr>
+						<tr>
+					<td colspan="2" align="center">
+					<input type="button" value="주문하기" onclick='mySubmit(1)' />
+ 					 <input type="button" value="장바구니" onclick='mySubmit(2)' />
+					</td>
+						</tr>
+						</table>
 					</td>
 					</tr>
 					</table>
-				</table>
-
-				</td>
-			</table>
+					</td>
+					</table>
+					</form>
+			
 			<hr size="3">
 			<h2>상품 리뷰</h2>
 			
@@ -139,8 +174,9 @@ function change () {
 					<td>${p.pr_u_id }</td>
 					<td>${p.pr_txt }</td>
 					<td><fmt:formatDate value="${p.pr_date }" dateStyle="short"/></td>
+					
 					<td onclick="updatereview(${p.pr_no})">수정</td>
-					<td onclick="delreview(${p.pr_no})">X</td>
+					<td onclick="delreview(${p.pr_no})">삭제</td>
 				</tr>
 					</c:forEach>
 			</table>

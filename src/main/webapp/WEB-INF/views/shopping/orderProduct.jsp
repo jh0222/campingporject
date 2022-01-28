@@ -4,24 +4,89 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+$(document).ready(function(){
+	let chkOk = true;
+	$("#offline2").change(function(){
+			
+			let chked =	$("#offline2").val();
+			alert(chkOk);
+			if(chkOk){
+	           $("#asdasd").show();
+	           chkOk = false;
+	        }else{
+	           $("#asdasd").hide();
+	           chkOk = true;
+	        }
+	    });
+
+});
+
+
+</script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <h2>수령자 정보</h2>
-<form action="">
-<table border="1" style="width:500px; height:auto;">
+<table border="1" style="width:500px; height:auto; border-collapse: collapse;">
+		<tr>
+			<td>배송지 선택</td>
+			<td colspan="2"><input type="checkbox" checked="checked" name="offline1" id="offline1" value="2"/>${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }님 배송지 <input type="checkbox" name="offline2" id="offline2"/>신규 배송지 </td>		
+      	</tr>
+		<tr>
+			<td>수령인</td>
+			<td colspan="2"><input name="clean" id="clean" value="${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }"></td>		
+			
+		</tr>
+		<tr>
+			<td>휴대전화</td>
+			<td colspan="2"><input name="clean1" id="clean1" value="${sessionScope.loginMember2.bo_phonenumber }${sessionScope.loginMember.u_phonenumber }"></td>		
+		</tr>
+		<tr>
+			<td>배송지 주소</td>
+			<td colspan="2"><input name="clean2" id="clean2" value="${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }"></td>		
+		</tr>
+		<tr>
+			<td>배송 메모</td>
+			<td colspan="2"><select id="addrmsg">
+    						<option>배송 시 요청사항을 선택해주세요</option>
+    						<option>부재 시 경비실에 맡겨주세요</option>
+   							<option>부재 시 택배함에 넣어주세요</option>
+    						<option>부재 시 집앞에 놔주세요</option>
+    						<option>배송 전 연락바랍니다.</option>
+							</select>
+							<input id="addrtext"></td>		
+		</tr>
+		
+</table>
+<table border="1" id="asdasd" style="display: none;">
+<tr>
+<td class="td2" colspan="2">주소:
+			<input id="addr3Input" readonly="readonly" name="u_addr3" maxlength="5" autocomplete="off" placeholder="우편번호">
+			<span id="addrSearchBtn">[검색]</span><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="addr1Input" readonly="readonly" name="u_addr1" maxlength="30" autocomplete="off" placeholder="주소"><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="u_addr2" maxlength="30" autocomplete="off" placeholder="상세주소">
+		</td>
+</tr>		
+</table>
+
+
+
+<!--  
+<table border="1" style="width:500px; height:auto; border-collapse: collapse;">
+<tr><td rowspan="6"><input type="checkbox" name="offline" id="offline" value="2"/></td>
+<td>sdasd</td></tr>
 <tr> 
-<td>수령인: </td>
+<td>수령인: ${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }</td>
 </tr>
 
 <tr>
-<td>휴대전화:</td>
+<td>휴대전화:${sessionScope.loginMember2.bo_phonenumber }${sessionScope.loginMember.u_phonenumber }</td>
 </tr>
 <tr>
-<td colspan="2">배송지 선택: 기존배송지
-<input type="checkbox" name="offline" id="offline" value="2"/>
-<input type="text" name="clean" id="clean">
+<td colspan="2">배송지 선택: 
+<input type="text" name="clean" id="clean" value="${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }">
 </td>
 </tr>
 
@@ -45,25 +110,23 @@
 <input id="addrtext">
 </td>
 </tr>	
-
 </table>
+-->
+
+
+
 <h2>상품 정보</h2>
-<table border="1">	
+<table border="1">
 <tr>
-<td rowspan="7"><img src="resources/img/${p.p_picture }" width="200px;" height="auto"></td>
-<tr>
-<tr>
-<td>상품번호:</td><td>${p.p_no }</td>
-</tr>
- <tr>
-<td>상품명:</td><td>${p.p_name }</td>
+<td rowspan="3"><img src="resources/img/${p.p_picture }" width="200px;" height="auto"></td>
+<td>상품번호</td><td>상품명</td><td>수량</td><td>배송비</td><td>주문금액</td>
 </tr>
 <tr>
-<td>주문금액:</td><td><fmt:formatNumber value="${p.p_price }" pattern="###,###,###" />원</td>
+<td rowspan="2">${p.p_no }</td><td>${p.p_name }</td><td>${so.amount}</td><td>무료</td><td><fmt:formatNumber value="${so.sum}"  pattern="###,###,###" />원</td>
 </tr>
 </table>
 · 구매 가능 수량이 1개로 제한된 상품은 주문 취소 시, 24시간 내 가상계좌 재주문이 불가합니다.<br>
-· 캠핑쇼핑몰은 기본적으로 대한민국 내 제주도 및 도서 산간 지역 포함 전 지역, 전 상품 무료배송입니다.<br>
+· 캠핑쇼핑몰은 기본적으로 대한민국 내 제주도 및 도서 산간 지역 포함  <b>전 지역, 전 상품 무료배송</b>입니다.<br>
 · 해외 배송 상품이나 일부 업체의 경우, 교환/환불 시 반송료가 다를 수 있으며 상품 페이지에 별도 표기되어 있습니다.<br>
 
 
@@ -114,14 +177,14 @@ pay_method: 'card',
 merchant_uid: 'merchant_' + new Date().getTime(),
 //https://docs.iamport.kr/implementation/payment
 
-name: '주문명:${p.p_name}',
-amount: ${p.p_price},
+name: '상품명:${p.p_name}',
+amount: ${so.sum},
 //가격
 }, function (rsp) {
 console.log(rsp);
 if (rsp.success) { //if 결제성공하면
 var msg = '결제가 완료되었습니다.';
-//alert('[결제금액:]'+rsp.paid_amount);
+location.href='';
 } else { //else 결제실패하면
 var msg = '결제에 실패하였습니다.';
 //alert('[에러]'+rsp.error_msg);

@@ -1,14 +1,27 @@
 //체크박스 선택시 '기존배송지' 뜨도록 (미완성)
 $(document).ready(function(){
-	$("#offline").change(function(){         
-	        if($("#offline").is(":checked")){
-	           $("#clean").val("기존 배송지");
+	$("#offline2").change(function(){         
+	        if($("#offline2").is(":checked")){
+	           $("#clean").val("");
 	        }else{
 	        	$("#clean").val("");
 	        }
 	    });
 
 	});
+
+$(document).ready(function(){
+	$("#offline2").change(function(){         
+	        if($("#offline2").is(":checked")){
+	           $("#clean1").val("");
+	        }else{
+	        	$("#clean1").val("");
+	        }
+	    });
+
+	});
+
+/* 뷰 : <input type="checkbox" name="offline" id="offline" value="2"/> */
 
 //배송 시 요청사항
 $(document).ready(function(){

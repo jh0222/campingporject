@@ -102,6 +102,7 @@ public class ShoppingC {
 		sdao.reviewwrite(ri,p,req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
+		req.setAttribute("u", u);
 		return "main";
 	}
 	
@@ -167,18 +168,20 @@ public class ShoppingC {
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
 			return "main";
-	    }		
+	    }	
 		
 	//캠핑용품 구매페이지
 		@RequestMapping(value = "orderproduct.go", method = RequestMethod.GET)
-		public String paymentproductgo(Product p, UserMember u, HttpServletRequest req) {
+		public String paymentproductgo(Product p, UserMember u, ShoppingOrder so, HttpServletRequest req) {
 			mDAO.loginCheck(req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/orderProduct.jsp");
-			
+			req.setAttribute("u", u);
 			req.setAttribute("p", p);
+			req.setAttribute("so", so); //수량+합계
 			return "main";
 		}
+		
 		
 	//캠핑용품 구매페이지[약관 내용]	
 		@RequestMapping(value = "agree1", method = RequestMethod.GET)
@@ -194,6 +197,14 @@ public class ShoppingC {
 			return "shopping/agree_msg/agree3";
 		}
 		
-	
+	    //장바구니 등록
+		@RequestMapping(value = "productbasket.go", method = RequestMethod.POST)
+		public String productbasketgo(ProductBasket pb, HttpServletRequest req) {
+			mDAO.loginCheck(req);
+			sdao.basketregProduct(pb,req);
+			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+			req.setAttribute("shoppigListPage", "../shopping/basketProduct.jsp");
+			return "main";
+		}			
 	
 }
