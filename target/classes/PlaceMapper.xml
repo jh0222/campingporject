@@ -39,4 +39,10 @@
 <delete id="ReviewDel" parameterType="com.fi.pj.campingplace.placeReview">
 	delete from campingreview_table where c_no = ${c_no}
 </delete>
+<update id="ReviewUpdate" parameterType="com.fi.pj.campingplace.placeReview">
+	update campingreview_table
+	set c_campingreview = #{c_campingreview}
+	where c_no = ${c_no}
+</update>
+
 </mapper>

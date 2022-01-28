@@ -2,8 +2,6 @@ package com.fi.pj.campingplace;
 
 import java.io.File;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -177,6 +175,21 @@ public class CampingplaceDAO {
 		}
 		req.setAttribute("reviews", ss.getMapper(PlaceMapper.class).getAllReview(pr));
 
+	}
+
+	public void updateReview(placeReview pr, HttpServletRequest req) {
+		try {
+			if (ss.getMapper(PlaceMapper.class).ReviewUpdate(pr) == 1) {
+				req.setAttribute("result", "댓글수정성공");
+			} else {
+				req.setAttribute("result", "댓글수정실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("result", "댓글수정실패");
+		}
+		
 	}
 
 	

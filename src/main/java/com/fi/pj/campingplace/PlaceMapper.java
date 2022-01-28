@@ -19,6 +19,8 @@ public interface PlaceMapper {
 	public int ReviewReg(placeReview pr);
 	//리뷰 삭제
 	public int ReviewDel(placeReview pr);
+	//리뷰 수정
+	public int ReviewUpdate(placeReview pr);
 
 	
 

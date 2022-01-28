@@ -2,8 +2,6 @@ package com.fi.pj.campingplace;
 
 
 
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.fi.pj.member.MemberDAO;
+import com.fi.pj.TokenMaker;
 
 @Controller
 public class CampingplaceC {
@@ -97,10 +95,26 @@ public class CampingplaceC {
 	@RequestMapping(value = "review.del", method = RequestMethod.GET)
 	public String reviewDel(Campingplace p, placeReview pr, HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		cdao.delReview(pr, req);
+		cdao.delReview(pr, req); 
 		cdao.getOnePlace(p,req);
 		cdao.getAllReview(pr, req);
 		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
 		return "main";
 	}
+	
+	@RequestMapping(value = "review.update", method = RequestMethod.GET)
+	public String snsUpdate(Campingplace p, placeReview pr, HttpServletRequest req) {
+		TokenMaker.make(req);
+		//int n = Integer.parseInt(req.getParameter("n"));
+		if (mDAO.loginCheck(req)) {
+			cdao.updateReview(pr, req);
+		}
+		cdao.getOnePlace(p,req);
+		cdao.getAllReview(pr, req);
+		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
+		return "main";
+	}
+	
+	
+	
 }
