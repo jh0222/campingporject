@@ -29,7 +29,12 @@ public interface ShoppingMapper {
 	public int delProductreview(ProductReview pr);
 	//상품리뷰수정
 	public int updateProductreview(ProductReview pr);
+	//상품리뷰수정(리뷰등록계정)
+//	public int Productreview_id_select2(ProductReview pr); 
+	
 	//장바구니등록
-	public int basketregProduct(ProductBasket pb); //장바구니 등록
+	public int regProductbasket(ProductBasket pb); //장바구니 등록
+	//상품구매(등록)
+	public int regProductbuy(ProductBuy pbuy);
 	
 }

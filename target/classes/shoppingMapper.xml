@@ -53,12 +53,22 @@
 <update id="updateProductreview" parameterType="com.fi.pj.shopping.ProductReview">
 	update product_review_table set pr_txt = #{pr_txt} where pr_no= #{pr_no}
 </update>
+<!-- 리뷰수정(리뷰등록계정) 
+<select id="Productreview_id_select2" parameterType="com.fi.pj.shopping.Reviewinsert" resultType="Integer" >
+	select count(*) from product_review_table where pr_no = #{pr_no} and pr_u_bo_id = #{pr_u_bo_id} 
+</select>
+-->
 
-
-<!-- 장바구니 등록  parameterType="com.fi.pj.shopping.ProductBasket"-->
-<insert id="basketregProduct" parameterType="com.fi.pj.shopping.ProductBasket" >
+<!-- 장바구니 등록 -->
+<insert id="regProductbasket" parameterType="com.fi.pj.shopping.ProductBasket" >
 	insert into guest_product_basket_table (ba_no,ba_p_no,ba_u_bo_id,ba_p_name,ba_p_picture,ba_price,ba_number)
 	values (product_basket_seq.nextval,#{ba_p_no},#{ba_u_bo_id},#{ba_p_name},#{ba_p_picture},#{ba_price},#{ba_number})
+</insert>
+
+<!-- 상품구매(등록) -->
+<insert id="regProductbuy" parameterType="com.fi.pj.shopping.ProductBuy" > <!-- jdbcType=VARCHAR는 null값 허용해주는 테이블이 있을때 쓰임 -->
+	insert into guest_product_buy_table (b_no,b_u_bo_id,b_p_no,b_p_name,b_price,b_number,b_u_address,b_new_address,b_date)
+	values (g_p_buy_seq.nextval,#{b_u_bo_id,jdbcType=VARCHAR},#{b_p_no,jdbcType=VARCHAR},#{b_p_name,jdbcType=VARCHAR},#{b_price,jdbcType=VARCHAR},#{b_number,jdbcType=VARCHAR},#{b_u_address,jdbcType=VARCHAR},#{b_new_address,jdbcType=VARCHAR},sysdate)
 </insert>
 
 </mapper>

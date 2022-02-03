@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p id="p1">This is some text in a paragraph.</p>
+<p>장바구니페이지</p>
 </body>
 </html>

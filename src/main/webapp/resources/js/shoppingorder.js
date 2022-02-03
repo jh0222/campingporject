@@ -1,10 +1,11 @@
 //체크박스 선택시 '기존배송지' 뜨도록 (미완성)
+
 $(document).ready(function(){
 	$("#offline2").change(function(){         
 	        if($("#offline2").is(":checked")){
-	           $("#clean").val("");
+	           $("#recipient").val("");
 	        }else{
-	        	$("#clean").val("");
+	        	$("#recipient").val("");
 	        }
 	    });
 
@@ -13,9 +14,19 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$("#offline2").change(function(){         
 	        if($("#offline2").is(":checked")){
-	           $("#clean1").val("");
+	           $("#phonenumber").val("");
 	        }else{
-	        	$("#clean1").val("");
+	        	$("#phonenumber").val("");
+	        }
+	    });
+
+	});
+$(document).ready(function(){
+	$("#offline2").change(function(){         
+	        if($("#offline2").is(":checked")){
+	           $("#addr").val("");
+	        }else{
+	        	$("#addr").val("");
 	        }
 	    });
 

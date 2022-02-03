@@ -125,6 +125,8 @@ public class MemberDAO {
 			String u_picture = mr.getFilesystemName("picture");
 			u_picture = URLEncoder.encode(u_picture, "utf-8");
 			u_picture = u_picture.replace("+", " ");
+			
+			System.out.println(u_address+"유저어드레스 어떻게나오나 보자");
 
 			m.setU_name(u_name);
 			m.setU_id(u_id);

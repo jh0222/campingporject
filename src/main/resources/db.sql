@@ -199,17 +199,17 @@ select * from foodproduct_registration_table;
  * */
 drop table guest_product_buy_table;
 create table guest_product_buy_table(		
-	b_no number(5) primary key, /*(주문번호)*/
-	b_u_bo_id varchar2(20 char) not null,
-	b_p_no number(5) not null,
-	b_p_name varchar2(20 char) not null,
-	b_price	number(5) not null, /*(수량*p_price)*/
-	b_number number(5) not null,
+	b_no number(5) primary key,			 	/*(주문번호)*/
+	b_u_bo_id varchar2(20 char) not null,	/*아이디*/
+	b_p_no number(5) not null,			 	/*상품번호*/
+	b_p_name varchar2(20 char) not null,	/*상품명*/
+	b_price	number(5) not null,				/*(수량*p_price)*/
+	b_number number(5) not null,			/*수량*/
 	b_u_address varchar2(100 char) not null, /*(기존 자기 정보 배송지)*/
 	b_new_address varchar2(100 char) null,
 	b_date date not null
 );
-
+/*마이페이지 어떻게 되어있는지 보고 배송메모 포함할지 말지*/
 create sequence g_p_buy_seq;
 
 insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');

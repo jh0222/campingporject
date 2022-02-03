@@ -16,7 +16,7 @@ function delreview(no) {
 }
 
 function updatereview(no) {
-	let txt = prompt("수정할 내용을 적어주세요","${pr_txt}");
+	let txt = prompt(`"수정할 내용을 적어주세요","${pr_txt}"`);
 	if(txt != ""){
 		location.href = "update.productreview?pr_no=" + no + "&pr_txt=" + txt + "&p_no=" + ${p.p_no};
 	}
@@ -70,9 +70,9 @@ function change () {
     	let price = document.getElementById('sum').value; //id값   
     	let amount = document.form.amount.value; //name값
     	
-    	alert(amount);
+    	
     	document.form.method = 'POST'
-    	document.form.action='productbasket.go?ba_p_no=${p.p_no}&ba_p_name=${p.p_name}&ba_price='+price+'&ba_p_picture=${p.p_picture }&ba_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&ba_number='+amount;
+    	document.form.action='reg.productbasket?ba_p_no=${p.p_no}&ba_p_name=${p.p_name}&ba_price='+price+'&ba_p_picture=${p.p_picture }&ba_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&ba_number='+amount;
        
        }else {
     	document.form.reset();
@@ -122,8 +122,8 @@ function change () {
 					
 					</table>
 					<!-- ---------------------------------------------------------------------------------->
-					<!--  <form action="orderproduct.go" name="form" method="get"> -->
-					<form name="form" method="GET" enctype="multipart/form-data"> 
+
+					  <form name="form" method="GET" enctype="multipart/form-data"> 
 					<table border="1" style="border-collapse: collapse";>
 					<tr>
 					<td align="center"> 

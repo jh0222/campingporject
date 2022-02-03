@@ -5,22 +5,52 @@
 <html>
 <head>
 <script type="text/javascript">
+//체크박스 클릭에 따라 배송지 보여주기
 $(document).ready(function(){
 	let chkOk = true;
 	$("#offline2").change(function(){
-			
-			let chked =	$("#offline2").val();
-			alert(chkOk);
-			if(chkOk){
-	           $("#asdasd").show();
+			$("#addr").prop('disabled', true); //비활성화
+			if(chkOk){//true이면
+	           $("#addrtable").show();
 	           chkOk = false;
 	        }else{
-	           $("#asdasd").hide();
+	           $("#addrtable").hide();
 	           chkOk = true;
 	        }
 	    });
+	$("#offline1").change(function(){
+		$("#addr").prop('disabled', false);	//활성화
+		window.location.reload(); //새로고침
+		chkOk = true;
+		if(chkOk){
+           $("#addrtable").hide();
+           chkOk = true;
+        }else{
+        	$("#addrtable").show();
+            chkOk = false;
+        }
+    });
 
 });
+/* 배송지 안뜨는것도 미완
+//체크박스 유효성(미완)
+function button1_click(s) {
+	if (!$("input:checked[name='chk']").is(":checked")){ 
+		alert("에러문구를 표시"); 
+}
+*/
+//체크박스 중복방지
+function addrCheck(chk){
+    var obj = document.getElementsByName("offline1");//name값
+    for(var i=0; i<obj.length; i++){
+        if(obj[i] != chk){ 
+            obj[i].checked = false;
+        }
+        if(obj[i] = chk){
+        	obj[i].cheked = true;
+        }
+    }
+}
 
 
 </script>
@@ -29,23 +59,23 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>수령자 정보</h2>
-<table border="1" style="width:500px; height:auto; border-collapse: collapse;">
+<table border="1" style="width:500px; height:auto; border-collapse: collapse"; id="information_table" name="information_table">
 		<tr>
 			<td>배송지 선택</td>
-			<td colspan="2"><input type="checkbox" checked="checked" name="offline1" id="offline1" value="2"/>${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }님 배송지 <input type="checkbox" name="offline2" id="offline2"/>신규 배송지 </td>		
+			<td colspan="2"><input type="checkbox" checked="checked" name="offline1" id="offline1" onclick="addrCheck(this);"/>${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }님 배송지 <input type="checkbox" name="offline1" id="offline2" onclick="addrCheck(this);"/>신규 배송지 </td>		
       	</tr>
 		<tr>
 			<td>수령인</td>
-			<td colspan="2"><input name="clean" id="clean" value="${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }"></td>		
+			<td colspan="2"><input name="recipient" id="recipient" value="${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }"></td>		
 			
 		</tr>
 		<tr>
 			<td>휴대전화</td>
-			<td colspan="2"><input name="clean1" id="clean1" value="${sessionScope.loginMember2.bo_phonenumber }${sessionScope.loginMember.u_phonenumber }"></td>		
+			<td colspan="2"><input name="phonenumber" id="phonenumber" value="${sessionScope.loginMember2.bo_phonenumber }${sessionScope.loginMember.u_phonenumber }"></td>		
 		</tr>
 		<tr>
-			<td>배송지 주소</td>
-			<td colspan="2"><input name="clean2" id="clean2" value="${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }"></td>		
+			<td id="addrname">배송지 주소</td>
+			<td colspan="2"><input name="addr" id="addr" value="${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }"></td>		
 		</tr>
 		<tr>
 			<td>배송 메모</td>
@@ -60,60 +90,16 @@ $(document).ready(function(){
 		</tr>
 		
 </table>
-<table border="1" id="asdasd" style="display: none;">
+<table border="1" id="addrtable" style="display: none;">
 <tr>
 <td class="td2" colspan="2">주소:
 			<input id="addr3Input" readonly="readonly" name="u_addr3" maxlength="5" autocomplete="off" placeholder="우편번호">
 			<span id="addrSearchBtn">[검색]</span><br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="addr1Input" readonly="readonly" name="u_addr1" maxlength="30" autocomplete="off" placeholder="주소"><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="u_addr2" maxlength="30" autocomplete="off" placeholder="상세주소">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="u_addr2" id="u_addr2" maxlength="30" autocomplete="off" placeholder="상세주소">
 		</td>
 </tr>		
 </table>
-
-
-
-<!--  
-<table border="1" style="width:500px; height:auto; border-collapse: collapse;">
-<tr><td rowspan="6"><input type="checkbox" name="offline" id="offline" value="2"/></td>
-<td>sdasd</td></tr>
-<tr> 
-<td>수령인: ${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }</td>
-</tr>
-
-<tr>
-<td>휴대전화:${sessionScope.loginMember2.bo_phonenumber }${sessionScope.loginMember.u_phonenumber }</td>
-</tr>
-<tr>
-<td colspan="2">배송지 선택: 
-<input type="text" name="clean" id="clean" value="${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }">
-</td>
-</tr>
-
-<tr>
-		<td class="td2" colspan="2">주소:
-			<input id="addr3Input" readonly="readonly" name="u_addr3" maxlength="5" autocomplete="off" placeholder="우편번호">
-			<span id="addrSearchBtn">[검색]</span><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="addr1Input" readonly="readonly" name="u_addr1" maxlength="30" autocomplete="off" placeholder="주소"><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="u_addr2" maxlength="30" autocomplete="off" placeholder="상세주소">
-		</td>
-	</tr>
-<tr>
-<td>
-<select name="job" id="addrmsg">
-    <option value="" >배송 시 요청사항을 선택해주세요</option>
-    <option value="학생" id="hi">부재 시 경비실에 맡겨주세요</option>
-    <option value="회사원">부재 시 택배함에 넣어주세요</option>
-    <option value="기타">부재 시 집앞에 놔주세요</option>
-    <option value="기타">배송 전 연락바랍니다.</option>
-</select>
-<input id="addrtext">
-</td>
-</tr>	
-</table>
--->
-
-
 
 <h2>상품 정보</h2>
 <table border="1">
@@ -159,7 +145,7 @@ $(document).ready(function(){
 			</tr>
 		</tbody>
 	</table>
-<button id="check_module" type="button">결제하기</button>
+<button id="check_module" type="button" onclick="button1();">결제하기</button>
 
 · 입점업체 배송은 낮은 확률로 상품이 품절일 가능성이 있습니다. 이에 품절 시 빠르게 환불 처리해드립니다.<br>
 · 현금 환불의 경우, 예금정보가 일치해야 환불 처리가 가능합니다. 은행명, 계좌번호, 예금주명을 정확히 기재 부탁드립니다.<br>
@@ -168,6 +154,14 @@ $(document).ready(function(){
 
 <!-- 결제하기 -->
 <script>
+//let new_addr = document.form.u_addr1+u_addr2+u_addr3.value;
+/*
+function button1(){
+if (!$("input:checked[name='chk']").is(":checked")){ 
+	alert("에러문구를 표시");		
+}
+}
+*/
 $("#check_module").click(function () {
 var IMP = window.IMP; // 생략가능
 IMP.init('imp46581722');
@@ -178,13 +172,14 @@ merchant_uid: 'merchant_' + new Date().getTime(),
 //https://docs.iamport.kr/implementation/payment
 
 name: '상품명:${p.p_name}',
-amount: ${so.sum},
+amount: ${so.sum} ,
 //가격
 }, function (rsp) {
 console.log(rsp);
 if (rsp.success) { //if 결제성공하면
 var msg = '결제가 완료되었습니다.';
-location.href='';
+//let new_addr = document.getElementById('u_addr2').value;
+location.href='reg.productbuy?b_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&b_p_no=${p.p_no }&b_p_name=${p.p_name }&b_price=${so.sum}&b_number=${so.amount}&b_u_address=${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }';
 } else { //else 결제실패하면
 var msg = '결제에 실패하였습니다.';
 //alert('[에러]'+rsp.error_msg);
@@ -192,6 +187,7 @@ var msg = '결제에 실패하였습니다.';
 alert(msg);
 });
 });
+
 </script>
 
 

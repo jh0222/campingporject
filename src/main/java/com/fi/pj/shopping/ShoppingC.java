@@ -198,13 +198,24 @@ public class ShoppingC {
 		}
 		
 	    //장바구니 등록
-		@RequestMapping(value = "productbasket.go", method = RequestMethod.POST)
+		@RequestMapping(value = "reg.productbasket", method = RequestMethod.POST)
 		public String productbasketgo(ProductBasket pb, HttpServletRequest req) {
 			mDAO.loginCheck(req);
-			sdao.basketregProduct(pb,req);
+			sdao.regProductbasket(pb,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
-			req.setAttribute("shoppigListPage", "../shopping/basketProduct.jsp");
+			req.setAttribute("shoppigListPage", "../shopping/productbasket.jsp");
 			return "main";
-		}			
+		}	
+		
+		//상품구매
+				@RequestMapping(value = "reg.productbuy", method = RequestMethod.GET)
+				public String regproductbuy(ProductBuy pbuy, HttpServletRequest req) {
+					mDAO.loginCheck(req);
+					sdao.regProductbuy(pbuy,req);
+					req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+					req.setAttribute("shoppigListPage", "../shopping/Mypage.jsp");
+					return "main";
+				}	
+		
 	
 }

@@ -174,6 +174,7 @@ public class ShoppingDAO {
 
 	public void regProductreview(ProductReview pr, HttpServletRequest req) {
 		System.out.println(pr.getPr_u_id() + "리뷰등록(id출력)");
+		System.out.println(pr.getPr_date() + "리뷰등록시간");
 		if(ss.getMapper(ShoppingMapper.class).regProductreview(pr) == 1) { 
 			System.out.println("등록성공");
 			req.setAttribute("r", "등록 성공");
@@ -194,8 +195,7 @@ public class ShoppingDAO {
 	}
 
 	public void updateProductreview(ProductReview pr, HttpServletRequest req) {
-			
-			if (ss.getMapper(ShoppingMapper.class).updateProductreview(pr) == 1) {  
+	  if (ss.getMapper(ShoppingMapper.class).updateProductreview(pr) == 1) {  
 				System.out.println("리뷰수정 성공");
 				req.setAttribute("r", "수정 성공");
 			} else {
@@ -203,9 +203,20 @@ public class ShoppingDAO {
 			}
 			
 		}
+	
 
+		/*	    if(ss.getMapper(ShoppingMapper.class).Productreview_id_select2(pr) >= 1) {
+		if (ss.getMapper(ShoppingMapper.class).updateProductreview(pr) == 1) {  
+			System.out.println("리뷰수정 성공");
+			req.setAttribute("r", "수정 성공");
+		} else {
+			req.setAttribute("r", "수정 실패..");
+		}
+	    }	
+	}
+*/
 
-	public void basketregProduct(ProductBasket pb, HttpServletRequest req) {
+	public void regProductbasket(ProductBasket pb, HttpServletRequest req) {
 		try { 
 					
 			System.out.println(pb.getBa_p_no());
@@ -216,7 +227,7 @@ public class ShoppingDAO {
 			System.out.println(pb.getBa_no());
 			
 			
-			if(ss.getMapper(ShoppingMapper.class).basketregProduct(pb) == 1) { 
+			if(ss.getMapper(ShoppingMapper.class).regProductbasket(pb) == 1) { 
 				System.out.println("등록 성공");
 				req.setAttribute("r", "등록 성공!");
 			}
@@ -228,6 +239,31 @@ public class ShoppingDAO {
 		}
 		
 		
+	}
+
+	public void regProductbuy(ProductBuy pbuy, HttpServletRequest req) {
+		
+		try { 
+			
+			System.out.println(pbuy.getB_u_bo_id());
+			System.out.println(pbuy.getB_p_no());
+			System.out.println(pbuy.getB_p_name());
+			System.out.println(pbuy.getB_price());
+			System.out.println(pbuy.getB_number());
+			System.out.println(pbuy.getB_u_address());
+			System.out.println(pbuy.getB_new_address());
+			
+			
+			if(ss.getMapper(ShoppingMapper.class).regProductbuy(pbuy) == 1) { 
+				System.out.println("등록 성공");
+				req.setAttribute("r", "등록 성공!");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("r", "db서버문제..");
+			
+		}
 	}
 		
 	}
