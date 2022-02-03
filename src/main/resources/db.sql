@@ -1,4 +1,3 @@
-
 0. 관리자 디비(수정함)
 drop table root_table;
 create table root_table(
@@ -29,7 +28,7 @@ create table user_table(
 create sequence user_seq;
 
 insert into user_table values(user_seq.nextval,'김태희','kim','k1234!','kim1234@naver.com','서울특별시 종로구','01012341234','19970101','a.jpg',0);
-
+delete user_table where u_no = 81;
 select * from USER_TABLE;
 
 2. 사장 테이블
@@ -130,19 +129,18 @@ select * from campingheart_table;
 ex)enddate=sysdate+1
 */
 drop table campingreview_table;
-create table campingreview_table(		
-	c_no number(5) primary key,
-	c_cam_no number(5) not null,
-	c_u_id varchar2(20 char) not null,
-	c_r_campingenddate date not null,
-	c_campingreview	varchar2(100) not null,
-	c_campingstar number(5) not null,
-	c_date date not null
+create table campingreview_table(
+    c_no number(5) primary key,
+    c_cam_no number(5) not null,
+    c_u_id varchar2(20 char) not null,
+    c_campingreview varchar2(100) not null,
+    c_campingstar number(5) not null,
+    c_date date not null
 );
 
 create sequence campingreview_seq;
 
-insert into campingreview_table values(campingreview_seq.nextval,1,'kim','20220320','좋아요',5,'20220321');
+insert into campingreview_table values(campingreview_seq.nextval,1,'kim','좋아요',5,sysdate);
 
 select * from campingreview_table;
 
@@ -200,9 +198,11 @@ select * from foodproduct_registration_table;
 /*
  * 하나만 선택되도록 radio box
  * 새로운 배송지가 null값이면 기존배송지 아니면 새로운 배송지가 뜨도록 만들기
- * */
+*/
 drop table guest_product_buy_table;
-create table guest_product_buy_table(		
+
+create table guest_product_buy_table(
+	
 	b_no number(5) primary key, /*(주문번호)*/
 	b_u_bo_id varchar2(20 char) not null,
 	b_p_no number(5) not null,
@@ -212,6 +212,7 @@ create table guest_product_buy_table(
 	b_u_address varchar2(100 char) not null, /*(기존 자기 정보 배송지)*/
 	b_new_address varchar2(100 char) null,
 	b_date date not null
+	
 );
 
 create sequence g_p_buy_seq;
@@ -225,13 +226,14 @@ select * from guest_product_buy_table;
  * 하나만 선택되도록 radio box
  * 새로운 배송지가 null값이면 기존배송지 아니면 새로운 배송지가 뜨도록 만들기
  * */
-drop table guest_product_buy_table;
+drop table guest_foodproduct_buy_table;
+
 create table guest_foodproduct_buy_table(		
 	fb_no number(5) primary key, /*(주문번호)*/
 	fb_u_bo_id varchar2(20 char) not null,
 	fb_p_no number(5) not null,
 	fb_p_name varchar2(20 char) not null,
-	fb_price	number(5) not null, /*(수량*p_price)*/
+	fb_price number(5) not null, /*(수량*p_price)*/
 	fb_number number(5) not null,
 	fb_u_address varchar2(100 char) not null, /*(기존 자기 정보 배송지)*/
 	fb_new_address varchar2(100 char) null,
@@ -253,8 +255,8 @@ create table guest_product_basket_table(
 	ba_u_bo_id varchar2(20 char) not null,
 	ba_p_name varchar2(20 char) not null,
 	ba_p_picture varchar2(200 char) not null,
-	ba_price number(5) not null, /*(수량*p_price)*/
-	ba_number number(5) not null
+	ba_price number(10) not null, /*(수량*p_price)*/
+	ba_number number(10) not null
 );
 
 create sequence product_basket_seq;
@@ -273,8 +275,8 @@ create table guest_foodproduct_basket_table(
 	fba_u_bo_id varchar2(20 char) not null,
 	fba_fp_name varchar2(20 char) not null,
 	fba_fp_picture varchar2(20 char) not null,
-	fba_price number(5) not null, /*(수량*p_price)*/
-	fba_number number(5) not null
+	fba_price number(10) not null, /*(수량*p_price)*/
+	fba_number number(10) not null
 );
 
 create sequence foodproduct_basket_seq;
@@ -356,6 +358,7 @@ select count(*) from free_board_reply_table where fr_owner_no=
 select fr_no from free_board_reply_table where fr_u_id='(알수없음)';
 select count(*) from free_board_reply_table where fr_owner_no=411;
 select count(*) from free_board_reply_table where fr_u_id='(알수없음)' and fr_no=403;
+
 18. 캠핑팁게시판
 create table campingtip_board_table(	
 	tip_no number(5) primary key,

@@ -16,5 +16,14 @@ public interface MemberMapper {
 	public int Userjoin(UserMember m);
 	public int Bossjoin(BossMember m);
 	
+	//회원탈퇴
+	public int userBye(UserMember m);
+	public int bossBye(BossMember b);
+	
+	//회원 정보 업데이트
+	public int userUpdate(UserMember m);
+	public int bossUpdate(BossMember b);
+	
+	
 
 }

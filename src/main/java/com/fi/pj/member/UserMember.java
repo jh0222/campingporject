@@ -1,6 +1,7 @@
 package com.fi.pj.member;
 
 import java.util.Date;
+import java.util.List;
 
 public class UserMember {
 	private int u_no;
@@ -112,5 +113,4 @@ public class UserMember {
 		this.u_picture = u_picture;
 		this.u_discount = u_discount;
 	}
-
 }
