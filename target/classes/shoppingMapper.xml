@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fi.pj.shopping.ShoppingMapper">
-<select id="getAllProduct" resultType="com.fi.pj.shopping.Product">
-	select * from product_registration_table order by p_no DESC
+<!-- 상품목록(페이징)  -->
+<select id="getAllProduct" resultType="com.fi.pj.shopping.Product" parameterType="com.fi.pj.shopping.Page">
+	select rn,p_no,p_name,p_price,p_picture,p_txt
+        from (select Rownum as rn,p_no,p_name,p_price,p_picture,p_txt
+        from (select p_no,p_name,p_price,p_picture,p_txt
+        from product_registration_table
+        order by p_no desc))
+        where RN &gt;=#{from} and RN &lt;=#{to}
 </select>
-
+<!-- 상품등록 -->
 <insert id="regProduct" parameterType="com.fi.pj.shopping.Product">
 	insert into product_registration_table(p_no,p_name,p_price,p_picture,p_txt)
 	values (product_registration_table_seq.nextval,#{p_name},#{p_price},#{p_picture},#{p_txt})
 </insert>
-
+<!-- 상품검색  -->
 <select id="ProductSearch" resultType="com.fi.pj.shopping.Product"> 
 	select * from product_registration_table where p_name like '%'||#{p_name}||'%'
 </select>
-
+<!-- 상품삭제 -->
 <delete id="delProduct" parameterType="com.fi.pj.shopping.Product">
 	delete product_registration_table where p_no = #{p_no}
 </delete>
-
+<!-- 상품디테일 -->
 <select id="getProduct" resultType="com.fi.pj.shopping.Product">
 	select * from product_registration_table where p_no = #{p_no}
 </select>
-
+<!-- 상품수정 -->
 <update id="updateProduct" parameterType="com.fi.pj.shopping.Product" >
  update product_registration_table
   set
@@ -32,10 +38,10 @@
   where p_no = #{p_no}
 </update>
 
-
 <!-- 리뷰목록 -->
-<select id="getAllProductReview" resultType="com.fi.pj.shopping.ProductReview">
-	select * from product_review_table order by pr_no DESC
+<select id="getAllProductReview" resultType="com.fi.pj.shopping.ProductReview" parameterType="String">
+	 select * from product_review_table where pr_p_no = #{value} order by pr_no DESC
+ 	<!--  select * from product_review_table order by pr_no DESC -->
 </select>
 <!-- 리뷰등록:(구매계정)쿼리 -->
 <select id="Productreview_id_select" parameterType="com.fi.pj.shopping.Reviewinsert" resultType="Integer" >
@@ -43,7 +49,8 @@
 </select>
 <!-- 리뷰등록 -->
 <insert id="regProductreview" parameterType="com.fi.pj.shopping.ProductReview">
-	 insert into product_review_table(pr_no,pr_u_id,pr_txt,pr_date) values (product_review_seq.nextval, #{pr_u_id}, #{pr_txt}, sysdate)
+	<!-- insert into product_review_table(pr_no,pr_p_no,pr_u_id,pr_txt,pr_date) values (product_review_seq.nextval,#{pr_p_no},#{pr_u_id}, #{pr_txt}, sysdate)-->
+	insert into product_review_table(pr_no,pr_p_no,pr_u_bo_id,pr_txt,pr_date) values (product_review_seq.nextval,#{pr_p_no},#{pr_u_bo_id}, #{pr_txt}, sysdate)
 </insert>
 <!-- 리뷰삭제 -->
 <delete id="delProductreview" parameterType="com.fi.pj.shopping.ProductReview">
@@ -53,11 +60,6 @@
 <update id="updateProductreview" parameterType="com.fi.pj.shopping.ProductReview">
 	update product_review_table set pr_txt = #{pr_txt} where pr_no= #{pr_no}
 </update>
-<!-- 리뷰수정(리뷰등록계정) 
-<select id="Productreview_id_select2" parameterType="com.fi.pj.shopping.Reviewinsert" resultType="Integer" >
-	select count(*) from product_review_table where pr_no = #{pr_no} and pr_u_bo_id = #{pr_u_bo_id} 
-</select>
--->
 
 <!-- 장바구니 등록 -->
 <insert id="regProductbasket" parameterType="com.fi.pj.shopping.ProductBasket" >
@@ -70,5 +72,9 @@
 	insert into guest_product_buy_table (b_no,b_u_bo_id,b_p_no,b_p_name,b_price,b_number,b_u_address,b_new_address,b_date)
 	values (g_p_buy_seq.nextval,#{b_u_bo_id,jdbcType=VARCHAR},#{b_p_no,jdbcType=VARCHAR},#{b_p_name,jdbcType=VARCHAR},#{b_price,jdbcType=VARCHAR},#{b_number,jdbcType=VARCHAR},#{b_u_address,jdbcType=VARCHAR},#{b_new_address,jdbcType=VARCHAR},sysdate)
 </insert>
+
+<select id="getAllProductcnt" resultType="Integer">
+	select count(*) from product_registration_table
+</select>
 
 </mapper>

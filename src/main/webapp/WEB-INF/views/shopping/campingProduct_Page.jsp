@@ -26,13 +26,8 @@
 	</table>
 
 	<h3>상품목록</h3>
-	<table border="0" style="position: absolute; width: 100%";>
-		<!--  <tr>
-			<th>사진</th>
-			<th>상품명</th>
-			<th>가격</th>
-		</tr>
-		-->
+	
+	<table border="1" style="position: absolute; width: 100%";>
 		<c:set var="i" value="0" />
 		<c:set var="j" value="2" />
 
@@ -42,8 +37,8 @@
 			</c:if>
 			<td><img src="resources/img/${p.p_picture }"
 				style="width: 120px; height: 110px;"
-				onclick="location.href = 'detail.product?p_no=${p.p_no}&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'"></td>
-			<td onclick="location.href = 'detail.product?p_no=${p.p_no}&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'">${p.p_name }</td>
+				onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'"></td>
+			<td onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'">${p.p_name }</td>
 
 			<td><fmt:formatNumber value="${p.p_price}" type="currency" /> ${p_txt }</td>
 			
@@ -55,7 +50,35 @@
 			</c:if>
 			<c:set var="i" value="${i+1 }" />
 		</c:forEach>
-	</table>
-
+		<c:choose>
+        <c:when test = "${pg > block}">
+            [<a href="camping.product?pg=1">◀◀</a>]
+            [<a href="camping.product?pg=${fromPage -1}">◀</a>] 
+        </c:when>
+        <c:otherwise>
+            [<span style="color:gray">◀◀</span>]
+            [<span style="color:gray">◀</span>]
+        </c:otherwise>
+    </c:choose>
+    <c:forEach var="i" begin="${fromPage }" end="${toPage }">
+          <c:choose>
+               <c:when test = "${i == pg }">
+                [${i }]
+            </c:when>
+              <c:otherwise>
+                [<a href="camping.product?pg=${i }">${i }</a>]
+               </c:otherwise>
+           </c:choose>
+    </c:forEach>
+    <c:choose>
+           <c:when test = "${toPage < allPage }">
+               [<a href="camping.product?pg=${toPage + 1}">▶</a>]
+            [<a href="camping.product?pg=${allPage}">▶▶</a>]
+          </c:when>
+         <c:otherwise>
+               [<span style="color:gray">▶</span>]
+            [<span style="color:gray">▶▶</span>]
+           </c:otherwise>
+    </c:choose>
 </body>
 </html>

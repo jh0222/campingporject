@@ -8,7 +8,7 @@ import com.fi.pj.member.UserMember;
 
 public interface ShoppingMapper {
 	//상품목록
-	public List<Product> getAllProduct(); 
+	public List<Product> getAllProduct(Page p); 
 	//상품등록
 	public int regProduct(Product p); 
 	//상품검색
@@ -20,7 +20,7 @@ public interface ShoppingMapper {
 	//상품수정
 	public int updateProduct(Product p);
 	//상품리뷰목록
-	public List<ProductReview> getAllProductReview();
+	public List<ProductReview> getAllProductReview(String aa);
 	//상품리뷰(구매계정)
 	public int Productreview_id_select(Reviewinsert ri);
 	//상품리뷰등록
@@ -29,12 +29,11 @@ public interface ShoppingMapper {
 	public int delProductreview(ProductReview pr);
 	//상품리뷰수정
 	public int updateProductreview(ProductReview pr);
-	//상품리뷰수정(리뷰등록계정)
-//	public int Productreview_id_select2(ProductReview pr); 
-	
 	//장바구니등록
 	public int regProductbasket(ProductBasket pb); //장바구니 등록
 	//상품구매(등록)
 	public int regProductbuy(ProductBuy pbuy);
+	//총 상품 게시물 수 
+	public int getAllProductcnt();
 	
 }

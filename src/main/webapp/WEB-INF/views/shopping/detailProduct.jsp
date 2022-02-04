@@ -171,12 +171,13 @@ function change () {
 					<c:forEach var="p" items="${productreviews }">
 				<tr>
 					<td>${p.pr_no }</td>
-					<td>${p.pr_u_id }</td>
+					<td>${p.pr_u_bo_id }</td>
 					<td>${p.pr_txt }</td>
 					<td><fmt:formatDate value="${p.pr_date }" dateStyle="short"/></td>
-					
+					<c:if test="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id == p.pr_u_bo_id }">
 					<td onclick="updatereview(${p.pr_no})">수정</td>
 					<td onclick="delreview(${p.pr_no})">삭제</td>
+					</c:if> 
 				</tr>
 					</c:forEach>
 			</table>

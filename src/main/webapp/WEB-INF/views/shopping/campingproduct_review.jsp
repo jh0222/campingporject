@@ -12,9 +12,10 @@
 				
 					<tr>
 					<td><textarea name="pr_txt" rows="10"; cols="150"; style="margin-left: 167px; resize: none;"> </textarea>
-						<input name="pr_u_id" type="hidden" value="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }"></td>
+						<input name="pr_u_bo_id" type="hidden" value="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }"></td>
 					</tr> 
-						<input name="p_no" type="hidden" value="${p.p_no }">
+						<input name="p_no" type="hidden" value="${p.p_no }"> <!-- p_no가 있어야 등록->출력해도 이전 데이터 안날라감 -->
+						<input name="pr_p_no" type="hidden" value="${p.p_no }">
 					<tr>
 					<td><button style="padding-left: 1067px; margin-left: 167px; text-align: center;" >등록!!</button></td>
 					</tr>

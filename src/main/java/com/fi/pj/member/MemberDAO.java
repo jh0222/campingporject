@@ -113,9 +113,9 @@ public class MemberDAO {
 			String email = mr.getParameter("email");
 			String email_address = mr.getParameter("email_address");
 			String u_email = email + "@" + email_address;
-			String u_addr1 = mr.getParameter("addr1");
-			String u_addr2 = mr.getParameter("addr2");
-			String u_addr3 = mr.getParameter("addr3");
+			String u_addr1 = mr.getParameter("u_addr1");
+			String u_addr2 = mr.getParameter("u_addr2");
+			String u_addr3 = mr.getParameter("u_addr3");
 			String u_address = u_addr1 + "!" + u_addr2 + "!" + u_addr3;
 			String phone1 = mr.getParameter("phonenumber1");
 			String phone2 = mr.getParameter("phonenumber2");
@@ -126,7 +126,6 @@ public class MemberDAO {
 			u_picture = URLEncoder.encode(u_picture, "utf-8");
 			u_picture = u_picture.replace("+", " ");
 			
-			System.out.println(u_address+"유저어드레스 어떻게나오나 보자");
 
 			m.setU_name(u_name);
 			m.setU_id(u_id);

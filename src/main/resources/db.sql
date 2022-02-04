@@ -282,16 +282,19 @@ select * from guest_foodproduct_basket_table;
 14. 캠핑용품 리뷰
 create table product_review_table(	
 	pr_no number(5)	primary key,
+	pr_p_no number(5) not null, 
 	pr_u_bo_id varchar2(20 char) not null,
 	pr_txt varchar2(100 char) not null,
 	pr_date	date not null
 );
 
+drop table product_review_table;
 create sequence product_review_seq;
 
-insert into product_review_table values(product_review_seq.nextval,'kim','좋아요','20220301');
+insert into product_review_table values(product_review_seq.nextval,182,'kim','좋아요','20220301');
 
 select * from product_review_table;
+select * from product_review_table where pr_p_no = 182 ;
 -------------------------------------------------------------------------------------------------------------------------------------
 15. 밀키트 리뷰
 create table foodproduct_review_table(	

@@ -95,14 +95,14 @@ public class ShoppingC {
 	
 	//캠핑용품 상세페이지(+리뷰목록)
 	@RequestMapping(value = "detail.product", method = RequestMethod.GET)
-	public String datailProduct(Reviewinsert ri,Product p,UserMember u,HttpServletRequest req) {
+	public String datailProduct(Reviewinsert ri,Product p,HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		sdao.getProduct(p,req);
 		sdao.getAllProductReview(req);
 		sdao.reviewwrite(ri,p,req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
-		req.setAttribute("u", u);
+
 		return "main";
 	}
 	
@@ -208,14 +208,14 @@ public class ShoppingC {
 		}	
 		
 		//상품구매
-				@RequestMapping(value = "reg.productbuy", method = RequestMethod.GET)
-				public String regproductbuy(ProductBuy pbuy, HttpServletRequest req) {
-					mDAO.loginCheck(req);
-					sdao.regProductbuy(pbuy,req);
-					req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
-					req.setAttribute("shoppigListPage", "../shopping/Mypage.jsp");
-					return "main";
-				}	
+		@RequestMapping(value = "reg.productbuy", method = RequestMethod.GET)
+		public String regproductbuy(ProductBuy pbuy, HttpServletRequest req) {
+			mDAO.loginCheck(req);
+			sdao.regProductbuy(pbuy,req);
+		    req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+			req.setAttribute("shoppigListPage", "../shopping/Mypage.jsp");
+			return "main";
+		}	
 		
 	
 }

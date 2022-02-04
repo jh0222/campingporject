@@ -32,13 +32,12 @@ $(document).ready(function(){
     });
 
 });
-/* 배송지 안뜨는것도 미완
+
 //체크박스 유효성(미완)
-function button1_click(s) {
-	if (!$("input:checked[name='chk']").is(":checked")){ 
+function button1_click() {
 		alert("에러문구를 표시"); 
 }
-*/
+
 //체크박스 중복방지
 function addrCheck(chk){
     var obj = document.getElementsByName("offline1");//name값
@@ -125,28 +124,28 @@ function addrCheck(chk){
 		</thead>
 		<tbody>
 			<tr>
-				<td><input type="checkbox" name="chk"></td>
+				<td><input type="checkbox" name="chk" value="1"></td>
 				<td colspan="2">[필수] 개인정보 수집 및 이용 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a onclick="showPopup1();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="chk"></td>
+				<td><input type="checkbox" name="chk" value="2"></td>
 				<td>[필수] 개인정보 제 3자 제공 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a onclick="showPopup2();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="chk"></td>
+				<td><input type="checkbox" name="chk" value="3"></td>
 				<td>[필수] 전자결제대행 이용 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a onclick="showPopup3();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="chk"></td>
+				<td><input type="checkbox" name="chk" value="4"></td>
 				<td>[필수] 상품정보, 거래조건 확인 및 구매 진행 동의</td> 
 			</tr>
 		</tbody>
 	</table>
-<button id="check_module" type="button" onclick="button1();">결제하기</button>
-
+<button id="check_module" type="button" onclick="">결제하기</button>
+	
 · 입점업체 배송은 낮은 확률로 상품이 품절일 가능성이 있습니다. 이에 품절 시 빠르게 환불 처리해드립니다.<br>
 · 현금 환불의 경우, 예금정보가 일치해야 환불 처리가 가능합니다. 은행명, 계좌번호, 예금주명을 정확히 기재 부탁드립니다.<br>
 · 환불 받으신 날짜 기준으로 3~5일(주말 제외) 후 결제대행사에서 직접 고객님의 계좌로 환불 처리됩니다.<br>
@@ -154,6 +153,7 @@ function addrCheck(chk){
 
 <!-- 결제하기 -->
 <script>
+
 //let new_addr = document.form.u_addr1+u_addr2+u_addr3.value;
 /*
 function button1(){
@@ -178,9 +178,11 @@ amount: ${so.sum} ,
 console.log(rsp);
 if (rsp.success) { //if 결제성공하면
 var msg = '결제가 완료되었습니다.';
-//let new_addr = document.getElementById('u_addr2').value;
-location.href='reg.productbuy?b_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&b_p_no=${p.p_no }&b_p_name=${p.p_name }&b_price=${so.sum}&b_number=${so.amount}&b_u_address=${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }';
-} else { //else 결제실패하면
+let new_addr1 = document.getElementById('u_addr2').value;
+let new_addr = document.getElementById('addr1Input').value;
+let new_addr3 = document.getElementById('addr3Input').value;
+location.href='reg.productbuy?b_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&b_p_no=${p.p_no }&b_p_name=${p.p_name }&b_price=${so.sum}&b_number=${so.amount}&b_u_address=${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }&b_new_address=' + new_addr + new_addr1 + new_addr3;
+}else {
 var msg = '결제에 실패하였습니다.';
 //alert('[에러]'+rsp.error_msg);
 }

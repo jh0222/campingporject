@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fi.pj.member.BossMember;
 import com.fi.pj.member.LoginMember;
 import com.fi.pj.member.UserMember;
 import com.oreilly.servlet.MultipartRequest;
@@ -25,8 +27,40 @@ public class ShoppingDAO {
 	private  SqlSession ss;
 
 	public void getAllProduct(HttpServletRequest req) {
-																			
-		req.setAttribute("products",ss.getMapper(ShoppingMapper.class).getAllProduct());
+		int rowSize = 5; //한페이지에 보여줄 글의 수
+        int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+
+        String strPg = req.getParameter("pg");
+        if(strPg != null){ //list.jsp?pg=2
+            pg = Integer.parseInt(strPg); //.저장
+        }
+
+        int from = (pg * rowSize) - (rowSize-1); //(1*10)-(10-1)=10-9=1 //from
+        int to=(pg * rowSize); //(110) = 10 //to
+
+        Page p = new Page();
+        p.setFrom(from);
+        p.setTo(to);
+
+        List<Product> products = ss.getMapper(ShoppingMapper.class).getAllProduct(p);
+
+        int total = ss.getMapper(ShoppingMapper.class).getAllProductcnt(); //총 게시물 수
+        int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+        //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+        int block = 5; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+        int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+        int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+        if(toPage> allPage){ // 예) 20>17
+            toPage = allPage;
+        }
+
+        req.setAttribute("pg", pg);
+        req.setAttribute("block", block);
+        req.setAttribute("fromPage", fromPage);
+        req.setAttribute("toPage", toPage);
+        req.setAttribute("allPage", allPage);	        
+		req.setAttribute("products",products);
 		
 	}
 
@@ -156,24 +190,27 @@ public class ShoppingDAO {
 	
 	//리뷰목록
 	public void getAllProductReview(HttpServletRequest req) {
+		String prno = req.getParameter("pr_p_no");
 		
-		req.setAttribute("productreviews",ss.getMapper(ShoppingMapper.class).getAllProductReview());
+		req.setAttribute("productreviews",ss.getMapper(ShoppingMapper.class).getAllProductReview(prno));
 		
 		
 	}
 
 	//(구매계정)리뷰등록
 	public void reviewwrite(Reviewinsert ri, Product p, HttpServletRequest req) {
-		UserMember member =  (UserMember) req.getSession().getAttribute("loginMember");
-		ri.setId(member.getU_id());
+		UserMember u_member =  (UserMember) req.getSession().getAttribute("loginMember");
+		ri.setId(u_member.getU_id());
 		System.out.println(ri.getId());
+		 
 		if(ss.getMapper(ShoppingMapper.class).Productreview_id_select(ri) >= 1) {
 			req.setAttribute("reviewPage", "../shopping/campingproduct_review.jsp");
 		}
 	}
-
+	//리뷰등록
 	public void regProductreview(ProductReview pr, HttpServletRequest req) {
-		System.out.println(pr.getPr_u_id() + "리뷰등록(id출력)");
+		System.out.println(pr.getPr_p_no() + "상품번호(p_no)출력");
+		System.out.println(pr.getPr_u_bo_id() + "리뷰등록(id출력)");
 		System.out.println(pr.getPr_date() + "리뷰등록시간");
 		if(ss.getMapper(ShoppingMapper.class).regProductreview(pr) == 1) { 
 			System.out.println("등록성공");
@@ -205,16 +242,7 @@ public class ShoppingDAO {
 		}
 	
 
-		/*	    if(ss.getMapper(ShoppingMapper.class).Productreview_id_select2(pr) >= 1) {
-		if (ss.getMapper(ShoppingMapper.class).updateProductreview(pr) == 1) {  
-			System.out.println("리뷰수정 성공");
-			req.setAttribute("r", "수정 성공");
-		} else {
-			req.setAttribute("r", "수정 실패..");
-		}
-	    }	
-	}
-*/
+		
 
 	public void regProductbasket(ProductBasket pb, HttpServletRequest req) {
 		try { 
