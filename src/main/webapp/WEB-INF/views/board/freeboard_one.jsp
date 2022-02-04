@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,9 +34,6 @@
 			</tr>
 			<tr>
 				<td colspan="4">${fb.f_txt }</td>
-			</tr>
-			<tr>
-				<td colspan="4" align="center"><img src="resources/img/${fb.f_picture }" width="200" height="100"></td>
 			</tr>
 			<c:if test="${fb.f_u_id == sessionScope.loginMember.u_id 
 						|| fb.f_u_id == sessionScope.loginMember2.bo_id 
@@ -89,27 +87,32 @@
 		[댓글]		
 		<!-- 댓글 select -->			
 			<table border="1">	
-				<tr><td colspan="3" style="background-color:red;">댓글</td></tr>	
+				<tr><td colspan="4" style="background-color:red;">댓글</td></tr>	
 				<tr>
 					<td>
 						<img src="resources/img/${fr.fr_picture }" width="30" height="30">
 					</td>
-					<td>${fr.fr_u_id }</td>
+					<td colspan="2">${fr.fr_u_id }</td>
 					<td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${fr.fr_date }"/></td>					
 				</tr>
 				<tr>
-					<td colspan="3">${fr.fr_replytxt }</td>								
-				</tr>
-				<c:if test="${fr.fr_u_id == sessionScope.loginMember.u_id 
+					<td colspan="3" class="replyTd">${fr.fr_replytxt }</td>	
+					<c:if test="${fr.fr_u_id == sessionScope.loginMember.u_id 
 						|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
 						|| sessionScope.loginMember3 != null}">
-					<tr>
-						<td colspan="3">
-							<button onclick="frupdate(${fr.fr_u_id},${fr.fr_txt })">수정</button>
-							<button onclick="frdelete(${fr.fr_no},${fb.f_no},${fr.fr_depth });">삭제</button>
-						</td>	
-					</tr>	
-				</c:if>		
+					<td colspan="3">
+						<button class="replyUpdateBtn" value="updateGo">수정</button>
+						<input type="hidden" value="${fb.f_no}" class="fbVal">
+						<input type="hidden" value="${fr.fr_no}" class="frVal1">
+						<button onclick="frdelete(${fr.fr_no},${fb.f_no},${fr.fr_depth });">삭제</button>
+					</td>		
+				</c:if>								
+				</tr>
+				<tr>
+					<td colspan="4">
+						<button id="replybtn" class="replybtn" value='0'>답글 보기▼</button>
+					</td>
+				</tr>
 			</table>
 
 		<c:if test="${sessionScope.loginMember.u_id != null
@@ -117,7 +120,7 @@
 				|| sessionScope.loginMember3 != null}">
 		<!-- 대댓글 inset -->
 			<form action="fb_replyinsert">
-				<table id="replyreply" border="1">
+				<table class="replyreply" border="1">
 					<tr><td colspan="2">답글작성</td></tr>
 					<tr>
 						<td rowspan="2">
@@ -148,12 +151,13 @@
 					</tr>
 				</table>
 			</form>
-		</c:if>
+		</c:if>  
 					
 		<!-- 대댓글 select겸 insert -->
+		<div class="asdasd" style="display: none">
 		<c:forEach var="frr" items="${frr }">
 		<c:if test="${frr.fr_owner_no == fr.fr_no }">				
-			<table border="1">
+			<table border="1" class="aabbcc">
 				<tr>
 					<td>
 						<img src="resources/img/${frr.fr_picture }" width="30" height="30">
@@ -162,13 +166,15 @@
 						<td style="color:red; background-color:yellow;">${frr.fr_owner_id }</td>
 					</c:if>					
 					<td style="background-color:orange;">${frr.fr_u_id }:</td>
-					<td>${frr.fr_replytxt }</td>
+					<td class="replyTd">${frr.fr_replytxt }</td>
 					<td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${frr.fr_date }"/></td>
 					<c:if test="${frr.fr_u_id == sessionScope.loginMember.u_id 
 						|| frr.fr_u_id == sessionScope.loginMember2.bo_id 
 						|| sessionScope.loginMember3 != null}">
 						<td>
-							<button>수정</button>
+							<button class="replyUpdateBtn" value="updateGo">수정</button>
+							<input type="hidden" value="${fb.f_no}" class="fbVal">
+							<input type="hidden" value="${frr.fr_no}" class="frVal1">
 							<button onclick="frrdelete(${frr.fr_no},${fb.f_no},${frr.fr_depth },${frr.fr_owner_no });">삭제</button>
 						</td>
 					</c:if>	
@@ -213,31 +219,39 @@
 			</c:if>	
 		</c:if>
 		</c:forEach>				
+	</div>
 	</c:forEach>
-
-	<table id="snsWriteArea" style="bottom: -150px">
-		<tr>
-			<td align="center"><span id="snsWriteFormSummoner"><img
-					src="resources/img/write_update.png"
-					width=30 height=30>
-			</span></td>
-		</tr>
-		<tr>
-			<td align="center">
-				<form name="snsWriteForm" action="sns.write" method="post">
-					<table id="snsWriteTable">
-						<tr>
-							<td id="swtTd1"><textarea name="s_txt" maxlength="200"></textarea></td>
-							<td id="swtTd2"><button>수정</button></td>
-						</tr>
-					</table>
-				</form>
-
-			</td>
-		</tr>
-	</table>
-
-		
+	
+	<c:choose>
+		<c:when test = "${pg > block}">
+            [<a href="fb.onego?pg=1">◀◀</a>]
+            [<a href="fb.onego?pg=${fromPage -1}&f_no=${fb.f_no}">◀</a>] 
+        </c:when>
+        <c:otherwise>
+            [<span style="color:gray">◀◀</span>]   
+            [<span style="color:gray">◀</span>]
+        </c:otherwise>
+    </c:choose>
+    <c:forEach var="i" begin="${fromPage }" end="${toPage }">
+      	<c:choose>
+	       	<c:when test = "${i == pg }">
+        		[${i }]
+        	</c:when>        	
+      	    <c:otherwise>
+        		[<a href="fb.onego?pg=${i }&f_no=${fb.f_no}">${i }</a>]
+       		</c:otherwise>
+       	</c:choose>
+    </c:forEach>       
+    <c:choose>
+       	<c:when test = "${toPage < allPage }">
+       		[<a href="fb.onego?pg=${toPage + 1}&f_no=${fb.f_no}">▶</a>]
+            [<a href="fb.onego?pg=${allPage}&f_no=${fb.f_no}">▶▶</a>]
+      	</c:when>
+     	<c:otherwise>
+       		[<span style="color:gray">▶</span>]
+            [<span style="color:gray">▶▶</span>]
+       	</c:otherwise>       
+    </c:choose>
 </body>
 </html>
 															

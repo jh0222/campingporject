@@ -23,7 +23,39 @@ public class BoardDAO {
 
 	//자유게시판 전체목록 보기
 	public void getAllfreeboard(HttpServletRequest req) {
-		List<Freeboard> fb = ss.getMapper(BoardMapper.class).getAllfreeboard();
+		int rowSize = 10; //한페이지에 보여줄 글의 수
+	    int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+	   
+	    String strPg = req.getParameter("pg");
+	    if(strPg != null){ //list.jsp?pg=2
+	    	pg = Integer.parseInt(strPg); //.저장
+	    }
+
+	    int from = (pg * rowSize) - (rowSize-1); //(1*10)-(10-1)=10-9=1 //from
+	    int to=(pg * rowSize); //(1*10) = 10 //to
+		
+	    Page p = new Page();
+	    p.setFrom(from);
+	    p.setTo(to);
+	    
+		List<Freeboard> fb = ss.getMapper(BoardMapper.class).getAllfreeboard(p);   	 
+
+	    int total = ss.getMapper(BoardMapper.class).getAllfreeboardcnt(); //총 게시물 수
+	    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+	    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+	    int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+	    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+	    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+	    if(toPage> allPage){ // 예) 20>17
+	        toPage = allPage;
+	    }
+
+	    req.setAttribute("pg", pg);
+	    req.setAttribute("block", block);
+	    req.setAttribute("fromPage", fromPage);
+	    req.setAttribute("toPage", toPage);
+	    req.setAttribute("allPage", allPage);
 		req.setAttribute("fb", fb);
 	}
 
@@ -43,20 +75,26 @@ public class BoardDAO {
 			String f_u_id = mr.getParameter("f_u_id");
 			String f_subject = mr.getParameter("subject");
 			String f_txt = mr.getParameter("txt");			
-			String f_picture = mr.getFilesystemName("picture");
-			f_picture = URLEncoder.encode(f_picture, "utf-8");
-			f_picture = f_picture.replace("+", " ");
+			String f_picture = mr.getFilesystemName("picture");		
 
 			fb.setF_u_id(f_u_id);
 			fb.setF_subject(f_subject);
 			fb.setF_txt(f_txt);
-			fb.setF_picture(f_picture);
-
-			if (ss.getMapper(BoardMapper.class).FbInsert(fb) == 1) {
-				req.setAttribute("result", "등록성공");
+			if(f_picture!=null) {
+				fb.setF_picture(f_picture);
+				if (ss.getMapper(BoardMapper.class).FbInsert(fb) == 1) {
+					req.setAttribute("result", "등록성공");
+				} else {
+					req.setAttribute("result", "등록실패");
+				}
 			} else {
-				req.setAttribute("result", "등록실패");
+				if (ss.getMapper(BoardMapper.class).FbInsert2(fb) == 1) {
+					req.setAttribute("result", "등록성공");
+				} else {
+					req.setAttribute("result", "등록실패");
+				}
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			String fileName = mr.getFilesystemName("picture");
@@ -93,17 +131,9 @@ public class BoardDAO {
 		try {
 			String f_subject = mr.getParameter("subject");
 			String f_txt = mr.getParameter("txt");			
-			String newpicture = mr.getFilesystemName("picture");
-			System.out.println(newpicture);
-			String oldpicture = mr.getParameter("f_picture");
-			
+
 			fb.setF_subject(f_subject);
 			fb.setF_txt(f_txt);
-			if(newpicture != null) {
-				fb.setF_picture(newpicture);
-			} else {
-				fb.setF_picture(oldpicture);
-			}
 			
 			if (ss.getMapper(BoardMapper.class).FbUpdate(fb) == 1) {
 				req.setAttribute("result", "수정성공");
@@ -122,7 +152,7 @@ public class BoardDAO {
 
 	//자유게시판 클릭페이지 이동
 	public void getonefreeboard(Freeboard fb, HttpServletRequest req) {
-		Freeboard fbo = ss.getMapper(BoardMapper.class).getonefreeboard(fb);
+		Freeboard fbo = ss.getMapper(BoardMapper.class).getonefreeboard(fb);		
 		req.setAttribute("fb", fbo);		
 	}
 
@@ -159,8 +189,43 @@ public class BoardDAO {
 
 	//자유게시판 댓글 보기
 	public void getfbreply(Freeboard fb, HttpServletRequest req) {
-		List<FbReply> fr = ss.getMapper(BoardMapper.class).getfbreply(fb);
-		req.setAttribute("fr", fr);		
+		int rowSize = 5; //한페이지에 보여줄 글의 수
+	    int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+	   
+	    String strPg = req.getParameter("pg");
+	    if(strPg != null){ 
+	    	pg = Integer.parseInt(strPg); //.저장
+	    }
+
+	    int from = (pg * rowSize) - (rowSize-1);
+	    int to=(pg * rowSize); 
+		
+	    Page p = new Page();
+	    p.setFrom(from);
+	    p.setTo(to);
+	    p.setF_no(fb.getF_no());
+	    
+		List<FbReply> fr = ss.getMapper(BoardMapper.class).getfbreply(p);
+		List<FbReply> frr = ss.getMapper(BoardMapper.class).getfbrreply(fb);
+
+		int total = ss.getMapper(BoardMapper.class).getAllfreeboardreplycnt(fb); //총 게시물 수
+	    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+	    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+	    int block = 5; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+	    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+	    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+	    if(toPage> allPage){ // 예) 20>17
+	        toPage = allPage;
+	    }
+
+	    req.setAttribute("pg", pg);
+	    req.setAttribute("block", block);
+	    req.setAttribute("fromPage", fromPage);
+	    req.setAttribute("toPage", toPage);
+	    req.setAttribute("allPage", allPage);
+	    req.setAttribute("fr", fr);
+	    req.setAttribute("frr", frr);
 	}
 
 	//자유게시판 댓글 삭제
@@ -199,10 +264,27 @@ public class BoardDAO {
 			}
 		}
 	}
+	
+	public void updateCount(Freeboard fb, HttpServletRequest req) {
+		if (ss.getMapper(BoardMapper.class).Fbcount_update(fb) == 1) {
+			req.setAttribute("result", "카운트수정성공");
+		} else {
+			req.setAttribute("result", "카운트수정실패");
+		}	
+		
+	} 
 
-	public void getfbrreply(Freeboard fb, HttpServletRequest req) {
-		List<FbReply> frr = ss.getMapper(BoardMapper.class).getfbrreply(fb);
-		req.setAttribute("frr", frr);		
+	public FbReplies getfbrreply(Freeboard fb) {
+		return new FbReplies(ss.getMapper(BoardMapper.class).getfbrreply(fb));
+	}
+
+	//댓글 수정
+	public void frupdate(FbReply fr, HttpServletRequest req) {
+		if (ss.getMapper(BoardMapper.class).Fr_update(fr) == 1) {
+			req.setAttribute("result", "댓글 수정 성공");
+		} else {
+			req.setAttribute("result", "댓글 수정 실패");
+		}
 	}
 
 	

@@ -5,10 +5,12 @@ import java.util.List;
 public interface BoardMapper {
 
 	//자유게시판 전체목록
-	public List<Freeboard> getAllfreeboard();
+	public List<Freeboard> getAllfreeboard(Page p);
 
 	//자유게시판 등록
 	public int FbInsert(Freeboard fb);
+	//사진 없을때
+	public int FbInsert2(Freeboard fb);
 
 	//전체검색
 	public List<Freeboard> FbSearch_id(Search s);
@@ -29,7 +31,7 @@ public interface BoardMapper {
 	public int FbreplyInsert3(FbReply fr);
 	
 	//자유게시판 댓글 보기
-	public List<FbReply> getfbreply(Freeboard fb);
+	public List<FbReply> getfbreply(Page p);
 
 	//자유게시판 댓글 삭제
 	public int FrDelete(FbReply fr);
@@ -46,6 +48,16 @@ public interface BoardMapper {
 	
 	//자유게시판 대댓글 보기
 	public List<FbReply> getfbrreply(Freeboard fb);
+	//조회수
+	public int Fbcount_update(Freeboard fb);
+	//총 자유게시판 수
+	public int getAllfreeboardcnt();
+	//총 댓글 수
+	public int getAllfreeboardreplycnt(Freeboard fb);
+	//댓글 수정
+	public int Fr_update(FbReply fr);
+
+	
 
 	
 

@@ -2,6 +2,8 @@ package com.fi.pj.board;
 
 import java.util.Date;
 
+import oracle.sql.CLOB;
+
 public class Freeboard {
 	private int f_no;
 	private String f_u_id;
@@ -82,6 +84,5 @@ public class Freeboard {
 		this.f_readcount = f_readcount;
 		this.f_date = f_date;
 	}
-	
 
 }

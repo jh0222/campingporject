@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+$(function(){
+	$('#txt').summernote({
+		height : 300, width : 800
+	});
+});
+</script>
 </head>
 <body>
 자유게시판
@@ -20,15 +27,9 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><input name="txt" value="${fb.f_txt }"></td>
-			</tr>
-			<tr>
-				<td>사진</td>
 				<td>
-					<img src="resources/img/${fb.f_picture }"  width="200" height="100">
-					<input name="f_picture" type="hidden" value="${fb.f_picture }">
-					<input name="picture" type="file">
-				</td>
+					<textarea name="txt" id="txt" rows="10" cols="80">${fb.f_txt }</textarea>	            	
+            	</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><button>수정</button></td>

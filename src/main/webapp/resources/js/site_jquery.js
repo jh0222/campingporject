@@ -10,21 +10,21 @@ function connectJoinIdInputEvent() {
 			},
 			success : function(data) {
 				console.log(data);
-//				if (data.member.length == 1) {
+				// if (data.member.length == 1) {
 				if (data == 1) {
 					$("#Idckbtn").html('사용불가능한 아이디입니다');
 					$("#Idckbtn").css("color", "#F44336");
-					document.joinForm.id.value="";
-					document.joinForm.id.focus();					
+					document.joinForm.id.value = "";
+					document.joinForm.id.focus();
 				} else {
 					$("#Idckbtn").html('사용가능한 아이디입니다');
 					$("#Idckbtn").css("color", "black");
-					document.joinForm.idDoubleChk.value="true"
+					document.joinForm.idDoubleChk.value = "true"
 				}
 			}
 		});
 	});
-}	
+}
 
 function connectAddrSearchEvent() {
 	$("#addrSearchBtn").click(function() {
@@ -34,19 +34,6 @@ function connectAddrSearchEvent() {
 				$("#addr1Input").val(data.roadAddress);
 			}
 		}).open();
-	});
-}
-
-function r_reply() {
-	var FormVisible = false;
-
-	$("#rreply").click(function() {
-		if (FormVisible) {
-			$("#replyreply").css("bottom", "-150px");
-		} else {
-			$("#replyreply").css("bottom", "10px");
-		}
-		FormVisible = !FormVisible;
 	});
 }
 
@@ -63,10 +50,44 @@ function connectSNSWriteFormSummonEvent() {
 	});
 }
 
-
 $(function() {
 	connectJoinIdInputEvent();
 	connectAddrSearchEvent();
-	r_reply();
 	connectSNSWriteFormSummonEvent();
+
+	$(".replybtn").click(function() {
+		let FormVisible = $(this).attr('value');
+
+		if (FormVisible == 1) {
+			$(this).closest('table').next().next().css('display', 'none');
+			$(this).text("답글 보기▼");
+			FormVisible = $(this).attr('value', '0');
+		} else {
+			$(this).closest('table').next().next().css('display', 'block');
+			$(this).text("답글 숨기기▲");
+			FormVisible = $(this).attr('value', '1');
+		}
+	});
+
+	$('.replyUpdateBtn').click(function name() {
+		let updatebtnVal = $(this).attr('value');
+		let updatebtn = $('<button></button>');
+		
+		if(updatebtnVal == 'updateGo'){
+			let updateInput = $('<input>');
+			let replyTd = $(this).closest('tr').find('.replyTd')
+			let myVal = replyTd.text();
+			replyTd.text('');
+			replyTd.append(updateInput);
+			$(updateInput).val(myVal);
+			updatebtnVal = $(this).attr('value', 'updateDo');
+		} else{
+			let f_no = $(this).next('.fbVal').val();
+			let fr_no = $(this).next().next('.frVal1').val();
+			let fr_replytxt = $(this).closest('tr').find('.replyTd').find('input').val();
+			location.href="fr.update?fr_no=" + fr_no  + "&fr_replytxt=" + fr_replytxt + "&f_no=" + f_no;
+			updatebtnVal = $(this).attr('value', 'updateGo');
+		}
+	});
+
 });

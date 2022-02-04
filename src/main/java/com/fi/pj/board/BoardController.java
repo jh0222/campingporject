@@ -1,12 +1,21 @@
 package com.fi.pj.board;
 
-import java.net.URLEncoder;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fi.pj.member.MemberDAO;
 import com.oreilly.servlet.MultipartRequest;
@@ -21,7 +30,7 @@ public class BoardController {
 	@Autowired
 	private BoardDAO bDAO;
 	
-	
+	 
 	//자유게시판 페이지로
 	@RequestMapping(value = "freeboard.go", method = RequestMethod.GET)
 	public String FreeboardGo(HttpServletRequest req) {
@@ -37,7 +46,7 @@ public class BoardController {
 		mDAO.loginCheck(req);
 		req.setAttribute("contentPage", "board/campingtip.jsp");
 		return "main";
-	}
+	} 
 		
 	//레시피 페이지로
 	@RequestMapping(value = "recipe.go", method = RequestMethod.GET)
@@ -85,7 +94,7 @@ public class BoardController {
 	@RequestMapping(value = "fb.search", method = RequestMethod.GET)
 	public String FreeboardSearch(Search s, HttpServletRequest req) {		
 		mDAO.loginCheck(req);
-		bDAO.getfreeboard(s, req);
+		bDAO.getfreeboard(s, req);		
 		req.setAttribute("contentPage", "board/freeboard.jsp");
 		return "main"; 
 	}
@@ -109,6 +118,17 @@ public class BoardController {
 		return "main";
 	}
 	
+	//자유게시판 댓글수정
+	@RequestMapping(value = "fr.update", method = RequestMethod.GET)
+	public String FreeboardreplyUdate(Freeboard fb, FbReply fr, HttpServletRequest req) {			
+		mDAO.loginCheck(req);
+		bDAO.frupdate(fr,req);
+		bDAO.getonefreeboard(fb, req);
+		bDAO.getfbreply(fb,req);
+		req.setAttribute("contentPage", "board/freeboard_one.jsp");
+		return "main";
+	}
+	
 	//자유게시판 삭제
 	@RequestMapping(value = "fbwrite.delete", method = RequestMethod.GET)
 	public String FreeboardwriteDelete(Freeboard fb, HttpServletRequest req) {	
@@ -119,14 +139,24 @@ public class BoardController {
 		return "main";
 	}
 	
-	//자유게시판 클릭 페이지로
+	//자유게시판 클릭 페이지로(처음)
 	@RequestMapping(value = "fbwrite.onego", method = RequestMethod.GET)
 	public String FreeboardoneGo(Freeboard fb,HttpServletRequest req) {
 		//int f_no = Integer.parseInt(req.getParameter("f_no"));
 		mDAO.loginCheck(req);
+		bDAO.updateCount(fb,req);
 		bDAO.getonefreeboard(fb, req);
-		bDAO.getfbreply(fb,req);
-		bDAO.getfbrreply(fb,req);
+		bDAO.getfbreply(fb,req);		
+		req.setAttribute("contentPage", "board/freeboard_one.jsp");
+		return "main";
+	}
+	
+	//자유게시판 클릭 페이지로(페이지이동)
+	@RequestMapping(value = "fb.onego", method = RequestMethod.GET)
+	public String FreeboardoneGo2(Freeboard fb,HttpServletRequest req) {		
+		mDAO.loginCheck(req);
+		bDAO.getonefreeboard(fb, req);
+		bDAO.getfbreply(fb,req);		
 		req.setAttribute("contentPage", "board/freeboard_one.jsp");
 		return "main";
 	}
@@ -138,7 +168,6 @@ public class BoardController {
 		mDAO.loginCheck(req);
 		bDAO.getonefreeboard(fb, req);
 		bDAO.getfbreply(fb,req);
-		bDAO.getfbrreply(fb,req);
 		req.setAttribute("contentPage", "board/freeboard_one.jsp");
 		return "main";
 	}
@@ -150,10 +179,10 @@ public class BoardController {
 		mDAO.loginCheck(req);
 		bDAO.getonefreeboard(fb, req);
 		bDAO.getfbreply(fb,req);
-		bDAO.getfbrreply(fb,req);
 		req.setAttribute("contentPage", "board/freeboard_one.jsp");
 		return "main";
 	}
+
 	
 	
 }

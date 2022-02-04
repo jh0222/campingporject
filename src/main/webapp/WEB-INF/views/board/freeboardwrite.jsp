@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script>
+$(function(){
+	$("#txt").summernote({
+		height : 300, width : 800
+	});
+});
+</script>
 </head>
 <body>
 자유게시판
@@ -18,13 +26,10 @@
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><input name="txt"></td>
+			<td>
+				<textarea name="txt" id="txt" rows="10" cols="80"></textarea>            	
+            </td>
 		</tr>
-		<tr>
-			<td>사진</td>
-			<td><input name="picture" type="file"></td>
-		</tr>
-		
 		<tr>
 			<td colspan="2" align="center"><button>등록</button></td>
 		</tr>
