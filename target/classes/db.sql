@@ -1,3 +1,4 @@
+
 0. 관리자 디비(수정함)
 drop table root_table;
 create table root_table(
@@ -129,6 +130,7 @@ select * from campingheart_table;
 ex)enddate=sysdate+1
 */
 drop table campingreview_table;
+
 create table campingreview_table(
     c_no number(5) primary key,
     c_cam_no number(5) not null,
@@ -366,8 +368,8 @@ create table campingtip_board_table(
 	tip_subject varchar2(20 char)	not null,
 	tip_txt varchar2(100 char) not null,
 	tip_picture varchar2(200 char) null,
-	tip_readcount	number(5) not null,
-	tip_date date	not null
+	tip_readcount number(5) not null,
+	tip_date date not null
 );
 
 create sequence campingtip_board_seq;
@@ -380,12 +382,12 @@ select * from campingtip_board_table;
 drop table campingtip_board_reply_table
 create table campingtip_board_reply_table(
 	tipr_no number(5) primary key,
-	tipr_f_no	number(5) not null,
-	tipr_u_id	varchar2(100 char) not null,
-	tipr_owner_no	varchar2(100 char) null,
-	tipr_owner_id	varchar2(100 char) null,
-	tipr_replytxt	varchar2(100 char) not null,
-	tipr_date	date not null,
+	tipr_f_no number(5) not null,
+	tipr_u_id varchar2(100 char) not null,
+	tipr_owner_no varchar2(100 char) null,
+	tipr_owner_id varchar2(100 char) null,
+	tipr_replytxt varchar2(100 char) not null,
+	tipr_date date not null,
 	tipr_depth number(5) not null,
 	tipr_picture varchar2(200 char) not null,
 	constraint campingtip
@@ -404,11 +406,11 @@ select * from campingtip_board_reply_table;
 create table recipe_board_table(	
 	rb_no number(5) primary key,
 	rb_u_id varchar2(20 char) not null,
-	rb_subject varchar2(20 char)	not null,
+	rb_subject varchar2(20 char) not null,
 	rb_txt varchar2(100 char) not null,
 	rb_picture varchar2(200 char) null,
-	rb_readcount	number(5) not null,
-	rb_date date	not null
+	rb_readcount number(5) not null,
+	rb_date date not null
 );
 
 create sequence recipe_board_seq;
@@ -430,9 +432,9 @@ create table recipe_board_reply_table(
 	rr_depth number(5) not null,
 	rr_picture varchar2(200 char) not null,
 	constraint recipe
-		foreign key(rr_f_no)
-		references recipe_board_table(rb_no)
-		on delete cascade
+	foreign key(rr_f_no)
+	references recipe_board_table(rb_no)
+	on delete cascade
 );
 
 create sequence recipe_board_reply_seq;

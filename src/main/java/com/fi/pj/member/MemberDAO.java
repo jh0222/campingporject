@@ -12,14 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fi.pj.member.UserMember;
-import com.fi.pj.Cart.CartBean;
-import com.fi.pj.Cart.CartMapper;
 import com.fi.pj.member.MemberMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -276,26 +270,22 @@ public class MemberDAO {
 
 			try {
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-				String u_name = mr.getParameter("u_name");
-				String u_id = mr.getParameter("u_id");
-				String u_pw = mr.getParameter("u_pw");	
-				String email = mr.getParameter("u_email");
-				String email_address = mr.getParameter("u_email_address");
+				String u_pw = mr.getParameter("up_pw");	
+				String email = mr.getParameter("up_email");
+				String email_address = mr.getParameter("up_email_address");
 				String u_email = email + "@" + email_address;
-				String u_addr1 = mr.getParameter("u_addr1");
-				String u_addr2 = mr.getParameter("u_addr2");
-				String u_addr3 = mr.getParameter("u_addr3");
+				String u_addr1 = mr.getParameter("up_addr1");
+				String u_addr2 = mr.getParameter("up_addr2");
+				String u_addr3 = mr.getParameter("up_addr3");
 				String u_address = u_addr1 + "!" + u_addr2 + "!" + u_addr3;
-				String phone1 = mr.getParameter("phonenumber1");
-				String phone2 = mr.getParameter("phonenumber2");
-				String phone3 = mr.getParameter("phonenumber3");
+				String phone1 = mr.getParameter("up_phonenumber1");
+				String phone2 = mr.getParameter("up_phonenumber2");
+				String phone3 = mr.getParameter("up_phonenumber3");
 				String u_phonenumber = phone1 + phone2 + phone3;
 				Date newbirth = formatter.parse(mr.getParameter("newbirth"));
 				String oldpicture = mr.getParameter("oldpicture");
 				String newpicture = mr.getFilesystemName("newpicture");
 
-				m.setU_name(u_name);
-				m.setU_id(u_id);
 				m.setU_pw(u_pw);		
 				m.setU_email(u_email);
 				m.setU_address(u_address);
@@ -319,14 +309,127 @@ public class MemberDAO {
 			}
 		}	
 		
-	// 사장 db에 저장된 주소
-	public void splitBossAddr(HttpServletRequest request) {
-		BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
-		String bo_addr = b.getBo_address();
-		String[] bo_addr2 = bo_addr.split("!");
-		request.setAttribute("boaddr", bo_addr2);	
+	// 구매목록
+	public void userbuylist(Buy b, HttpServletRequest request) {
+		List<Buy> userbuylist = ss.getMapper(BuylistMapper.class).userbuylist(b);
+		request.setAttribute("userbuylist", userbuylist);
+
+		List<Buy> mealbuylist = ss.getMapper(BuylistMapper.class).mealbuylist(b);
+		request.setAttribute("mealbuylist", mealbuylist);
+		
+	}
+
+	// 구매목록 삭제
+	public void buydel(Buy b, HttpServletRequest request) {
+		if (ss.getMapper(BuylistMapper.class).userbuydel(b) == 1) {
+			request.setAttribute("result", "구매취소성공");
+		} else {
+			request.setAttribute("result", "구매취소실패");
+		}
+	}
+
+	// 사용자 커뮤니티
+	// 내글
+	public void communities(Communities c, HttpServletRequest request) {
+		
+		List<Communities> communities = ss.getMapper(CommunitiesMapper.class).communities(c);		
+		request.setAttribute("freeboard", communities);	
 	}
 	
+	// 자유게시판
+	public void freeboard(Communities c, HttpServletRequest request) {
+		
+		List<Communities> freeboard = ss.getMapper(CommunitiesMapper.class).freeboard(c);		
+		request.setAttribute("freeboard", freeboard);	
+	}
+	
+	// 캠핑찜
+	public void campingjjim(Communities c, HttpServletRequest request) {
+		
+		List<Communities> campingjjim = ss.getMapper(CommunitiesMapper.class).campingjjim(c);
+		request.setAttribute("campingjjim", campingjjim);
+	}
+
+	// 캠핑찜 삭제
+	public void campingjjimdel(Communities c, HttpServletRequest request) {
+		
+		if (ss.getMapper(CommunitiesMapper.class).campingjjimdel(c) == 1) {
+			request.setAttribute("result", "찜삭제성공");
+		} else {
+			request.setAttribute("result", "짬삭제실패");
+		}
+	}
+
+	// 캠핑예약
+	public void campingreserve(Communities c, HttpServletRequest request) {
+		List<Communities> campingreserve = ss.getMapper(CommunitiesMapper.class).campingreserve(c);
+		request.setAttribute("campingreserve", campingreserve);
+	}
+	
+	// 캠핑팁
+	public void campingtip(Communities c, HttpServletRequest request) {
+		List<Communities> campingtip = ss.getMapper(CommunitiesMapper.class).campingtip(c);		
+		request.setAttribute("campingtip", campingtip);	
+	}
+
+	// 레시피
+	public void recipe(Communities c, HttpServletRequest request) {
+		List<Communities> recipe = ss.getMapper(CommunitiesMapper.class).recipe(c);		
+		request.setAttribute("recipe", recipe);	
+	}
+
+	// 캠핑리뷰
+	public void campingreview(Communities c, HttpServletRequest request) {
+		List<Communities> campingreview = ss.getMapper(CommunitiesMapper.class).campingreview(c);		
+		request.setAttribute("campingreview", campingreview);
+	}
+
+	// 구매용품 리뷰
+	public void productreview(Communities c, HttpServletRequest request) {
+		List<Communities> productreview = ss.getMapper(CommunitiesMapper.class).productreview(c);		
+		request.setAttribute("productreview", productreview);
+		
+		List<Communities> mealreview = ss.getMapper(CommunitiesMapper.class).mealreview(c);		
+		request.setAttribute("mealreview", mealreview);
+	}
+	
+	// 자유게시판 리뷰
+	public void freeboardreview(Communities c, HttpServletRequest request) {
+		List<Communities> freeboardreview = ss.getMapper(CommunitiesMapper.class).freeboardreview(c);		
+		request.setAttribute("freeboardreview", freeboardreview);	
+	}
+	
+	// 캠핑팁 리뷰
+	public void campingtipreview(Communities c, HttpServletRequest request) {
+		List<Communities> campingtipreview = ss.getMapper(CommunitiesMapper.class).campingtipreview(c);		
+		request.setAttribute("campingtipreview", campingtipreview);	
+	}
+	
+	// 레시피 리뷰
+	public void recipereview(Communities c, HttpServletRequest request) {
+		List<Communities> recipereview = ss.getMapper(CommunitiesMapper.class).recipereview(c);		
+		request.setAttribute("recipereview", recipereview);	
+	}
+	
+	// 캠핑예약 삭제
+	public void campingreservedel(Communities c, HttpServletRequest request) {
+		if (ss.getMapper(CommunitiesMapper.class).campingreservedel(c) == 1) {
+			request.setAttribute("result", "예약삭제성공");
+		} else {
+			request.setAttribute("result", "예약삭제실패");
+		}
+	}
+	
+	// BOSS
+	
+	// 사장 db에 저장된 주소
+		public void splitBossAddr(HttpServletRequest request) {
+			BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
+			String bo_addr = b.getBo_address();
+			String[] bo_addr2 = bo_addr.split("!");
+			request.setAttribute("boaddr", bo_addr2);	
+		}
+		
 	// 사장 정보 업데이트
 		public void bossUpdate(BossMember boss, HttpServletRequest request) {
 			String path = request.getSession().getServletContext().getRealPath("resources/img");
@@ -348,8 +451,7 @@ public class MemberDAO {
 				request.setAttribute("result", "수정실패");
 				return;
 			}
-
-			try {
+				try {
 					
 				String bo_id = mr.getParameter("id");
 				String bo_pw = mr.getParameter("pw");	
@@ -367,85 +469,81 @@ public class MemberDAO {
 				String bo_picture = mr.getFilesystemName("picture");
 				bo_picture = URLEncoder.encode(bo_picture, "utf-8");
 				bo_picture = bo_picture.replace("+", " ");
-
 				b.setBo_id(bo_id);
 				b.setBo_pw(bo_pw);		
-				b.setBo_email(bo_email);
-				b.setBo_address(bo_address);
-				b.setBo_phonenumber(bo_phonenumber); 
-				b.setBo_picture(bo_picture);
-				if (ss.getMapper(MemberMapper.class).bossUpdate(b) == 1) {
-					request.setAttribute("result", "수정성공");
-					request.getSession().setAttribute("loginMember", b);
-					if (!oldFile.equals(newFile)) {
-						oldFile = URLDecoder.decode(oldFile, "utf-8");
-						new File(path + "/" + oldFile).delete();
+					b.setBo_email(bo_email);
+					b.setBo_address(bo_address);
+					b.setBo_phonenumber(bo_phonenumber); 
+					b.setBo_picture(bo_picture);
+					if (ss.getMapper(MemberMapper.class).bossUpdate(b) == 1) {
+						request.setAttribute("result", "수정성공");
+						request.getSession().setAttribute("loginMember", b);
+						if (!oldFile.equals(newFile)) {
+							oldFile = URLDecoder.decode(oldFile, "utf-8");
+							new File(path + "/" + oldFile).delete();
+						}
+					} else {
+						request.setAttribute("result", "수정실패");
+						if (!oldFile.equals(newFile)) {
+							newFile = URLDecoder.decode(newFile, "utf-8");
+							new File(path + "/" + newFile).delete();
+						}
 					}
-				} else {
+				} catch (Exception e) {
+					e.printStackTrace();
 					request.setAttribute("result", "수정실패");
 					if (!oldFile.equals(newFile)) {
-						newFile = URLDecoder.decode(newFile, "utf-8");
+						try {
+							newFile = URLDecoder.decode(newFile, "utf-8");
+						} catch (UnsupportedEncodingException e1) {
+							}
 						new File(path + "/" + newFile).delete();
 					}
 				}
+			}	
+			
+		// Boss 탈퇴
+			public void bossBye(HttpServletRequest request) {
+			try {
+				BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
+
+				if (ss.getMapper(MemberMapper.class).bossBye(b) == 1) {
+					request.setAttribute("result", "탈퇴성공");
+
+					String path = request.getSession().getServletContext().getRealPath("resources/img");
+					String Bo_picture = b.getBo_picture();
+					Bo_picture = URLDecoder.decode(Bo_picture, "utf-8");
+					new File(path + "/" + Bo_picture).delete();
+
+					logout(request);
+					loginCheck(request);
+				} else {
+					request.setAttribute("result", "탈퇴실패");
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				request.setAttribute("result", "수정실패");
-				if (!oldFile.equals(newFile)) {
-					try {
-						newFile = URLDecoder.decode(newFile, "utf-8");
-					} catch (UnsupportedEncodingException e1) {
-						}
-					new File(path + "/" + newFile).delete();
-				}
-			}
-		}	
-		
-	// 사장 탈퇴
-		public void bossBye(HttpServletRequest request) {
-		try {
-			BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
-
-			if (ss.getMapper(MemberMapper.class).bossBye(b) == 1) {
-				request.setAttribute("result", "탈퇴성공");
-
-				String path = request.getSession().getServletContext().getRealPath("resources/img");
-				String Bo_picture = b.getBo_picture();
-				Bo_picture = URLDecoder.decode(Bo_picture, "utf-8");
-				new File(path + "/" + Bo_picture).delete();
-
-				logout(request);
-				loginCheck(request);
-			} else {
 				request.setAttribute("result", "탈퇴실패");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("result", "탈퇴실패");
 		}
-	}
-
-	// 사용자 구매목록
-	public void userbuylist(Buy b, HttpServletRequest request) {
-		List<Buy> userbuylist = ss.getMapper(BuylistMapper.class).userbuylist(b);
-		request.setAttribute("userbuylist", userbuylist);
-		List<Buy> mealbuylist = ss.getMapper(BuylistMapper.class).mealbuylist(b);
-		request.setAttribute("mealbuylist", mealbuylist);
-		
-	}
-
-	public void buydel(Buy b, HttpServletRequest request) {
-		if (ss.getMapper(BuylistMapper.class).userbuydel(b) == 1) {
-			request.setAttribute("result", "탈퇴성공");
-		} else {
-			request.setAttribute("result", "탈퇴실패");
-		}
-		
-	}
-
-	public void usercommunities(Communities c, HttpServletRequest request) {
-		
-		
-	}
 	
+	// 캠핑장을 이용한 이용객들의 캠핑리뷰
+	public void bosscampingreview(Communities_boss cb, HttpServletRequest request) {
+		List<Communities_boss> bosscampingreview = ss.getMapper(BossCommunitiesMapper.class).bosscampingreview(cb);		
+		request.setAttribute("bosscampingreview", bosscampingreview);
+		
+	}
+
+	// 사용자가 작성한 캠핑리뷰
+	public void campingreviewdo(Communities c, HttpServletRequest request) {
+		List<Communities> campingreviewdo = ss.getMapper(ReviewMapper.class).campingreview(c);
+		request.setAttribute("campingreviewdo", campingreviewdo);
+	}
+
+	// 캠핑 리뷰 업데이트
+	public void campingreviewupdate(Communities c, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

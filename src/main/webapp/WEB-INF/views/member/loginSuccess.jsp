@@ -17,7 +17,7 @@
 			<td>(${sessionScope.loginMember.u_name })</td>
 			<td>
 				<button onclick="location.href='UserCart'">장바구니</button>
-				<button onclick="userInfo()">마이페이지</button>
+				<button onclick="location.href='user.info'">마이페이지</button>
 				<button onclick="logout()">로그아웃</button>
 			</td>
 		<tr>

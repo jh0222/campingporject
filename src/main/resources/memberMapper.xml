@@ -35,7 +35,7 @@
 	
 	<update id="userUpdate" parameterType="com.fi.pj.member.UserMember">
 		update user_table 
-		set u_name=#{u_name}, u_pw = #{u_pw},u_email=#{u_email}, u_address = #{u_address},u_phonenumber=#{u_phonenumber}, u_picture = #{u_picture},u_birth=#{u_birth}
+		set u_pw = #{u_pw}, u_email = #{u_email}, u_address = #{u_address}, u_phonenumber = #{u_phonenumber}, u_picture = #{u_picture}, u_birth = #{u_birth}
 		where u_id = #{u_id}
 	</update>
 	
