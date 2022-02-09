@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+<<<<<<< HEAD
+=======
+import com.fi.pj.board.FbReply;
+import com.fi.pj.board.Freeboard;
+>>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -206,4 +211,16 @@ public class MemberDAO {
 			
 		}
 
+<<<<<<< HEAD
+=======
+		public void idsearch(Login l, HttpServletRequest req) {
+			System.out.println("dd"+l.getName());
+			if(ss.getMapper(MemberMapper.class).idsearch(l) != null) {
+				req.setAttribute("id", ss.getMapper(MemberMapper.class).idsearch(l));				
+			} else if(ss.getMapper(MemberMapper.class).bo_idsearch(l) != null) {
+				req.setAttribute("id", ss.getMapper(MemberMapper.class).bo_idsearch(l));
+			}
+		}
+
+>>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 }

@@ -1,0 +1,249 @@
+/* Reset CSS */
+* { box-sizing: border-box; }
+ul { list-style: none; padding: 0; }
+a { text-decoration: none; }
+
+/* Default CSS */
+a {
+  color: black;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #222;
+  font-size: 16px;
+  margin: 0;
+  height: 100vh;
+  background-color: #fff;
+}
+
+/* Entire Layout */
+.cd-section {
+  height: 100vh;
+}
+.cd-section > div {
+  height: 100%;
+  position: relative;
+}
+.content {
+  background-color: #ddd;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 15px);
+  left: 0px;
+  bottom: 20px;
+  overflow: hidden;
+}
+
+/* Header */
+header { 
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+header a {
+	color: white;
+}
+.gnb-inner {
+  /*border: 1px solid #000;*/
+  height: 60;
+  line-height: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #8080c0;
+  padding: 15px 12px;
+}
+
+.logo {
+  float: left;
+  font-size: 30px;
+  font-weight: 900;
+}
+.logo img {
+  height: 40px;
+  width: 40px;
+}
+.gnb {
+  float: left;
+}
+.menu {
+  display:flex;
+  list-style: none;
+}
+.menu .menu_list {
+  font-size: 20px;
+  color: white;
+  line-height: initial;
+}
+.menu .menu_list > li {
+  display: inline-block;
+  width: 200px;
+  vertical-align: top;
+  text-align: center;
+  font-size: 23px;
+  color: white;
+  font-weight: 500;
+}
+.menu .menu_list > li:hover a {
+  color: black;
+}
+.menu .menu_list>li:hover .sub{
+  display: block;
+}
+.sub{
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 400;
+  background-color: #f9f9f9;
+  min-width : 200px;
+  color: white; 
+}
+.menu .menu_list .sub>li:hover a{
+  color: white;
+  background-color: #8080c0;
+  display: block;
+}
+.sub >li a{
+  padding: 10px 0;
+  display: block;
+}
+.login {
+  display: inline;
+  float: right;
+  font-size: 25px;
+  font-style: italic;
+}
+.login button{
+  font-size: 20px;
+}
+.trigger {
+  display: none;
+}
+
+/* Hiring Button */
+.btn-hiring {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  color: #fff;
+  background-color: #000;
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.38);
+  transition: 0.5s;
+}
+.btn-hiring .fa {
+  transform: rotateY(180deg);
+  margin-right: 5px;
+}
+.btn-hiring:active {
+  transform: scale(0)
+}
+
+/* ################# Section : Home ################ */
+.home-inner {
+  background-color: #fff;
+  height: 100%;
+}
+.home-inner:before {
+  content: '';
+  background-color: #000;
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  animation: overlay 1s 2s ease-in-out both;
+}
+.opacity-image {
+  background: url(../img/camping_home.jpg) no-repeat center center;
+  background-size: cover;
+  height: 100%;
+  opacity: 0;
+  animation: opacity-image 1s 2.5s ease-in both;
+}
+.home-heading { 
+  position: absolute;
+  top: 50%;
+  left: 100px;
+  transform: translateY(-50%);
+}
+.home-heading span {
+  display: block;
+  font-size: 115px;
+  color: #fff;
+  font-weight: 600;
+  width: 0;
+  overflow: hidden;
+  animation: reveal 1s 3s ease-in-out both;
+}
+.home-heading span:nth-child(1) {
+  animation-delay: 3s;
+}
+.home-heading span:nth-child(2) {
+  animation-delay: 3.2s;
+}
+.home-heading span:nth-child(3) {
+  animation-delay: 3.4s;
+}
+
+@keyframes slideup {
+  0% {
+    opacity: 0;
+    margin-top: 50px;
+  }
+  20% {
+    opacity: 1;
+    margin-top: 0;
+  }
+  80% {
+    opacity: 1;
+    margin-top: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes overlay {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0;
+    /*right: 0;*/
+    left: 100%;
+  }
+}
+@keyframes opacity-image {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes reveal {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
