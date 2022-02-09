@@ -1,4 +1,4 @@
-//캠핑delete
+//캠핑장 delete
 function placedelete(no) {
 	let ok = confirm("삭제 하시겠습니까?")
 	if(ok){
@@ -21,3 +21,4 @@ function reviewupdate(no, t, n) {
 		location.href = 'review.update?c_no=' + no + '&c_campingreview=' + t + '&c_cam_no=' + n + '&cam_no=' + n;
 	}
 }
+

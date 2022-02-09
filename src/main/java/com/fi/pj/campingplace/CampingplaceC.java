@@ -6,11 +6,13 @@ package com.fi.pj.campingplace;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.fi.pj.member.MemberDAO;
 import com.fi.pj.TokenMaker;
+
 
 @Controller
 public class CampingplaceC {
@@ -19,6 +21,14 @@ public class CampingplaceC {
 
 	@Autowired
 	private CampingplaceDAO cdao;
+	
+	/*
+	@InitBinder
+    protected void initBinder(WebDataBinder binder){
+        DateFormat  dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat,true));
+    }
+	*/
 	
 	@RequestMapping(value = "place.go", method = RequestMethod.GET)
 	public String placeMain(HttpServletRequest req) {
@@ -115,6 +125,38 @@ public class CampingplaceC {
 		return "main";
 	}
 	
+	@RequestMapping(value = "reservation.go", method = RequestMethod.GET)
+	public String placeReservation(placeReserve res, HttpServletRequest req) {
+		mDAO.loginCheck(req);
+		cdao.reservePlace(res,req);
+		req.setAttribute("contentPage", "campingplace/PlaceReserve.jsp");
+		return "main";
+	}
 	
+	@RequestMapping(value = "reserve.insert", method = RequestMethod.GET)
+	public String placeReserve(placeReserve res, HttpServletRequest req) {
+		
+		System.out.println(res.getR_cam_name());
+		mDAO.loginCheck(req);
+		cdao.reserve(res,req);
+		req.setAttribute("contentPage", "campingplace/PlaceReserve.jsp");
+		return "main";
+	}
 	
+	@RequestMapping(value = "placelike.go", method = RequestMethod.GET)
+	public String placeLike(Campingplace p, placeReview pr, campingLike cl, HttpServletRequest req) {
+		mDAO.loginCheck(req);
+		cdao.getOnePlace(p,req);
+		cdao.getAllReview(pr, req);
+		cdao.likePlace(p,pr,cl,req);
+		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
+		return "main";
+	}
+	@RequestMapping(value = "heart.go", method = RequestMethod.GET)
+	public String heartListGo(HttpServletRequest req) {
+		mDAO.loginCheck(req);
+		cdao.getHeartList(req);
+		req.setAttribute("contentPage", "campingplace/campingheart.jsp");
+		return "main";
+	}
 }

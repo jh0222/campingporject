@@ -2,14 +2,18 @@ package com.fi.pj.campingplace;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
-import com.fi.pj.member.MemberMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -190,8 +194,67 @@ public class CampingplaceDAO {
 			req.setAttribute("result", "댓글수정실패");
 		}
 		
+	} 
+
+	public void reservePlace(placeReserve res, HttpServletRequest req) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+		Date st =  sdf.parse(req.getParameter("start"));
+		Date end = sdf.parse(req.getParameter("end"));
+		
+		Calendar sc = Calendar.getInstance();
+		Calendar ec = Calendar.getInstance();
+		// 마법처럼 ^^
+		sc.setTime(st);
+		ec.setTime(end);
+		long aaa = ( ec.getTimeInMillis() - sc.getTimeInMillis() ) / 1000;
+		long diffDays = aaa / (24 * 60 * 60);
+
+		req.setAttribute("diffDays", diffDays);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
-	
+	public void reserve(placeReserve res, HttpServletRequest req) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");		
+		try {
+			Date st = sdf.parse(req.getParameter("r_campingstartdate11"));
+			Date end = sdf.parse(req.getParameter("r_campingenddate11"));
+			
+			res.setR_campingstartdate(st);
+			res.setR_campingenddate(end);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		System.out.println("-------------------------------------");
+		System.out.println("시작"+res.getR_campingstartdate());
+		System.out.println("끝"+res.getR_campingenddate());
+		if (ss.getMapper(PlaceMapper.class).reserve(res) == 1) {
+			req.setAttribute("result", "예약성공");
+		} else {
+			req.setAttribute("result", "예약실패");
+		}
+		
+	}
+
+
+	public void likePlace(Campingplace p, placeReview pr, campingLike cl, HttpServletRequest req) {
+		if (ss.getMapper(PlaceMapper.class).placeLike(cl) == 1) {
+			req.setAttribute("result", "찜 성공");
+		} else {
+			req.setAttribute("result", "찜 실패");
+		}
+		req.setAttribute("places", ss.getMapper(PlaceMapper.class).getOnePlace(p));
+		
+	}
+
+	public void getHeartList( HttpServletRequest req) {
+		req.setAttribute("hearts", ss.getMapper(PlaceMapper.class).getHeartList());
+		
+	}
+
 	
 }

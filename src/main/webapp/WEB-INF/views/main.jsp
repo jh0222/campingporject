@@ -15,7 +15,7 @@
 <script type="text/javascript" src="resources/js/board.js"></script>
 <script type="text/javascript" src="resources/js/validCheck.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 </head>
 <body>
 <table id="siteLoginArea">
