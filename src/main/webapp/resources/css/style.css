@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+body{
+	margin:0; /*배경이미지 여백을 없애줌 , 바디영역이 디폴트값 margin:8px정도 들어가있기 때문 */
+	height:2000px; /*바디영역의 높이를 높게 줘서 스크롤할수있도록*/
+}
+
+section {
+	height: 100vh; /*view height*/
+	background-image:url('cam2.jpg'); 
+	background-size : cover /*배경 꽉 채우게(배경이 반복되는현상 방지*/
+}
+/*그라데이션효과*/
+section:before{ /* 섹션 '전'이라는 소리니까 위에*/
+	content:'';
+	background: linear-gradient(to right,black,transparent) fixed;/*그라데이션 효과: 방향,색깔,투명하게,fixed:이미지고정*/
+	position: absolute;
+	left:0;
+	height: 230px;     /*100%*/
+	width: 43%;
+	top:300px;
+	border-radius: 30px;
+}
+
+/*h1*/
+.text1 {
+	color:white;
+	font-size: 3em;
+	position: absolute;
+	top:320px;
+	left:100px;
+	font-family:WandohopeB;
+	animation: slide 2s ease-out;   /*아래 @keyframes slide */
+}
+/*이미지*/
+.camimg1 {
+	width:500px;
+	height:300px;
+	position: absolute;
+	top:300px;
+	right:200px;
+	
+	
+}
+
+
+@font-face { 
+    font-family: 'WandohopeB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/WandohopeB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Ohsquareair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*@font-face 직접 파일들고와 적용*/
+@font-face {
+	font-family:tway;
+	src: url("tway_sky.ttf");
+}
+
+/*애니메이션 효과 왼->오*/
+@keyframes slide { /*name은 slide로. animation: slide 2s;*/
+	from{
+		left:-100px;  /*뒤에서부터 날라와야하니*/
+		opacity:0; /* 투명도 0에서*/
+	}
+	to{
+		left:100px;
+		opacity:1; /* 투명도 1됨*/
+	}
+}
+
+@keyframes disappear  {
+		from{
+		left:100px;  /*뒤에서부터 날라와야하니*/
+		opacity:1; /* 투명도 0에서*/
+	}
+	to{
+		left:-100px;
+		opacity:0 /* 투명도 0됨*/
+	}
+	
+}
+/* '스크롤내리면' 다시 애니메이션 효과로 오->왼으로 하려면 js이용하면 됨*/
+
+
+/*
+
+nav:first-child {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+    font-size: 20px;
+}
+nav:nth-child(2){
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+nav a {
+    text-decoration: none;
+    color:black;
+    margin: 1em;
+    font-size: 2em;
+}
+
+#horizontal-underline{
+    position: absolute;
+    left:0;
+    height: 4px;
+    width: 0;
+    border-radius: 3px;
+    transition: 0.5s;
+    background-color: pink;
+    top:0;
+
+}
+
+#vertical-underline{
+    position: absolute;
+    left:0;
+    height: 4px;
+    width: 0;
+    border-radius: 3px;
+    transition: 0.5s;
+    background-color: skyblue;
+    top:0;
+
+}
+*/
