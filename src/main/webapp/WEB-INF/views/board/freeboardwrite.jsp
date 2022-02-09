@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <script>
 $(function(){
 	$("#txt").summernote({
@@ -18,7 +17,7 @@ $(function(){
 자유게시판
 	<form action="fbwrite.insert?f_u_id=${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }"
 		method="post" enctype="multipart/form-data"
-		name="writeForm" onsubmit="return wirteCheck();">
+		name="writeForm" onsubmit="return writeCheck();">
 	<table border="1">
 		<tr>
 			<td>제목</td>

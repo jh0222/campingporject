@@ -23,10 +23,54 @@ function frrdelete(n,no,depth,owner) {
 	}
 }
 
-/*function frupdate(n,t) {
-	t = prompt("말", t);
-	if (t != null && t.length > 0 && t.length < 250) {
-		location.href = "fr.update?fr_no=" + n + "&fr_replytxt=" + t;
-	}
-}*/
+function writeCheck(){
+	let subject = document.writeForm.subject;
+	let txt = document.writeForm.txt;
 
+	if (isEmpty(subject)) {
+        alert('제목을 입력해주세요.');
+        subject.value = "";
+        subject.focus();
+        return false;
+	} 
+	if (isEmpty(txt)) {
+		alert('내용을 입력해주세요.');
+		txt.value = "";
+		txt.focus();
+		return false;
+	}
+	
+}
+
+function fr_writeCheck(){
+	let fr_replytxt = document.frwriteForm.fr_replytxt;	
+	
+	if (isEmpty(fr_replytxt)) {
+		alert('내용을 입력해주세요.');
+		fr_replytxt.value = "";
+		fr_replytxt.focus();
+		return false;
+	}
+}
+
+function frr_writeCheck(){
+	let fr_replytxt = document.frrwriteForm.fr_replytxt;	
+	
+	if (isEmpty(fr_replytxt)) {
+		alert('내용을 입력해주세요.');
+		fr_replytxt.value = "";
+		fr_replytxt.focus();
+		return false;
+	}
+}
+
+function frrr_writeCheck(){
+	let fr_replytxt = document.frrrwriteForm.fr_replytxt;	
+	
+	if (isEmpty(fr_replytxt)) {
+		alert('내용을 입력해주세요.');
+		fr_replytxt.value = "";
+		fr_replytxt.focus();
+		return false;
+	}
+}

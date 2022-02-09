@@ -10,8 +10,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-자유게시판
-		<table border="1">		
+<div class="board">
+	<table class="table2">
+		<tr>
+			<td colspan="4" id="titleTd"><span class="title">자유게시판</span></td>
+		</tr>	
+	</table>
+	
+	<div class="board_detail">
+		<div class="board_id">${fb.f_u_id }</div>
+		<div class="board_date"><fmt:formatDate value="${fb.f_date }"/></div>
+		<div class="board_count">조회수 : ${fb.f_readcount }</div>		
+	</div>
+	<div class="board_subject"><h1>${fb.f_subject }</h1></div>
+	<hr>	
+	${fb.f_txt }
+
+	
+		<table border="1" class="table">		
 			<tr>
 				<td>제목</td>
 				<td>작성자</td>
@@ -49,7 +65,7 @@
 		<c:if test="${sessionScope.loginMember.u_id != null
 						|| sessionScope.loginMember2.bo_id != null
 						|| sessionScope.loginMember3 != null}">
-		<form action="fb_replyinsert" >
+		<form action="fb_replyinsert" name="frwriteForm" onsubmit="return fr_writeCheck()">
 			<table border="1">
 				<tr><td colspan="2">댓글달기</td></tr>
 				<tr>
@@ -119,7 +135,7 @@
 				|| sessionScope.loginMember2.bo_id != null
 				|| sessionScope.loginMember3 != null}">
 		<!-- 대댓글 inset -->
-			<form action="fb_replyinsert">
+			<form action="fb_replyinsert" name="frrwriteForm" onsubmit="return frr_writeCheck()">
 				<table class="replyreply" border="1">
 					<tr><td colspan="2">답글작성</td></tr>
 					<tr>
@@ -184,7 +200,7 @@
 			<c:if test="${sessionScope.loginMember.u_id != null
 						|| sessionScope.loginMember2.bo_id != null
 						|| sessionScope.loginMember3 != null}">
-			<form action="fb_replyinsert">				
+			<form action="fb_replyinsert"  name="frrrwriteForm" onsubmit="return frrr_writeCheck()">				
 			<table border="1">
 				<tr>							
 					<td style="color:red;">
@@ -252,6 +268,7 @@
             [<span style="color:gray">▶▶</span>]
        	</c:otherwise>       
     </c:choose>
+</div>
 </body>
 </html>
 															

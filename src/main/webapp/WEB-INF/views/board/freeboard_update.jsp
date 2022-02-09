@@ -19,7 +19,7 @@ $(function(){
 자유게시판
 		<form action="fbwrite.update?f_no=${fb.f_no}"
 			method="post" enctype="multipart/form-data"
-			name="writeForm" onsubmit="return wirteCheck();">
+			name="writeForm" onsubmit="return writeCheck();">
 		<table border="1">		
 			<tr>
 			<td>제목</td>

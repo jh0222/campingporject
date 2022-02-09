@@ -1,6 +1,7 @@
 package com.fi.pj.member;
 
 import javax.servlet.http.HttpServletRequest;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ public class MemberController {
 	
 	@Autowired
 	private MemberDAO mDAO;
-	
+
 	//로그인 페이지로 
 	@RequestMapping(value = "login.go", method = RequestMethod.GET)
 	public String gologin(UserMember m, HttpServletRequest req) {	
@@ -60,13 +61,13 @@ public class MemberController {
 	}
 	
 	//회원가입 하기(사장님)
-		@RequestMapping(value = "bossmember.join", method = RequestMethod.POST)
-		public String memberJoin(BossMember m, HttpServletRequest req) {
-			mDAO.bossjoin(m, req);
-			mDAO.loginCheck(req);
-			req.setAttribute("contentPage", "home.jsp");
-			return "main";
-		}
+	@RequestMapping(value = "bossmember.join", method = RequestMethod.POST)
+	public String memberJoin(BossMember m, HttpServletRequest req) {
+		mDAO.bossjoin(m, req);
+		mDAO.loginCheck(req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "main";
+	}
 	
 	//아이디 중복확인
 	@RequestMapping(value = "member.get", 
@@ -83,12 +84,30 @@ public class MemberController {
 		return "main";
 	}
 	
+	//비번 찾기 페이지로
+	@RequestMapping(value = "pwsearch.go", method = RequestMethod.GET)
+	public String PwsearchGo(HttpServletRequest req) {
+		req.setAttribute("contentPage", "member/pwsearch.jsp");
+		return "main";
+	}
+	
 	//로그아웃
 	@RequestMapping(value = "member.logout", method = RequestMethod.GET)
 	public String logout(UserMember m, HttpServletRequest req) {		
 		mDAO.logout(req);
 		mDAO.loginCheck(req);
 		req.setAttribute("contentPage", "home.jsp");
+		return "main";
+	}
+	
+	//아이디 찾기
+	@RequestMapping(value = "id.search", method = RequestMethod.GET)
+	public String Idsearch(Login l, HttpServletRequest req) {
+		System.out.println("ss"+l.getName());
+		System.out.println(l.getPhonenumber());
+		mDAO.idsearch(l,req);
+		mDAO.loginCheck(req);
+		req.setAttribute("contentPage", "member/idsearch2.jsp");
 		return "main";
 	}
 

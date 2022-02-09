@@ -11,11 +11,31 @@
 	</select> 
 	
 	<select id="FbSearch_subject" resultType="com.fi.pj.board.Freeboard" parameterType="com.fi.pj.board.Search">
-		select * from free_board_table where f_subject like '%'||#{search}||'%' order by f_no desc 
+		select rn,f_no,f_u_id,f_subject,f_readcount,f_date
+		from (select Rownum as rn,f_no,f_u_id,f_subject,f_readcount,f_date
+		from (select f_no,f_u_id,f_subject,f_readcount,f_date
+		from free_board_table 
+		where f_subject like '%'||#{search}||'%' 
+		order by f_no desc))
+		where RN &gt;=#{from} and RN &lt;=#{to}
+	</select>
+	
+	<select id="FbSearch_subject_cnt" resultType="Integer" parameterType="com.fi.pj.board.Search">
+		select count(*) from free_board_table where f_subject like '%'||#{search}||'%' order by f_no desc 
 	</select>
 	
 	<select id="FbSearch_id" resultType="com.fi.pj.board.Freeboard" parameterType="com.fi.pj.board.Search">
-		select * from free_board_table where f_u_id like '%'||#{search}||'%' order by f_no desc 
+		select rn,f_no,f_u_id,f_subject,f_readcount,f_date
+		from (select Rownum as rn,f_no,f_u_id,f_subject,f_readcount,f_date
+		from (select f_no,f_u_id,f_subject,f_readcount,f_date
+		from free_board_table 
+		where f_u_id like '%'||#{search}||'%' 
+		order by f_no desc))
+		where RN &gt;=#{from} and RN &lt;=#{to}
+	</select>
+	
+	<select id="FbSearch_id_cnt" resultType="Integer" parameterType="com.fi.pj.board.Search">
+		select count(*) from free_board_table where f_u_id like '%'||#{search}||'%' order by f_no desc 
 	</select>
 	
 	<select id="getonefreeboard" resultType="com.fi.pj.board.Freeboard" parameterType="com.fi.pj.board.Freeboard">
@@ -23,11 +43,7 @@
 	</select>
 	
 	<insert id="FbInsert" parameterType="com.fi.pj.board.Freeboard">
-		insert into free_board_table values(free_board_seq.nextval,#{f_u_id},#{f_subject},#{f_txt},#{f_picture},#{f_readcount},sysdate)
-	</insert> 
-	
-	<insert id="FbInsert2" parameterType="com.fi.pj.board.Freeboard">
-		insert into free_board_table values(free_board_seq.nextval,#{f_u_id},#{f_subject},#{f_txt},null,#{f_readcount},sysdate)
+		insert into free_board_table values(free_board_seq.nextval,#{f_u_id},#{f_subject},#{f_txt},0,sysdate)
 	</insert> 
 	
 	<update id="FbUpdate" parameterType="com.fi.pj.board.Freeboard">

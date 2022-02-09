@@ -9,8 +9,6 @@ public interface BoardMapper {
 
 	//자유게시판 등록
 	public int FbInsert(Freeboard fb);
-	//사진 없을때
-	public int FbInsert2(Freeboard fb);
 
 	//전체검색
 	public List<Freeboard> FbSearch_id(Search s);
@@ -56,24 +54,8 @@ public interface BoardMapper {
 	public int getAllfreeboardreplycnt(Freeboard fb);
 	//댓글 수정
 	public int Fr_update(FbReply fr);
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
+	//게시판 검색결과 총 cnt
+	public int FbSearch_subject_cnt(Search s);
+	public int FbSearch_id_cnt(Search s);
 	
 }

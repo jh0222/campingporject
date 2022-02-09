@@ -308,7 +308,6 @@ create table free_board_table(
 	f_u_id varchar2(20 char) not null,
 	f_subject varchar2(20 char)	not null,
 	f_txt clob not null,
-	f_picture varchar2(200 char) null,
 	f_readcount	number(5) not null,
 	f_date date	not null
 );
@@ -328,7 +327,7 @@ create table free_board_reply_table(
 	fr_owner_no	varchar2(100 char) null,
 	fr_owner_id	varchar2(100 char) null,
 	fr_replytxt	varchar2(100 char) not null,
-	fr_date	date not null,
+	fr_date	date not null,	
 	fr_depth number(5) not null,
 	fr_picture varchar2(200 char) not null,
 	constraint free
@@ -336,21 +335,13 @@ create table free_board_reply_table(
 		references free_board_table(f_no)
 		on delete cascade
 );
-select rn,fr_no,fr_f_no,fr_u_id,fr_owner_no,fr_owner_id,fr_replytxt,fr_date,fr_depth,fr_picture
-		from (select Rownum as rn,fr_no,fr_f_no,fr_u_id,fr_owner_no,fr_owner_id,fr_replytxt,fr_date,fr_depth,fr_picture
-		from (select * from free_board_reply_table 
-		where fr_f_no=82 and fr_owner_no is null 
-		order by fr_no desc))
-		where RN <=5 and RN >=1;
+
 create sequence free_board_reply_seq;
 
 insert into free_board_reply_table values(free_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
 
 select * from free_board_reply_table;
-select count(*) from free_board_reply_table where fr_owner_no=
-select fr_no from free_board_reply_table where fr_u_id='(알수없음)';
-select count(*) from free_board_reply_table where fr_owner_no=411;
-select count(*) from free_board_reply_table where fr_u_id='(알수없음)' and fr_no=403;
+
 18. 캠핑팁게시판
 create table campingtip_board_table(	
 	tip_no number(5) primary key,
