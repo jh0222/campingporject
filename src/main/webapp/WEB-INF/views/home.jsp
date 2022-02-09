@@ -62,7 +62,7 @@
 	
 	<tr><td>용식</td></tr>
 	<tr>
-		<td></td>
+		<td><a href="shopping.go">쇼핑</a></td>
 	</tr>
 </table>
 </body>

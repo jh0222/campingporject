@@ -29,8 +29,8 @@
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
 			value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<beans:property name="username" value="c##jh" />
-		<beans:property name="password" value="jh" />
+		<beans:property name="username" value="c##ys" />
+		<beans:property name="password" value="ys" />
 	</beans:bean>
 
 	<beans:bean id="transactionManager"
@@ -43,8 +43,13 @@
 		<beans:property name="typeAliasesPackage" value="com.fi.pj" />
 		<beans:property name="mapperLocations">
 			<beans:list>
+
+				<beans:value>classpath:shoppingMapper.xml</beans:value>
+
 				<beans:value>classpath:memberMapper.xml</beans:value>
-				<beans:value>classpath:boardMapper.xml</beans:value>
+				
+				<beans:value>classpath:milkitMapper.xml</beans:value>
+
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -53,22 +58,5 @@
 		<beans:constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</beans:bean>
-	
-	<!-- 회원가입 메일 인증 -->
-	<beans:bean id="mailSender"	class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<beans:property name="host" value="smtp.gmail.com" />
-		<beans:property name="port" value="587" /><!-- 465 or 25 -->
-		<beans:property name="username" value="gihyuny0222@gmail.com" />
-		<beans:property name="password" value="비밀번호" />
-		<beans:property name="defaultEncoding" value="utf-8" />
-		<beans:property name="javaMailProperties">
-			<beans:props>
-				<beans:prop key="mail.transport.protocol">smtp</beans:prop>
-				<beans:prop key="mail.smtp.auth">true</beans:prop>
-				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
-				<beans:prop key="mail.debug">true</beans:prop>
-			</beans:props>
-		</beans:property>
-	</beans:bean>
-	
+
 </beans:beans>

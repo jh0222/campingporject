@@ -23,8 +23,11 @@ public class MemberDAO {
 	//로그인하기
 	public void login(Login l, HttpServletRequest req) {
 		UserMember dbMember = ss.getMapper(MemberMapper.class).getMemberByUID(l);
+		System.out.println(dbMember);
 		BossMember dbMember2 = ss.getMapper(MemberMapper.class).getMemberByBOID(l);
+		System.out.println(dbMember2);
 		Root dbMember3 = ss.getMapper(MemberMapper.class).getMemberByR(l);
+		System.out.println(dbMember3);
 		
 		if (dbMember != null) {
 			if (l.pw.equals(dbMember.getU_pw())) {
@@ -110,9 +113,9 @@ public class MemberDAO {
 			String email = mr.getParameter("email");
 			String email_address = mr.getParameter("email_address");
 			String u_email = email + "@" + email_address;
-			String u_addr1 = mr.getParameter("addr1");
-			String u_addr2 = mr.getParameter("addr2");
-			String u_addr3 = mr.getParameter("addr3");
+			String u_addr1 = mr.getParameter("u_addr1");
+			String u_addr2 = mr.getParameter("u_addr2");
+			String u_addr3 = mr.getParameter("u_addr3");
 			String u_address = u_addr1 + "!" + u_addr2 + "!" + u_addr3;
 			String phone1 = mr.getParameter("phonenumber1");
 			String phone2 = mr.getParameter("phonenumber2");
@@ -122,6 +125,7 @@ public class MemberDAO {
 			String u_picture = mr.getFilesystemName("picture");
 			u_picture = URLEncoder.encode(u_picture, "utf-8");
 			u_picture = u_picture.replace("+", " ");
+			
 
 			m.setU_name(u_name);
 			m.setU_id(u_id);
