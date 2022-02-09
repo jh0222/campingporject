@@ -26,8 +26,11 @@ public class MemberDAO {
 	//로그인하기
 	public void login(Login l, HttpServletRequest req) {
 		UserMember dbMember = ss.getMapper(MemberMapper.class).getMemberByUID(l);
+		System.out.println(dbMember);
 		BossMember dbMember2 = ss.getMapper(MemberMapper.class).getMemberByBOID(l);
+		System.out.println(dbMember2);
 		Root dbMember3 = ss.getMapper(MemberMapper.class).getMemberByR(l);
+		System.out.println(dbMember3);
 		
 		if (dbMember != null) {
 			if (l.pw.equals(dbMember.getU_pw())) {

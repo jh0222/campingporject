@@ -14,8 +14,8 @@ function delreviewmilkit(no) {
 	}
 }
 
-function updatereviewmilkit(no) {
-	let txt = prompt("수정할 내용을 적어주세요");
+function updatereviewmilkit(no,t) {
+	let txt = prompt("수정할 내용을 적어주세요",t);
 	if(txt != ""){
 		location.href = "update.milkitreview?fpr_no=" + no + "&fpr_txt=" + txt + "&fp_no=" + ${fp.fp_no} + "&fpr_fp_no=" + ${fp.fp_no};
 	}
@@ -63,6 +63,7 @@ function change () {
   function mySubmit(index) {
     if (index == 3) {
       document.form.action='ordermilkit.go?fp_no=${fp.fp_no}&fp_name=${fp.fp_name}&fp_price=${fp.fp_price }&fp_picture=${fp.fp_picture }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }';
+      document.form.submit();
     }
     if (index == 4) {
        if(confirm("상품을 장바구니에 추가하시겠습니까?")) {	
@@ -72,12 +73,12 @@ function change () {
     	
     	document.form.method = 'POST'
     	document.form.action='reg.milkitbasket?fba_fp_no=${fp.fp_no}&fba_fp_name=${fp.fp_name}&fba_price='+price+'&fba_fp_picture=${fp.fp_picture }&fba_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&fba_number='+amount;
-       
+    	document.form.submit();
        }else {
     	document.form.reset();
     }
     }
-    //document.form.submit();
+    
   }
 
 </script>
@@ -144,9 +145,9 @@ function change () {
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2" align="center"><input type="button"
-										value="주문하기" onclick='mySubmit(3)' /> <input type="button"
-										value="장바구니" onclick='mySubmit(4)' /></td>
+									<td colspan="2" align="center">
+									<input type="button" value="주문하기" onclick='mySubmit(3)' />
+									 <input type="button" value="장바구니" onclick='mySubmit(4)' /></td>
 								</tr>
 							</table>
 						</td>
@@ -176,7 +177,7 @@ function change () {
 				<td><fmt:formatDate value="${fp.fpr_date }" dateStyle="short" /></td>
 				<c:if
 					test="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id == fp.fpr_u_bo_id }">
-					<td onclick="updatereviewmilkit(${fp.fpr_no})">수정</td>
+					<td onclick="updatereviewmilkit('${fp.fpr_no}','${fp.fpr_txt }')">수정</td>
 					<td onclick="delreviewmilkit(${fp.fpr_no})">삭제</td>
 				</c:if>
 			</tr>

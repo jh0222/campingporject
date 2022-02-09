@@ -63,6 +63,7 @@ function change () {
   function mySubmit(index) {
     if (index == 1) {
       document.form.action='orderproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_price=${p.p_price }&p_picture=${p.p_picture }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }';
+      document.form.submit();
     }
     if (index == 2) {
        if(confirm("상품을 장바구니에 추가하시겠습니까?")) {	
@@ -72,12 +73,12 @@ function change () {
     	
     	document.form.method = 'POST'
     	document.form.action='reg.productbasket?ba_p_no=${p.p_no}&ba_p_name=${p.p_name}&ba_price='+price+'&ba_p_picture=${p.p_picture }&ba_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&ba_number='+amount;
-       
+    	document.form.submit();
        }else {
     	document.form.reset();
     }
     }
-    document.form.submit();
+    
   }
 
 </script>

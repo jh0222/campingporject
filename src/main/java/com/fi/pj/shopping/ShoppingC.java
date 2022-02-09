@@ -86,7 +86,7 @@ public class ShoppingC {
 	
 	//캠핑용품 상세페이지(+리뷰목록)
 	@RequestMapping(value = "detail.product", method = RequestMethod.GET)
-	public String datailProduct(Reviewinsert ri,Product p,HttpServletRequest req) {
+	public String detailProduct(Reviewinsert ri,Product p,HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		sdao.getProduct(p,req);
 		sdao.getAllProductReview(req);
