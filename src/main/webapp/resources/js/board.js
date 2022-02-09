@@ -9,7 +9,6 @@ function fbdelete(n) {
 	}
 }
 
-<<<<<<< HEAD
 function frdelete(n,no) {
 	var ok = confirm("삭제하시겠습니까?");
 	if (ok) {
@@ -34,7 +33,6 @@ function r_reply() {
 $(function() {
 	r_reply();
 });
-=======
 function frdelete(n,no,depth) {
 	var ok = confirm("삭제하시겠습니까?");
 	if (ok) {
@@ -100,4 +98,3 @@ function frrr_writeCheck(){
 		return false;
 	}
 }
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3

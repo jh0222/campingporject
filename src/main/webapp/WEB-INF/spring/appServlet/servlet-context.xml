@@ -44,10 +44,7 @@
 		<beans:property name="mapperLocations">
 			<beans:list>
 				<beans:value>classpath:memberMapper.xml</beans:value>
-<<<<<<< HEAD
-=======
 				<beans:value>classpath:boardMapper.xml</beans:value>
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 			</beans:list>
 		</beans:property>
 	</beans:bean>

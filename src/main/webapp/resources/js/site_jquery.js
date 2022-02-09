@@ -10,7 +10,6 @@ function connectJoinIdInputEvent() {
 			},
 			success : function(data) {
 				console.log(data);
-<<<<<<< HEAD
 //				if (data.member.length == 1) {
 				if (data == 1) {
 					$("#Idckbtn").html('사용불가능한 아이디입니다');
@@ -21,27 +20,12 @@ function connectJoinIdInputEvent() {
 					$("#Idckbtn").html('사용가능한 아이디입니다');
 					$("#Idckbtn").css("color", "black");
 					document.joinForm.idDoubleChk.value="true"
-=======
 				// if (data.member.length == 1) {
-				if (data == 1) {
-					$("#Idckbtn").html('사용불가능한 아이디입니다');
-					$("#Idckbtn").css("color", "#F44336");
-					document.joinForm.id.value = "";
-					document.joinForm.id.focus();
-				} else {
-					$("#Idckbtn").html('사용가능한 아이디입니다');
-					$("#Idckbtn").css("color", "black");
-					document.joinForm.idDoubleChk.value = "true"
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 				}
 			}
 		});
 	});
-<<<<<<< HEAD
-}	
-=======
 }
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 
 function connectAddrSearchEvent() {
 	$("#addrSearchBtn").click(function() {
@@ -54,9 +38,6 @@ function connectAddrSearchEvent() {
 	});
 }
 
-<<<<<<< HEAD
-
-=======
 function connectSNSWriteFormSummonEvent() {
 	var snsWriteFormVisible = false;
 
@@ -69,13 +50,10 @@ function connectSNSWriteFormSummonEvent() {
 		snsWriteFormVisible = !snsWriteFormVisible;
 	});
 }
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 
 $(function() {
 	connectJoinIdInputEvent();
 	connectAddrSearchEvent();
-<<<<<<< HEAD
-=======
 	connectSNSWriteFormSummonEvent();
 
 	$(".replybtn").click(function() {
@@ -113,5 +91,4 @@ $(function() {
 		}
 	});
 
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 });

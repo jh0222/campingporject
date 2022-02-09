@@ -1,10 +1,7 @@
 package com.fi.pj.member;
 
 import javax.servlet.http.HttpServletRequest;
-<<<<<<< HEAD
-=======
 import org.mybatis.spring.SqlSessionTemplate;
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +13,6 @@ public class MemberController {
 	
 	@Autowired
 	private MemberDAO mDAO;
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 	//로그인 페이지로 
 	@RequestMapping(value = "login.go", method = RequestMethod.GET)
 	public String gologin(UserMember m, HttpServletRequest req) {	
@@ -68,7 +60,6 @@ public class MemberController {
 	}
 	
 	//회원가입 하기(사장님)
-<<<<<<< HEAD
 		@RequestMapping(value = "bossmember.join", method = RequestMethod.POST)
 		public String memberJoin(BossMember m, HttpServletRequest req) {
 			mDAO.bossjoin(m, req);
@@ -76,15 +67,6 @@ public class MemberController {
 			req.setAttribute("contentPage", "home.jsp");
 			return "main";
 		}
-=======
-	@RequestMapping(value = "bossmember.join", method = RequestMethod.POST)
-	public String memberJoin(BossMember m, HttpServletRequest req) {
-		mDAO.bossjoin(m, req);
-		mDAO.loginCheck(req);
-		req.setAttribute("contentPage", "home.jsp");
-		return "main";
-	}
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 	
 	//아이디 중복확인
 	@RequestMapping(value = "member.get", 
@@ -101,8 +83,6 @@ public class MemberController {
 		return "main";
 	}
 	
-<<<<<<< HEAD
-=======
 	//비번 찾기 페이지로
 	@RequestMapping(value = "pwsearch.go", method = RequestMethod.GET)
 	public String PwsearchGo(HttpServletRequest req) {
@@ -110,7 +90,6 @@ public class MemberController {
 		return "main";
 	}
 	
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 	//로그아웃
 	@RequestMapping(value = "member.logout", method = RequestMethod.GET)
 	public String logout(UserMember m, HttpServletRequest req) {		
@@ -119,8 +98,6 @@ public class MemberController {
 		req.setAttribute("contentPage", "home.jsp");
 		return "main";
 	}
-<<<<<<< HEAD
-=======
 	
 	//아이디 찾기
 	@RequestMapping(value = "id.search", method = RequestMethod.GET)
@@ -132,6 +109,5 @@ public class MemberController {
 		req.setAttribute("contentPage", "member/idsearch2.jsp");
 		return "main";
 	}
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 
 }
