@@ -34,7 +34,7 @@ public class BoardDAO {
 	    int from = (pg * rowSize) - (rowSize-1); //(1*10)-(10-1)=10-9=1 //from
 	    int to=(pg * rowSize); //(1*10) = 10 //to
 		
-	    Page p = new Page();
+	    BoardPage p = new BoardPage();
 	    p.setFrom(from);
 	    p.setTo(to);
 	    
@@ -249,7 +249,7 @@ public class BoardDAO {
 	    int from = (pg * rowSize) - (rowSize-1);
 	    int to=(pg * rowSize); 
 		
-	    Page p = new Page();
+	    BoardPage p = new BoardPage();
 	    p.setFrom(from);
 	    p.setTo(to);
 	    p.setF_no(fb.getF_no());
