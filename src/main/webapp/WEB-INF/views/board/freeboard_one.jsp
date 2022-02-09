@@ -17,16 +17,6 @@
 		</tr>	
 	</table>
 	
-	<div class="board_detail">
-		<div class="board_id">${fb.f_u_id }</div>
-		<div class="board_date"><fmt:formatDate value="${fb.f_date }"/></div>
-		<div class="board_count">조회수 : ${fb.f_readcount }</div>		
-	</div>
-	<div class="board_subject"><h1>${fb.f_subject }</h1></div>
-	<hr>	
-	${fb.f_txt }
-
-	
 		<table border="1" class="table">		
 			<tr>
 				<td>제목</td>
