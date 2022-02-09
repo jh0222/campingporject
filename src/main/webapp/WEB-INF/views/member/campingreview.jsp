@@ -11,11 +11,9 @@
 <body>
 <jsp:include page="${myPage }"></jsp:include>
 <jsp:include page="${community }"></jsp:include>
-<form action="campingreview.update?c_id='${sessionScope.loginMember.u_id}'&c_no='${cr.c_no}'"
-	method="get" enctype="multipart/form-data" name="updateReviewForm" onsubmit="return updateCampingReview();">
 	<table border="1">
 		<tr>
-			<td>번호</td>
+		 	<td>번호</td>
 			<td>내용</td>
 			<td>평점</td>
 			<td>작성날짜</td>
@@ -23,15 +21,14 @@
 		</tr>
 	<c:forEach var="cr" items="${campingreview}">
 		<tr>
-			<td>${cr.c_no}</td>
-			<td><input name="upcampingreview" value="${cr.c_campingreview}"></td>
+			<td id="cru${cr.c_no }">${cr.c_no}</td>
+			<td><input name="c_campingreview" value="${cr.c_campingreview}"></td>
 			<td>${cr.c_campingstar}</td>
 			<td><fmt:formatDate value="${cr.c_date}"/></td>
-			<td><button>수정</button></td>
-			<td><button onclick="campingreview.del">삭제</button></td>
+			<td><button onclick="campingreviewupdate('${cr.c_no}','${cr.c_u_id }')">수정</button></td>
+			<td><button onclick="campingreviewdel('${cr.c_no}','${cr.c_u_id }')">삭제</button></td>
 		</tr>
 	</c:forEach>
 	</table>
-</form>
 </body>
 </html>

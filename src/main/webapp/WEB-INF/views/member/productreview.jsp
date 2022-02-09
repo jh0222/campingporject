@@ -13,36 +13,42 @@
 <jsp:include page="${community }"></jsp:include>
 	<table border="1">
 		<tr>
-			<td colspan="3">캠핑용품 리뷰</td>
+			<td colspan="5" align="center">캠핑용품 리뷰</td>
 		</tr>
 		<tr>
 			<td>번호</td>
 			<td>내용</td>
 			<td>작성날짜</td>
+			<td colspan="2" align="center">수정/삭제</td>
 		</tr>
 	<c:forEach var="pr" items="${productreview}">
 		<tr>
-			<td>${pr.pr_no}</td>
-			<td>${pr.pr_txt}</td>
+			<td id="pru${pr.pr_no}">${pr.pr_no}</td>
+			<td><input name="pr_txt" value="${pr.pr_txt}"></td>
 			<td><fmt:formatDate value="${pr.pr_date}"/></td>
+			<td><button onclick="productreviewup('${pr.pr_no}','${pr.pr_u_bo_id}')">수정</button></td>
+			<td><button onclick="productreviewdel('${pr.pr_no}','${pr.pr_u_bo_id}')">삭제</button></td>
 		</tr>
 	</c:forEach>
 	</table>
 <hr>
 	<table border="1">
 		<tr>
-			<td colspan="3">밀키트 리뷰</td>
+			<td colspan="5" align="center">밀키트 리뷰</td>
 		</tr>
 		<tr>
 			<td>번호</td>
 			<td>내용</td>
 			<td>작성날짜</td>
+			<td colspan="2" align="center">수정/삭제</td>
 		</tr>
 	<c:forEach var="m" items="${mealreview}">
 		<tr>
-			<td>${m.fpr_no}</td>
-			<td>${m.fpr_txt}</td>
+			<td id="fpru${m.fpr_no}">${m.fpr_no}</td>
+			<td><input name="fpr_txt" value="${m.fpr_txt}"></td>
 			<td><fmt:formatDate value="${m.fpr_date}"/></td>
+			<td><button onclick="mealreviewup('${m.fpr_no}','${m.fpr_u_bo_id}')">수정</button></td>
+			<td><button onclick="mealreviewdel('${m.fpr_no}','${m.pr_u_bo_id}')">삭제</button></td>
 		</tr>
 	</c:forEach>
 	</table>

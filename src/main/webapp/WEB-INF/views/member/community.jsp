@@ -8,6 +8,7 @@
 <body>
 <table border="1">
 	<tr>
+		<td onclick="location.href='home'">홈</td>
 		<td onclick = "location.href='freeboard?f_u_id=${sessionScope.loginMember.u_id}'">자유게시판</td>		
 		<td onclick = "location.href='campingtip?tip_u_id=${sessionScope.loginMember.u_id}'">캠핑팁</td>	
 		<td onclick = "location.href='recipe?rb_u_id=${sessionScope.loginMember.u_id}'">레시피</td>	

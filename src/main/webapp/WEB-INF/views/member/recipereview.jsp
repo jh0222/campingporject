@@ -16,12 +16,15 @@
 			<td>번호</td>
 			<td>내용</td>
 			<td>작성날짜</td>
+			<td colspan="2" align="center">수정/삭제</td>
 		</tr>
 	<c:forEach var="r" items="${recipereview}">
 		<tr>
-			<td>${r.rr_f_no}</td>
-			<td><a href="recipe?rr_no=${r.rr_no}">${r.rr_replytxt}</a></td>
+			<td id="ru${r.rr_no}">${r.rr_no}</td>
+			<td><input name="rr_replytxt" value="${r.rr_replytxt}"></td>
 			<td><fmt:formatDate value="${r.rr_date}"/></td>
+			<td><button onclick="recipereviewup('${r.rr_no}','${r.rr_u_id}')">수정</button></td>
+			<td><button onclick="recipereviewdel('${r.rr_no}','${r.rr_u_id}')">삭제</button></td>
 		</tr>
 	</c:forEach>
 	</table>

@@ -9,6 +9,7 @@
 <script type="text/javascript" src="resources/js/member.js"></script>
 <script type="text/javascript" src="resources/js/board.js"></script>
 <script type="text/javascript" src="resources/js/validCheck.js"></script>
+<script type="text/javascript" src="resources/js/review.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <title>Insert title here</title>
 </head>

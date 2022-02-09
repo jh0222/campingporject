@@ -1,6 +1,7 @@
 package com.fi.pj.member;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -93,7 +94,7 @@ public class MemberController {
 	// 사용자 마이페이지
 	@RequestMapping(value = "user.info", method = RequestMethod.GET)
 	public String userInfo(HttpServletRequest request) {
-		
+
 		mDAO.loginCheck(request);
 		mDAO.splitUser(request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
@@ -110,7 +111,7 @@ public class MemberController {
 		mDAO.UserUpdate(user, request);
 		mDAO.splitUser(request);
 		request.setAttribute("contentPage", "member/Info_user.jsp");
-		
+
 		return "main";
 	}
 
@@ -121,183 +122,316 @@ public class MemberController {
 		mDAO.userBye(request);
 		mDAO.loginCheck(request);
 		request.setAttribute("contentPage", "home.jsp");
-		
+
 		return "main";
 	}
-	
+
 	// 캠핑찜
 	@RequestMapping(value = "campingjjim", method = RequestMethod.GET)
-		public String campingjjim(Communities c,HttpServletRequest request) {
-		mDAO.campingjjim(c,request); 
+	public String campingjjim(Communities c, HttpServletRequest request) {
+		mDAO.campingjjim(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingjjim.jsp");
-			
+
 		return "main";
 	}
-		
+
 	// 캠핑찜 삭제
 	@RequestMapping(value = "campingjjim.del", method = RequestMethod.GET)
-		public String campingjjimdel(Communities c,HttpServletRequest request) {
-		if(mDAO.loginCheck(request)) {
-			mDAO.campingjjimdel(c,request); 
+	public String campingjjimdel(Communities c, HttpServletRequest request) {
+		if (mDAO.loginCheck(request)) {
+			mDAO.campingjjimdel(c, request);
 		}
-		mDAO.campingjjim(c,request); 
+		mDAO.campingjjim(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingjjim.jsp");
-			
+
 		return "main";
 	}
-	
+
 	// 캠핑예약
 	@RequestMapping(value = "campingreservation", method = RequestMethod.GET)
-		public String campingreserve(Communities c,HttpServletRequest request) {
-		mDAO.campingreserve(c,request); 
+	public String campingreserve(Communities c, HttpServletRequest request) {
+		mDAO.campingreserve(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingreserve.jsp");
-			
+
 		return "main";
 	}
-	
+
 	// 캠핑예약 삭제
 	@RequestMapping(value = "campingreserve.del", method = RequestMethod.GET)
-		public String reservedel(Communities c,HttpServletRequest request) {
-		mDAO.campingreservedel(c,request); 
-		mDAO.campingreserve(c,request);
+	public String reservedel(Communities c, HttpServletRequest request) {
+		mDAO.campingreservedel(c, request);
+		mDAO.campingreserve(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingreserve.jsp");
-			
+
 		return "main";
 	}
-	
-	// 사용자 구매목록
-		@RequestMapping(value = "userbuylist", method = RequestMethod.GET)
-		public String userbuylist(Buy b,HttpServletRequest request) {
 
-		mDAO.userbuylist(b,request);
+	// 사용자 구매목록
+	@RequestMapping(value = "userbuylist", method = RequestMethod.GET)
+	public String userbuylist(Buy b, HttpServletRequest request) {
+
+		mDAO.userbuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/buylist.jsp");
-			
+
 		return "main";
 	}
-		
+
 	// 구매목록 삭제
 	@RequestMapping(value = "buy.del", method = RequestMethod.GET)
-		public String buydel(Buy b,HttpServletRequest request) {
-		mDAO.buydel(b,request); 
-		mDAO.userbuylist(b,request);
+	public String buydel(Buy b, HttpServletRequest request) {
+		mDAO.buydel(b, request);
+		mDAO.userbuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/buylist.jsp");
-			
+
 		return "main";
 	}
-	
+
 	// 내글
 	@RequestMapping(value = "communities", method = RequestMethod.GET)
-		public String communities(Communities c,HttpServletRequest request) {
-		mDAO.communities(c,request); 
+	public String communities(Communities c, HttpServletRequest request) {
+		mDAO.communities(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/communities.jsp");
-			
+
 		return "main";
 	}
-	
+
 	// 자유게시판
 	@RequestMapping(value = "freeboard", method = RequestMethod.GET)
-		public String freeboard(Communities c,HttpServletRequest request) {
-		mDAO.freeboard(c,request); 
+	public String freeboard(Communities c, HttpServletRequest request) {
+		mDAO.freeboard(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/communities.jsp");
-			
+
 		return "main";
 	}
-	
+
 	// 캠핑팁
 	@RequestMapping(value = "campingtip", method = RequestMethod.GET)
-		public String campingtip(Communities c,HttpServletRequest request) {
-		mDAO.campingtip(c,request); 
+	public String campingtip(Communities c, HttpServletRequest request) {
+		mDAO.campingtip(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingtip.jsp");
-			
+
 		return "main";
 	}
-	
+
 	// 레시피
 	@RequestMapping(value = "recipe", method = RequestMethod.GET)
-		public String recipe(Communities c,HttpServletRequest request) {
-		mDAO.recipe(c,request); 
+	public String recipe(Communities c, HttpServletRequest request) {
+		mDAO.recipe(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/recipe.jsp");
-			
+
 		return "main";
 	}
-	
+
 	// 캠핑 리뷰
 	@RequestMapping(value = "campingreview", method = RequestMethod.GET)
-		public String campingreview(Communities c,HttpServletRequest request) {
-		mDAO.campingreview(c,request); 
+	public String campingreview(Communities c, HttpServletRequest request) {
+		mDAO.campingreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingreview.jsp");
-			
+
 		return "main";
 	}
-	
-	// 캠핑 리뷰 업데이트
+
+	// 캠핑 리뷰 수정
 	@RequestMapping(value = "campingreview.update", method = RequestMethod.GET)
-		public String campingreviewupdate(Communities c,HttpServletRequest request) {
-		mDAO.campingreview(c,request); 
+	public String campingreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.campingreviewupdate(c, request);
+		mDAO.campingreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingreview.jsp");
-			
+
 		return "main";
 	}
-	
+
+	// 캠핑 리뷰 삭제
+	@RequestMapping(value = "campingreview.delete", method = RequestMethod.GET)
+	public String campingreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.campingreviewdel(c, request);
+		mDAO.campingreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/campingreview.jsp");
+
+		return "main";
+	}
+
 	// 구매용품 리뷰
 	@RequestMapping(value = "productreview", method = RequestMethod.GET)
-		public String productreview(Communities c,HttpServletRequest request) {
-		mDAO.productreview(c, request); 
+	public String productreview(Communities c, HttpServletRequest request) {
+		mDAO.productreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/productreview.jsp");
-			
+
 		return "main";
 	}
-	
-	// 자유게시판 리뷰 
+
+	// 캠핑용품 리뷰 수정
+	@RequestMapping(value = "productreview.update", method = RequestMethod.GET)
+	public String productreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.productreviewupdate(c, request);
+		mDAO.productreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/productreview.jsp");
+
+		return "main";
+	}
+
+	// 캠핑용품 리뷰 삭제
+	@RequestMapping(value = "productreview.delete", method = RequestMethod.GET)
+	public String productreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.productreviewdel(c, request);
+		mDAO.productreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/productreview.jsp");
+
+		return "main";
+	}
+
+	// 밀키트 리뷰 수정
+	@RequestMapping(value = "mealreview.update", method = RequestMethod.GET)
+	public String mealreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.mealreviewupdate(c, request);
+		mDAO.productreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/productreview.jsp");
+
+		return "main";
+	}
+
+	// 밀키트 리뷰 삭제
+	@RequestMapping(value = "mealreview.delete", method = RequestMethod.GET)
+	public String mealreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.mealreviewdel(c, request);
+		mDAO.productreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/productreview.jsp");
+
+		return "main";
+	}
+
+	// 자유게시판 리뷰
 	@RequestMapping(value = "freeboardreview", method = RequestMethod.GET)
-		public String freeboardreview(Communities c,HttpServletRequest request) {
-		mDAO.freeboardreview(c,request); 
+	public String freeboardreview(Communities c, HttpServletRequest request) {
+		mDAO.freeboardreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/freeboardreview.jsp");
-			
+
 		return "main";
 	}
-	
+
+	// 자유게시판 리뷰 수정
+	@RequestMapping(value = "freeboardreview.update", method = RequestMethod.GET)
+	public String freeboardreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.freeboardreviewupdate(c, request);
+		mDAO.freeboardreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/freeboardreview.jsp");
+
+		return "main";
+	}
+
+	// 자유게시판 리뷰 삭제
+	@RequestMapping(value = "freeboardreview.delete", method = RequestMethod.GET)
+	public String freeboardreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.freeboardreviewdel(c, request);
+		mDAO.freeboardreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/freeboardreview.jsp");
+
+		return "main";
+	}
+
 	// 캠핑팁 리뷰
 	@RequestMapping(value = "campingtipreview", method = RequestMethod.GET)
-		public String campingtipreview(Communities c,HttpServletRequest request) {
-		mDAO.campingtipreview(c,request); 
+	public String campingtipreview(Communities c, HttpServletRequest request) {
+		mDAO.campingtipreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingtipreview.jsp");
-			
+
 		return "main";
 	}
-		
+
+	// 캠핑팁 리뷰 수정
+	@RequestMapping(value = "campingtipreview.update", method = RequestMethod.GET)
+	public String campingtipreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.campingtipreviewupdate(c, request);
+		mDAO.campingtipreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/campingtipreview.jsp");
+
+		return "main";
+	}
+
+	// 캠핑팁 리뷰 삭제
+	@RequestMapping(value = "campingtipreview.delete", method = RequestMethod.GET)
+	public String campingtipreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.campingtipreviewdel(c, request);
+		mDAO.campingtipreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/campingtipreview.jsp");
+
+		return "main";
+	}
+
 	// 레시피 리뷰
 	@RequestMapping(value = "recipereview", method = RequestMethod.GET)
-		public String recipereview(Communities c,HttpServletRequest request) {
-		mDAO.recipereview(c,request); 
+	public String recipereview(Communities c, HttpServletRequest request) {
+		mDAO.recipereview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/recipereview.jsp");
-			
+
+		return "main";
+	}
+
+	// 레시피 리뷰 수정
+	@RequestMapping(value = "recipereview.update", method = RequestMethod.GET)
+	public String recipereviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.recipereviewupdate(c, request);
+		mDAO.recipereview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/recipereview.jsp");
+
+		return "main";
+	}
+
+	// 레시피 리뷰 삭제
+	@RequestMapping(value = "recipereview.delete", method = RequestMethod.GET)
+	public String recipereviewdel(Communities c, HttpServletRequest request) {
+		mDAO.recipereviewdel(c, request);
+		mDAO.recipereview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("community", "../member/community.jsp");
+		request.setAttribute("contentPage", "member/recipereview.jsp");
+
 		return "main";
 	}
 
@@ -313,7 +447,7 @@ public class MemberController {
 		return "main";
 	}
 
-	// 사장 정보 업데이트
+	// 사장 정보 수정
 	@RequestMapping(value = "boss.update", method = RequestMethod.GET)
 	public String bossUpdate(BossMember boss, HttpServletRequest request) {
 
@@ -322,7 +456,7 @@ public class MemberController {
 		mDAO.bossUpdate(boss, request);
 		request.setAttribute("myPage", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/Info_boss.jsp");
-		
+
 		return "main";
 	}
 
@@ -333,19 +467,19 @@ public class MemberController {
 		mDAO.bossBye(request);
 		mDAO.loginCheck(request);
 		request.setAttribute("contentPage", "main.jsp");
-		
+
 		return "main";
 	}
-	
+
 	// 사장이 운영하는 캠핑장을 이용한 이용자들의 리뷰
 	@RequestMapping(value = "boss.campingreview", method = RequestMethod.GET)
-	public String bosscampingreview(Communities_boss cb ,HttpServletRequest request) {
-		
-		mDAO.bosscampingreview(cb,request); 
+	public String bosscampingreview(Communities_boss cb, HttpServletRequest request) {
+
+		mDAO.bosscampingreview(cb, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingreview.jsp");
-				
+
 		return "main";
 	}
-		
+
 }
