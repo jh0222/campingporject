@@ -4,12 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
-<title>Insert title here</title>
-</head>
-<body>
-=======
-
 <title>Insert title here</title>
 </head>
 <body>
@@ -39,7 +33,6 @@
 		</footer>
 </main>
 
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 <table border="1">
 	<tr><td>지현</td></tr>
 	<tr>

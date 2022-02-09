@@ -1,10 +1,10 @@
 package com.fi.pj.board;
 
-public class Page {
+public class BoardPage {
 	private int from;
 	private int to;
 	private int f_no;
-	public Page() {
+	public BoardPage() {
 		// TODO Auto-generated constructor stub
 	}
 	public int getFrom() {
@@ -25,7 +25,7 @@ public class Page {
 	public void setF_no(int f_no) {
 		this.f_no = f_no;
 	}
-	public Page(int from, int to, int f_no) {
+	public BoardPage(int from, int to, int f_no) {
 		super();
 		this.from = from;
 		this.to = to;
