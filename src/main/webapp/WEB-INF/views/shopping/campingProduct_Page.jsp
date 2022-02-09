@@ -40,7 +40,7 @@
 				onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'"></td>
 			<td onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'">${p.p_name }</td>
 
-			<td><fmt:formatNumber value="${p.p_price}" type="currency" /> ${p_txt }</td>
+			<td><fmt:formatNumber value="${p.p_price}" type="currency" /> </td>
 			
 			<c:if test="${sessionScope.loginMember3.root_id != null}">
 				<td><button onclick="del(${p.p_no})">삭제</button></td>

@@ -6,22 +6,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <script type="text/javascript">
 function delreview(no) {
-	let d = confirm('리뷰를 삭제하시겠습니까?');
+	let d = confirm('리뷰를 삭제하시겠습니까?');			
 	if(d) {
-		location.href = "del.productreview?pr_no=" + no + "&p_no=" + ${p.p_no}  ;
+		location.href = "del.productreview?pr_no=" + no + "&p_no=" + ${p.p_no} + "&pr_p_no=" + ${p.p_no}  ;
 	}
 }
 
-function updatereview(no) {
-	let txt = prompt(`"수정할 내용을 적어주세요","${pr_txt}"`);
+function updatereview(no,t) {
+	let txt = prompt("수정할 내용을 적어주세요",t);
 	if(txt != ""){
-		location.href = "update.productreview?pr_no=" + no + "&pr_txt=" + txt + "&p_no=" + ${p.p_no};
+		location.href = "update.productreview?pr_no=" + no + "&pr_txt=" + txt + "&p_no=" + ${p.p_no} + "&pr_p_no=" + ${p.p_no};
 	}
 }
-
+  
 //수량+합계
 var sell_price;
 var amount;
@@ -82,6 +81,7 @@ function change () {
   }
 
 </script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -115,7 +115,7 @@ function change () {
 					</tr>
 					<tr>
 					<td colspan="2" align="center">
-					<button onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }'">수정하기</button>
+					<button onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }&pr_p_no=${p.p_no}'">수정하기</button>
 					</td>
 					
 					</tr>
@@ -175,16 +175,12 @@ function change () {
 					<td>${p.pr_txt }</td>
 					<td><fmt:formatDate value="${p.pr_date }" dateStyle="short"/></td>
 					<c:if test="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id == p.pr_u_bo_id }">
-					<td onclick="updatereview(${p.pr_no})">수정</td>
+					<td onclick="updatereview('${p.pr_no}','${p.pr_txt }')">수정</td>
 					<td onclick="delreview(${p.pr_no})">삭제</td>
 					</c:if> 
 				</tr>
 					</c:forEach>
-			</table>
-			
-			
-			
-			
-			
+			</table>			
+						
 </body>
 </html>

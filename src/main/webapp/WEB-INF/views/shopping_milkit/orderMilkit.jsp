@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,11 +103,11 @@ function addrCheck(chk){
 <h2>상품 정보</h2>
 <table border="1">
 <tr>
-<td rowspan="3"><img src="resources/img/${p.p_picture }" width="200px;" height="auto"></td>
+<td rowspan="3"><img src="resources/img/${fp.fp_picture }" width="200px;" height="auto"></td>
 <td>상품번호</td><td>상품명</td><td>수량</td><td>배송비</td><td>주문금액</td>
 </tr>
 <tr>
-<td rowspan="2">${p.p_no }</td><td>${p.p_name }</td><td>${so.amount}</td><td>무료</td><td><fmt:formatNumber value="${so.sum}"  pattern="###,###,###" />원</td>
+<td rowspan="2">${fp.fp_no }</td><td>${fp.fp_name }</td><td>${mso.amount}</td><td>무료</td><td><fmt:formatNumber value="${mso.sum}"  pattern="###,###,###" />원</td>
 </tr>
 </table>
 · 구매 가능 수량이 1개로 제한된 상품은 주문 취소 시, 24시간 내 가상계좌 재주문이 불가합니다.<br>
@@ -154,7 +154,6 @@ function addrCheck(chk){
 <!-- 결제하기 -->
 <script>
 
-
 $("#check_module").click(function () {
 var IMP = window.IMP; // 생략가능
 IMP.init('imp46581722');
@@ -164,8 +163,8 @@ pay_method: 'card',
 merchant_uid: 'merchant_' + new Date().getTime(),
 //https://docs.iamport.kr/implementation/payment
 
-name: '상품명:${p.p_name}',
-amount: ${so.sum} ,
+name: '상품명:${fp.fp_name}',
+amount: ${mso.sum} ,
 //가격
 }, function (rsp) {
 console.log(rsp);
@@ -174,7 +173,7 @@ var msg = '결제가 완료되었습니다.';
 let new_addr1 = document.getElementById('u_addr2').value;
 let new_addr = document.getElementById('addr1Input').value;
 let new_addr3 = document.getElementById('addr3Input').value;
-location.href='reg.productbuy?b_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&b_p_no=${p.p_no }&b_p_name=${p.p_name }&b_price=${so.sum}&b_number=${so.amount}&b_u_address=${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }&b_new_address=' + new_addr + new_addr1 + new_addr3;
+location.href='reg.milkitbuy?fb_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&fb_fp_no=${fp.fp_no }&fb_fp_name=${fp.fp_name }&fb_price=${mso.sum}&fb_number=${mso.amount}&fb_u_address=${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }&fb_new_address=' + new_addr + new_addr1 + new_addr3;
 }else {
 var msg = '결제에 실패하였습니다.';
 //alert('[에러]'+rsp.error_msg);
@@ -184,7 +183,5 @@ alert(msg);
 });
 
 </script>
-
-
 </body>
 </html>

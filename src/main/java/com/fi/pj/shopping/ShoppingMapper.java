@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.fi.pj.member.UserMember;
+import com.fi.pj.milkit.MilkitReviewinsert;
 
 public interface ShoppingMapper {
 	//상품목록

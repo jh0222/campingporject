@@ -188,7 +188,10 @@ create table foodproduct_registration_table(
 
 create sequence foodproduct_registration_seq;
 
-insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품',10000,'b.jpg','캠핑용품입니다');
+insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품1',10000,'ab.jpg','캠핑용품입니다1');
+insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품2',10000,'bb.jpg','캠핑용품입니다2');
+insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품3',10000,'bc.jpg','캠핑용품입니다3');
+insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품4',10000,'bd.jpg','캠핑용품입니다4');
 
 select * from foodproduct_registration_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -203,7 +206,7 @@ create table guest_product_buy_table(
 	b_u_bo_id varchar2(20 char) not null,	/*아이디*/
 	b_p_no number(5) not null,			 	/*상품번호*/
 	b_p_name varchar2(20 char) not null,	/*상품명*/
-	b_price	number(5) not null,				/*(수량*p_price)*/
+	b_price	number(9) not null,				/*(수량*p_price)*/ ---추가
 	b_number number(5) not null,			/*수량*/
 	b_u_address varchar2(100 char) not null, /*(기존 자기 정보 배송지)*/
 	b_new_address varchar2(100 char) null,
@@ -212,7 +215,7 @@ create table guest_product_buy_table(
 /*마이페이지 어떻게 되어있는지 보고 배송메모 포함할지 말지*/
 create sequence g_p_buy_seq;
 
-insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',115,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_product_buy_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -221,14 +224,14 @@ select * from guest_product_buy_table;
  * 하나만 선택되도록 radio box
  * 새로운 배송지가 null값이면 기존배송지 아니면 새로운 배송지가 뜨도록 만들기
  * */
-drop table guest_product_buy_table;
+drop table guest_foodproduct_buy_table;
 create table guest_foodproduct_buy_table(		
 	fb_no number(5) primary key, /*(주문번호)*/
 	fb_u_bo_id varchar2(20 char) not null,
-	fb_p_no number(5) not null,
-	fb_p_name varchar2(20 char) not null,
-	fb_price	number(5) not null, /*(수량*p_price)*/
-	fb_number number(5) not null,
+	fb_fp_no number(5) not null, 
+	fb_fp_name varchar2(20 char) not null, 
+	fb_price	number(9) not null, /*(수량*p_price)*/  ---추가
+	fb_number number(5) not null, /*수량*/
 	fb_u_address varchar2(100 char) not null, /*(기존 자기 정보 배송지)*/
 	fb_new_address varchar2(100 char) null,
 	fb_date date not null
@@ -236,9 +239,10 @@ create table guest_foodproduct_buy_table(
 
 create sequence g_fp_buy_seq;
 
-insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',206,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_foodproduct_buy_table;
+
 -------------------------------------------------------------------------------------------------------------------------------------
 12. 캠핑용품 장바구니
 create table guest_product_basket_table(
@@ -299,14 +303,16 @@ select * from product_review_table where pr_p_no = 182 ;
 15. 밀키트 리뷰
 create table foodproduct_review_table(	
 	fpr_no number(5) primary key,
+	fpr_fp_no number(5) not null, -----------------수정
 	fpr_u_bo_id varchar2(20 char) not null,
 	fpr_txt varchar2(100 char) not null,
 	fpr_date date not null
 );
 
+drop table foodproduct_review_table;
 create sequence foodproduct_review_seq;
 
-insert into foodproduct_review_table values(foodproduct_review_seq.nextval,'kim','좋아요','20220301');
+insert into foodproduct_review_table values(foodproduct_review_seq.nextval,206,'kim','좋아요','20220301');
 
 select * from foodproduct_review_table;
 -------------------------------------------------------------------------------------------------------------------------------------

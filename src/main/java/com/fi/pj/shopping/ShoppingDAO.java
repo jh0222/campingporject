@@ -25,9 +25,9 @@ public class ShoppingDAO {
 	
 	@Autowired
 	private  SqlSession ss;
-
+//캠핑용품 목록
 	public void getAllProduct(HttpServletRequest req) {
-		int rowSize = 5; //한페이지에 보여줄 글의 수
+		int rowSize = 6; //한페이지에 보여줄 글의 수
         int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
 
         String strPg = req.getParameter("pg");
@@ -63,7 +63,7 @@ public class ShoppingDAO {
 		req.setAttribute("products",products);
 		
 	}
-
+// 캠핑용품 등록
 	public void regProduct(Product p, HttpServletRequest req) {
 		try { 
 			
@@ -104,7 +104,7 @@ public class ShoppingDAO {
 					
 		
 	}
-
+//캠핑용품 검색
 	public void searchProduct(Product p, HttpServletRequest req) {
 		
 		req.setAttribute("products",ss.getMapper(ShoppingMapper.class).ProductSearch(p)); 
@@ -209,9 +209,6 @@ public class ShoppingDAO {
 	}
 	//리뷰등록
 	public void regProductreview(ProductReview pr, HttpServletRequest req) {
-		System.out.println(pr.getPr_p_no() + "상품번호(p_no)출력");
-		System.out.println(pr.getPr_u_bo_id() + "리뷰등록(id출력)");
-		System.out.println(pr.getPr_date() + "리뷰등록시간");
 		if(ss.getMapper(ShoppingMapper.class).regProductreview(pr) == 1) { 
 			System.out.println("등록성공");
 			req.setAttribute("r", "등록 성공");

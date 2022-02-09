@@ -42,16 +42,7 @@ public class ShoppingC {
 		req.setAttribute("shoppigListPage", "../shopping/campingProduct_Page.jsp");
 		return "main";
 	}
-	
-	//밀키트 목록페이지
-	@RequestMapping(value = "camping.milkit", method = RequestMethod.GET)
-	public String shoppingmilkit(HttpServletRequest req) {
-		mDAO.loginCheck(req);
-		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
-		req.setAttribute("shoppigListPage", "../shopping/milkit_Page.jsp");
-		return "main";
-	}
-	
+
 	//캠핑용품 등록페이지 이동
 	@RequestMapping(value = "regproduct.go", method = RequestMethod.GET )
 	public String regproductgo(HttpServletRequest req) {
@@ -84,7 +75,7 @@ public class ShoppingC {
 	
 	//캠핑용품 삭제
 	@RequestMapping(value = "del.product", method = RequestMethod.GET)
-	public String delMenuDo(Product p,HttpServletRequest req) {
+	public String delProduct(Product p,HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		sdao.delProduct(p, req );
 		sdao.getAllProduct(req);
@@ -127,7 +118,6 @@ public class ShoppingC {
 		sdao.getAllProductReview(req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
-		
 		return "main";
 	}
 	
@@ -170,9 +160,9 @@ public class ShoppingC {
 			return "main";
 	    }	
 		
-	//캠핑용품 구매페이지
+	//캠핑용품 구매페이지 이동
 		@RequestMapping(value = "orderproduct.go", method = RequestMethod.GET)
-		public String paymentproductgo(Product p, UserMember u, ShoppingOrder so, HttpServletRequest req) {
+		public String orderproductgo(Product p, UserMember u, ShoppingOrder so, HttpServletRequest req) {
 			mDAO.loginCheck(req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/orderProduct.jsp");

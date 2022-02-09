@@ -7,15 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-			<form action="reg.productreview">
+	<form action="reg.milkitreview">
 			<table>
 				
 					<tr>
-					<td><textarea name="pr_txt" rows="10"; cols="150"; style="margin-left: 167px; resize: none;"> </textarea>
-						<input name="pr_u_bo_id" type="hidden" value="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }"></td>
+					<td><textarea name="fpr_txt" rows="10"; cols="150"; style="margin-left: 167px; resize: none;"> </textarea>
+						<input name="fpr_u_bo_id" type="hidden" value="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }"></td>
 					</tr> 
-						<input name="p_no" type="hidden" value="${p.p_no }"> 
-						<input name="pr_p_no" type="hidden" value="${p.p_no }">
+						<input name="fp_no" type="hidden" value="${fp.fp_no }">
+						<input name="fpr_fp_no" type="hidden" value="${fp.fp_no }">
 					<tr>
 					<td><button style="padding-left: 1067px; margin-left: 167px; text-align: center;" >등록!!</button></td>
 					</tr>
