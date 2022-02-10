@@ -4,6 +4,7 @@ public class BoardPage {
 	private int from;
 	private int to;
 	private int f_no;
+	private int tip_no;
 	public BoardPage() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,11 +26,18 @@ public class BoardPage {
 	public void setF_no(int f_no) {
 		this.f_no = f_no;
 	}
-	public BoardPage(int from, int to, int f_no) {
+	public int getTip_no() {
+		return tip_no;
+	}
+	public void setTip_no(int tip_no) {
+		this.tip_no = tip_no;
+	}
+	public BoardPage(int from, int to, int f_no, int tip_no) {
 		super();
 		this.from = from;
 		this.to = to;
 		this.f_no = f_no;
+		this.tip_no = tip_no;
 	}
 	
 }

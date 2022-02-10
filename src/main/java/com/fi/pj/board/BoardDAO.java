@@ -58,6 +58,7 @@ public class BoardDAO {
 	    req.setAttribute("allPage", allPage);
 		req.setAttribute("fb", fb);
 		req.setAttribute("c", "freeboard.go?");
+		req.setAttribute("sort", "fb");
 	}
 
 	//자유게시판 등록
@@ -110,7 +111,7 @@ public class BoardDAO {
 
 	    s.setFrom(from);
 	    s.setTo(to);
-		if(s.getSearchsort().equals("f_subject")) {
+		if(s.getSearchsort().equals("subject")) {
 			List<Freeboard> fb = ss.getMapper(BoardMapper.class).FbSearch_subject(s);
 			
 			int total = ss.getMapper(BoardMapper.class).FbSearch_subject_cnt(s); //총 게시물 수
@@ -128,7 +129,7 @@ public class BoardDAO {
 		        toPage = allPage;
 		    }
 
-		    String c = "fb.search?searchsort=f_subject&search=" + s.getSearch() + "&";
+		    String c = "fb.search?searchsort=subject&search=" + s.getSearch() + "&";
 		    
 		    req.setAttribute("pg", pg);
 		    req.setAttribute("block", block);
@@ -137,6 +138,7 @@ public class BoardDAO {
 		    req.setAttribute("allPage", allPage);
 			req.setAttribute("fb", fb);
 			req.setAttribute("c", c);
+			req.setAttribute("sort", "fb");
 		} else {
 			List<Freeboard> fb = ss.getMapper(BoardMapper.class).FbSearch_id(s);
 			
@@ -152,7 +154,7 @@ public class BoardDAO {
 		        toPage = allPage;
 		    }
 		    
-		    String c = "fb.search?searchsort=f_u_id&search=" + s.getSearch() + "&";
+		    String c = "fb.search?searchsort=id&search=" + s.getSearch() + "&";
 
 		    req.setAttribute("pg", pg);
 		    req.setAttribute("block", block);
@@ -161,6 +163,7 @@ public class BoardDAO {
 		    req.setAttribute("allPage", allPage);
 			req.setAttribute("fb", fb);
 			req.setAttribute("c", c);
+			req.setAttribute("sort", "fb");
 		}
 		
 	}
@@ -333,6 +336,320 @@ public class BoardDAO {
 			req.setAttribute("result", "댓글 수정 성공");
 		} else {
 			req.setAttribute("result", "댓글 수정 실패");
+		}
+	}
+
+	//캠핑팁-----------------------------------------------------------------
+	//캠핑전체리스트
+	public void getAllCampingtip(HttpServletRequest req) {
+		int rowSize = 10; //한페이지에 보여줄 글의 수
+	    int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+	   
+	    String strPg = req.getParameter("pg");
+	    if(strPg != null){ //list.jsp?pg=2
+	    	pg = Integer.parseInt(strPg); //.저장
+	    }
+
+	    int from = (pg * rowSize) - (rowSize-1); //(1*10)-(10-1)=10-9=1 //from
+	    int to=(pg * rowSize); //(1*10) = 10 //to
+		
+	    BoardPage p = new BoardPage();
+	    p.setFrom(from);
+	    p.setTo(to);
+	    
+		List<Campingtipboard> b = ss.getMapper(BoardMapper.class).getAllcampingtip(p);   	 
+
+	    int total = ss.getMapper(BoardMapper.class).getAllcampingtipcnt(); //총 게시물 수
+	    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+	    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+	    int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+	    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+	    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+	    if(toPage> allPage){ // 예) 20>17
+	        toPage = allPage;
+	    }
+
+	    req.setAttribute("pg", pg);
+	    req.setAttribute("block", block);
+	    req.setAttribute("fromPage", fromPage);
+	    req.setAttribute("toPage", toPage);
+	    req.setAttribute("allPage", allPage);
+		req.setAttribute("b", b);
+		req.setAttribute("c", "campingtip.go?");	
+		req.setAttribute("sort", "ct");
+	}
+
+	//캠핑팁 등록
+	public void ctinsert(Campingtipboard cb, HttpServletRequest req) {
+		String path = req.getSession().getServletContext().getRealPath("resources/img");
+		MultipartRequest mr = null;
+		try {
+			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("result", "등록실패");
+			return;
+		}
+
+		try {
+			String tip_u_id = mr.getParameter("tip_u_id");
+			String tip_subject = mr.getParameter("subject");
+			String tip_txt = mr.getParameter("txt");			
+
+			cb.setTip_u_id(tip_u_id);
+			cb.setTip_subject(tip_subject);
+			cb.setTip_txt(tip_txt);
+			
+			if (ss.getMapper(BoardMapper.class).CbInsert(cb) == 1) {
+				req.setAttribute("result", "등록성공");
+			} else {
+				req.setAttribute("result", "등록실패");
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+			String fileName = mr.getFilesystemName("picture");
+			new File(path + "/" + fileName).delete();
+			req.setAttribute("result", "수정실패");
+		}
+		
+	}
+
+	//캠핑팁 검색
+	public void getcampingtipboard(Search s, HttpServletRequest req) {
+		int rowSize = 10; //한페이지에 보여줄 글의 수
+	    int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+	   
+	    String strPg = req.getParameter("pg");
+	    if(strPg != null){ //list.jsp?pg=2
+	    	pg = Integer.parseInt(strPg); //.저장
+	    }
+
+	    int from = (pg * rowSize) - (rowSize-1); //(1*10)-(10-1)=10-9=1 //from
+	    int to=(pg * rowSize); //(1*10) = 10 //to
+
+	    s.setFrom(from);
+	    s.setTo(to);
+		if(s.getSearchsort().equals("subject")) {
+			List<Campingtipboard> b = ss.getMapper(BoardMapper.class).TipSearch_subject(s);
+			
+			int total = ss.getMapper(BoardMapper.class).TipSearch_subject_cnt(s); //총 게시물 수
+			System.out.println(total);
+		    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+		    System.out.println(allPage);
+		    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+		    int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+		    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+		    System.out.println(fromPage);
+		    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+		    System.out.println(toPage);
+		    if(toPage> allPage){ // 예) 20>17
+		        toPage = allPage;
+		    }
+
+		    String c = "ct.search?searchsort=subject&search=" + s.getSearch() + "&";
+		    
+		    req.setAttribute("pg", pg);
+		    req.setAttribute("block", block);
+		    req.setAttribute("fromPage", fromPage);
+		    req.setAttribute("toPage", toPage);
+		    req.setAttribute("allPage", allPage);
+			req.setAttribute("b", b);
+			req.setAttribute("c", c);
+			req.setAttribute("sort", "ct");
+		} else {
+			List<Campingtipboard> b = ss.getMapper(BoardMapper.class).TipSearch_id(s);
+			
+			int total = ss.getMapper(BoardMapper.class).TipSearch_id_cnt(s); //총 게시물 수
+			System.out.println(total + "????????");
+		    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+		    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+		    int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+		    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+		    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+		    if(toPage> allPage){ // 예) 20>17
+		        toPage = allPage;
+		    }
+		    
+		    String c = "ct.search?searchsort=id&search=" + s.getSearch() + "&";
+
+		    req.setAttribute("pg", pg);
+		    req.setAttribute("block", block);
+		    req.setAttribute("fromPage", fromPage);
+		    req.setAttribute("toPage", toPage);
+		    req.setAttribute("allPage", allPage);
+			req.setAttribute("b", b);
+			req.setAttribute("c", c);
+			req.setAttribute("sort", "ct");
+		}		
+	}
+
+	//캠핑팁조회수
+	public void updateCount(Campingtipboard cb, HttpServletRequest req) {
+		if (ss.getMapper(BoardMapper.class).Cbcount_update(cb) == 1) {
+			req.setAttribute("result", "카운트수정성공");
+		} else {
+			req.setAttribute("result", "카운트수정실패");
+		}			
+	}
+
+	//캠핑팁 클릭 페이지
+	public void getonectboard(Campingtipboard cb, HttpServletRequest req) {
+		Campingtipboard b = ss.getMapper(BoardMapper.class).getonectboard(cb);		
+		req.setAttribute("fb", b);			
+	}
+	
+	//캠핑팁 클릭 페이지 댓글
+	public void getctreply(Campingtipboard cb, HttpServletRequest req) {
+		int rowSize = 5; //한페이지에 보여줄 글의 수
+	    int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+	   
+	    String strPg = req.getParameter("pg");
+	    if(strPg != null){ 
+	    	pg = Integer.parseInt(strPg); //.저장
+	    }
+
+	    int from = (pg * rowSize) - (rowSize-1);
+	    int to=(pg * rowSize); 
+		
+	    BoardPage p = new BoardPage();
+	    p.setFrom(from);
+	    p.setTo(to);
+	    p.setF_no(cb.getTip_no());
+	    
+		List<CtReply> fr = ss.getMapper(BoardMapper.class).getctreply(p);
+		List<CtReply> frr = ss.getMapper(BoardMapper.class).getctrreply(cb);
+
+		int total = ss.getMapper(BoardMapper.class).getAllctreplycnt(cb); //총 게시물 수
+	    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+	    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+	    int block = 5; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+	    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+	    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+	    if(toPage> allPage){ // 예) 20>17
+	        toPage = allPage;
+	    }
+
+	    req.setAttribute("pg", pg);
+	    req.setAttribute("block", block);
+	    req.setAttribute("fromPage", fromPage);
+	    req.setAttribute("toPage", toPage);
+	    req.setAttribute("allPage", allPage);
+	    req.setAttribute("fr", fr);
+	    req.setAttribute("frr", frr);
+		
+	}
+
+	//캠핑팁 수정
+	public void ctupdate(Campingtipboard cb, HttpServletRequest req) {
+		String path = req.getSession().getServletContext().getRealPath("resources/img");
+		MultipartRequest mr = null;
+		try {
+			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("result", "등록실패");
+			return;
+		}
+
+		try {
+			String tip_subject = mr.getParameter("subject");
+			String tip_txt = mr.getParameter("txt");			
+
+			cb.setTip_subject(tip_subject);
+			cb.setTip_txt(tip_txt);
+			
+			if (ss.getMapper(BoardMapper.class).CtUpdate(cb) == 1) {
+				req.setAttribute("result", "수정성공");
+			} else {
+				req.setAttribute("result", "수정실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			String fileName = mr.getFilesystemName("picture");
+			new File(path + "/" + fileName).delete();
+			req.setAttribute("result", "수정실패");
+		}
+		
+	}
+
+	//캠핑팁 댓글 수정
+	public void tiprupdate(CtReply cr, HttpServletRequest req) {
+		if (ss.getMapper(BoardMapper.class).Cr_update(cr) == 1) {
+			req.setAttribute("result", "댓글 수정 성공");
+		} else {
+			req.setAttribute("result", "댓글 수정 실패");
+		}
+	}
+
+	//캠핑팁 삭제
+	public void ctdelete(Campingtipboard cb, HttpServletRequest req) {
+		if (ss.getMapper(BoardMapper.class).CtDelete(cb) == 1) {
+			req.setAttribute("result", "삭제성공");
+		} else {
+			req.setAttribute("result", "삭제실패");
+		}	
+	}
+	
+	//캠핑팁 댓글 등록
+	public void ctreplyinsert(CtReply cr, HttpServletRequest req) {
+		String tipr_owner_id = req.getParameter("tipr_owner_id");
+		//대댓글
+		if (tipr_owner_id != null) {
+			if (ss.getMapper(BoardMapper.class).CtreplyInsert2(cr) == 1) {
+				req.setAttribute("result", "등록성공");
+			} else {
+				req.setAttribute("result", "등록실패");
+			}
+		} 
+		//댓글
+		else { 
+			if (ss.getMapper(BoardMapper.class).CtreplyInsert(cr) == 1) {
+				req.setAttribute("result", "등록성공");
+			} else {
+				req.setAttribute("result", "등록실패");
+			}
+		}
+	}
+	
+	//캠핑팁 댓글 삭제
+	public void tiprdelete(CtReply cr, HttpServletRequest req) {
+		int depth = Integer.parseInt(req.getParameter("tipr_depth"));
+		int fr_s = ss.getMapper(BoardMapper.class).TiprDelete_update_select(cr);
+		System.out.println(depth);
+		
+		if(depth == 3 && fr_s > 0) {
+			//삭제할 댓글에 대댓글이 있을경우
+			System.out.println(fr_s);
+			if (ss.getMapper(BoardMapper.class).TiprDelete_update(cr) == 1) {
+				req.setAttribute("result", "삭제성공");
+			} else {
+				req.setAttribute("result", "삭제실패");
+			}			
+		} 
+		//대댓글이며 댓글이 알수없음이고 해당 댓글에 대댓글이 하나라면
+		else if(depth != 3 
+				&& ss.getMapper(BoardMapper.class).TiprDelete_r_select(cr) == 1
+				&& ss.getMapper(BoardMapper.class).TiprDelete_3_select(cr) == 1) {
+			System.out.println("2:"+ss.getMapper(BoardMapper.class).TiprDelete_r_select(cr));
+			System.out.println("3:"+ss.getMapper(BoardMapper.class).TiprDelete_3_select(cr));
+			System.out.println("4:"+cr.getTipr_owner_no());
+			if (ss.getMapper(BoardMapper.class).TiprDelete(cr) == 1 
+				&& ss.getMapper(BoardMapper.class).Tipr3Delete(cr) == 1) {
+				req.setAttribute("result", "삭제성공");
+			} else {
+				req.setAttribute("result", "삭제실패");
+			}						
+		} else {
+			if (ss.getMapper(BoardMapper.class).TiprDelete(cr) == 1) {
+				req.setAttribute("result", "삭제성공");
+			} else {
+				req.setAttribute("result", "삭제실패");
+			}
 		}
 	}
 

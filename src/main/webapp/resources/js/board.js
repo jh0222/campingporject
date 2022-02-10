@@ -89,8 +89,8 @@ function frr_writeCheck(){
 }
 
 function frrr_writeCheck(){
-	let fr_replytxt = document.frrrwriteForm.fr_replytxt;	
-	
+	let fr_replytxt = $(this).document.frrrwriteForm.fr_replytxt;	
+	//let fr_replytxt = $(this).closest('tr').find('.replyTd').find('input').val();
 	if (isEmpty(fr_replytxt)) {
 		alert('내용을 입력해주세요.');
 		fr_replytxt.value = "";
@@ -98,3 +98,18 @@ function frrr_writeCheck(){
 		return false;
 	}
 }
+
+$(function() {
+	$(".replyinsert").click(function() {
+		let fr_replytxt = $(this).closest('tr').find('.replyTd').find('input').val();
+		
+		if (isEmpty(fr_replytxt)) {
+			alert(fr_replytxt);
+			alert('내용을 입력해주세요.');
+			fr_replytxt.value = "";
+			fr_replytxt.focus();
+			return false;
+		}
+	});
+
+});

@@ -69,6 +69,20 @@ $(function() {
 			FormVisible = $(this).attr('value', '1');
 		}
 	});
+	
+	$(".logout_replybtn").click(function() {
+		let FormVisible = $(this).attr('value');
+
+		if (FormVisible == 1) {
+			$(this).closest('table').next().css('display', 'none');
+			$(this).text("답글 보기▼");
+			FormVisible = $(this).attr('value', '0');
+		} else {
+			$(this).closest('table').next().css('display', 'block');
+			$(this).text("답글 숨기기▲");
+			FormVisible = $(this).attr('value', '1');
+		}
+	});
 
 	$('.replyUpdateBtn').click(function name() {
 		let updatebtnVal = $(this).attr('value');
@@ -90,5 +104,6 @@ $(function() {
 			updatebtnVal = $(this).attr('value', 'updateGo');
 		}
 	});
-
+	
+	
 });

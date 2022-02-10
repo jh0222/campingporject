@@ -57,5 +57,51 @@ public interface BoardMapper {
 	//게시판 검색결과 총 cnt
 	public int FbSearch_subject_cnt(Search s);
 	public int FbSearch_id_cnt(Search s);
+
+	//캠핑팁-----------------------------------------------------------------
+	//캠핑전체리스트
+	public List<Campingtipboard> getAllcampingtip(BoardPage p);
+	public int getAllcampingtipcnt();
+	//캠핑팁 등록
+	public int CbInsert(Campingtipboard cb);
+	//검색
+	public List<Campingtipboard> TipSearch_subject(Search s);
+	public List<Campingtipboard> TipSearch_id(Search s);
+	public int TipSearch_subject_cnt(Search s);
+	public int TipSearch_id_cnt(Search s);
+
+	//조회수
+	public int Cbcount_update(Campingtipboard cb);
+	//클릭페이지
+	public Campingtipboard getonectboard(Campingtipboard cb);
+	public List<CtReply> getctreply(BoardPage p);
+	public List<CtReply> getctrreply(Campingtipboard cb);
+	public int getAllctreplycnt(Campingtipboard cb);
+
+	//캠핑팁 수정
+	public int CtUpdate(Campingtipboard cb);
+	public int Cr_update(CtReply cr);
+	
+	//캠핑팁 삭제
+	public int CtDelete(Campingtipboard cb);
+
+	//캠핑팁 댓글 등록
+	public int CtreplyInsert2(CtReply cr);
+	public int CtreplyInsert(CtReply cr);
+
+	//댓글 삭제
+	public int TiprDelete_update_select(CtReply cr);
+	public int TiprDelete_r_select(CtReply cr);
+	public int TiprDelete_3_select(CtReply cr);
+	public int TiprDelete(CtReply cr);
+	public int Tipr3Delete(CtReply cr);
+	public int TiprDelete_update(CtReply cr);
+
+	
+	
+
+	
+	
+	
 	
 }

@@ -12,7 +12,14 @@
 <div class="board">
 	<table class="table2">
 		<tr>
-			<td colspan="4" id="titleTd"><span class="title">자유게시판</span></td>
+			<c:choose>
+				<c:when test="${fb != null }">
+					<td colspan="4" id="titleTd"><span class="title">자유게시판</span></td>
+				</c:when>
+				<c:otherwise>
+					<td colspan="4" id="titleTd"><span class="title">캠핑팁게시판</span></td>
+				</c:otherwise>
+			</c:choose>
 		</tr>	
 	</table>
 	<table class="table">	
@@ -22,22 +29,46 @@
 			<th>조회수</th>
 			<th>작성날짜</th>
 		</tr>
-		<c:forEach var="f" items="${fb }">
-			<tr>
-				<td class="subject">
-					<a href="fbwrite.onego?f_no=${f.f_no}&f_readcount=${f.f_readcount}">${f.f_subject }</a>
-				</td>
-				<td>
-					${f.f_u_id }
-				</td>
-				<td>
-					${f.f_readcount }
-				</td>
-				<td>
-					<fmt:formatDate value="${f.f_date }"/> 
-				</td>
-			</tr>	
-		</c:forEach>	
+		<c:choose>
+			<c:when test="${fb != null }">
+				<c:forEach var="f" items="${fb }">
+					<tr>
+						<td class="subject">
+							<a href="fbwrite.onego?f_no=${f.f_no}&f_readcount=${f.f_readcount}">${f.f_subject }</a>
+						</td>
+						<td>
+							${f.f_u_id }
+						</td>
+						<td>
+							${f.f_readcount }
+						</td>
+						<td>
+							<fmt:formatDate value="${f.f_date }"/> 
+						</td>
+					</tr>	
+				</c:forEach>	
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="b" items="${b }">
+					<tr>
+						<td class="subject">
+							<a href="ctwrite.onego?tip_no=${b.tip_no}&tip_readcount=${b.tip_readcount}">${b.tip_subject }</a>
+						</td>
+						<td>
+							${b.tip_u_id }
+						</td>
+						<td>
+							${b.tip_readcount }
+						</td>
+						<td>
+							<fmt:formatDate value="${b.tip_date }"/> 
+						</td>
+					</tr>	
+				</c:forEach>	
+			</c:otherwise>
+		</c:choose>
+		
+		
 	</table>
 	
 	<c:choose>
@@ -74,13 +105,13 @@
 	<c:if test="${sessionScope.loginMember.u_id != null
 				|| sessionScope.loginMember2.bo_id != null
 				|| sessionScope.loginMember3 != null}">
-	<button onclick="location.href='fbwrite.go'">글쓰기</button></br>
+	<button onclick="location.href='${sort }write.go'">글쓰기</button></br>
 	</c:if>
 	
-	<form action="fb.search">
+	<form action="${sort }.search">
 		<select name="searchsort">
-	    	<option value="f_subject">제목</option>
-	    	<option value="f_u_id">작성자</option>
+	    	<option value="subject">제목</option>
+	    	<option value="id">작성자</option>
 	    </select>
 		<input name="search"> <button>검색</button>
 	</form>
