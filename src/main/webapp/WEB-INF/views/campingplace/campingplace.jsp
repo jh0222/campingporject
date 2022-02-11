@@ -26,6 +26,16 @@ ${result }
 			<td>${c.cam_phonenumber }</td>
 			<td><fmt:formatNumber value="${c.cam_price}" pattern="###,###,###" type="currency" /></td>
 			<td>${c.cam_address }</td>
+			<td>
+			<form action="placelike2.go"> 
+					<input type="hidden" name="h_cam_no" value="${c.cam_no }" />
+					<input type="hidden" name="h_u_id" value="${sessionScope.loginMember.u_id}" /> 
+					<input type="hidden" name="h_cam_name" value="${c.cam_name }" /> 
+					<input type="hidden" name="h_cam_address" value="${c.cam_address }" /> 
+					<input type="hidden" name="h_campingheart" value="1" /> 
+					<button>찜</button>
+			</form>
+			</td>
 		</tr>
 	</c:forEach>
 </table>

@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
 <!-- <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
@@ -52,7 +53,7 @@ $('#star a').click(function(){
     });
 });
 
-
+ 
 </script>
 
 <style>
@@ -79,7 +80,7 @@ $('#star a').click(function(){
 	${result }
 	<br>
 	<div style="float: left">
-		<table border="1">
+		<table border="1" style="width:700px;">
 			<tr>
 				<th>이름</th>
 				<th>상세설명</th>
@@ -110,16 +111,36 @@ $('#star a').click(function(){
 					<input type="hidden" name="h_cam_name" value="${places.cam_name }" /> 
 					<input type="hidden" name="h_cam_address" value="${places.cam_address }" /> 
 					<input type="hidden" name="h_campingheart" value="1" /> 
-					<button>찜</button>
+					<button">찜</button>
 				</form>
 				</td>
-				
 			</tr>
 		</table>
-	
+		
+		<div id="map" style="width:700px;height:400px;"></div>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0005adacefd1f11b5b2c5683fdc3d59c"></script>
+			<script>
+				
+				var container = document.getElementById('map');
+				var options = {
+					center: new kakao.maps.LatLng('${places.cam_latitude }','${places.cam_longitude }' ),
+					level: 3
+				};
+
+				var map = new kakao.maps.Map(container, options);
+				
+				var markerPosition  = new kakao.maps.LatLng('${places.cam_latitude }','${places.cam_longitude }');
+				var marker = new kakao.maps.Marker({ 
+					position: map.markerPosition
+				}); 
+				// 지도에 마커를 표시합니다
+				marker.setMap(map);
+
+			</script>
+			
 <c:if test=""></c:if>
 		<form action="review.Reg">
-			<table border="1" >
+			<table border="1" style="width:700px;">
 				<tr>
 					<td>ID:${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}</td>
 					<td>별점
@@ -131,26 +152,27 @@ $('#star a').click(function(){
 							<a href="#"><input type="hidden" name="c_campingstar" value="5">★</a>
 						<p>
 					</td>
-					<td width="500" height="100">
+					<td style="width:500px;height:100px;">
 						<textarea name="c_campingreview"></textarea>
 					</td>
 
 					<td>
 						<input type="hidden" name="c_cam_no" value="${places.cam_no }"> 
 						<input type="hidden" name="cam_no" value="${places.cam_no }"> 
-						<input type="hidden" name="c_u_id" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}">
+						<input type="hidden" name="c_u_id" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}">		
 						<input onclick="return star" type="submit" name="submit" value="등록">
+						
 					</td>
 				</tr>
 			</table>
 		</form>
 	
-	<table border="1">
+	<table border="1" style="width:700px;">
 			<c:forEach var="r" items="${reviews}">
 				<tr>
-					<td width="50" align="center">${r.c_u_id }</td>
-					<td width="200" height="50">${r.c_campingreview }</td>
-					<td width="50" align="center">${r.c_campingstar }</td>
+					<td  align="center">${r.c_u_id }</td>
+					<td  height="50">${r.c_campingreview }</td>
+					<td  align="center">${r.c_campingstar }</td>
 
 					<c:if test="${sessionScope.loginMember.u_id == r.c_u_id}">
 						<td colspan="2" width="100" align="center">

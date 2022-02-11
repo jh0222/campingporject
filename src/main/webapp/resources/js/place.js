@@ -22,3 +22,18 @@ function reviewupdate(no, t, n) {
 	}
 }
 
+var submitFlag=false;
+
+function submitCheck(){
+	if(submitFlag){
+		return submitFlag;
+	}else{
+		submitFlag=true;
+		return false;
+	}
+}
+
+function clickSubmit(){
+	if(submitCheck()){return;}
+
+}

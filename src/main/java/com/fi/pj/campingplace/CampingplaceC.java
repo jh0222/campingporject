@@ -152,6 +152,16 @@ public class CampingplaceC {
 		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
 		return "main";
 	}
+	
+	@RequestMapping(value = "placelike2.go", method = RequestMethod.GET)
+	public String placeLike2(campingLike cl, HttpServletRequest req) {
+		mDAO.loginCheck(req);
+		cdao.getAllPlace(req);
+		cdao.likePlace2(cl,req);
+		req.setAttribute("contentPage", "campingplace/campingplace.jsp");
+		return "main";
+	}
+	
 	@RequestMapping(value = "heart.go", method = RequestMethod.GET)
 	public String heartListGo(HttpServletRequest req) {
 		mDAO.loginCheck(req);

@@ -256,5 +256,15 @@ public class CampingplaceDAO {
 		
 	}
 
+	public void likePlace2(campingLike cl, HttpServletRequest req) {
+		if (ss.getMapper(PlaceMapper.class).placeLike(cl) == 1) {
+			req.setAttribute("result", "찜 성공");
+		} else {
+			req.setAttribute("result", "찜 실패");
+		}
+		req.setAttribute("places", ss.getMapper(PlaceMapper.class).getAllPlace());
+		
+	}
+
 	
 }
