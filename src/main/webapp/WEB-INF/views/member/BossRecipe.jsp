@@ -11,25 +11,21 @@
 <body>
 <jsp:include page="${BossCommunities }"></jsp:include>
 <jsp:include page="${community }"></jsp:include>
-
 	<table border="1">
 		<tr>
 			<td>번호</td>
 			<td>제목</td>
 			<td>조회수</td>
-			<td>작성 날짜</td>
+			<td>작성날짜</td>
 		</tr>
-	<c:forEach var="f" items="${freeboard}">
+	<c:forEach var="r" items="${recipe}">
 		<tr>
-			<td>${f.f_no }</td>
-			<td><a href="">${f.f_subject }</a></td>
-			<!-- 제목 클릭하면 내가 쓴 자유게시판으로 넘어가기 -->
-			<td>${f.f_readcount }</td>
-			<td><fmt:formatDate value="${f.f_date}"/></td>
+			<td>${r.rb_no}</td>
+			<td><a href="">${r.rb_subject}</a></td>
+			<td>${r.rb_readcount}</td>
+			<td><fmt:formatDate value="${r.rb_date}"/></td>
 		</tr>
 	</c:forEach>
 	</table>
-
-
 </body>
 </html>

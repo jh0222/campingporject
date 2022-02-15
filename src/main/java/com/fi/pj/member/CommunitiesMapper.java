@@ -32,4 +32,6 @@ public interface CommunitiesMapper {
 
 	int campingjjimdel(Communities c);
 
+	int reservedel(Communities c);
+
 }

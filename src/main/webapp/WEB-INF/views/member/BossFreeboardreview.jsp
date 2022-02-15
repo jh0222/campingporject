@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="${myPage}"></jsp:include>
+<jsp:include page="${BossCommunities}"></jsp:include>
 <jsp:include page="${community}"></jsp:include>
 	<table border="1">
 		<tr>

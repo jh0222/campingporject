@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="${myPage}"></jsp:include>
+<jsp:include page="${BossCommunities}"></jsp:include>
 <jsp:include page="${community}"></jsp:include>
 	<table border="1">
 		<tr>
@@ -18,13 +18,13 @@
 			<td>작성날짜</td>
 			<td colspan="2" align="center">수정/삭제</td>
 		</tr>
-	<c:forEach var="f" items="${freeboardreview}">
+	<c:forEach var="r" items="${recipereview}">
 		<tr>
-			<td id="fu${f.fr_no}">${f.fr_no}</td>
-			<td><input name="fr_replytxt" value="${f.fr_replytxt}"></td>
-			<td><fmt:formatDate value="${f.fr_date}"/></td>
-			<td><button onclick="freeboardreviewup('${f.fr_no}','${f.fr_u_id}')">수정</button></td>
-			<td><button onclick="freeboardreviewdel('${f.fr_no}','${f.fr_u_id}')">삭제</button></td>	
+			<td id="ru${r.rr_no}">${r.rr_no}</td>
+			<td><input name="rr_replytxt" value="${r.rr_replytxt}"></td>
+			<td><fmt:formatDate value="${r.rr_date}"/></td>
+			<td><button onclick="recipereviewup('${r.rr_no}','${r.rr_u_id}')">수정</button></td>
+			<td><button onclick="recipereviewdel('${r.rr_no}','${r.rr_u_id}')">삭제</button></td>
 		</tr>
 	</c:forEach>
 	</table>

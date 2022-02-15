@@ -126,6 +126,42 @@ public class MemberController {
 		return "main";
 	}
 
+	// 사장 마이페이지
+	@RequestMapping(value = "boss.info", method = RequestMethod.GET)
+	public String bossInfo(HttpServletRequest request) {
+
+		mDAO.loginCheck(request);
+		mDAO.splitBossAddr(request);
+		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		request.setAttribute("contentPage", "member/Info_boss.jsp");
+
+		return "main";
+	}
+
+	// 사장 정보 수정
+	@RequestMapping(value = "boss.update", method = RequestMethod.POST)
+	public String bossUpdate(BossMember boss, HttpServletRequest request) {
+
+		mDAO.loginCheck(request);
+		mDAO.bossUpdate(boss, request);
+		mDAO.splitBossAddr(request);
+		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		request.setAttribute("contentPage", "member/Info_boss.jsp");
+
+		return "main";
+	}
+
+	// 사장 탈퇴
+	@RequestMapping(value = "boss.bye", method = RequestMethod.GET)
+	public String bossBye(HttpServletRequest request) {
+
+		mDAO.bossBye(request);
+		mDAO.loginCheck(request);
+		request.setAttribute("contentPage", "home.jsp");
+
+		return "main";
+	}
+	
 	// 캠핑찜
 	@RequestMapping(value = "campingjjim", method = RequestMethod.GET)
 	public String campingjjim(Communities c, HttpServletRequest request) {
@@ -139,9 +175,8 @@ public class MemberController {
 	// 캠핑찜 삭제
 	@RequestMapping(value = "campingjjim.del", method = RequestMethod.GET)
 	public String campingjjimdel(Communities c, HttpServletRequest request) {
-		if (mDAO.loginCheck(request)) {
-			mDAO.campingjjimdel(c, request);
-		}
+
+		mDAO.campingjjimdel(c, request);
 		mDAO.campingjjim(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingjjim.jsp");
@@ -181,10 +216,21 @@ public class MemberController {
 		return "main";
 	}
 
-	// 구매목록 삭제
-	@RequestMapping(value = "buy.del", method = RequestMethod.GET)
-	public String buydel(Buy b, HttpServletRequest request) {
-		mDAO.buydel(b, request);
+	// 구매목록 삭제 - 캠핑용품
+	@RequestMapping(value = "buyproduct.del", method = RequestMethod.GET)
+	public String buyproductdel(Buy b, HttpServletRequest request) {
+		mDAO.buyproductdel(b, request);
+		mDAO.userbuylist(b, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("contentPage", "member/buylist.jsp");
+
+		return "main";
+	}
+
+	// 구매목록 삭제 - 밀키트
+	@RequestMapping(value = "buymeal.del", method = RequestMethod.GET)
+	public String buymealdel(Buy b, HttpServletRequest request) {
+		mDAO.buymealdel(b, request);
 		mDAO.userbuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/buylist.jsp");
@@ -431,53 +477,6 @@ public class MemberController {
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/recipereview.jsp");
-
-		return "main";
-	}
-
-	// 사장 마이페이지
-	@RequestMapping(value = "boss.info", method = RequestMethod.GET)
-	public String bossInfo(HttpServletRequest request) {
-
-		mDAO.loginCheck(request);
-		mDAO.splitBossAddr(request);
-		request.setAttribute("myPage", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/Info_boss.jsp");
-
-		return "main";
-	}
-
-	// 사장 정보 수정
-	@RequestMapping(value = "boss.update", method = RequestMethod.GET)
-	public String bossUpdate(BossMember boss, HttpServletRequest request) {
-
-		mDAO.loginCheck(request);
-		mDAO.splitBossAddr(request);
-		mDAO.bossUpdate(boss, request);
-		request.setAttribute("myPage", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/Info_boss.jsp");
-
-		return "main";
-	}
-
-	// 사장 탈퇴
-	@RequestMapping(value = "boss.bye", method = RequestMethod.GET)
-	public String bossBye(HttpServletRequest request) {
-
-		mDAO.bossBye(request);
-		mDAO.loginCheck(request);
-		request.setAttribute("contentPage", "main.jsp");
-
-		return "main";
-	}
-
-	// 사장이 운영하는 캠핑장을 이용한 이용자들의 리뷰
-	@RequestMapping(value = "boss.campingreview", method = RequestMethod.GET)
-	public String bosscampingreview(Communities_boss cb, HttpServletRequest request) {
-
-		mDAO.bosscampingreview(cb, request);
-		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("contentPage", "member/campingreview.jsp");
 
 		return "main";
 	}

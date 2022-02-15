@@ -48,6 +48,7 @@
 				<beans:value>classpath:buylistMapper.xml</beans:value>
 				<beans:value>classpath:communitiesMapper.xml</beans:value>
 				<beans:value>classpath:reviewMapper.xml</beans:value>
+				<beans:value>classpath:bosscommunitiesMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

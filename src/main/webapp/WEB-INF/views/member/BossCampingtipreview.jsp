@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="${myPage}"></jsp:include>
+<jsp:include page="${BossCommunities}"></jsp:include>
 <jsp:include page="${community}"></jsp:include>
 	<table border="1">
 		<tr>
@@ -18,13 +18,13 @@
 			<td>작성날짜</td>
 			<td colspan="2" align="center">수정/삭제</td>
 		</tr>
-	<c:forEach var="f" items="${freeboardreview}">
+	<c:forEach var="ctp" items="${campingtipreview}">
 		<tr>
-			<td id="fu${f.fr_no}">${f.fr_no}</td>
-			<td><input name="fr_replytxt" value="${f.fr_replytxt}"></td>
-			<td><fmt:formatDate value="${f.fr_date}"/></td>
-			<td><button onclick="freeboardreviewup('${f.fr_no}','${f.fr_u_id}')">수정</button></td>
-			<td><button onclick="freeboardreviewdel('${f.fr_no}','${f.fr_u_id}')">삭제</button></td>	
+			<td id="ctpu${ctp.tipr_no}">${ctp.tipr_no}</td>
+			<td><input name="tipr_replytxt" value="${ctp.tipr_replytxt}"></td>
+			<td><fmt:formatDate value="${ctp.tipr_date}"/></td>
+			<td><button onclick="campingtipreviewup('${ctp.tipr_no}','${ctp.tipr_u_id}')">수정</button></td>
+			<td><button onclick="campingtipreviewdel('${ctp.tipr_no}','${ctp.tipr_u_id}')">삭제</button></td>
 		</tr>
 	</c:forEach>
 	</table>

@@ -24,6 +24,4 @@ public interface MemberMapper {
 	public int userUpdate(UserMember m);
 	public int bossUpdate(BossMember b);
 	
-	
-
 }

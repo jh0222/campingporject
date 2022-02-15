@@ -220,6 +220,7 @@ create table guest_product_buy_table(
 create sequence g_p_buy_seq;
 
 insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim2',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_product_buy_table;
 
@@ -245,6 +246,7 @@ create table guest_foodproduct_buy_table(
 create sequence g_fp_buy_seq;
 
 insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim2',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_foodproduct_buy_table;
 
@@ -299,6 +301,7 @@ create table product_review_table(
 create sequence product_review_seq;
 
 insert into product_review_table values(product_review_seq.nextval,'kim','좋아요','20220301');
+insert into product_review_table values(product_review_seq.nextval,'kim2','좋아요','20220301');
 
 select * from product_review_table;
 
@@ -313,6 +316,7 @@ create table foodproduct_review_table(
 create sequence foodproduct_review_seq;
 
 insert into foodproduct_review_table values(foodproduct_review_seq.nextval,'kim','좋아요','20220301');
+insert into foodproduct_review_table values(foodproduct_review_seq.nextval,'kim2','좋아요','20220301');
 
 select * from foodproduct_review_table;
 
@@ -330,6 +334,7 @@ create table free_board_table(
 create sequence free_board_seq;
 
 insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유자유','h.jpg',0,'20220110');
+insert into free_board_table values(free_board_seq.nextval,'kim2','자유게시판','자유자유자유','h.jpg',0,'20220110');
 
 select * from free_board_table;
 
@@ -354,6 +359,7 @@ create table free_board_reply_table(
 create sequence free_board_reply_seq;
 
 insert into free_board_reply_table values(free_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
+insert into free_board_reply_table values(free_board_reply_seq.nextval,1,'kim2',null,null,'댓글입니다','20220210',3,'a.jpg');
 
 select * from free_board_reply_table;
 select count(*) from free_board_reply_table where fr_owner_no=
@@ -375,6 +381,7 @@ create table campingtip_board_table(
 create sequence campingtip_board_seq;
 
 insert into campingtip_board_table values(campingtip_board_seq.nextval,'kim','자유게시판','자유자유자유','h.jpg',0,'20220110');
+insert into campingtip_board_table values(campingtip_board_seq.nextval,'kim2','자유게시판','자유자유자유','h.jpg',0,'20220110');
 
 select * from campingtip_board_table;
 
@@ -399,6 +406,7 @@ create table campingtip_board_reply_table(
 create sequence campingtip_board_reply_seq;
 
 insert into campingtip_board_reply_table values(campingtip_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
+insert into campingtip_board_reply_table values(campingtip_board_reply_seq.nextval,1,'kim2',null,null,'댓글입니다','20220210',3,'a.jpg');
 
 select * from campingtip_board_reply_table;
 
@@ -416,6 +424,7 @@ create table recipe_board_table(
 create sequence recipe_board_seq;
 
 insert into recipe_board_table values(recipe_board_seq.nextval,'kim','자유게시판','자유자유자유','h.jpg',0,'20220110');
+insert into recipe_board_table values(recipe_board_seq.nextval,'kim2','자유게시판','자유자유자유','h.jpg',0,'20220110');
 
 select * from recipe_board_table;
 
@@ -440,5 +449,6 @@ create table recipe_board_reply_table(
 create sequence recipe_board_reply_seq;
 
 insert into recipe_board_reply_table values(recipe_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
+insert into recipe_board_reply_table values(recipe_board_reply_seq.nextval,1,'kim2',null,null,'댓글입니다','20220210',3,'a.jpg');
 
 select * from recipe_board_reply_table;

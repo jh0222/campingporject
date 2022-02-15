@@ -12,8 +12,12 @@
 	where fb_u_bo_id = #{b_u_bo_id}
 </select>
 
-<delete id="userbuydel" parameterType="com.fi.pj.member.Buy">
+<delete id="buyproductdel" parameterType="com.fi.pj.member.Buy">
 	delete from guest_product_buy_table where b_no = #{b_no}
+</delete>
+
+<delete id="buymealdel" parameterType="com.fi.pj.member.Buy">
+	delete from guest_foodproduct_buy_table where fb_no = #{fb_no}
 </delete>
 
 </mapper>

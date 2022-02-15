@@ -54,7 +54,7 @@
 	delete from campingheart_table where h_no = #{h_no}
 </delete>
 
-<delete id="campingreservedel" parameterType="com.fi.pj.member.Communities">
+<delete id="reservedel" parameterType="com.fi.pj.member.Communities">
 	delete from reservation_table where r_no = #{r_no}
 </delete>
 

@@ -45,7 +45,7 @@
 	
 	<update id="bossUpdate" parameterType="com.fi.pj.member.BossMember">
 		update boss_table 
-		set bo_pw = #{bo_pw}, bo_address = #{bo_address}, bo_picture = #{bo_picture}
+		set bo_pw = #{bo_pw}, bo_email = #{bo_email}, bo_address = #{bo_address}, bo_phonenumber = #{bo_phonenumber}, bo_picture = #{bo_picture}, bo_birth = #{bo_birth}
 		where bo_id = #{bo_id}
 	</update>
 	

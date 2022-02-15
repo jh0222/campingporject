@@ -1,7 +1,6 @@
 package com.fi.pj.member;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -284,7 +283,7 @@ public class MemberDAO {
 			String phone2 = mr.getParameter("up_phonenumber2");
 			String phone3 = mr.getParameter("up_phonenumber3");
 			String u_phonenumber = phone1 + phone2 + phone3;
-			Date newbirth = formatter.parse(mr.getParameter("newbirth"));
+			Date u_birth = formatter.parse(mr.getParameter("newbirth"));
 			String oldpicture = mr.getParameter("oldpicture");
 			String newpicture = mr.getFilesystemName("newpicture");
 
@@ -292,7 +291,7 @@ public class MemberDAO {
 			m.setU_email(u_email);
 			m.setU_address(u_address);
 			m.setU_phonenumber(u_phonenumber);
-			m.setU_birth(newbirth);
+			m.setU_birth(u_birth);
 
 			if (newpicture != null) {
 				m.setU_picture(newpicture);
@@ -311,6 +310,106 @@ public class MemberDAO {
 		}
 	}
 
+	// 사장 db에 저장된 주소
+	public void splitBossAddr(HttpServletRequest request) {
+		BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
+		String bo_addr = b.getBo_address();
+		String[] bo_addr2 = bo_addr.split("!");
+
+		String bo_email = b.getBo_email();
+		String[] bo_email2 = bo_email.split("@");
+		System.out.println(bo_email);
+		request.setAttribute("addr", bo_addr2);
+		request.setAttribute("email", bo_email2);
+	}
+
+	// 사용자 정보 업데이트
+	public void bossUpdate(BossMember boss, HttpServletRequest request) {
+		String path = request.getSession().getServletContext().getRealPath("resources/img");
+		MultipartRequest mr = null;
+		BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
+		String oldFile = b.getBo_picture();
+		String newFile = null;
+		try {
+			mr = new MultipartRequest(request, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+			newFile = mr.getFilesystemName("bo_picture");
+			if (newFile == null) {
+				newFile = oldFile;
+			} else {
+				newFile = URLEncoder.encode(newFile, "utf-8");
+				newFile = newFile.replace("+", " ");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("result", "수정실패");
+			return;
+		}
+
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+			String bo_pw = mr.getParameter("up_pw");
+			String email = mr.getParameter("up_email");
+			String email_address = mr.getParameter("up_email_address");
+			String bo_email = email + "@" + email_address;
+			String bo_addr1 = mr.getParameter("up_addr1");
+			String bo_addr2 = mr.getParameter("up_addr2");
+			String bo_addr3 = mr.getParameter("up_addr3");
+			String bo_address = bo_addr1 + "!" + bo_addr2 + "!" + bo_addr3;
+			String phone1 = mr.getParameter("up_phonenumber1");
+			String phone2 = mr.getParameter("up_phonenumber2");
+			String phone3 = mr.getParameter("up_phonenumber3");
+			String bo_phonenumber = phone1 + phone2 + phone3;
+			Date birth = formatter.parse(mr.getParameter("newbirth"));
+			String oldpicture = mr.getParameter("oldpicture");
+			String newpicture = mr.getFilesystemName("newpicture");
+
+			b.setBo_pw(bo_pw);
+			b.setBo_email(bo_email);
+			b.setBo_address(bo_address);
+			b.setBo_phonenumber(bo_phonenumber);
+			b.setBo_birth(birth);
+
+			if (newpicture != null) {
+				b.setBo_picture(newpicture);
+			} else {
+				b.setBo_picture(oldpicture);
+			}
+
+			if (ss.getMapper(MemberMapper.class).bossUpdate(b) == 1) {
+				request.setAttribute("result", "수정성공");
+			} else {
+				request.setAttribute("result", "수정실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("result", "수정실패");
+		}
+	}
+
+	// 사용자 탈퇴
+	public void bossBye(HttpServletRequest request) {
+		try {
+			BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
+
+			if (ss.getMapper(MemberMapper.class).bossBye(b) == 1) {
+				request.setAttribute("result", "탈퇴성공");
+
+				String path = request.getSession().getServletContext().getRealPath("resources/img");
+				String Bo_picture = b.getBo_picture();
+				Bo_picture = URLDecoder.decode(Bo_picture, "utf-8");
+				new File(path + "/" + Bo_picture).delete();
+
+				logout(request);
+
+			} else {
+				request.setAttribute("result", "탈퇴실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("result", "탈퇴실패");
+		}
+	}
+
 	// 구매목록
 	public void userbuylist(Buy b, HttpServletRequest request) {
 		List<Buy> userbuylist = ss.getMapper(BuylistMapper.class).userbuylist(b);
@@ -322,15 +421,37 @@ public class MemberDAO {
 	}
 
 	// 구매목록 삭제
-	public void buydel(Buy b, HttpServletRequest request) {
-		if (ss.getMapper(BuylistMapper.class).userbuydel(b) == 1) {
-			request.setAttribute("result", "구매취소성공");
-		} else {
-			request.setAttribute("result", "구매취소실패");
+	public void buyproductdel(Buy b, HttpServletRequest request) {
+		try {
+			int buyproductdel = ss.getMapper(BuylistMapper.class).buyproductdel(b);
+
+			if (buyproductdel == 1) {
+				request.setAttribute("result", "삭제성공");
+			} else {
+				request.setAttribute("result", "삭제실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("result", "삭제실패");
 		}
 	}
 
-	// 사용자 커뮤니티
+	// 구매목록 삭제
+	public void buymealdel(Buy b, HttpServletRequest request) {
+		try {
+			int buymealdel = ss.getMapper(BuylistMapper.class).buymealdel(b);
+
+			if (buymealdel == 1) {
+				request.setAttribute("result", "삭제성공");
+			} else {
+				request.setAttribute("result", "삭제실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("result", "삭제실패");
+		}
+	}
+
 	// 내글
 	public void communities(Communities c, HttpServletRequest request) {
 
@@ -354,11 +475,17 @@ public class MemberDAO {
 
 	// 캠핑찜 삭제
 	public void campingjjimdel(Communities c, HttpServletRequest request) {
+		try {
+			int jjimdel = ss.getMapper(CommunitiesMapper.class).campingjjimdel(c);
 
-		if (ss.getMapper(CommunitiesMapper.class).campingjjimdel(c) == 1) {
-			request.setAttribute("result", "찜삭제성공");
-		} else {
-			request.setAttribute("result", "짬삭제실패");
+			if (jjimdel == 1) {
+				request.setAttribute("result", "삭제성공");
+			} else {
+				request.setAttribute("result", "삭제실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("result", "삭제실패");
 		}
 	}
 
@@ -366,6 +493,22 @@ public class MemberDAO {
 	public void campingreserve(Communities c, HttpServletRequest request) {
 		List<Communities> campingreserve = ss.getMapper(CommunitiesMapper.class).campingreserve(c);
 		request.setAttribute("campingreserve", campingreserve);
+	}
+
+	// 캠핑예약 삭제
+	public void campingreservedel(Communities c, HttpServletRequest request) {
+		try {
+			int reservedel = ss.getMapper(CommunitiesMapper.class).reservedel(c);
+
+			if (reservedel == 1) {
+				request.setAttribute("result", "삭제성공");
+			} else {
+				request.setAttribute("result", "삭제실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("result", "삭제실패");
+		}
 	}
 
 	// 캠핑팁
@@ -616,127 +759,4 @@ public class MemberDAO {
 			request.setAttribute("result", "삭제실패");
 		}
 	}
-
-	// 캠핑예약 삭제
-	public void campingreservedel(Communities c, HttpServletRequest request) {
-		if (ss.getMapper(CommunitiesMapper.class).campingreservedel(c) == 1) {
-			request.setAttribute("result", "예약삭제성공");
-		} else {
-			request.setAttribute("result", "예약삭제실패");
-		}
-	}
-
-	// BOSS
-
-	// 사장 db에 저장된 주소
-	public void splitBossAddr(HttpServletRequest request) {
-		BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
-		String bo_addr = b.getBo_address();
-		String[] bo_addr2 = bo_addr.split("!");
-		request.setAttribute("boaddr", bo_addr2);
-	}
-
-	// 사장 정보 업데이트
-	public void bossUpdate(BossMember boss, HttpServletRequest request) {
-		String path = request.getSession().getServletContext().getRealPath("resources/img");
-		MultipartRequest mr = null;
-		BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
-		String oldFile = b.getBo_picture();
-		String newFile = null;
-		try {
-			mr = new MultipartRequest(request, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-			newFile = mr.getFilesystemName("bo_picture");
-			if (newFile == null) {
-				newFile = oldFile;
-			} else {
-				newFile = URLEncoder.encode(newFile, "utf-8");
-				newFile = newFile.replace("+", " ");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("result", "수정실패");
-			return;
-		}
-		try {
-
-			String bo_id = mr.getParameter("id");
-			String bo_pw = mr.getParameter("pw");
-			String email = mr.getParameter("email");
-			String email_address = mr.getParameter("email_address");
-			String bo_email = email + "@" + email_address;
-			String bo_addr1 = mr.getParameter("addr1");
-			String bo_addr2 = mr.getParameter("addr2");
-			String bo_addr3 = mr.getParameter("addr3");
-			String bo_address = bo_addr1 + "!" + bo_addr2 + "!" + bo_addr3;
-			String phone1 = mr.getParameter("phonenumber1");
-			String phone2 = mr.getParameter("phonenumber2");
-			String phone3 = mr.getParameter("phonenumber3");
-			String bo_phonenumber = phone1 + phone2 + phone3;
-			String bo_picture = mr.getFilesystemName("picture");
-			bo_picture = URLEncoder.encode(bo_picture, "utf-8");
-			bo_picture = bo_picture.replace("+", " ");
-			b.setBo_id(bo_id);
-			b.setBo_pw(bo_pw);
-			b.setBo_email(bo_email);
-			b.setBo_address(bo_address);
-			b.setBo_phonenumber(bo_phonenumber);
-			b.setBo_picture(bo_picture);
-			if (ss.getMapper(MemberMapper.class).bossUpdate(b) == 1) {
-				request.setAttribute("result", "수정성공");
-				request.getSession().setAttribute("loginMember", b);
-				if (!oldFile.equals(newFile)) {
-					oldFile = URLDecoder.decode(oldFile, "utf-8");
-					new File(path + "/" + oldFile).delete();
-				}
-			} else {
-				request.setAttribute("result", "수정실패");
-				if (!oldFile.equals(newFile)) {
-					newFile = URLDecoder.decode(newFile, "utf-8");
-					new File(path + "/" + newFile).delete();
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("result", "수정실패");
-			if (!oldFile.equals(newFile)) {
-				try {
-					newFile = URLDecoder.decode(newFile, "utf-8");
-				} catch (UnsupportedEncodingException e1) {
-				}
-				new File(path + "/" + newFile).delete();
-			}
-		}
-	}
-
-	// Boss 탈퇴
-	public void bossBye(HttpServletRequest request) {
-		try {
-			BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
-
-			if (ss.getMapper(MemberMapper.class).bossBye(b) == 1) {
-				request.setAttribute("result", "탈퇴성공");
-
-				String path = request.getSession().getServletContext().getRealPath("resources/img");
-				String Bo_picture = b.getBo_picture();
-				Bo_picture = URLDecoder.decode(Bo_picture, "utf-8");
-				new File(path + "/" + Bo_picture).delete();
-
-				logout(request);
-				loginCheck(request);
-			} else {
-				request.setAttribute("result", "탈퇴실패");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("result", "탈퇴실패");
-		}
-	}
-
-	// 캠핑장을 이용한 이용객들의 캠핑리뷰
-	public void bosscampingreview(Communities_boss cb, HttpServletRequest request) {
-		List<Communities_boss> bosscampingreview = ss.getMapper(BossCommunitiesMapper.class).bosscampingreview(cb);
-		request.setAttribute("bosscampingreview", bosscampingreview);
-
-	}
-
 }

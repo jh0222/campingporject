@@ -10,7 +10,6 @@
 </head>
 <body>
 <jsp:include page="${myPage }"></jsp:include>
-
 	<table border="1">
 		<tr>
 			<td>번호</td>
@@ -25,7 +24,7 @@
 		</tr>
 	<c:forEach var="cr" items="${campingreserve}">
 		<tr>
-			<td>${cr.r_no}</td>
+			<td id="cr${cr.r_no }">${cr.r_no}</td>
 			<td>${cr.r_u_name}</td>
 			<td>${cr.r_u_phonenumber}</td>
 			<td>${cr.r_cam_name}</td>
@@ -34,7 +33,7 @@
 			<td><fmt:formatDate value="${cr.r_campingstartdate}"/> ~ <fmt:formatDate value="${cr.r_campingenddate}"/></td>
 			<td>${cr.r_campingheadcount}</td>
 			<td>${cr.r_campingprice}</td>
-			<td><input type="button" value="예약취소" onclick="reservedel(${cr.r_no})"></td>
+			<td><button onclick="reservedel('${cr.r_no}','${cr.r_u_id }')">예약취소</button></td>
 		</tr>
 	</c:forEach>
 	</table>

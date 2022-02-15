@@ -8,6 +8,8 @@ public interface BuylistMapper {
 
 	List<Buy> mealbuylist(Buy b);
 
-	public int userbuydel(Buy b);
+	int buyproductdel(Buy b);
+
+	int buymealdel(Buy b);
 	
 }

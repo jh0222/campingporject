@@ -8,10 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-${result}
 <jsp:include page="${myPage }"></jsp:include>
 <jsp:include page="${community }"></jsp:include>
-<form action="campingjjimdel" >
 	<table border="1">
 		<tr>
 			<td>번호</td>
@@ -21,14 +19,12 @@ ${result}
 		</tr>
 	<c:forEach var="cj" items="${campingjjim}">
 		<tr>
-			<td>${cj.h_no}</td>
+			<td id="cj${cj.h_no}">${cj.h_no}</td>
 			<td>${cj.h_cam_name}</td>
 			<td>${cj.h_cam_address }</td>
-			<td><button value="${cj.h_campingheart }" onclick="${cj.h_no }">찜해제</button></td>
+			<td><button value="${cj.h_campingheart }" onclick="jjimdel('${cj.h_no }','${cj.h_u_id }')">찜해제</button></td>
 		</tr>
 	</c:forEach>
 	</table>
-
-</form>
 </body>
 </html>

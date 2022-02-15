@@ -216,26 +216,3 @@ function bossBye(){
 		location.href = "boss.bye";
 	}
 }
-
-//취소/환불
-function buydel(no){
-	let ok = confirm("정말 취소/환불하시겠습니까?");
-	if (ok) {
-		location.href = "buy.del?b_no=" + no;
-	}
-}
-
-//캠핑예약 취소
-function reservedel(no){
-	let ok = confirm("예약을 취소하시겠습니까?");
-	if (ok) {
-		location.href = "campingreserve.del?r_no=" + no;
-	}
-}
-
-// 캠핑찜 취소
-function campingjjimdel(no){
-	if (ok) {
-		location.href = "campingjjim.del?h_no=" + no;
-	}
-}

@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="${myPage }"></jsp:include>
+<jsp:include page="${BossCommunities }"></jsp:include>
 캠핑 용품 구매목록
-<c:forEach var="buy" items="${userbuylist }">
+<c:forEach var="p" items="${pbuylist }">
 	<table border="1">
 		<tr>
 			<td>상품번호</td>
@@ -23,26 +23,26 @@
 			<td colspan="2" align="center">취소/환불</td>
 		</tr>
 		<tr>
-			<td>${buy.b_p_no }</td>
-			<td>${buy.b_p_name }</td>
-			<td>${buy.b_number }</td>
-			<td>${buy.b_number * buy.b_price}</td>		
+			<td>${p.b_p_no }</td>
+			<td>${p.b_p_name }</td>
+			<td>${p.b_number }</td>
+			<td>${p.b_number * p.b_price}</td>		
 			<c:choose>
-				<c:when test="${buy.b_new_address !=null}">
-					<td>${buy.b_new_address}</td>
+				<c:when test="${p.b_new_address !=null}">
+					<td>${p.b_new_address}</td>
 				</c:when>
 				<c:otherwise>
-					<td>${buy.b_u_address}</td>
+					<td>${p.b_u_address}</td>
 				</c:otherwise>
 			</c:choose>
-			<td><fmt:formatDate value="${buy.b_date }"/></td>
-			<td><button onclick="buyproductdel('${buy.b_no}','${buy.b_u_bo_id}')">취소/환불</button></td>
+			<td><fmt:formatDate value="${p.b_date }"/></td>
+			<td><button onclick="buyproductdel('${p.b_no}','${p.b_u_bo_id}')">취소/환불</button></td>
 		</tr>
 	</table>
 </c:forEach>
 <br>
 밀키트 구매목록
-<c:forEach var="buy" items="${mealbuylist }">
+<c:forEach var="p" items="${mbuylist }">
 	<table border="1">
 		<tr>
 			<td>상품번호</td>
@@ -54,20 +54,20 @@
 			
 		</tr>
 		<tr>
-			<td>${buy.fb_p_no }</td>
-			<td>${buy.fb_p_name }</td>
-			<td>${buy.fb_number }</td>
-			<td>${buy.fb_number * buy.fb_price}</td>
+			<td>${p.fb_p_no }</td>
+			<td>${p.fb_p_name }</td>
+			<td>${p.fb_number }</td>
+			<td>${p.fb_number * p.fb_price}</td>
 			<c:choose>
-				<c:when test="${buy.fb_new_address !=null}">
-					<td>${buy.fb_new_address}</td>
+				<c:when test="${p.fb_new_address !=null}">
+					<td>${p.fb_new_address}</td>
 				</c:when>
 				<c:otherwise>
-					<td>${buy.fb_u_address}</td>
+					<td>${p.fb_u_address}</td>
 				</c:otherwise>
 			</c:choose>
-			<td><fmt:formatDate value="${buy.fb_date }"/></td>
-			<td><button onclick="buymealdel('${buy.fb_no}','${buy.fb_u_bo_id }')">취소/환불</button></td>
+			<td><fmt:formatDate value="${p.fb_date }"/></td>
+			<td><button onclick="buymealdel('${p.fb_no}','${p.fb_u_bo_id }')">취소/환불</button></td>
 		</tr>
 	</table>
 </c:forEach>
