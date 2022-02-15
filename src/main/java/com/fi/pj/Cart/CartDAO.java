@@ -8,12 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import com.fi.pj.member.BossMember;
 import com.fi.pj.member.UserMember;
-=======
 import com.fi.pj.user_mypage.MypageMapper;
->>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 
 @Service
 public class CartDAO {
@@ -21,7 +18,6 @@ public class CartDAO {
 	@Autowired /*sql세션 땡겨오기*/
 	private SqlSession ss;
 
-<<<<<<< HEAD
 	// 사용자 캠핑도구 장바구니 전체 조회
 	public void Ccartlist(HttpServletRequest request) {
 		CartMapper mm = ss.getMapper(CartMapper.class);
@@ -67,8 +63,6 @@ public class CartDAO {
 	
 	}
 
-
-=======
 	public void getcampingCart(HttpServletRequest request) {
 		// 캠핑도구 장바구니 전체 조회
 		CartMapper mm = ss.getMapper(CartMapper.class);
@@ -82,5 +76,5 @@ public class CartDAO {
 		List<CartBean> Carts = mm.showAllmealkitcart(); // select문
 		request.setAttribute("Carts", Carts);
 	}
->>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
+
 }

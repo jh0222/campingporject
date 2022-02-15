@@ -29,18 +29,10 @@ public class MemberDAO {
 		UserMember dbMember = ss.getMapper(MemberMapper.class).getMemberByUID(l);
 		System.out.println(dbMember);
 		BossMember dbMember2 = ss.getMapper(MemberMapper.class).getMemberByBOID(l);
-<<<<<<< HEAD
 		System.out.println(dbMember2);
 		Root dbMember3 = ss.getMapper(MemberMapper.class).getMemberByR(l);
-<<<<<<< HEAD
-
-=======
 		System.out.println(dbMember3);
-=======
-		Root dbMember3 = ss.getMapper(MemberMapper.class).getMemberByR(l);
->>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
-		
->>>>>>> 782c38e9a315f6ce9cabea02628197158d8225e1
+
 		if (dbMember != null) {
 			if (l.pw.equals(dbMember.getU_pw())) {
 				req.getSession().setAttribute("loginMember", dbMember);
@@ -140,7 +132,6 @@ public class MemberDAO {
 			String u_picture = mr.getFilesystemName("picture");
 			u_picture = URLEncoder.encode(u_picture, "utf-8");
 			u_picture = u_picture.replace("+", " ");
-			
 
 			m.setU_name(u_name);
 			m.setU_id(u_id);
@@ -177,7 +168,6 @@ public class MemberDAO {
 			return;
 		}
 
-<<<<<<< HEAD
 		try {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 
@@ -772,16 +762,14 @@ public class MemberDAO {
 			request.setAttribute("result", "삭제실패");
 		}
 	}
-}
-=======
-		public void idsearch(Login l, HttpServletRequest req) {
-			System.out.println("dd"+l.getName());
-			if(ss.getMapper(MemberMapper.class).idsearch(l) != null) {
-				req.setAttribute("id", ss.getMapper(MemberMapper.class).idsearch(l));				
-			} else if(ss.getMapper(MemberMapper.class).bo_idsearch(l) != null) {
-				req.setAttribute("id", ss.getMapper(MemberMapper.class).bo_idsearch(l));
-			}
+
+	public void idsearch(Login l, HttpServletRequest req) {
+		System.out.println("dd" + l.getName());
+		if (ss.getMapper(MemberMapper.class).idsearch(l) != null) {
+			req.setAttribute("id", ss.getMapper(MemberMapper.class).idsearch(l));
+		} else if (ss.getMapper(MemberMapper.class).bo_idsearch(l) != null) {
+			req.setAttribute("id", ss.getMapper(MemberMapper.class).bo_idsearch(l));
 		}
+	}
 
 }
->>>>>>> 782c38e9a315f6ce9cabea02628197158d8225e1
