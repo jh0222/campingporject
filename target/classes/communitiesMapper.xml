@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fi.pj.member.CommunitiesMapper">
+	
+<select id="communities" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from free_board_table where f_u_id = #{f_u_id}
+</select>
+
+<select id="freeboard" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from free_board_table where f_u_id = #{f_u_id}
+</select>
+
+<select id="campingjjim" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from campingheart_table where h_u_id = #{h_u_id}
+</select>
+
+<select id="campingreserve" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from reservation_table where r_u_id = #{r_u_id}
+</select>
+
+<select id="campingtip" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from campingtip_board_table where tip_u_id = #{tip_u_id}
+</select>
+
+<select id="recipe" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from recipe_board_table where rb_u_id = #{rb_u_id}
+</select>
+
+<select id="campingreview" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from campingreview_table where c_u_id = #{c_u_id}
+</select>
+
+<select id="productreview" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from product_review_table where pr_u_bo_id = #{pr_u_bo_id}
+</select>
+
+<select id="mealreview" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from foodproduct_review_table where fpr_u_bo_id = #{fpr_u_bo_id}
+</select>
+
+<select id="freeboardreview" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from free_board_reply_table where fr_u_id = #{fr_u_id}
+</select>
+
+<select id="campingtipreview" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from campingtip_board_reply_table where tipr_u_id = #{tipr_u_id}
+</select>
+
+<select id="recipereview" resultType="com.fi.pj.member.Communities" parameterType="com.fi.pj.member.Communities">
+	select * from recipe_board_reply_table where rr_u_id = #{rr_u_id}
+</select>
+
+<delete id="campingjjimdel" parameterType="com.fi.pj.member.Communities">
+	delete from campingheart_table where h_no = #{h_no}
+</delete>
+
+<delete id="reservedel" parameterType="com.fi.pj.member.Communities">
+	delete from reservation_table where r_no = #{r_no}
+</delete>
+
+</mapper>

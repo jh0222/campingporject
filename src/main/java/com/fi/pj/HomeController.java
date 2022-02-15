@@ -11,22 +11,22 @@ import com.fi.pj.member.MemberDAO;
 
 @Controller
 public class HomeController {
-	@Autowired
-	private MemberDAO mDAO;
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	
-	public String home(HttpServletRequest req) {
-		mDAO.loginCheck(req);
-		req.setAttribute("contentPage", "home.jsp");
-		return "main";
-	}
-	
-	@RequestMapping(value = "home", method = RequestMethod.GET)
-	public String homego(HttpServletRequest req) {
-		mDAO.loginCheck(req);
-		req.setAttribute("contentPage", "home.jsp");
-		return "main";
-	}
-	
+    @Autowired
+    private MemberDAO mDAO;
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+
+    public String home(HttpServletRequest req) {
+        mDAO.loginCheck(req);
+        req.setAttribute("contentPage", "home.jsp");
+        return "main";
+    }
+
+    @RequestMapping(value = "home", method = RequestMethod.GET)
+    public String homego(HttpServletRequest req) {
+        mDAO.loginCheck(req);
+        req.setAttribute("contentPage", "home.jsp");
+        return "main";
+    }
+
 }
