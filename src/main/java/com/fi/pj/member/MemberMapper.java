@@ -19,6 +19,7 @@ public interface MemberMapper {
 	public int Bossjoin(BossMember m);
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//회원탈퇴
 	public int userBye(UserMember m);
 	public int bossBye(BossMember b);
@@ -35,6 +36,8 @@ public interface MemberMapper {
 	public String bo_idsearch(Login l);
 	
 	
+=======
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 
 >>>>>>> 782c38e9a315f6ce9cabea02628197158d8225e1
 }

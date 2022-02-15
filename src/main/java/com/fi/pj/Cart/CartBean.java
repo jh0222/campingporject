@@ -1,6 +1,7 @@
 package com.fi.pj.Cart;
 
 public class CartBean {
+<<<<<<< HEAD
 	
 	private String ba_u_bo_id;
 	private int ba_no;
@@ -10,10 +11,21 @@ public class CartBean {
 	private int ba_price;
 	private int ba_number;
 	
+=======
+	private String u_id;
+	private String bo_id;
+	private int ba_no;
+	private int ba_p_no;
+	private String ba_u_bo_id;
+	private String p_name;
+	private int ba_price;
+	private int ba_number;
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 	private int fba_no;
 	private int fba_fp_no;
 	private String fba_u_bo_id;
 	private String fba_fp_name;
+<<<<<<< HEAD
 	private String fba_fp_picture;
 	private int fba_price;
 	private int fba_number;
@@ -31,23 +43,58 @@ public class CartBean {
 		this.ba_p_no = ba_p_no;
 		this.ba_p_name = ba_p_name;
 		this.ba_p_picture = ba_p_picture;
+=======
+	private int fba_price;
+	private int fba_number;
+	
+	public CartBean(String u_id, String bo_id, int ba_no, int ba_p_no, String ba_u_bo_id, String p_name, int ba_price,
+			int ba_number, int fba_no, int fba_fp_no, String fba_u_bo_id, String fba_fp_name, int fba_price,
+			int fba_number) {
+		super();
+		this.u_id = u_id;
+		this.bo_id = bo_id;
+		this.ba_no = ba_no;
+		this.ba_p_no = ba_p_no;
+		this.ba_u_bo_id = ba_u_bo_id;
+		this.p_name = p_name;
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 		this.ba_price = ba_price;
 		this.ba_number = ba_number;
 		this.fba_no = fba_no;
 		this.fba_fp_no = fba_fp_no;
 		this.fba_u_bo_id = fba_u_bo_id;
 		this.fba_fp_name = fba_fp_name;
+<<<<<<< HEAD
 		this.fba_fp_picture = fba_fp_picture;
+=======
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 		this.fba_price = fba_price;
 		this.fba_number = fba_number;
 	}
 
+<<<<<<< HEAD
 	public String getBa_u_bo_id() {
 		return ba_u_bo_id;
 	}
 
 	public void setBa_u_bo_id(String ba_u_bo_id) {
 		this.ba_u_bo_id = ba_u_bo_id;
+=======
+	public String getU_id() {
+		return u_id;
+	}
+
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
+	}
+
+	public String getBo_id() {
+		return bo_id;
+	}
+
+	public void setBo_id(String bo_id) {
+		this.bo_id = bo_id;
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 	}
 
 	public int getBa_no() {
@@ -66,6 +113,7 @@ public class CartBean {
 		this.ba_p_no = ba_p_no;
 	}
 
+<<<<<<< HEAD
 	public String getBa_p_name() {
 		return ba_p_name;
 	}
@@ -80,6 +128,22 @@ public class CartBean {
 
 	public void setBa_p_picture(String ba_p_picture) {
 		this.ba_p_picture = ba_p_picture;
+=======
+	public String getBa_u_bo_id() {
+		return ba_u_bo_id;
+	}
+
+	public void setBa_u_bo_id(String ba_u_bo_id) {
+		this.ba_u_bo_id = ba_u_bo_id;
+	}
+
+	public String getP_name() {
+		return p_name;
+	}
+
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 	}
 
 	public int getBa_price() {
@@ -130,6 +194,7 @@ public class CartBean {
 		this.fba_fp_name = fba_fp_name;
 	}
 
+<<<<<<< HEAD
 	public String getFba_fp_picture() {
 		return fba_fp_picture;
 	}
@@ -138,6 +203,8 @@ public class CartBean {
 		this.fba_fp_picture = fba_fp_picture;
 	}
 
+=======
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 	public int getFba_price() {
 		return fba_price;
 	}
@@ -153,6 +220,11 @@ public class CartBean {
 	public void setFba_number(int fba_number) {
 		this.fba_number = fba_number;
 	}
+<<<<<<< HEAD
 
+=======
+	
+	
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 	
 }

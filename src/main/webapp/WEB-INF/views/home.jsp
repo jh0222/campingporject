@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 <main id="fullpage">
 		<section class="section">
 				<div class="slide">
@@ -33,6 +34,8 @@
 		</footer>
 </main>
 
+=======
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 <table border="1">
 	<tr><td>지현</td></tr>
 	<tr>

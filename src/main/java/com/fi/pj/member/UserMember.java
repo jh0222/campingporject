@@ -113,4 +113,8 @@ public class UserMember {
 		this.u_picture = u_picture;
 		this.u_discount = u_discount;
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 }

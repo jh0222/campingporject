@@ -1,48 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fi.pj.Cart.CartMapper">
-
-	<select id="Ccartlist" parameterType="String" resultType="com.fi.pj.Cart.CartBean">
-		select ba_p_no, ba_p_name, ba_p_picture, ba_price, ba_number 
-		from guest_product_basket_table 
-		where ba_u_bo_id =  #{v}
-		order by ba_p_no desc
-		<!-- 캠핑용품 번호, 이름, 사진, 가격, 수량 목록을 가져온다. -->
+	<select id="showAllcampingcart">
+		select ba_p_name, ba_price, ba_number
+		from guest_product_basket_table
+		where u_id = ba_u_bo_id
+		<!-- 캠핑용품 이름, 가격, 수량을 가져온다. -->
 	</select>
 	
-	<select id="Mcartlist" parameterType="java.lang.String" resultType="com.fi.pj.Cart.CartBean">
-		select fba_fp_no, fba_fp_name, fba_fp_picture, fba_price, fba_number
+	<select id="showAllmealkitcart">
+		select fba_fp_name, fba_price, fba_number
 		from guest_foodproduct_basket_table
-		where fba_u_bo_id = #{vv}
-		order by fba_fp_no desc
-		<!-- 밀키트 번호, 이름, 사진, 가격, 수량 목록을 가져온다. -->
-	</select> 
-	
-	<select id="BCcartlist" parameterType="String" resultType="com.fi.pj.Cart.CartBean">
-		select ba_p_no, ba_p_name, ba_p_picture, ba_price, ba_number 
-		from guest_product_basket_table 
-		where ba_u_bo_id =  #{bo1}
-		order by ba_p_no desc
-		<!-- 캠핑용품 번호, 이름, 사진, 가격, 수량 목록을 가져온다. -->
+		where u_id = ba_u_bo_id
+		<!-- 밀키트 이름, 가격, 수량을 가져온다. -->
 	</select>
-	
-	<select id="BMcartlist" parameterType="java.lang.String" resultType="com.fi.pj.Cart.CartBean">
-		select fba_fp_no, fba_fp_name, fba_fp_picture, fba_price, fba_number
-		from guest_foodproduct_basket_table
-		where fba_u_bo_id = #{bo2}
-		order by fba_fp_no desc
-		<!-- 밀키트 번호, 이름, 사진, 가격, 수량 목록을 가져온다. -->
-	</select>
-
-	<delete id="delCcartlist" parameterType="com.fi.pj.Cart.CartBean">
-		delete from guest_product_basket_table
-		where ba_no = #{ba_no}
-	</delete>
-	<!-- 캠핑용품 번호와 아이디가 일치하는 캠핑용품 삭제 -->
-	
-	<delete id="delMcartlist" parameterType="com.fi.pj.Cart.CartBean">
-		delete from guest_foodproduct_basket_table
-		where fba_no = #{fba_no}
-	</delete>
-	<!-- 캠핑용품 번호와 아이디가 일치하는 캠핑용품 삭제 -->
 </mapper>

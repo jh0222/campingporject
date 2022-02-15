@@ -43,9 +43,15 @@
 		<beans:property name="typeAliasesPackage" value="com.fi.pj" />
 		<beans:property name="mapperLocations">
 			<beans:list>
+<<<<<<< HEAD
 
 				<beans:value>classpath:shoppingMapper.xml</beans:value>
 
+=======
+				<beans:value>classpath:MypageMapper.xml</beans:value>
+				<beans:value>classpath:CartMapper.xml</beans:value>
+				<beans:value>classpath:PlacePayMapper.xml</beans:value>
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 				<beans:value>classpath:memberMapper.xml</beans:value>
 <<<<<<< HEAD
 				<beans:value>classpath:cartMapper.xml</beans:value>

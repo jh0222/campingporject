@@ -13,6 +13,7 @@ insert into root_table values('root','1234','관리자','sky.jpg');
 select * from root_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 1. 사용자 디비
+drop table user_table;
 create table user_table(
 	u_no number(5) primary key,
 	u_name varchar2(20 char) not null,
@@ -33,6 +34,8 @@ delete user_table where u_no = 81;
 select * from USER_TABLE;
 -------------------------------------------------------------------------------------------------------------------------------------
 2. 사장 테이블
+drop table boss_table;
+
 create table boss_table(
 	bo_no number(5) primary key,
 	bo_name varchar2(20 char) not null,
@@ -203,12 +206,19 @@ select * from foodproduct_registration_table;
 /*
  * 하나만 선택되도록 radio box
  * 새로운 배송지가 null값이면 기존배송지 아니면 새로운 배송지가 뜨도록 만들기
+<<<<<<< HEAD
 */
 drop table guest_product_buy_table;
 <<<<<<< HEAD
 
 create table guest_product_buy_table(
 	
+=======
+ */
+drop table guest_product_buy_table;
+
+create table guest_product_buy_table(		
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 	b_no number(5) primary key, /*(주문번호)*/
 	b_u_bo_id varchar2(20 char) not null,
 	b_p_no number(5) not null,
@@ -287,6 +297,7 @@ drop table guest_product_basket_table;
 
 create table guest_product_basket_table(
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ba_no number(5) primary key,
 	ba_p_no	number(5) not null,
 	ba_u_bo_id varchar2(20 char) not null,
@@ -303,6 +314,14 @@ create table guest_product_basket_table(
 	ba_price number(10) not null, /*(수량*p_price) = 가격*/  
 	ba_number number(10) not null/*수량*/                 
 >>>>>>> 782c38e9a315f6ce9cabea02628197158d8225e1
+=======
+	ba_no number(5) primary key, /*캠핑용품 장바구니 번호*/
+	ba_p_no	number(5) not null,  /* 캠핑용품 등록 번호*/
+	ba_u_bo_id varchar2(20 char) not null, /* 사용자와 사장 id*/
+	ba_p_name varchar2(20 char) not null, /*캠핑용품 이름*/
+	ba_price number(5) not null, /*(수량*p_price)*/
+	ba_number number(5) not null /* 갯수 */
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 );
 
 drop table guest_product_basket_table;
@@ -324,6 +343,7 @@ select * from guest_product_basket_table;
 drop table guest_foodproduct_basket_table;
 
 create table guest_foodproduct_basket_table(
+<<<<<<< HEAD
 	fba_no number(5) primary key,
 	fba_fp_no	number(5) not null,
 	fba_u_bo_id varchar2(20 char) not null,
@@ -331,6 +351,14 @@ create table guest_foodproduct_basket_table(
 	fba_fp_picture varchar2(20 char) not null,
 	fba_price number(10) not null, /*(수량*p_price)*/
 	fba_number number(10) not null
+=======
+	fba_no number(5) primary key, /*밀키트 장바구니 번호*/
+	fba_fp_no number(5) not null, /*밀키트 등록 번호*/
+	fba_u_bo_id varchar2(20 char) not null, /*사용자와 사장 id*/
+	fba_fp_name varchar2(20 char) not null,/*밀키트 이름*/
+	fba_price number(5) not null, /*(수량*p_price)*/
+	fba_number number(5) not null /*갯수*/
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 );
 
 drop table guest_foodproduct_basket_table;

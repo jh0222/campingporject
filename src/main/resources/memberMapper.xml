@@ -12,7 +12,11 @@
 	<select id="getMemberByR" parameterType="com.fi.pj.member.Login" resultType="com.fi.pj.member.Root">
 		select * from root_table where root_id = #{id}
 	</select>
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 	<select id="getMemberNum" parameterType="com.fi.pj.member.UserMember" resultType="java.lang.Integer">
 		select count(*) from user_table where u_id = #{u_id}
 	</select>

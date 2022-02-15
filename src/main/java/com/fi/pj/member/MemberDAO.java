@@ -29,12 +29,16 @@ public class MemberDAO {
 		UserMember dbMember = ss.getMapper(MemberMapper.class).getMemberByUID(l);
 		System.out.println(dbMember);
 		BossMember dbMember2 = ss.getMapper(MemberMapper.class).getMemberByBOID(l);
+<<<<<<< HEAD
 		System.out.println(dbMember2);
 		Root dbMember3 = ss.getMapper(MemberMapper.class).getMemberByR(l);
 <<<<<<< HEAD
 
 =======
 		System.out.println(dbMember3);
+=======
+		Root dbMember3 = ss.getMapper(MemberMapper.class).getMemberByR(l);
+>>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 		
 >>>>>>> 782c38e9a315f6ce9cabea02628197158d8225e1
 		if (dbMember != null) {
