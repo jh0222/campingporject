@@ -45,7 +45,6 @@
 			<beans:list>
 
 				<beans:value>classpath:shoppingMapper.xml</beans:value>
-				<beans:value>classpath:PlacePayMapper.xml</beans:value>
 				<beans:value>classpath:memberMapper.xml</beans:value>
 				<beans:value>classpath:cartMapper.xml</beans:value>
 				<beans:value>classpath:buylistMapper.xml</beans:value>
