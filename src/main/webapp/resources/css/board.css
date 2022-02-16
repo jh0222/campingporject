@@ -63,3 +63,7 @@ table.table td {
   font-size: 20px;
   margin-left: 20px;
 }
+table.table_recipe{
+  display: inline-block;
+  align-items: center;
+}

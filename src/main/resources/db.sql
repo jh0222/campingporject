@@ -420,6 +420,7 @@ create table recipe_board_table(
 	rb_u_id varchar2(20 char) not null,
 	rb_subject varchar2(20 char)	not null,
 	rb_txt clob not null,
+	rb_picture varchar2(200 char) not null,
 	rb_readcount	number(5) not null,
 	rb_date date	not null
 );
@@ -455,8 +456,13 @@ insert into recipe_board_reply_table values(recipe_board_reply_seq.nextval,1,'ki
 select * from recipe_board_reply_table;
 
 
+select count(*)	from recipe_board_reply_table where rr_owner_no=81
 
-
+select ROWNUM, A.*
+from (select *
+	  from free_board_table
+	  ORDER BY f_readcount DESC) A
+where ROWNUM <= 5;
 
 
 

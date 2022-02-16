@@ -20,6 +20,7 @@ public class BoardController {
 	@RequestMapping(value = "board.go", method = RequestMethod.GET)
 	public String boardGo(HttpServletRequest req) {
 		mDAO.loginCheck(req);
+		bDAO.Allpopular(req);
 		req.setAttribute("contentPage", "board/boardmain.jsp");
 		return "main";
 	}
@@ -277,7 +278,8 @@ public class BoardController {
 	@RequestMapping(value = "recipe.go", method = RequestMethod.GET)
 	public String RecipeGo(HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		req.setAttribute("contentPage", "board/recipe.jsp");
+		bDAO.getAllRecipe(req);
+		req.setAttribute("contentPage", "board/board_recipe.jsp");
 		return "main";
 	}		
 		
@@ -285,111 +287,115 @@ public class BoardController {
 	@RequestMapping(value = "rwrite.go", method = RequestMethod.GET)
 	public String RecipewriteGo(HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		req.setAttribute("contentPage", "board/recipewrite.jsp");
+		req.setAttribute("title", "캠핑팁게시판");
+		req.setAttribute("sort", "r");
+		req.setAttribute("sort2", "rb");
+		req.setAttribute("r", "r");
+		req.setAttribute("contentPage", "board/boardwrite.jsp");
 		return "main";
 	}
 	
 
-	//자유게시판 등록
+	//레시피 등록
 	@RequestMapping(value = "rwrite.insert", method = RequestMethod.POST)
-	public String RecipewriteInsert(Freeboard fb, HttpServletRequest req) {		
-		bDAO.fbinsert(fb,req);
+	public String RecipewriteInsert(Recipe r, HttpServletRequest req) {		
+		bDAO.rinsert(r,req);
 		mDAO.loginCheck(req);
-		bDAO.getAllfreeboard(req);
-		req.setAttribute("contentPage", "board/freeboard.jsp");
+		bDAO.getAllRecipe(req);
+		req.setAttribute("contentPage", "board/board_recipe.jsp");
 		return "main";
 	}
 	
-	//자유게시판 검색
+	//레시피 검색
 	@RequestMapping(value = "r.search", method = RequestMethod.GET)
 	public String RecipeSearch(Search s, HttpServletRequest req) {		
 		mDAO.loginCheck(req);
-		bDAO.getfreeboard(s, req);		
-		req.setAttribute("contentPage", "board/freeboard.jsp");
+		bDAO.getrecipeboard(s, req);	
+		req.setAttribute("contentPage", "board/board_recipe.jsp");
 		return "main"; 
 	}
 	
-	//자유게시판 수정
+	//레시피 수정
 	@RequestMapping(value = "rwrite.updatego", method = RequestMethod.GET)
-	public String RecipewriteUdateGo(Freeboard fb, HttpServletRequest req) {		
+	public String RecipewriteUdateGo(Recipe r, HttpServletRequest req) {		
 		mDAO.loginCheck(req);
-		bDAO.getonefreeboard(fb, req);
-		req.setAttribute("contentPage", "board/freeboard_update.jsp");
+		bDAO.getoneRboard(r, req);
+		req.setAttribute("contentPage", "board/recipe_update.jsp");
 		return "main";
 	}
 	
 	//자유게시판 수정
 	@RequestMapping(value = "rwrite.update", method = RequestMethod.POST)
-	public String RecipewriteUdate(Freeboard fb, HttpServletRequest req) {			
+	public String RecipewriteUdate(Recipe r, HttpServletRequest req) {			
 		mDAO.loginCheck(req);
-		bDAO.fbupdate(fb,req);
-		bDAO.getAllfreeboard(req);
-		req.setAttribute("contentPage", "board/freeboard.jsp");
+		bDAO.Rupdate(r,req);
+		bDAO.getAllRecipe(req);
+		req.setAttribute("contentPage", "board/board_recipe.jsp");
 		return "main";
 	}
 	
 	//자유게시판 댓글수정
 	@RequestMapping(value = "rr.update", method = RequestMethod.GET)
-	public String RecipereplyUdate(Freeboard fb, FbReply fr, HttpServletRequest req) {			
+	public String RecipereplyUdate(Recipe r, RReply rr, HttpServletRequest req) {			
 		mDAO.loginCheck(req);
-		bDAO.frupdate(fr,req);
-		bDAO.getonefreeboard(fb, req);
-		bDAO.getfbreply(fb,req);
-		req.setAttribute("contentPage", "board/freeboard_one.jsp");
+		bDAO.rrupdate(rr,req);
+		bDAO.getoneRboard(r, req);
+		bDAO.getRreply(r,req);
+		req.setAttribute("contentPage", "board/recipe_one.jsp");
 		return "main";
 	}
 	
 	//자유게시판 삭제
 	@RequestMapping(value = "rwrite.delete", method = RequestMethod.GET)
-	public String RecipewriteDelete(Freeboard fb, HttpServletRequest req) {	
-		bDAO.fbdelete(fb,req);
+	public String RecipewriteDelete(Recipe r, HttpServletRequest req) {	
+		bDAO.rdelete(r, req);
 		mDAO.loginCheck(req);
-		bDAO.getAllfreeboard(req);
-		req.setAttribute("contentPage", "board/freeboard.jsp");
+		bDAO.getAllRecipe(req);
+		req.setAttribute("contentPage", "board/board_recipe.jsp");
 		return "main";
 	}
 	
 	//자유게시판 클릭 페이지로(처음)
 	@RequestMapping(value = "rwrite.onego", method = RequestMethod.GET)
-	public String RecipeoneGo(Freeboard fb,HttpServletRequest req) {
+	public String RecipeoneGo(Recipe r,HttpServletRequest req) {
 		//int f_no = Integer.parseInt(req.getParameter("f_no"));
 		mDAO.loginCheck(req);
-		bDAO.updateCount(fb,req);
-		bDAO.getonefreeboard(fb, req);
-		bDAO.getfbreply(fb,req);		
-		req.setAttribute("contentPage", "board/freeboard_one.jsp");
+		bDAO.updateCount(r,req);
+		bDAO.getoneRboard(r, req);
+		bDAO.getRreply(r, req);		
+		req.setAttribute("contentPage", "board/recipe_one.jsp");
 		return "main";
 	}
 	
 	//자유게시판 클릭 페이지로(페이지이동)
 	@RequestMapping(value = "r.onego", method = RequestMethod.GET)
-	public String RecipeoneGo2(Freeboard fb,HttpServletRequest req) {		
+	public String RecipeoneGo2(Recipe r,HttpServletRequest req) {		
 		mDAO.loginCheck(req);
-		bDAO.getonefreeboard(fb, req);
-		bDAO.getfbreply(fb,req);		
-		req.setAttribute("contentPage", "board/freeboard_one.jsp");
+		bDAO.getoneRboard(r, req);
+		bDAO.getRreply(r,req);		
+		req.setAttribute("contentPage", "board/recipe_one.jsp");
 		return "main";
 	}
 	
 	//자유게시판 댓글 등록
 	@RequestMapping(value = "r_replyinsert", method = RequestMethod.GET)
-	public String RecipereplyInsert(Freeboard fb, FbReply fr, HttpServletRequest req) {		
-		bDAO.fbreplyinsert(fr,req);
+	public String RecipereplyInsert(Recipe r, RReply rr, HttpServletRequest req) {		
+		bDAO.rreplyinsert(rr,req);
 		mDAO.loginCheck(req);
-		bDAO.getonefreeboard(fb, req);
-		bDAO.getfbreply(fb,req);
-		req.setAttribute("contentPage", "board/freeboard_one.jsp");
+		bDAO.getoneRboard(r, req);
+		bDAO.getRreply(r,req);
+		req.setAttribute("contentPage", "board/recipe_one.jsp");
 		return "main";
 	}
 	  
 	//자유게시판 댓글 삭제
 	@RequestMapping(value = "rr.delete", method = RequestMethod.GET)
-	public String RecipewriteDelete(Freeboard fb, FbReply fr, HttpServletRequest req) {	
-		bDAO.frdelete(fr,req);
+	public String RecipewriteDelete(Recipe r, RReply rr, HttpServletRequest req) {	
+		bDAO.Rrdelete(rr,req);
 		mDAO.loginCheck(req);
-		bDAO.getonefreeboard(fb, req);
-		bDAO.getfbreply(fb,req);
-		req.setAttribute("contentPage", "board/freeboard_one.jsp");
+		bDAO.getoneRboard(r, req);
+		bDAO.getRreply(r,req);
+		req.setAttribute("contentPage", "board/recipe_one.jsp");
 		return "main";
 	}
 
