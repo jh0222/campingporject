@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fi.pj.member.BossMember;
+import com.fi.pj.member.Root;
 import com.fi.pj.member.UserMember;
 import com.fi.pj.shopping.Product;
 import com.fi.pj.shopping.Reviewinsert;
@@ -118,17 +120,6 @@ public class MilkitDAO {
 		req.setAttribute("milkitreviews",ss.getMapper(MilkitMapper.class).getAllMilkitReview(fprno));
 		
 	}
-	//(구매계정)리뷰등록
-	public void reviewwrite(MilkitReviewinsert fri, Milkit fp, HttpServletRequest req) {
-		UserMember u_member =  (UserMember) req.getSession().getAttribute("loginMember");
-		fri.setId(u_member.getU_id());
-		System.out.println(fri.getId());
-		 
-		if(ss.getMapper(MilkitMapper.class).Milkitreview_id_select(fri) >= 1) {
-			req.setAttribute("reviewPage", "../shopping_milkit/milkit_review.jsp");
-		}
-		
-	}
 
 	public void updateMilkit(Milkit fp, HttpServletRequest req) {
 		String path = req.getSession().getServletContext().getRealPath("resources/img");
@@ -185,8 +176,19 @@ public class MilkitDAO {
 	}
 	//(구매계정)리뷰등록
 	public void reviewwrite2(MilkitReviewinsert fri, Milkit fp, HttpServletRequest req) {
-		UserMember u_member =  (UserMember) req.getSession().getAttribute("loginMember");
-		fri.setId(u_member.getU_id());
+		UserMember u_member = (UserMember) req.getSession().getAttribute("loginMember");
+		BossMember b_member = (BossMember) req.getSession().getAttribute("loginMember2");
+		Root r_member = (Root) req.getSession().getAttribute("loginMember3");
+
+		if (u_member != null) {
+			fri.setId(u_member.getU_id());
+		}
+		if (b_member != null) {
+			fri.setId(b_member.getBo_id());
+		}
+		if (r_member != null) {
+			fri.setId(r_member.getRoot_id());
+		}
 		System.out.println(fri.getId());
 		 
 		if(ss.getMapper(MilkitMapper.class).Milkitreview_id_select(fri) >= 1) {

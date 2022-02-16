@@ -120,4 +120,292 @@
 		update free_board_reply_table set fr_replytxt=#{fr_replytxt}
 		where fr_no = #{fr_no}
 	</update>
+	
+	<!-- 캠핑팁 -->
+	<!-- 캠핑팁 전체리스트 -->
+	<select id="getAllcampingtip" resultType="com.fi.pj.board.Campingtipboard" parameterType="com.fi.pj.board.BoardPage">
+		select rn,tip_no,tip_u_id,tip_subject,tip_readcount,tip_date
+		from (select Rownum as rn,tip_no,tip_u_id,tip_subject,tip_readcount,tip_date
+		from (select tip_no,tip_u_id,tip_subject,tip_readcount,tip_date
+		from campingtip_board_table
+		order by tip_no desc))
+		where RN &gt;=#{from} and RN &lt;=#{to}
+	</select> 
+	
+	<select id="getAllcampingtipcnt" resultType="Integer" >
+		select count(*) from campingtip_board_table
+	</select>
+	
+	<!-- 캠핑팁 등록 -->
+	<insert id="CbInsert" parameterType="com.fi.pj.board.Campingtipboard">
+		insert into campingtip_board_table values(campingtip_board_seq.nextval,#{tip_u_id},#{tip_subject},#{tip_txt},0,sysdate)
+	</insert>
+	
+	<!-- 캠핑팁 검색 -->
+	<select id="TipSearch_subject" resultType="com.fi.pj.board.Campingtipboard" parameterType="com.fi.pj.board.Search">
+		select rn,tip_no,tip_u_id,tip_subject,tip_readcount,tip_date
+		from (select Rownum as rn,tip_no,tip_u_id,tip_subject,tip_readcount,tip_date
+		from (select tip_no,tip_u_id,tip_subject,tip_readcount,tip_date
+		from campingtip_board_table
+		where tip_subject like '%'||#{search}||'%' 
+		order by tip_no desc))
+		where RN &gt;=#{from} and RN &lt;=#{to}
+	</select>
+	
+	<select id="TipSearch_subject_cnt" resultType="Integer" parameterType="com.fi.pj.board.Search">
+		select count(*) from campingtip_board_table where tip_subject like '%'||#{search}||'%' order by tip_no desc 
+	</select>
+	
+	<select id="TipSearch_id" resultType="com.fi.pj.board.Campingtipboard" parameterType="com.fi.pj.board.Search">
+		select rn,tip_no,tip_u_id,tip_subject,tip_readcount,tip_date
+		from (select Rownum as rn,tip_no,tip_u_id,tip_subject,tip_readcount,tip_date
+		from (select tip_no,tip_u_id,tip_subject,tip_readcount,tip_date
+		from campingtip_board_table 
+		where tip_u_id like '%'||#{search}||'%' 
+		order by tip_no desc))
+		where RN &gt;=#{from} and RN &lt;=#{to}
+	</select>
+	
+	<select id="TipSearch_id_cnt" resultType="Integer" parameterType="com.fi.pj.board.Search">
+		select count(*) from campingtip_board_table where tip_u_id like '%'||#{search}||'%' order by tip_no desc 
+	</select>
+	
+	<!-- 캠핑팁 클릭 페이지로 -->
+	<update id="Cbcount_update" parameterType="com.fi.pj.board.Campingtipboard">
+		update campingtip_board_table set tip_readcount=#{tip_readcount } + 1
+		where tip_no = #{tip_no}
+	</update>
+	
+	<select id="getonectboard" resultType="com.fi.pj.board.Campingtipboard" parameterType="com.fi.pj.board.Campingtipboard">
+		select * from campingtip_board_table where tip_no=#{tip_no}
+	</select>
+	
+	<select id="getctreply" resultType="com.fi.pj.board.CtReply" parameterType="com.fi.pj.board.BoardPage">
+		select rn,tipr_no,tipr_tip_no,tipr_u_id,tipr_owner_no,tipr_owner_id,tipr_replytxt,tipr_date,tipr_depth,tipr_picture
+		from (select Rownum as rn,tipr_no,tipr_tip_no,tipr_u_id,tipr_owner_no,tipr_owner_id,tipr_replytxt,tipr_date,tipr_depth,tipr_picture
+		from (select * from campingtip_board_reply_table
+		where tipr_tip_no=#{tip_no} and tipr_owner_no is null 
+		order by tipr_no desc))
+		where RN &gt;=#{from} and RN &lt;=#{to}		
+	</select>
+	
+	<select id="getctrreply" resultType="com.fi.pj.board.CtReply" parameterType="com.fi.pj.board.Campingtipboard">
+		select * from campingtip_board_reply_table where tipr_tip_no=#{tip_no} and tipr_owner_no is not null order by tipr_no asc
+	</select>
+	
+	<select id="getAllctreplycnt" resultType="Integer" parameterType="com.fi.pj.board.Campingtipboard">
+		select count(*) from campingtip_board_reply_table where tipr_tip_no=#{tip_no} and tipr_owner_no is null
+	</select>
+	
+	<!-- 수정 -->
+	<update id="CtUpdate" parameterType="com.fi.pj.board.Campingtipboard">
+		update campingtip_board_table set tip_subject=#{tip_subject},tip_txt=#{tip_txt}
+		where tip_no = #{tip_no}
+	</update>
+	
+	<update id="Cr_update" parameterType="com.fi.pj.board.CtReply">
+		update campingtip_board_reply_table set tipr_replytxt=#{tipr_replytxt}
+		where tipr_no = #{tipr_no}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="CtDelete" parameterType="com.fi.pj.board.Campingtipboard">
+		delete from campingtip_board_table where tip_no = #{tip_no}
+	</delete>
+	
+	<!-- 댓글 등록 -->
+	<insert id="CtreplyInsert2" parameterType="com.fi.pj.board.CtReply">
+		insert into campingtip_board_reply_table
+		values(campingtip_board_reply_seq.nextval,#{tipr_tip_no},#{tipr_u_id},#{tipr_owner_no},#{tipr_owner_id},#{tipr_replytxt},sysdate,#{tipr_depth},#{tipr_picture})
+	</insert>
+	
+	<insert id="CtreplyInsert" parameterType="com.fi.pj.board.CtReply">
+		insert into campingtip_board_reply_table
+		values(campingtip_board_reply_seq.nextval,#{tipr_tip_no},#{tipr_u_id},null,null,#{tipr_replytxt},sysdate,#{tipr_depth},#{tipr_picture})
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="TiprDelete" parameterType="com.fi.pj.board.CtReply">
+		delete from campingtip_board_reply_table where tipr_no = #{tipr_no}
+	</delete>
+	
+	<delete id="Tipr3Delete" parameterType="com.fi.pj.board.CtReply">
+		delete from campingtip_board_reply_table where tipr_no = #{tipr_owner_no}
+	</delete>
+	
+	<update id="TiprDelete_update" parameterType="com.fi.pj.board.CtReply">
+		update campingtip_board_reply_table set tipr_u_id='(알수없음)',tipr_picture='x',tipr_replytxt='삭제된 댓글입니다'
+		where tipr_no = #{tipr_no}
+	</update>
+	
+	<select id="TiprDelete_update_select" parameterType="com.fi.pj.board.CtReply"  resultType="Integer">
+		select count(*)	from campingtip_board_reply_table where tipr_owner_no=#{tipr_no}
+	</select>
+	
+	<select id="TiprDelete_3_select" resultType="Integer" parameterType="com.fi.pj.board.CtReply">
+		select count(*) from campingtip_board_reply_table where tipr_u_id='(알수없음)' and tipr_no=#{tipr_owner_no}
+	</select>
+	
+	<select id="TiprDelete_r_select" resultType="Integer" parameterType="com.fi.pj.board.CtReply" >
+		select count(*) from campingtip_board_reply_table where tipr_owner_no=#{tipr_owner_no}
+	</select>
+	
+	
+	
+	
+	
+	<!-- 레시피 -->
+	<!-- 전체리스트 -->
+	<select id="getAllrecipe" resultType="com.fi.pj.board.Recipe" parameterType="com.fi.pj.board.BoardPage">
+		select rn,rb_no,rb_u_id,rb_subject,rb_picture,rb_readcount,rb_date
+		from (select Rownum as rn,rb_no,rb_u_id,rb_subject,rb_picture,rb_readcount,rb_date
+		from (select rb_no,rb_u_id,rb_subject,rb_picture,rb_readcount,rb_date
+		from recipe_board_table
+		order by rb_no desc))
+		where RN &gt;=#{from} and RN &lt;=#{to}
+	</select> 
+	
+	<select id="getAllrecipecnt" resultType="Integer" >
+		select count(*) from recipe_board_table
+	</select>
+	
+	<!-- 캠핑팁 등록 -->
+	<insert id="RbInsert" parameterType="com.fi.pj.board.Recipe">
+		insert into recipe_board_table values(recipe_board_seq.nextval,#{rb_u_id},#{rb_subject},#{rb_txt},#{rb_picture},0,sysdate)
+	</insert>
+	
+	<!-- 캠핑팁 검색 -->
+	<select id="RSearch_subject" resultType="com.fi.pj.board.Recipe" parameterType="com.fi.pj.board.Search">
+		select rn,rb_no,rb_u_id,rb_subject,rb_picture,rb_readcount,rb_date
+		from (select Rownum as rn,rb_no,rb_u_id,rb_subject,rb_picture,rb_readcount,rb_date
+		from (select rb_no,rb_u_id,rb_subject,rb_picture,rb_readcount,rb_date
+		from recipe_board_table
+		where rb_subject like '%'||#{search}||'%' 
+		order by rb_no desc))
+		where RN &gt;=#{from} and RN &lt;=#{to}
+	</select>
+	
+	<select id="RSearch_subject_cnt" resultType="Integer" parameterType="com.fi.pj.board.Search">
+		select count(*) from recipe_board_table where rb_subject like '%'||#{search}||'%' order by tip_no desc 
+	</select>
+	
+	<select id="RSearch_id" resultType="com.fi.pj.board.Recipe" parameterType="com.fi.pj.board.Search">
+		select rn,rb_no,rb_u_id,tip_subject,rb_readcount,rb_date
+		from (select Rownum as rn,rb_no,rb_u_id,rb_subject,rb_readcount,rb_date
+		from (select rb_no,rb_u_id,tip_subject,rb_readcount,rb_date
+		from recipe_board_table
+		where rb_u_id like '%'||#{search}||'%' 
+		order by rb_no desc))
+		where RN &gt;=#{from} and RN &lt;=#{to}
+	</select>
+	
+	<select id="RSearch_id_cnt" resultType="Integer" parameterType="com.fi.pj.board.Search">
+		select count(*) from recipe_board_table where rb_u_id like '%'||#{search}||'%' order by rb_no desc 
+	</select>
+	
+	<!-- 캠핑팁 클릭 페이지로 -->
+	<update id="Rbcount_update" parameterType="com.fi.pj.board.Recipe">
+		update recipe_board_table set rb_readcount=#{rb_readcount } + 1
+		where rb_no = #{rb_no}
+	</update>
+	
+	<select id="getoneRboard" resultType="com.fi.pj.board.Recipe" parameterType="com.fi.pj.board.Recipe">
+		select * from recipe_board_table where rb_no=#{rb_no}
+	</select> 
+	
+	<select id="getrreply" resultType="com.fi.pj.board.RReply" parameterType="com.fi.pj.board.BoardPage">
+		select rn,rr_no,rr_rb_no,rr_u_id,rr_owner_no,rr_owner_id,rr_replytxt,rr_date,rr_depth,rr_picture
+		from (select Rownum as rn,rr_no,rr_rb_no,rr_u_id,rr_owner_no,rr_owner_id,rr_replytxt,rr_date,rr_depth,rr_picture
+		from (select * from recipe_board_reply_table
+		where rr_rb_no=#{rb_no} and rr_owner_no is null 
+		order by rr_no desc))
+		where RN &gt;=#{from} and RN &lt;=#{to}		
+	</select>
+	
+	<select id="getrrreply" resultType="com.fi.pj.board.RReply" parameterType="com.fi.pj.board.Recipe">
+		select * from  recipe_board_reply_table where rr_rb_no=#{rb_no} and rr_owner_no is not null order by rr_no asc
+	</select>
+	
+	<select id="getAllrreplycnt" resultType="Integer" parameterType="com.fi.pj.board.Recipe">
+		select count(*) from  recipe_board_reply_table where rr_rb_no=#{rb_no} and rr_owner_no is null
+	</select>
+	
+	<!-- 수정 -->
+	<update id="RUpdate" parameterType="com.fi.pj.board.Recipe">
+		update recipe_board_table set rb_subject=#{rb_subject},rb_txt=#{rb_txt},rb_picture=#{rb_picture}
+		where rb_no = #{rb_no}
+	</update>
+	
+	<update id="Rr_update" parameterType="com.fi.pj.board.RReply">
+		update recipe_board_reply_table set rr_replytxt=#{rr_replytxt}
+		where rr_no = #{rr_no}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="RDelete" parameterType="com.fi.pj.board.Recipe">
+		delete from recipe_board_table where rb_no = #{rb_no}
+	</delete>
+	
+	<!-- 댓글 등록 -->
+	<insert id="RreplyInsert2" parameterType="com.fi.pj.board.RReply">
+		insert into recipe_board_reply_table
+		values(recipe_board_reply_seq.nextval,#{rr_rb_no},#{rr_u_id},#{rr_owner_no},#{rr_owner_id},#{rr_replytxt},sysdate,#{rr_depth},#{rr_picture})
+	</insert>
+	
+	<insert id="RreplyInsert" parameterType="com.fi.pj.board.CtReply">
+		insert into recipe_board_reply_table
+		values(recipe_board_reply_seq.nextval,#{rr_rb_no},#{rr_u_id},null,null,#{rr_replytxt},sysdate,#{rr_depth},#{rr_picture})
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="RrDelete" parameterType="com.fi.pj.board.RReply">
+		delete from recipe_board_reply_table where rr_no = #{rr_no}
+	</delete>
+	
+	<delete id="Rr3Delete" parameterType="com.fi.pj.board.RReply">
+		delete from recipe_board_reply_table where rr_no = #{rr_owner_no}
+	</delete>
+	
+	<update id="RrDelete_update" parameterType="com.fi.pj.board.RReply">
+		update recipe_board_reply_table set rr_u_id='(알수없음)',rr_picture='x',rr_replytxt='삭제된 댓글입니다'
+		where rr_no = #{rr_no}
+	</update>
+	
+	<select id="RrDelete_update_select" parameterType="com.fi.pj.board.RReply"  resultType="Integer">
+		select count(*)	from recipe_board_reply_table where rr_owner_no=#{rr_no}
+	</select>
+	
+	<select id="RrDelete_3_select" resultType="Integer" parameterType="com.fi.pj.board.RReply">
+		select count(*) from recipe_board_reply_table where rr_u_id='(알수없음)' and rr_no=#{rr_owner_no}
+	</select>
+	
+	<select id="RrDelete_r_select" resultType="Integer" parameterType="com.fi.pj.board.RReply" >
+		select count(*) from recipe_board_reply_table where rr_owner_no=#{rr_owner_no}
+	</select>
+	
+	<!-- 인기 게시판 --> 
+	<select id="freepopular" resultType="com.fi.pj.board.Freeboard">
+		select ROWNUM, A.*
+		from (select *
+			  from free_board_table
+			  ORDER BY f_readcount DESC) A
+		where ROWNUM &lt;= 5
+	</select>
+	
+	<select id="tippopular" resultType="com.fi.pj.board.Campingtipboard">
+		select ROWNUM, A.*
+		from (select *
+			  from campingtip_board_table
+			  ORDER BY tip_readcount DESC) A
+		where ROWNUM &lt;= 5
+	</select>
+	
+	<select id="recipepopular" resultType="com.fi.pj.board.Recipe">
+		select ROWNUM, A.*
+		from (select *
+			  from recipe_board_table
+			  ORDER BY rb_readcount DESC) A
+		where ROWNUM &lt;= 5  
+	</select>
+	
 </mapper>

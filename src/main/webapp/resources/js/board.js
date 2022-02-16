@@ -16,23 +16,6 @@ function frdelete(n,no) {
 	}
 }
 
-function r_reply() {
-	var FormVisible = false;
-
-	$("#rreply").click(function() {
-		if (FormVisible) {
-			$("#replyreply").css("bottom", "-150px");
-		} else {
-			$("#replyreply").css("bottom", "10px");
-		}
-		FormVisible = !FormVisible;
-	});
-}
-
-
-$(function() {
-	r_reply();
-});
 function frdelete(n,no,depth) {
 	var ok = confirm("삭제하시겠습니까?");
 	if (ok) {
@@ -46,6 +29,72 @@ function frrdelete(n,no,depth,owner) {
 		location.href = "fr.delete?fr_no=" + n +"&f_no=" + no + "&fr_depth=" + depth + "&fr_owner_no=" + owner;
 	}
 }
+
+function ctdelete(n) {
+	var ok = confirm("삭제하시겠습니까?");
+	if (ok) {
+		location.href = "ctwrite.delete?tip_no=" + n;
+	}
+}
+
+function ctrdelete(n,no,depth) {
+	var ok = confirm("삭제하시겠습니까?");
+	if (ok) {
+		location.href = "ctr.delete?tipr_no=" + n +"&tip_no=" + no + "&tipr_depth=" + depth;
+	}
+}
+
+function tiprrdelete(n,no,depth,owner) {       
+	var ok = confirm("삭제하시겠습니까?");
+	if (ok) {
+		location.href = "ctr.delete?tipr_no=" + n +"&tip_no=" + no + "&tipr_depth=" + depth + "&tipr_owner_no=" + owner;
+	}
+}
+
+function rdelete(n) {
+	var ok = confirm("삭제하시겠습니까?");
+	if (ok) {
+		location.href = "rwrite.delete?rb_no=" + n;
+	}
+}
+
+function rrdelete(n,no) {
+	var ok = confirm("삭제하시겠습니까?");
+	if (ok) {
+		location.href = "rr.delete?rr_no=" + n +"&rb_no=" + no;
+	}
+}
+
+function rrdelete(n,no,depth) {
+	var ok = confirm("삭제하시겠습니까?");
+	if (ok) {
+		location.href = "rr.delete?rr_no=" + n +"&rb_no=" + no + "&rr_depth=" + depth;
+	}
+}
+
+function rrrdelete(n,no,depth,owner) {       
+	var ok = confirm("삭제하시겠습니까?");
+	if (ok) {
+		location.href = "rr.delete?rr_no=" + n +"&rb_no=" + no + "&rr_depth=" + depth + "&rr_owner_no=" + owner;
+	}
+}
+
+function r_reply() {
+	var FormVisible = false;
+
+	$("#rreply").click(function() {
+		if (FormVisible) {
+			$("#replyreply").css("bottom", "-150px");
+		} else {
+			$("#replyreply").css("bottom", "10px");
+		}
+		FormVisible = !FormVisible;
+	});
+}
+
+$(function() {
+	r_reply();
+});
 
 function writeCheck(){
 	let subject = document.writeForm.subject;
@@ -89,8 +138,8 @@ function frr_writeCheck(){
 }
 
 function frrr_writeCheck(){
-	let fr_replytxt = document.frrrwriteForm.fr_replytxt;	
-	
+	let fr_replytxt = $(this).document.frrrwriteForm.fr_replytxt;	
+	//let fr_replytxt = $(this).closest('tr').find('.replyTd').find('input').val();
 	if (isEmpty(fr_replytxt)) {
 		alert('내용을 입력해주세요.');
 		fr_replytxt.value = "";
@@ -98,3 +147,18 @@ function frrr_writeCheck(){
 		return false;
 	}
 }
+
+$(function() {
+	$(".replyinsert").click(function() {
+		let fr_replytxt = $(this).closest('tr').find('.replyTd').find('input').val();
+		
+		if (isEmpty(fr_replytxt)) {
+			alert(fr_replytxt);
+			alert('내용을 입력해주세요.');
+			fr_replytxt.value = "";
+			fr_replytxt.focus();
+			return false;
+		}
+	});
+
+});

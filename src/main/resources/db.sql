@@ -162,6 +162,7 @@ insert into campingreview_bossreply_table values(campingreview_bossreply_seq.nex
 select * from campingreview_bossreply_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 8. 캠핑용품 등록(관리자만)
+drop table product_registration_table
 create table product_registration_table(
 	p_no number(5) primary key,
 	p_name varchar2(20 char) not null,
@@ -177,6 +178,7 @@ insert into product_registration_table values(product_registration_seq.nextval,'
 select * from product_registration_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 9. 밀키트 등록(관리자만)
+drop table foodproduct_registration_table
 create table foodproduct_registration_table(
 	fp_no number(5) primary key,
 	fp_name varchar2(20 char) not null,
@@ -244,6 +246,7 @@ select * from guest_foodproduct_buy_table;
 
 -------------------------------------------------------------------------------------------------------------------------------------
 12. 캠핑용품 장바구니
+drop table guest_product_basket_table
 create table guest_product_basket_table(
 
 	ba_no number(5) primary key,  /*장바구니 no*/
@@ -267,6 +270,7 @@ insert into guest_product_basket_table values
 select * from guest_product_basket_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 13. 밀키트 장바구니
+drop table guest_foodproduct_basket_table
 create table guest_foodproduct_basket_table(
 	fba_no number(5) primary key,
 	fba_fp_no	number(5) not null,
@@ -287,6 +291,7 @@ insert into guest_foodproduct_basket_table values(foodproduct_basket_seq.nextval
 select * from guest_foodproduct_basket_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 14. 캠핑용품 리뷰
+drop table product_review_table
 create table product_review_table(	
 	pr_no number(5)	primary key,
 	pr_p_no number(5) not null, 
@@ -304,6 +309,7 @@ select * from product_review_table;
 select * from product_review_table where pr_p_no = 182 ;
 -------------------------------------------------------------------------------------------------------------------------------------
 15. 밀키트 리뷰
+drop table foodproduct_review_table
 create table foodproduct_review_table(	
 	fpr_no number(5) primary key,
 	fpr_fp_no number(5) not null, -----------------수정
@@ -347,7 +353,6 @@ create table free_board_reply_table(
 	fr_replytxt	varchar2(100 char) not null,
 	fr_date	date not null,
 	fr_depth number(5) not null,
-
 	fr_picture varchar2(200 char) not null,
 	constraint free
 		foreign key(fr_f_no)
@@ -379,7 +384,7 @@ create table campingtip_board_table(
 
 create sequence campingtip_board_seq;
 
-insert into campingtip_board_table values(campingtip_board_seq.nextval,'kim','자유게시판','자유자유자유','h.jpg',0,'20220110');
+insert into campingtip_board_table values(campingtip_board_seq.nextval,'kim','자유게시판','자유자유자유',0,'20220110');
 
 select * from campingtip_board_table;
 
@@ -415,6 +420,7 @@ create table recipe_board_table(
 	rb_u_id varchar2(20 char) not null,
 	rb_subject varchar2(20 char)	not null,
 	rb_txt clob not null,
+	rb_picture varchar2(200 char) not null,
 	rb_readcount	number(5) not null,
 	rb_date date	not null
 );
@@ -450,8 +456,13 @@ insert into recipe_board_reply_table values(recipe_board_reply_seq.nextval,1,'ki
 select * from recipe_board_reply_table;
 
 
+select count(*)	from recipe_board_reply_table where rr_owner_no=81
 
-
+select ROWNUM, A.*
+from (select *
+	  from free_board_table
+	  ORDER BY f_readcount DESC) A
+where ROWNUM <= 5;
 
 
 
