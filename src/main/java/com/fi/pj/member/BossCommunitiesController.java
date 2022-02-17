@@ -20,7 +20,33 @@ public class BossCommunitiesController {
 		bcDAO.CampingInfo(bc, req);
 
 		req.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		req.setAttribute("contentPage", "member/CampingInformation.jsp");
+		req.setAttribute("contentPage", "member/BossCampingInformation.jsp");
+
+		return "main";
+	}
+
+	// 캠핑정보 수정
+	@RequestMapping(value = "boss_camping.infoupdate", method = RequestMethod.GET)
+	public String CampingInfoUp(BossCommunities bc, HttpServletRequest req) {
+
+		bcDAO.CampingInfoUp(bc, req);
+		bcDAO.CampingInfo(bc, req);
+
+		req.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		req.setAttribute("contentPage", "member/BossCampingInformation.jsp");
+
+		return "main";
+	}
+
+	// 캠핑정보 삭제
+	@RequestMapping(value = "boss_camping.infodel", method = RequestMethod.GET)
+	public String campinginfodel(BossCommunities bc, HttpServletRequest req) {
+
+		bcDAO.campinginfodel(bc, req);
+		bcDAO.CampingInfo(bc, req);
+
+		req.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		req.setAttribute("contentPage", "member/BossCampingInformation.jsp");
 
 		return "main";
 	}
@@ -29,10 +55,10 @@ public class BossCommunitiesController {
 	@RequestMapping(value = "boss_campingreservation", method = RequestMethod.GET)
 	public String campingreservation(BossCommunities bc, HttpServletRequest req) {
 
-		bcDAO.CampingReserve(bc, req);
+		bcDAO.campingreserve(bc, req);
 
 		req.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		req.setAttribute("contentPage", "member/CampingReserve.jsp");
+		req.setAttribute("contentPage", "member/BossCampingReserve.jsp");
 
 		return "main";
 	}
@@ -52,9 +78,9 @@ public class BossCommunitiesController {
 	// 캠핑찜
 	@RequestMapping(value = "boss_campingjjim", method = RequestMethod.GET)
 	public String campingjjim(BossCommunities bc, HttpServletRequest request) {
-		
+
 		bcDAO.campingjjim(bc, request);
-		
+
 		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
 		request.setAttribute("contentPage", "member/BossCampingjjim.jsp");
 
@@ -67,7 +93,7 @@ public class BossCommunitiesController {
 
 		bcDAO.campingjjimdel(bc, request);
 		bcDAO.campingjjim(bc, request);
-		
+
 		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
 		request.setAttribute("contentPage", "member/BossCampingjjim.jsp");
 
@@ -80,7 +106,7 @@ public class BossCommunitiesController {
 		bcDAO.communities(bc, request);
 		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
 		request.setAttribute("community", "../member/community2.jsp");
-		request.setAttribute("contentPage", "member/BosCommunities.jsp");
+		request.setAttribute("contentPage", "member/BossFreeboard.jsp");
 
 		return "main";
 	}
@@ -91,7 +117,7 @@ public class BossCommunitiesController {
 		bcDAO.Bfreeboard(bc, request);
 		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
 		request.setAttribute("community", "../member/community2.jsp");
-		request.setAttribute("contentPage", "member/BosCommunities.jsp");
+		request.setAttribute("contentPage", "member/BossFreeboard.jsp");
 
 		return "main";
 	}

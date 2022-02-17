@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface BossCommunitiesMapper {
 
-	String campinginfo(BossCommunities bc);
+	List<BossCommunities> campinginfo(BossCommunities bc);
 
-	void campingreserve(BossCommunities bc);
+	List<BossCommunities> campingreserve(BossCommunities bc);
 
 	List<BossCommunities> pbuylist(BossCommunities bc);
 
@@ -53,6 +53,10 @@ public interface BossCommunitiesMapper {
 	int recipereviewupdate(BossCommunities bc);
 
 	int recipereviewdel(BossCommunities bc);
+
+	int campinginformationupdate(BossCommunities bc);
+
+	int campinginfodel(BossCommunities bc);
 
 
 	

@@ -9,14 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="${myPage }"></jsp:include>
+<jsp:include page="${BossCommunities }"></jsp:include>
 	<table border="1">
 		<tr>
 			<td>번호</td>
 			<td>예약자명</td>
 			<td>예약한 전화번호</td>
-			<td>예약한 캠핑명</td>
-			<td>캠핑 주소</td>
 			<td>전화번호</td>
 			<td>예약한 날짜</td>
 			<td>예약한 인원수</td>
@@ -28,8 +26,6 @@
 			<td>${cr.r_u_name}</td>
 			<td>${cr.r_u_phonenumber}</td>
 			<td>${cr.r_cam_name}</td>
-			<td>${cr.r_cam_address}</td>
-			<td>${cr.r_cam_phonenumber}</td>
 			<td><fmt:formatDate value="${cr.r_campingstartdate}"/> ~ <fmt:formatDate value="${cr.r_campingenddate}"/></td>
 			<td>${cr.r_campingheadcount}</td>
 			<td>${cr.r_campingprice}</td>

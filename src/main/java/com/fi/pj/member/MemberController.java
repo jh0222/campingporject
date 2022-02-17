@@ -262,7 +262,7 @@ public class MemberController {
 		mDAO.communities(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
-		request.setAttribute("contentPage", "member/communities.jsp");
+		request.setAttribute("contentPage", "member/UserCommunities.jsp");
 
 		return "main";
 	}
@@ -273,7 +273,7 @@ public class MemberController {
 		mDAO.freeboard(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("community", "../member/community.jsp");
-		request.setAttribute("contentPage", "member/communities.jsp");
+		request.setAttribute("contentPage", "member/UserCommunities.jsp");
 
 		return "main";
 	}

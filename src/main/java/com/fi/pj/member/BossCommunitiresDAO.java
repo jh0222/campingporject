@@ -1,5 +1,8 @@
 package com.fi.pj.member;
 
+import java.io.File;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Service
 public class BossCommunitiresDAO {
@@ -17,15 +23,91 @@ public class BossCommunitiresDAO {
 	// 등록된 캠핑 정보
 	public void CampingInfo(BossCommunities bc, HttpServletRequest req) {
 
-		String campinginfo = ss.getMapper(BossCommunitiesMapper.class).campinginfo(bc);
+		List<BossCommunities> campinginfo = ss.getMapper(BossCommunitiesMapper.class).campinginfo(bc);
 
-		req.setAttribute("campinginfo", campinginfo);
+		req.setAttribute("cam" + "" + "pinginfo", campinginfo);
 	}
 
-	// 예약된 정보
-	public void CampingReserve(BossCommunities bc, HttpServletRequest req) {
+	// 캠핑 정보 수정
+	public void CampingInfoUp(BossCommunities bc, HttpServletRequest req) {
 
-		ss.getMapper(BossCommunitiesMapper.class).campingreserve(bc);
+		String path = req.getSession().getServletContext().getRealPath("resources/img");
+		MultipartRequest mr = null;
+		String oldFile = bc.getCam_picture();
+		String newFile = null;
+		try {
+			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+			newFile = mr.getFilesystemName("cam_picture");
+			if (newFile == null) {
+				newFile = oldFile;
+			} else {
+				newFile = URLEncoder.encode(newFile, "utf-8");
+				newFile = newFile.replace("+", " ");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("result", "수정실패");
+			return;
+		}
+
+		try {
+			String cam_name = mr.getParameter("name");
+			String cam_address = mr.getParameter("address");
+			String cam_txt = mr.getParameter("txt");
+			String cam_phonenumber = mr.getParameter("phonenumber");
+			String oldpicture = mr.getParameter("oldpicture");
+			String newpicture = mr.getFilesystemName("newpicture");
+
+			bc.setCam_name(cam_name);
+			bc.setCam_address(cam_address);
+			bc.setCam_txt(cam_txt);
+			bc.setCam_phonenumber(cam_phonenumber);
+
+			if (newpicture != null) {
+				bc.setCam_picture(newpicture);
+			} else {
+				bc.setCam_picture(oldpicture);
+			}
+
+			if (ss.getMapper(BossCommunitiesMapper.class).campinginformationupdate(bc) == 1) {
+				req.setAttribute("result", "수정성공");
+			} else {
+				req.setAttribute("result", "수정실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("result", "수정실패");
+		}
+	}
+
+	// 캠핑정보 삭제
+	public void campinginfodel(BossCommunities bc, HttpServletRequest req) {
+		try {
+			int cf = ss.getMapper(BossCommunitiesMapper.class).campinginfodel(bc);
+
+			if (cf == 1) {
+				
+				String path = req.getSession().getServletContext().getRealPath("resources/img");
+				String Cam_picture = bc.getCam_picture();
+				Cam_picture = URLDecoder.decode(Cam_picture, "utf-8");
+				new File(path + "/" + Cam_picture).delete();
+				
+				req.setAttribute("result", "삭제성공");
+				
+			} else {
+				req.setAttribute("result", "삭제실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("result", "삭제실패");
+		}
+	}
+
+	// 사용자들이 예약한 정보
+	public void campingreserve(BossCommunities bc, HttpServletRequest req) {
+		
+		List<BossCommunities> campingreserve = ss.getMapper(BossCommunitiesMapper.class).campingreserve(bc);
+		req.setAttribute("campingreserve", campingreserve);
 	}
 
 	// 구매 목록
@@ -282,5 +364,7 @@ public class BossCommunitiresDAO {
 			request.setAttribute("result", "삭제실패");
 		}
 	}
+
+	
 
 }

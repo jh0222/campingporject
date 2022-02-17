@@ -3,7 +3,6 @@
 <title>Insert title here</title>
 <html>
 <head>
-<<<<<<< HEAD
 <meta charset="UTF-8">
 <!-- include libraries(jQuery, bootstrap) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -12,9 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="resources/summernote/summernote.min.js"></script>
 <link rel="stylesheet" href="resources/css/board.css">
-=======
-<script type="text/javascript" src="resources/js/jquery.js"></script>
->>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
+
 <script type="text/javascript" src="resources/js/site_jquery.js"></script>
 <script type="text/javascript" src="resources/js/member.js"></script>
 <script type="text/javascript" src="resources/js/board.js"></script>
@@ -22,7 +19,7 @@
 <script type="text/javascript" src="resources/js/review.js"></script>
 <script type="text/javascript" src="resources/js/communities.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<<<<<<< HEAD
+
 <link rel="stylesheet" href="resources/jsjs/style.css">
 <link rel="stylesheet" href="resources/jsjs/responsive.css">
 <link rel="stylesheet" href="resources/css/jquery.fullPage.css">
@@ -70,34 +67,9 @@
       </div>
       
     </header>
-=======
-</head>
-<body>
-${result }
-<jsp:include page="${loginPage }"></jsp:include>
 
-<hr>
->>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 <jsp:include page="${contentPage }"></jsp:include>
-	
-	<table id="siteMenuArea">
-	<tr>
-		<td colspan="4" align="center"> 캠핑장 웹사이트 </td>
-	</tr>
-		<tr> 
-			<td align="center">
-				<table id="siteMenu">
-					<tr>
-						<td onclick="location.href='CampingPlaceC'">[캠핑장]</td>
-						<td>[자유게시판]</td>
-						<td>[레시피]</td>
-						<td>[꿀팁]</td>
-						<td>[오픈채팅방]</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
+
 	
 </body>
 </html>

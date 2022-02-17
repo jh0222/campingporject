@@ -29,3 +29,11 @@ function jjimdel(no, id){
 		location.href = "campingjjim.del?h_no=" + no + "&h_u_id=" + id;
 	}
 }
+
+// 등록된 캠핑 정보 삭제
+function campingBye(no, id){
+	let ok = confirm("등록된 캠핑정보를 삭제하시겠습니까?");
+	if (ok) {
+		location.href = "boss_camping.infodel?cam_no=" + no + "&cam_bo_id=" + id;
+	}
+}

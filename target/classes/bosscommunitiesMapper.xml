@@ -7,9 +7,22 @@
 	select * from camping_table where cam_bo_id = #{cam_bo_id}
 </select>
 
+<!-- 캠핑정보수정 -->
+<update id="campinginformationupdate" parameterType="com.fi.pj.member.BossCommunities">
+	update camping_table 
+	set cam_name = #{cam_name}, cam_address = #{cam_address}, cam_picture = #{cam_picture}, cam_txt = #{cam_txt}, 
+	    cam_phonenumber = #{cam_phonenumber}, cam_price = #{cam_price}
+	where cam_no = #{cam_no}  
+</update>
+
+<!-- 캠핑정보삭제 -->
+<delete id="campinginfodel" parameterType="com.fi.pj.member.BossCommunities">
+	delete from camping_table where cam_bo_id = #{cam_bo_id}
+</delete>
+
 <!-- 캠핑예약정보 -->
 <select id="campingreserve" parameterType="com.fi.pj.member.BossCommunities" resultType="com.fi.pj.member.BossCommunities">
-
+	select * from reservation_table where r_cam_no = #{cam_no}
 </select>
 
 <!-- 캠핑용품 구매 목록 -->

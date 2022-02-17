@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css" href="cart/Cart.css"></style>
+<link rel="stylesheet" href="cart/Cart.css">
 <script src="/resources/js/jquery.js"></script>
 </head>
 <body>

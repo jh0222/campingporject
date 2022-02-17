@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-
 	<div class="full">
 		<div class="container">
 			<div class="area_inputs wow fadeIn">
@@ -64,9 +62,6 @@
 			</div>
 		</div>
 	</div>
-
-<<<<<<< HEAD
-=======
 <h2>가입했던 이름과 전화번호를 적어주세요</h2>
 <form action="id.search">
 	<table border="1">
@@ -86,8 +81,5 @@
 		</tr>
 	</table>
 </form>
->>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
-=======
->>>>>>> d3be522016e6e899d9a2e96f82e68725ec3f5622
 </body>
 </html>
