@@ -14,7 +14,6 @@ public class HomeController {
     private MemberDAO mDAO;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-
     public String home(HttpServletRequest req) {
         mDAO.loginCheck(req);
         req.setAttribute("contentPage", "home.jsp");
