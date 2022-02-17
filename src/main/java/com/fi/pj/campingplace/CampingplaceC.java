@@ -22,18 +22,11 @@ public class CampingplaceC {
 	@Autowired
 	private CampingplaceDAO cdao;
 	
-	/*
-	@InitBinder
-    protected void initBinder(WebDataBinder binder){
-        DateFormat  dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat,true));
-    }
-	*/
-	
 	@RequestMapping(value = "place.go", method = RequestMethod.GET)
-	public String placeMain(HttpServletRequest req) {
+	public String placeMain(placeReview pr, HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		cdao.getAllPlace(req);
+		cdao.getAvgStar(pr, req);
 		req.setAttribute("contentPage", "campingplace/campingplace.jsp");
 		return "main";
 	}

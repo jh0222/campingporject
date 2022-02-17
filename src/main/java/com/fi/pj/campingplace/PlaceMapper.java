@@ -30,6 +30,9 @@ public interface PlaceMapper {
 	public int placeLike(campingLike cl);
 	//캠핑장 찜 목록
 	public List<campingLike> getHeartList();
+	
+	//캠핑장 평균 별점
+	public List<placeReview> getAvgStar();
 
 	
 

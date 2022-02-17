@@ -18,6 +18,7 @@ ${result }
 		<th>연락처</th>
 		<th>가격</th>
 		<th>주소</th>
+		<th>별점</th>
 	</tr>
 	<c:forEach var="c" items="${places}">
 		<tr>
@@ -26,6 +27,7 @@ ${result }
 			<td>${c.cam_phonenumber }</td>
 			<td><fmt:formatNumber value="${c.cam_price}" pattern="###,###,###" type="currency" /></td>
 			<td>${c.cam_address }</td>
+			<td>${c.star }</td>
 			<td>
 			<form action="placelike2.go"> 
 					<input type="hidden" name="h_cam_no" value="${c.cam_no }" />

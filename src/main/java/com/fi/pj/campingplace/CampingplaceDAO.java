@@ -159,11 +159,25 @@ public class CampingplaceDAO {
 	}
 
 	public void regReview(placeReview pr, HttpServletRequest req) {
+		
+		try {
+			if (ss.getMapper(PlaceMapper.class).ReviewReg(pr) == 1) {
+				req.setAttribute("result", "등록성공");
+			} else {
+				req.setAttribute("result", "등록실패");
+			}
+		} catch (Exception e) {
+			System.out.println("에러");
+		}
+		
+		
+		/*
 		if (ss.getMapper(PlaceMapper.class).ReviewReg(pr) == 1) {
 			req.setAttribute("result", "등록성공");
 		} else {
 			req.setAttribute("result", "등록실패");
 		}
+		*/
 	}
 
 	public void getAllReview(placeReview pr, HttpServletRequest req) {
@@ -263,6 +277,11 @@ public class CampingplaceDAO {
 			req.setAttribute("result", "찜 실패");
 		}
 		req.setAttribute("places", ss.getMapper(PlaceMapper.class).getAllPlace());
+		
+	}
+
+	public void getAvgStar(placeReview pr, HttpServletRequest req) {
+		req.setAttribute("stars", ss.getMapper(PlaceMapper.class).getAvgStar());
 		
 	}
 

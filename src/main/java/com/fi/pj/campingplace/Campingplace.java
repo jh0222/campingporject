@@ -12,6 +12,7 @@ public class Campingplace {
 	private String cam_latitude;
 	private String cam_longitude;
 	private int cam_headcount;
+	private double star;
 	
 	
 	public Campingplace() {
@@ -21,7 +22,7 @@ public class Campingplace {
 
 	public Campingplace(int cam_no, String cam_bo_id, String cam_name, String cam_picture, String cam_txt,
 			String cam_phonenumber, int cam_price, String cam_address, String cam_latitude, String cam_longitude,
-			int cam_headcount) {
+			int cam_headcount, double star) {
 		super();
 		this.cam_no = cam_no;
 		this.cam_bo_id = cam_bo_id;
@@ -34,6 +35,7 @@ public class Campingplace {
 		this.cam_latitude = cam_latitude;
 		this.cam_longitude = cam_longitude;
 		this.cam_headcount = cam_headcount;
+		this.star = star;
 	}
 
 
@@ -144,6 +146,16 @@ public class Campingplace {
 
 	public void setCam_headcount(int cam_headcount) {
 		this.cam_headcount = cam_headcount;
+	}
+
+
+	public double getStar() {
+		return star;
+	}
+
+
+	public void setStar(double star) {
+		this.star = star;
 	}
 
 }

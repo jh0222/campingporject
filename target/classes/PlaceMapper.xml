@@ -3,7 +3,13 @@
 <mapper namespace="com.fi.pj.campingplace.PlaceMapper">
 
 <select id ="getAllPlace" resultType="com.fi.pj.campingplace.Campingplace">
-	select * from camping_table order by cam_no desc
+	select *
+	from camping_table a,
+		(select c_cam_no, avg(c_campingstar) as star
+		from campingreview_table 
+		group by c_cam_no) b
+	where a.cam_no=b.c_cam_no
+	ORDER BY a.cam_no desc
 </select>
 
 <insert id="PlaceReg" parameterType="com.fi.pj.campingplace.Campingplace">
@@ -64,4 +70,10 @@
 	select * from campingheart_table order by h_no desc
 </select>
 
+<select id ="getAvgStar" resultType="com.fi.pj.campingplace.placeReview">
+	select c_cam_no, avg(c_campingstar) as star
+	from campingreview_table
+	group by c_cam_no
+	order by c_cam_no desc
+</select>
 </mapper>

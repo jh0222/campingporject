@@ -141,6 +141,32 @@ insert into campingreview_table values(campingreview_seq.nextval,1,'kim','좋아
 
 select * from campingreview_table;
 
+select * from camping_table order by cam_no desc
+
+SELECT a.컬럼1, a.컬럼2, b.컬럼3
+FROM 테이블명 a,
+LEFT OUTER JOIN 테이블명 b
+ON a. 컬럼1 = b.컬럼4
+WHERE 조건절
+ORDER BY 정렬;
+
+select c_cam_no, avg(c_campingstar) as star
+	from campingreview_table 
+	group by c_cam_no
+	
+select a.*,avg(c_campingstar) as star 
+from camping_table a,campingreview_table b
+where a.cam_no=b.c_cam_no
+group by a.cam_no
+ORDER BY a.cam_no desc;
+
+select *
+from camping_table a,
+(select c_cam_no, avg(c_campingstar) as star
+	from campingreview_table 
+	group by c_cam_no) b
+where a.cam_no=b.c_cam_no
+ORDER BY a.cam_no desc;
 7. 캠핑 리뷰 댓글달기(사장이)
 /*
  * 사장이 자신의 캠핑에서만 대댓글 달게 만들기
