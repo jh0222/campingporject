@@ -32,7 +32,6 @@
 			<h2>footer</h2>
 		</footer>
 </main>
-
 <table border="1">
 	<tr><td>지현</td></tr>
 	<tr>
