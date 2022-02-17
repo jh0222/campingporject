@@ -50,7 +50,7 @@
 	
 	<tr><td>민정</td></tr>
 	<tr>
-		<td></td>
+		<td><button onclick="location.href='place.go'">캠핑장 목록</button></td>
 	</tr>
 	
 	<tr><td>용식</td></tr>
