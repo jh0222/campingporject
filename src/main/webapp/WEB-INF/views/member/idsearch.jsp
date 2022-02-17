@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 
 	<div class="full">
 		<div class="container">
@@ -64,5 +65,26 @@
 		</div>
 	</div>
 
+=======
+<h2>가입했던 이름과 전화번호를 적어주세요</h2>
+<form action="id.search">
+	<table border="1">
+		<tr>
+			<td colspan="2" align="center">아이디 찾기</td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input name="name"></td>
+		</tr>
+		<tr>
+			<td>전화번호</td>
+			<td><input name="phonenumber"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><button>찾기</button></td>
+		</tr>
+	</table>
+</form>
+>>>>>>> f6e97b147430655eb9830a06775b3e8435e3f9e3
 </body>
 </html>

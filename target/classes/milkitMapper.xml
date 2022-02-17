@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fi.pj.milkit.MilkitMapper">
+<!-- 밀키트목록(페이징)  -->
+<select id="getAllMilkit" resultType="com.fi.pj.milkit.Milkit">
+select * from foodproduct_registration_table
+</select>
+
+<!-- 밀키트등록 -->
+<insert id="regMilkit" parameterType="com.fi.pj.milkit.Milkit">
+	insert into foodproduct_registration_table(fp_no,fp_name,fp_price,fp_picture,fp_txt)
+	values (product_registration_table_seq.nextval,#{fp_name},#{fp_price},#{fp_picture},#{fp_txt})
+</insert>
+
+<!-- 밀키트검색  -->
+<select id="MilkitSearch" resultType="com.fi.pj.milkit.Milkit"> 
+	select * from foodproduct_registration_table where fp_name like '%'||#{fp_name}||'%'
+</select>
+
+<!-- 상품디테일 -->
+<select id="getMilkit" resultType="com.fi.pj.milkit.Milkit">
+	select * from foodproduct_registration_table where fp_no = #{fp_no}
+</select>
+
+<!-- 상품삭제 -->
+<delete id="delMilkit" parameterType="com.fi.pj.milkit.Milkit">
+	delete foodproduct_registration_table where fp_no = #{fp_no}
+</delete>
+
+<!-- 상품수정 -->
+<update id="updateMilkit" parameterType="com.fi.pj.milkit.Milkit" >
+ update foodproduct_registration_table 
+  set
+   fp_picture = #{fp_picture},
+   fp_name = #{fp_name},
+   fp_price = #{fp_price},
+   fp_txt = #{fp_txt}
+  where fp_no = #{fp_no}
+</update>
+
+<!-- 리뷰등록 -->
+<insert id="regMilkitreview" parameterType="com.fi.pj.milkit.MilkitReview">
+	insert into foodproduct_review_table(fpr_no,fpr_fp_no,fpr_u_bo_id,fpr_txt,fpr_date) values (product_review_seq.nextval,#{fpr_fp_no},#{fpr_u_bo_id}, #{fpr_txt}, sysdate)
+</insert>
+
+<!-- 리뷰등록:(구매계정)쿼리 -->
+<select id="Milkitreview_id_select" parameterType="com.fi.pj.milkit.MilkitReviewinsert" resultType="Integer" >
+	select count(*) from guest_foodproduct_buy_table where fb_u_bo_id = #{id} and fb_fp_no = #{fp_no} <!-- 밀키트 구매목록에 id&상품no가 있으면 리뷰등록가능하도록 예)id:kim <-> fp_no:142-->
+</select>
+
+<!-- 리뷰목록 -->
+<select id="getAllMilkitReview" resultType="com.fi.pj.milkit.MilkitReview" parameterType="String">
+ 		select * from foodproduct_review_table where fpr_fp_no = #{fpr_fp_no} order by fpr_no DESC
+<!--  select * from product_review_table where pr_p_no = #{value} order by pr_no DESC-->
+</select>
+
+<!-- 리뷰삭제 -->
+<delete id="delMilkitreview" parameterType="com.fi.pj.milkit.MilkitReview">
+	delete foodproduct_review_table where fpr_no = #{fpr_no}
+</delete>
+
+<!-- 리뷰수정 -->
+<update id="updateMilkitreview" parameterType="com.fi.pj.milkit.MilkitReview">
+	update foodproduct_review_table set fpr_txt = #{fpr_txt} where fpr_no= #{fpr_no}
+</update>
+
+<!-- 장바구니 등록 -->
+<insert id="regMilkitbasket" parameterType="com.fi.pj.milkit.MilkitBasket" >
+	insert into guest_foodproduct_basket_table (fba_no,fba_fp_no,fba_u_bo_id,fba_fp_name,fba_fp_picture,fba_price,fba_number)
+	values (product_basket_seq.nextval,#{fba_fp_no},#{fba_u_bo_id},#{fba_fp_name},#{fba_fp_picture},#{fba_price},#{fba_number})
+</insert>
+
+<!-- 상품구매(등록) -->
+<insert id="regMilkitbuy" parameterType="com.fi.pj.milkit.MilkitBuy" > <!-- jdbcType=VARCHAR는 null값 허용해주는 테이블이 있을때 쓰임 -->
+	insert into guest_foodproduct_buy_table (fb_no,fb_u_bo_id,fb_fp_no,fb_fp_name,fb_price,fb_number,fb_u_address,fb_new_address,fb_date)
+	values (g_fp_buy_seq.nextval,#{fb_u_bo_id,jdbcType=VARCHAR},#{fb_fp_no,jdbcType=VARCHAR},#{fb_fp_name,jdbcType=VARCHAR},#{fb_price,jdbcType=VARCHAR},#{fb_number,jdbcType=VARCHAR},#{fb_u_address,jdbcType=VARCHAR},#{fb_new_address,jdbcType=VARCHAR},sysdate)
+</insert>
+
+</mapper>

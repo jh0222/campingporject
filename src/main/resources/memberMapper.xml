@@ -29,4 +29,15 @@
 		insert into boss_table values(boss_seq.nextval,#{bo_name},#{bo_id},#{bo_pw},#{bo_email},#{bo_address},#{bo_phonenumber},#{bo_birth},#{bo_picture},0)
 	</insert>
 	
+	<!-- 아이디 찾기 -->
+	<select id="idsearch" resultType="String" parameterType="com.fi.pj.member.Login">
+		select u_id from user_table 
+        where u_name = #{name} and u_phonenumber = #{phonenumber}
+	</select>
+
+	<!-- 아이디 찾기 -->
+	<select id="bo_idsearch" resultType="String" parameterType="com.fi.pj.member.Login">
+		select bo_id from boss_table 
+        where bo_name = #{name} and bo_phonenumber = #{phonenumber}
+	</select>
 </mapper>

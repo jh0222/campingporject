@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fi.pj.member.MemberDAO;
 
+
 @Controller
 public class HomeController {
 	@Autowired
 	private MemberDAO mDAO;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	
 	public String home(HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		req.setAttribute("contentPage", "home.jsp");
