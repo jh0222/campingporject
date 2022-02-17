@@ -69,6 +69,20 @@ $(function() {
 			FormVisible = $(this).attr('value', '1');
 		}
 	});
+	
+	$(".logout_replybtn").click(function() {
+		let FormVisible = $(this).attr('value');
+
+		if (FormVisible == 1) {
+			$(this).closest('table').next().css('display', 'none');
+			$(this).text("답글 보기▼");
+			FormVisible = $(this).attr('value', '0');
+		} else {
+			$(this).closest('table').next().css('display', 'block');
+			$(this).text("답글 숨기기▲");
+			FormVisible = $(this).attr('value', '1');
+		}
+	});
 
 	$('.replyUpdateBtn').click(function name() {
 		let updatebtnVal = $(this).attr('value');
@@ -90,5 +104,47 @@ $(function() {
 			updatebtnVal = $(this).attr('value', 'updateGo');
 		}
 	});
-
+	
+	$('.tipreplyUpdateBtn').click(function name() {
+		let updatebtnVal = $(this).attr('value');
+		let updatebtn = $('<button></button>');
+		
+		if(updatebtnVal == 'updateGo'){
+			let updateInput = $('<input>');
+			let replyTd = $(this).closest('tr').find('.replyTd')
+			let myVal = replyTd.text();
+			replyTd.text('');
+			replyTd.append(updateInput);
+			$(updateInput).val(myVal);
+			updatebtnVal = $(this).attr('value', 'updateDo');
+		} else{
+			let tip_no = $(this).next('.fbVal').val();
+			let tipr_no = $(this).next().next('.frVal1').val();
+			let tipr_replytxt = $(this).closest('tr').find('.replyTd').find('input').val();
+			location.href="ctr.update?tipr_no=" + tipr_no  + "&tipr_replytxt=" + tipr_replytxt + "&tip_no=" + tip_no;
+			updatebtnVal = $(this).attr('value', 'updateGo');
+		}
+	});
+	
+	$('.rreplyUpdateBtn').click(function name() {
+		let updatebtnVal = $(this).attr('value');
+		let updatebtn = $('<button></button>');
+		
+		if(updatebtnVal == 'updateGo'){
+			let updateInput = $('<input>');
+			let replyTd = $(this).closest('tr').find('.replyTd')
+			let myVal = replyTd.text();
+			replyTd.text('');
+			replyTd.append(updateInput);
+			$(updateInput).val(myVal);
+			updatebtnVal = $(this).attr('value', 'updateDo');
+		} else{
+			let rb_no = $(this).next('.fbVal').val();
+			let rr_no = $(this).next().next('.frVal1').val();
+			let rr_replytxt = $(this).closest('tr').find('.replyTd').find('input').val();
+			location.href="rr.update?rr_no=" + rr_no  + "&rr_replytxt=" + rr_replytxt + "&rb_no=" + rb_no;
+			updatebtnVal = $(this).attr('value', 'updateGo');
+		}
+	});
+	
 });

@@ -46,7 +46,7 @@
 						|| sessionScope.loginMember3 != null}">
 				<tr>
 					<td><button onclick="location.href='fbwrite.updatego?f_no=${fb.f_no}'">수정</button></td>
-					<td><button onclick="fbdelete(${fb.f_no} });">삭제</button></td>
+					<td><button onclick="fbdelete('${fb.f_no}' );">삭제</button></td>
 				</tr>
 			</c:if>
 		</table>
@@ -106,18 +106,29 @@
 					<c:if test="${fr.fr_u_id == sessionScope.loginMember.u_id 
 						|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
 						|| sessionScope.loginMember3 != null}">
-					<td colspan="3">
-						<button class="replyUpdateBtn" value="updateGo">수정</button>
-						<input type="hidden" value="${fb.f_no}" class="fbVal">
-						<input type="hidden" value="${fr.fr_no}" class="frVal1">
-						<button onclick="frdelete(${fr.fr_no},${fb.f_no},${fr.fr_depth });">삭제</button>
-					</td>		
-				</c:if>								
+						<td colspan="3">
+							<button class="replyUpdateBtn" value="updateGo">수정</button>
+							<input type="hidden" value="${fb.f_no}" class="fbVal">
+							<input type="hidden" value="${fr.fr_no}" class="frVal1">
+							<button onclick="frdelete(${fr.fr_no},${fb.f_no},${fr.fr_depth });">삭제</button>
+						</td>		
+					</c:if>								
 				</tr>
 				<tr>
-					<td colspan="4">
-						<button id="replybtn" class="replybtn" value='0'>답글 보기▼</button>
-					</td>
+					<c:choose>
+						<c:when test="${fr.fr_u_id == sessionScope.loginMember.u_id 
+								|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
+								|| sessionScope.loginMember3 != null}">
+							<td colspan="4">
+								<button id="replybtn" class="replybtn" value='0'>답글 보기▼</button>
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td colspan="4">
+								<button id="replybtn" class="logout_replybtn" value='0'>답글 보기▼</button>
+							</td>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 			</table>
 
@@ -190,7 +201,7 @@
 			<c:if test="${sessionScope.loginMember.u_id != null
 						|| sessionScope.loginMember2.bo_id != null
 						|| sessionScope.loginMember3 != null}">
-			<form action="fb_replyinsert"  name="frrrwriteForm" onsubmit="return frrr_writeCheck()">				
+			<form action="fb_replyinsert">				
 			<table border="1">
 				<tr>							
 					<td style="color:red;">
@@ -203,21 +214,21 @@
 						<input type="hidden" name="fr_picture" 
 						value="${sessionScope.loginMember.u_picture }${sessionScope.loginMember2.bo_picture }${sessionScope.loginMember3.root_picture }">
 					</td>
-					<td>
+					<td class="replyTd">
 						${sessionScope.loginMember.u_id }
 						${sessionScope.loginMember2.bo_id }
-						${sessionScope.loginMember3.root_name }
-						<input type="hidden" name="fr_u_id"
-						value="${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }${sessionScope.loginMember3.root_name }">
+						${sessionScope.loginMember3.root_name }						
 						<input name="fr_replytxt">
 					</td>
 					<td>
+						<input type="hidden" name="fr_u_id"
+							value="${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }${sessionScope.loginMember3.root_name }">
 						<input type="hidden" name="fr_f_no" value="${frr.fr_f_no }">
 						<input type="hidden" name="fr_owner_no" value="${fr.fr_no }">
 						<input type="hidden" name="fr_owner_id" value="${frr.fr_u_id }">
 						<input type="hidden" name="fr_depth" value="1">
 						<input type="hidden" name="f_no" value="${fb.f_no}">
-						<button>등록</button>
+						<button  class="replyinsert">등록</button>
 					</td>
 				</tr>
 			</table>
