@@ -11,6 +11,7 @@
 <body>
 <h2>캠핑장 목록</h2>
 ${result }
+
 <table border="1">
 	<tr>
 		<th>이름</th>
