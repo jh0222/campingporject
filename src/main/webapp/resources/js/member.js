@@ -154,7 +154,14 @@ function logincall(){
 }
 
 
-
+function check(){
+	let star = document.reviewcheck.pr_star;
+	
+	if (isEmpty(star)){
+		alert('별점등록을 해주세요');
+		return false;
+	}
+}	
 
 $("#button1").click(function(){ 
 	if($("#agreement1").prop("checked") && 

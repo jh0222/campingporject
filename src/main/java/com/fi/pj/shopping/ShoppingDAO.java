@@ -236,13 +236,14 @@ public class ShoppingDAO {
 	}
 
 	public void updateProductreview(ProductReview pr, HttpServletRequest req) {
+		
 		if (ss.getMapper(ShoppingMapper.class).updateProductreview(pr) == 1) {
 			System.out.println("리뷰수정 성공");
 			req.setAttribute("r", "수정 성공");
 		} else {
 			req.setAttribute("r", "수정 실패..");
 		}
-
+		
 	}
 
 	public void regProductbasket(ProductBasket pb, HttpServletRequest req) {
@@ -290,6 +291,13 @@ public class ShoppingDAO {
 			req.setAttribute("r", "db서버문제..");
 
 		}
+	}
+
+	public void productrank(HttpServletRequest req) {
+		
+		List<ProductRank> productrank = ss.getMapper(ShoppingMapper.class).ProductRank();
+		req.setAttribute("productrank", productrank);
+		
 	}
 
 }

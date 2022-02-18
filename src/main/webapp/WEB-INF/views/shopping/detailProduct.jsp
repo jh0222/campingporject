@@ -60,8 +60,10 @@ function change () {
 }  
 
 //주문하기 + 장바구니
+
   function mySubmit(index) {
     if (index == 1) {
+      document.form.method = 'GET'
       document.form.action='orderproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_price=${p.p_price }&p_picture=${p.p_picture }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }';
       document.form.submit();
     }
@@ -74,11 +76,12 @@ function change () {
     	document.form.method = 'POST'
     	document.form.action='reg.productbasket?ba_p_no=${p.p_no}&ba_p_name=${p.p_name}&ba_price='+price+'&ba_p_picture=${p.p_picture }&ba_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&ba_number='+amount;
     	document.form.submit();
-       }else {
-    	document.form.reset();
+       } else {
+    	//document.form.reset();
+    	window.location.reload();
     }
     }
-    
+	  
   }
 
 </script>
@@ -134,7 +137,7 @@ function change () {
 								수량 : <input type=hidden name="sell_price" value="${p.p_price }">
 									 <input type="text" name="amount" value="1" size="3" onchange="change();">
 									 <input type="button" value=" + " onclick="plus();"><input type="button" value=" - " onclick="minus();"><br>
-								금액 : <input type="text" name="sum" id="sum" size="11" readonly>원
+								금액 : <input type="text" name="sum" id="sum" size="10" readonly>원
 									 <input type="hidden" name="p_no" value="${p.p_no}">
 									 <input type="hidden" name="p_name" value="${p.p_name}">
 									 <input type="hidden" name="p_price" value="${p.p_price }">
@@ -165,8 +168,8 @@ function change () {
 				<tr>
 					<th>no</th>
 					<th>ID</th>
-					<th>내용</th>
-					<th>date</th>		
+					<th>내용</th>	
+					<th>date</th>	
 				</tr>
 		
 					<c:forEach var="p" items="${productreviews }">
@@ -174,11 +177,11 @@ function change () {
 					<td>${p.pr_no }</td>
 					<td>${p.pr_u_bo_id }</td>
 					<td>${p.pr_txt }</td>
-					<td><fmt:formatDate value="${p.pr_date }" dateStyle="short"/></td>
+				<td><fmt:formatDate value="${p.pr_date }" dateStyle="short"/></td>
 					<c:if test="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id == p.pr_u_bo_id }">
 					<td onclick="updatereview('${p.pr_no}','${p.pr_txt }')">수정</td>
 					<td onclick="delreview(${p.pr_no})">삭제</td>
-					</c:if> 
+				</c:if>
 				</tr>
 					</c:forEach>
 			</table>			

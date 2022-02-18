@@ -2,12 +2,12 @@
 
 body{
 	margin:0; /*배경이미지 여백을 없애줌 , 바디영역이 디폴트값 margin:8px정도 들어가있기 때문 */
-	height:2000px; /*바디영역의 높이를 높게 줘서 스크롤할수있도록*/
+	height:800px; /*바디영역의 높이를 높게 줘서 스크롤할수있도록*/
 }
 
 section {
 	height: 100vh; /*view height*/
-	background-image:url('cam2.jpg'); 
+	background-image:url('캠핑커플.jpg'); 
 	background-size : cover /*배경 꽉 채우게(배경이 반복되는현상 방지*/
 }
 /*그라데이션효과*/

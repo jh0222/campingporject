@@ -33,11 +33,6 @@ $(document).ready(function(){
 
 });
 
-//체크박스 유효성(미완)
-function button1_click() {
-		alert("에러문구를 표시"); 
-}
-
 //체크박스 중복방지
 function addrCheck(chk){
     var obj = document.getElementsByName("offline1");//name값
@@ -51,8 +46,38 @@ function addrCheck(chk){
     }
 }
 
-
+//체크박스 유효성검사
+function CheckForm(check){
+    
+    //체크박스 체크여부 확인 
+    var chk1=document.ordercheck.U_checkAgreement1.checked;
+    var chk2=document.ordercheck.U_checkAgreement2.checked;
+    var chk3=document.ordercheck.U_checkAgreement3.checked;
+    var chk4=document.ordercheck.U_checkAgreement4.checked;
+    
+    if(!chk1){
+        alert('약관1에 동의해 주세요');
+        return false;
+        //e.preventDefault();
+    } 
+    if(!chk2) {
+        alert('약관2에 동의해 주세요');
+        return false;
+       //e.preventDefault();
+    }
+    if(!chk3) {
+        alert('약관3에 동의해 주세요');
+        return false;
+       //e.preventDefault();
+    }
+    if(!chk4) {
+        alert('약관4에 동의해 주세요');
+        return false;
+       //e.preventDefault();
+    }
+}
 </script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -114,7 +139,7 @@ function addrCheck(chk){
 · 캠핑쇼핑몰은 기본적으로 대한민국 내 제주도 및 도서 산간 지역 포함  <b>전 지역, 전 상품 무료배송</b>입니다.<br>
 · 해외 배송 상품이나 일부 업체의 경우, 교환/환불 시 반송료가 다를 수 있으며 상품 페이지에 별도 표기되어 있습니다.<br>
 
-
+<form name="ordercheck" action=""  onSubmit="return CheckForm(this)">
 <table border="1">
 		<thead>
 			<tr>
@@ -124,27 +149,29 @@ function addrCheck(chk){
 		</thead>
 		<tbody>
 			<tr>
-				<td><input type="checkbox" name="chk" value="1"></td>
+				<td><input type="checkbox" name="U_checkAgreement1" id="U_checkAgreement1" value=""></td>
 				<td colspan="2">[필수] 개인정보 수집 및 이용 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a onclick="showPopup1();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="chk" value="2"></td>
+				<td><input type="checkbox" name="U_checkAgreement2" id="U_checkAgreement2"></td>
 				<td>[필수] 개인정보 제 3자 제공 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a onclick="showPopup2();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="chk" value="3"></td>
+				<td><input type="checkbox" name="U_checkAgreement3" id="U_checkAgreement3"></td>
 				<td>[필수] 전자결제대행 이용 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a onclick="showPopup3();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="chk" value="4"></td>
+				<td><input type="checkbox" name="U_checkAgreement4" id="U_checkAgreement4"></td>
 				<td>[필수] 상품정보, 거래조건 확인 및 구매 진행 동의</td> 
 			</tr>
 		</tbody>
 	</table>
-<button id="check_module" type="button" onclick="">결제하기</button>
+	<input type="submit" id="check_module" value="결제하기">
+</form>	
+<!--  <button id="check_module" type="button" onclick="">결제하기</button>-->
 	
 · 입점업체 배송은 낮은 확률로 상품이 품절일 가능성이 있습니다. 이에 품절 시 빠르게 환불 처리해드립니다.<br>
 · 현금 환불의 경우, 예금정보가 일치해야 환불 처리가 가능합니다. 은행명, 계좌번호, 예금주명을 정확히 기재 부탁드립니다.<br>
@@ -153,8 +180,6 @@ function addrCheck(chk){
 
 <!-- 결제하기 -->
 <script>
-
-
 $("#check_module").click(function () {
 var IMP = window.IMP; // 생략가능
 IMP.init('imp46581722');

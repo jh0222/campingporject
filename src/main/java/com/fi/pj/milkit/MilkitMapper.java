@@ -8,7 +8,7 @@ import com.fi.pj.shopping.ProductReview;
 public interface MilkitMapper {
 	
 //밀키트목록
-public List<Milkit> getAllMilkit();
+public List<Milkit> getAllMilkit(Page p);
 //밀키트등록
 public int regMilkit(Milkit fp);
 //밀키트검색
@@ -33,6 +33,8 @@ public int updateMilkitreview(MilkitReview fpr);
 public int regMilkitbasket(MilkitBasket fpb);
 //상품구매(등록)
 public int regMilkitbuy(MilkitBuy mbuy);
+//총 밀키트 게시물 수
+public int getAllMilkitcnt();
 
 
 }

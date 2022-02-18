@@ -10,7 +10,6 @@
 <main id="fullpage">
 		<section class="section">
 				<div class="slide">
-				<h3 align="center">고캠핑 상품</h3>
 				</div>		
 				<div class="slide">
 				<h3>slide 02</h3>

@@ -214,9 +214,61 @@ create table guest_product_buy_table(
 /*마이페이지 어떻게 되어있는지 보고 배송메모 포함할지 말지*/
 create sequence g_p_buy_seq;
 
-insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',115,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',109,'gd',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_product_buy_table;
+
+select * from product_registration_table
+
+select a.b_p_no,count(*),b.p_no
+from guest_product_buy_table a,product_registration_table b
+where a.b_p_no=b.p_no
+group by a.b_p_no
+order by count(*) desc;
+
+select count(*),b.*
+from guest_product_buy_table a,product_registration_table b
+where a.b_p_no=b.p_no
+group by a.b_p_no
+
+select MAX(b_p_no) from guest_product_buy_table;
+select * from guest_product_buy_table where b_p_no= (select MAX(b_p_no) from guest_product_buy_table); --서브쿼리
+select b_p_name,b_price, dense_rank() over(order by b_p_no) As rank from guest_product_buy_table;
+
+select *
+from camping_table a,
+(select c_cam_no, avg(c_campingstar) as star
+    from campingreview_table 
+    group by c_cam_no) b
+where a.cam_no=b.c_cam_no
+ORDER BY a.cam_no desc;
+
+select ROWNUM, A.*
+from 
+(select * from product_registration_table a,
+(select count(b_p_no) as c,b_p_no
+from guest_product_buy_table
+group by b_p_no) b
+where a.p_no=b.b_p_no
+ORDER BY b.c desc) A
+where ROWNUM <= 5;
+
+
+select tb.b_p_name,b_price, dense_rank() over(order by tb.b_p_no) As rank, counts.cnt, tb.b_p_no 
+from guest_product_buy_table tb LEFT JOIN (SELECT b_p_no, count(b_p_no) as cnt 
+											FROM guest_product_buy_table 
+											GROUP BY b_p_no) counts
+								ON tb.b_p_no = counts.b_p_no
+ORDER BY counts.cnt DESC;
+							
+--select b_p_name,b_price, rank() over(order by b_p_no desc) As rank from guest_product_buy_table;
+
+select ROWNUM, A.*
+from (select *
+      from guest_product_buy_table
+      ORDER BY b_p_no DESC) A
+where ROWNUM <= 5
+
 -------------------------------------------------------------------------------------------------------------------------------------
 11. 밀키트 구매목록
 /*
@@ -292,13 +344,14 @@ create table product_review_table(
 	pr_p_no number(5) not null, 
 	pr_u_bo_id varchar2(20 char) not null,
 	pr_txt varchar2(100 char) not null,
+	pr_star number(5) not null,
 	pr_date	date not null
 );
 
 drop table product_review_table;
 create sequence product_review_seq;
 
-insert into product_review_table values(product_review_seq.nextval,182,'kim','좋아요','20220301');
+insert into product_review_table values(product_review_seq.nextval,182,'kim','좋아요',5,'20220301');
 
 select * from product_review_table;
 select * from product_review_table where pr_p_no = 182 ;
@@ -332,7 +385,7 @@ create table free_board_table(
 
 create sequence free_board_seq;
 
-insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유자유','h.jpg',0,'20220110');
+insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유',0,'20220110');
 
 select * from free_board_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -358,7 +411,7 @@ create table free_board_reply_table(
 
 create sequence free_board_reply_seq;
 
-insert into free_board_reply_table values(free_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
+insert into free_board_reply_table values(free_board_reply_seq.nextval,3,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
 
 select * from free_board_reply_table;
 select count(*) from free_board_reply_table where fr_owner_no=
@@ -450,7 +503,9 @@ insert into recipe_board_reply_table values(recipe_board_reply_seq.nextval,1,'ki
 select * from recipe_board_reply_table;
 
 
+select * from guest_product_buy_table;
 
+SELECT count(b_p_no), b_p_no FROM	guest_product_buy_table GROUP BY b_p_no;
 
 
 

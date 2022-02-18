@@ -7,9 +7,31 @@
 <head>
 <meta charset="UTF-8">
 <title>캠핑용품</title>
+<style>
+    *{margin:0;padding:0;}
+    ul,li{list-style:none;}
+    .slide{height:500px;overflow:hidden;}
+    .slide ul{width:calc(100% * 4);display:flex;animation:slide 13s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
+    .slide li{width:calc(100% / 4);height:300px;}
+    .slide li:nth-child(1){background:#f5f5f5;} /*background-image:url(resources/css/xx.jpg);*/
+    .slide li:nth-child(2){background:#f5f5f5;}
+    .slide li:nth-child(3){background:#f5f5f5;}
+    .slide li:nth-child(4){background:#f5f5f5;}
+    @keyframes slide {
+      0% {margin-left:0;} /* 0 ~ 10  : 정지 */
+      10% {margin-left:0;} /* 10 ~ 25 : 변이 */
+      25% {margin-left:-100%;} /* 25 ~ 35 : 정지 */
+      35% {margin-left:-100%;} /* 35 ~ 50 : 변이 */
+      50% {margin-left:-200%;}
+      60% {margin-left:-200%;}
+      75% {margin-left:-300%;}
+      85% {margin-left:-300%;}
+      100% {margin-left:0;}
+    }
+  </style>
 </head>
 <body>
-	<table style="margin-top: 25px">
+	<table>
 		<tr>
 			<td>
 				<form action="search.product">
@@ -24,32 +46,41 @@
 			</c:if>
 		</tr>
 	</table>
-
+<div class="slide">
+    <ul>
+      <li><img src="resources/css/shoppingmain/캠핑용품메인1.JPG" style="height: 500px; width: 1300px; display: block; margin: 0px auto;"></li>
+      <li><img src="resources/css/shoppingmain/캠핑용품메인2.JPG" style="height: 500px; width: 1300px; display: block; margin: 0px auto;"></li>
+      <li><img src="resources/css/shoppingmain/캠핑용품메인3.JPG" style="height: 500px; width: 1300px; display: block; margin: 0px auto;"></li>
+      <li><img src="resources/css/shoppingmain/캠핑용품메인4.JPG" style="height: 500px; width: 1300px; display: block; margin: 0px auto;"></li>
+    </ul>
+  </div>
+  
 	<h3>상품목록</h3>
-	
-	<table border="1" style="position: absolute; width: 100%";>
-		<c:set var="i" value="0" />
-		<c:set var="j" value="2" />
-
-		<c:forEach var="p" items="${products}">
-			<c:if test="${i%j == 0 }">
-				<tr>
-			</c:if>
-			<td><img src="resources/img/${p.p_picture }"
-				style="width: 120px; height: 110px;"
-				onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'"></td>
-			<td onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'">${p.p_name }</td>
-
-			<td><fmt:formatNumber value="${p.p_price}" type="currency" /> </td>
+	<c:forEach var="p" items="${products}">
+		<table border="1" class="table_product">		
+			<tr>
+				<td><img src="resources/img/${p.p_picture }"
+					style="width: 120px; height: 110px;"
+					onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'"></td>
+			</tr>	
 			
-			<c:if test="${sessionScope.loginMember3.root_id != null}">
-				<td><button onclick="del(${p.p_no})">삭제</button></td>
-			</c:if>
-			<c:if test="${i%j == j-1 }">
-				</tr>
-			</c:if>
-			<c:set var="i" value="${i+1 }" />
-		</c:forEach>
+			<tr>
+				<td onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'">${p.p_name }</td>
+			</tr>		
+			<tr>
+				<td><fmt:formatNumber value="${p.p_price}" type="currency" /> </td>
+			</tr>
+			<tr>
+				<c:if test="${sessionScope.loginMember3.root_id != null}">
+					<td><button onclick="del(${p.p_no})">삭제</button></td>
+				</c:if>
+			</tr>		
+		</table>
+	</c:forEach>
+
+
+
+	<div>
 		<c:choose>
         <c:when test = "${pg > block}">
             [<a href="camping.product?pg=1">◀◀</a>]
@@ -80,5 +111,6 @@
             [<span style="color:gray">▶▶</span>]
            </c:otherwise>
     </c:choose>
+    </div>
 </body>
 </html>

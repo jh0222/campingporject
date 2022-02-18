@@ -49,7 +49,7 @@
 				<beans:value>classpath:milkitMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
-	</beans:bean>
+	</beans:bean>  
 
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg name="sqlSessionFactory"

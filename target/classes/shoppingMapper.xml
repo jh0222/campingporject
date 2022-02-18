@@ -55,7 +55,7 @@
 
 <!-- 리뷰등록 -->
 <insert id="regProductreview" parameterType="com.fi.pj.shopping.ProductReview">
-	insert into product_review_table(pr_no,pr_p_no,pr_u_bo_id,pr_txt,pr_date) values (product_review_seq.nextval,#{pr_p_no},#{pr_u_bo_id}, #{pr_txt}, sysdate)
+	insert into product_review_table(pr_no,pr_p_no,pr_u_bo_id,pr_txt,pr_star,pr_date) values (product_review_seq.nextval,#{pr_p_no},#{pr_u_bo_id}, #{pr_txt},#{pr_star},sysdate)
 </insert>
 
 <!-- 리뷰삭제 -->
@@ -79,9 +79,23 @@
 	insert into guest_product_buy_table (b_no,b_u_bo_id,b_p_no,b_p_name,b_price,b_number,b_u_address,b_new_address,b_date)
 	values (g_p_buy_seq.nextval,#{b_u_bo_id,jdbcType=VARCHAR},#{b_p_no,jdbcType=VARCHAR},#{b_p_name,jdbcType=VARCHAR},#{b_price,jdbcType=VARCHAR},#{b_number,jdbcType=VARCHAR},#{b_u_address,jdbcType=VARCHAR},#{b_new_address,jdbcType=VARCHAR},sysdate)
 </insert>
+
 <!-- 상품게시물 수(페이징) -->
 <select id="getAllProductcnt" resultType="Integer">
 	select count(*) from product_registration_table
+</select>
+
+
+<select id="ProductRank" resultType="com.fi.pj.shopping.ProductRank">
+select ROWNUM, A.*
+from 
+(select * from product_registration_table a,
+(select count(b_p_no) as c,b_p_no
+from guest_product_buy_table
+group by b_p_no) b
+where a.p_no=b.b_p_no
+ORDER BY b.c desc) A
+where ROWNUM &lt;= 5
 </select>
 
 </mapper>

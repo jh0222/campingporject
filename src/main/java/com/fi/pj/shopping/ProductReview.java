@@ -7,6 +7,7 @@ public class ProductReview {
 	private int pr_p_no;
 	private String pr_u_bo_id;
 	private String pr_txt;
+	private int pr_star;
 	private Date pr_date;
 	
 	
@@ -15,12 +16,13 @@ public class ProductReview {
 	}
 
 
-	public ProductReview(int pr_no, int pr_p_no, String pr_u_bo_id, String pr_txt, Date pr_date) {
+	public ProductReview(int pr_no, int pr_p_no, String pr_u_bo_id, String pr_txt, int pr_star, Date pr_date) {
 		super();
 		this.pr_no = pr_no;
 		this.pr_p_no = pr_p_no;
 		this.pr_u_bo_id = pr_u_bo_id;
 		this.pr_txt = pr_txt;
+		this.pr_star = pr_star;
 		this.pr_date = pr_date;
 	}
 
@@ -65,6 +67,16 @@ public class ProductReview {
 	}
 
 
+	public int getPr_star() {
+		return pr_star;
+	}
+
+
+	public void setPr_star(int pr_star) {
+		this.pr_star = pr_star;
+	}
+
+
 	public Date getPr_date() {
 		return pr_date;
 	}
@@ -74,6 +86,8 @@ public class ProductReview {
 		this.pr_date = pr_date;
 	}
 	
+
+
 	
 	
 	

@@ -9,7 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fi.pj.member.BossMember;
+import com.fi.pj.member.Root;
 import com.fi.pj.member.UserMember;
+import com.fi.pj.shopping.Page;
 import com.fi.pj.shopping.Product;
 import com.fi.pj.shopping.Reviewinsert;
 import com.fi.pj.shopping.ShoppingMapper;
@@ -24,7 +27,41 @@ public class MilkitDAO {
 
 //밀키트 목록
 	public void getAllMilkit(HttpServletRequest req) {
-		req.setAttribute("milkits",ss.getMapper(MilkitMapper.class).getAllMilkit()); 
+		int rowSize = 6; // 한페이지에 보여줄 글의 수
+		int pg = 1; // 페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+
+		String strPg = req.getParameter("pg");
+		if (strPg != null) { // list.jsp?pg=2
+			pg = Integer.parseInt(strPg); // .저장
+		}
+
+		int from = (pg * rowSize) - (rowSize - 1); // (1*10)-(10-1)=10-9=1 //from
+		int to = (pg * rowSize); // (110) = 10 //to
+
+		Page p = new Page();
+		p.setFrom(from);
+		p.setTo(to);
+
+		List<Milkit> milkits = ss.getMapper(MilkitMapper.class).getAllMilkit(p);
+
+		int total = ss.getMapper(MilkitMapper.class).getAllMilkitcnt(); // 총 게시물 수
+		int allPage = (int) Math.ceil(total / (double) rowSize); // 페이지수
+		// int totalPage = total/rowSize + (total%rowSize==0?0:1);
+		int block = 5; // 한페이지에 보여줄 범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+		int fromPage = ((pg - 1) / block * block) + 1; // 보여줄 페이지의 시작
+		int toPage = ((pg - 1) / block * block) + block; // 보여줄 페이지의 끝
+		if (toPage > allPage) { // 예) 20>17
+			toPage = allPage;
+		}
+
+		req.setAttribute("pg", pg);
+		req.setAttribute("block", block);
+		req.setAttribute("fromPage", fromPage);
+		req.setAttribute("toPage", toPage);
+		req.setAttribute("allPage", allPage);
+		req.setAttribute("milkits", milkits);	
+		
 		
 	}
 
@@ -118,17 +155,6 @@ public class MilkitDAO {
 		req.setAttribute("milkitreviews",ss.getMapper(MilkitMapper.class).getAllMilkitReview(fprno));
 		
 	}
-	//(구매계정)리뷰등록
-	public void reviewwrite(MilkitReviewinsert fri, Milkit fp, HttpServletRequest req) {
-		UserMember u_member =  (UserMember) req.getSession().getAttribute("loginMember");
-		fri.setId(u_member.getU_id());
-		System.out.println(fri.getId());
-		 
-		if(ss.getMapper(MilkitMapper.class).Milkitreview_id_select(fri) >= 1) {
-			req.setAttribute("reviewPage", "../shopping_milkit/milkit_review.jsp");
-		}
-		
-	}
 
 	public void updateMilkit(Milkit fp, HttpServletRequest req) {
 		String path = req.getSession().getServletContext().getRealPath("resources/img");
@@ -185,8 +211,21 @@ public class MilkitDAO {
 	}
 	//(구매계정)리뷰등록
 	public void reviewwrite2(MilkitReviewinsert fri, Milkit fp, HttpServletRequest req) {
-		UserMember u_member =  (UserMember) req.getSession().getAttribute("loginMember");
-		fri.setId(u_member.getU_id());
+		UserMember u_member = (UserMember) req.getSession().getAttribute("loginMember");
+		BossMember b_member = (BossMember) req.getSession().getAttribute("loginMember2");
+		Root r_member = (Root) req.getSession().getAttribute("loginMember3");
+
+		if (u_member != null) {
+			fri.setId(u_member.getU_id());
+		}
+		if (b_member != null) {
+			fri.setId(b_member.getBo_id());
+		}
+		if (r_member != null) {
+			fri.setId(r_member.getRoot_id());
+		}
+		System.out.println(fri.getId());
+		System.out.println(fri.getId());
 		System.out.println(fri.getId());
 		 
 		if(ss.getMapper(MilkitMapper.class).Milkitreview_id_select(fri) >= 1) {

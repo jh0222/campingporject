@@ -56,7 +56,7 @@ public class MilkitC {
 			return "main";
 		}	
 		
-	//캠핑용품 검색
+	//밀키트 검색
 	@RequestMapping(value = "search.milkit", method = RequestMethod.GET )
 	public String searchProduct(Milkit fp,HttpServletRequest req) {
 		mDAO.loginCheck(req);
@@ -66,7 +66,7 @@ public class MilkitC {
 		return "main";
 		}	
 	
-	//캠핑용품 삭제
+	//밀키트 삭제
 		@RequestMapping(value = "del.milkit", method = RequestMethod.GET)
 		public String delmilkit(Milkit fp,HttpServletRequest req) {
 			mDAO.loginCheck(req);
@@ -124,7 +124,7 @@ public class MilkitC {
 			return "main";
 			}		
 		
-	//캠핑용품 리뷰삭제
+	//밀키트 리뷰삭제
 		@RequestMapping(value = "del.milkitreview", method = RequestMethod.GET)
 		public String delmilkitreview(MilkitReview fpr,Milkit fp,MilkitReviewinsert fri,HttpServletRequest req) {
 			mDAO.loginCheck(req);
@@ -159,7 +159,7 @@ public class MilkitC {
 			req.setAttribute("shoppigListPage", "../shopping/productbasket.jsp");
 			return "main";
 		}	
-		//캠핑용품 구매페이지 이동
+		//밀키트 구매페이지 이동
 		@RequestMapping(value = "ordermilkit.go", method = RequestMethod.GET)
 		public String ordermilkitgo(Milkit fp, UserMember u, MilkitShoppingOrder mso, HttpServletRequest req) {
 			mDAO.loginCheck(req);

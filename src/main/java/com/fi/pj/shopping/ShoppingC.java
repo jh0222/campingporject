@@ -25,11 +25,13 @@ public class ShoppingC {
 	@Autowired
 	private SqlSession ss;
 	
-	//쇼핑페이지 이동
+	//쇼핑페이지 이동,구매순위
 	@RequestMapping(value = "shopping.go", method = RequestMethod.GET)
-	public String shoppinggo(HttpServletRequest req) {
+	public String shoppinggo(ProductRank prk,HttpServletRequest req) {
 		mDAO.loginCheck(req);
+		sdao.productrank(req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+		req.setAttribute("shoppigListPage", "../shopping/campingandmilkitMain.jsp");
 		return "main";
 	}
 	
@@ -206,6 +208,9 @@ public class ShoppingC {
 			req.setAttribute("shoppigListPage", "../shopping/Mypage.jsp");
 			return "main";
 		}	
+		
+		
+		
 		
 	
 }

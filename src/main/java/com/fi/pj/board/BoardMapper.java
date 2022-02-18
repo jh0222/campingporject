@@ -5,7 +5,7 @@ import java.util.List;
 public interface BoardMapper {
 
 	//자유게시판 전체목록
-	public List<Freeboard> getAllfreeboard(Page p);
+	public List<Freeboard> getAllfreeboard(BoardPage p);
 
 	//자유게시판 등록
 	public int FbInsert(Freeboard fb);
@@ -29,7 +29,7 @@ public interface BoardMapper {
 	public int FbreplyInsert3(FbReply fr);
 	
 	//자유게시판 댓글 보기
-	public List<FbReply> getfbreply(Page p);
+	public List<FbReply> getfbreply(BoardPage p);
 
 	//자유게시판 댓글 삭제
 	public int FrDelete(FbReply fr);
