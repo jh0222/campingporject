@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fi.pj.board.BoardMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -22,25 +23,41 @@ public class BossCommunitiresDAO {
 
 	// 등록된 캠핑 정보
 	public void CampingInfo(BossCommunities bc, HttpServletRequest req) {
-
-		List<BossCommunities> campinginfo = ss.getMapper(BossCommunitiesMapper.class).campinginfo(bc);
-
-		req.setAttribute("cam" + "" + "pinginfo", campinginfo);
+		
+		req.setAttribute("campinginfo", ss.getMapper(BossCommunitiesMapper.class).campinginfo(bc));
+		
 	}
 
 	// 캠핑 정보 수정
 	public void CampingInfoUp(BossCommunities bc, HttpServletRequest req) {
-
+		System.out.println(bc.getCam_no());
+		System.out.println(bc.getCam_name());
 		String path = req.getSession().getServletContext().getRealPath("resources/img");
 		MultipartRequest mr = null;
 		String oldFile = bc.getCam_picture();
 		String newFile = null;
 		try {
 			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+			int cam_no = Integer.parseInt(mr.getParameter("cam_no"));
+			String cam_name = mr.getParameter("name");
+			String cam_txt = mr.getParameter("txt");
+			String cam_phonenumber = mr.getParameter("phonenumber");
+			int cam_price = Integer.parseInt(mr.getParameter("price"));
+			String cam_address = mr.getParameter("address");
+			
+			bc.setCam_no(cam_no);
+			bc.setCam_name(cam_name);
+			bc.setCam_txt(cam_txt);
+			bc.setCam_phonenumber(cam_phonenumber);
+			bc.setCam_price(cam_price);
+			bc.setCam_address(cam_address);
+			
 			newFile = mr.getFilesystemName("cam_picture");
 			if (newFile == null) {
 				newFile = oldFile;
+				bc.setCam_picture(oldFile);
 			} else {
+				bc.setCam_picture(newFile);
 				newFile = URLEncoder.encode(newFile, "utf-8");
 				newFile = newFile.replace("+", " ");
 			}
@@ -105,7 +122,6 @@ public class BossCommunitiresDAO {
 
 	// 사용자들이 예약한 정보
 	public void campingreserve(BossCommunities bc, HttpServletRequest req) {
-		
 		List<BossCommunities> campingreserve = ss.getMapper(BossCommunitiesMapper.class).campingreserve(bc);
 		req.setAttribute("campingreserve", campingreserve);
 	}

@@ -251,7 +251,7 @@ public class MemberDAO {
 	}
 
 	// 사용자 정보 업데이트
-	public void UserUpdate(UserMember user, HttpServletRequest request) {
+	public void userUpdate(UserMember user, HttpServletRequest request) {
 		String path = request.getSession().getServletContext().getRealPath("resources/img");
 		MultipartRequest mr = null;
 		UserMember m = (UserMember) request.getSession().getAttribute("loginMember");
@@ -414,7 +414,7 @@ public class MemberDAO {
 	}
 
 	// 구매목록
-	public void userbuylist(Buy b, HttpServletRequest request) {
+	public void userBuylist(Buy b, HttpServletRequest request) {
 		List<Buy> userbuylist = ss.getMapper(BuylistMapper.class).userbuylist(b);
 		request.setAttribute("userbuylist", userbuylist);
 
@@ -424,7 +424,7 @@ public class MemberDAO {
 	}
 
 	// 구매목록 삭제
-	public void buyproductdel(Buy b, HttpServletRequest request) {
+	public void buyproductDel(Buy b, HttpServletRequest request) {
 		try {
 			int buyproductdel = ss.getMapper(BuylistMapper.class).buyproductdel(b);
 
@@ -440,7 +440,7 @@ public class MemberDAO {
 	}
 
 	// 구매목록 삭제
-	public void buymealdel(Buy b, HttpServletRequest request) {
+	public void buymealDel(Buy b, HttpServletRequest request) {
 		try {
 			int buymealdel = ss.getMapper(BuylistMapper.class).buymealdel(b);
 
@@ -470,14 +470,14 @@ public class MemberDAO {
 	}
 
 	// 캠핑찜
-	public void campingjjim(Communities c, HttpServletRequest request) {
+	public void campingJjim(Communities c, HttpServletRequest request) {
 
 		List<Communities> campingjjim = ss.getMapper(CommunitiesMapper.class).campingjjim(c);
 		request.setAttribute("campingjjim", campingjjim);
 	}
 
 	// 캠핑찜 삭제
-	public void campingjjimdel(Communities c, HttpServletRequest request) {
+	public void campingJjimdel(Communities c, HttpServletRequest request) {
 		try {
 			int jjimdel = ss.getMapper(CommunitiesMapper.class).campingjjimdel(c);
 
@@ -493,13 +493,13 @@ public class MemberDAO {
 	}
 
 	// 캠핑예약
-	public void campingreserve(Communities c, HttpServletRequest request) {
+	public void campingReserve(Communities c, HttpServletRequest request) {
 		List<Communities> campingreserve = ss.getMapper(CommunitiesMapper.class).campingreserve(c);
 		request.setAttribute("campingreserve", campingreserve);
 	}
 
 	// 캠핑예약 삭제
-	public void campingreservedel(Communities c, HttpServletRequest request) {
+	public void campingreserveDel(Communities c, HttpServletRequest request) {
 		try {
 			int reservedel = ss.getMapper(CommunitiesMapper.class).reservedel(c);
 

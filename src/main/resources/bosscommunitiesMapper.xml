@@ -12,12 +12,12 @@
 	update camping_table 
 	set cam_name = #{cam_name}, cam_address = #{cam_address}, cam_picture = #{cam_picture}, cam_txt = #{cam_txt}, 
 	    cam_phonenumber = #{cam_phonenumber}, cam_price = #{cam_price}
-	where cam_no = #{cam_no}  
+	where cam_no = #{cam_no}
 </update>
 
 <!-- 캠핑정보삭제 -->
 <delete id="campinginfodel" parameterType="com.fi.pj.member.BossCommunities">
-	delete from camping_table where cam_bo_id = #{cam_bo_id}
+	delete from camping_table where cam_no = #{cam_no}
 </delete>
 
 <!-- 캠핑예약정보 -->

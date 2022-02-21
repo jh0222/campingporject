@@ -26,7 +26,7 @@ public class BossCommunitiesController {
 	}
 
 	// 캠핑정보 수정
-	@RequestMapping(value = "boss_camping.infoupdate", method = RequestMethod.GET)
+	@RequestMapping(value = "boss_camping.infoupdate", method = RequestMethod.POST)
 	public String CampingInfoUp(BossCommunities bc, HttpServletRequest req) {
 
 		bcDAO.CampingInfoUp(bc, req);

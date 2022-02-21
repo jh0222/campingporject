@@ -126,8 +126,9 @@ public class MemberController {
 	public String userUpdate(UserMember user, HttpServletRequest request) {
 
 		mDAO.loginCheck(request);
-		mDAO.UserUpdate(user, request);
+		mDAO.userUpdate(user, request);
 		mDAO.splitUser(request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/Info_user.jsp");
 
 		return "main";
@@ -182,8 +183,8 @@ public class MemberController {
 	
 	// 캠핑찜
 	@RequestMapping(value = "campingjjim", method = RequestMethod.GET)
-	public String campingjjim(Communities c, HttpServletRequest request) {
-		mDAO.campingjjim(c, request);
+	public String campingJjim(Communities c, HttpServletRequest request) {
+		mDAO.campingJjim(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingjjim.jsp");
 
@@ -192,10 +193,10 @@ public class MemberController {
 
 	// 캠핑찜 삭제
 	@RequestMapping(value = "campingjjim.del", method = RequestMethod.GET)
-	public String campingjjimdel(Communities c, HttpServletRequest request) {
+	public String campingJjimdel(Communities c, HttpServletRequest request) {
 
-		mDAO.campingjjimdel(c, request);
-		mDAO.campingjjim(c, request);
+		mDAO.campingJjimdel(c, request);
+		mDAO.campingJjim(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingjjim.jsp");
 
@@ -204,30 +205,29 @@ public class MemberController {
 
 	// 캠핑예약
 	@RequestMapping(value = "campingreservation", method = RequestMethod.GET)
-	public String campingreserve(Communities c, HttpServletRequest request) {
-		mDAO.campingreserve(c, request);
+	public String campingReserve(Communities c, HttpServletRequest request) {
+		mDAO.campingReserve(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("contentPage", "member/campingreserve.jsp");
-
+		request.setAttribute("contentPage", "member/reservation_confirm.jsp");
 		return "main";
 	}
 
 	// 캠핑예약 삭제
 	@RequestMapping(value = "campingreserve.del", method = RequestMethod.GET)
-	public String reservedel(Communities c, HttpServletRequest request) {
-		mDAO.campingreservedel(c, request);
-		mDAO.campingreserve(c, request);
+	public String campingreserveDel(Communities c, HttpServletRequest request) {
+		mDAO.campingreserveDel(c, request);
+		mDAO.campingReserve(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("contentPage", "member/campingreserve.jsp");
+		request.setAttribute("contentPage", "member/reservation_confirm.jsp");
 
 		return "main";
 	}
 
 	// 사용자 구매목록
 	@RequestMapping(value = "userbuylist", method = RequestMethod.GET)
-	public String userbuylist(Buy b, HttpServletRequest request) {
+	public String userBuylist(Buy b, HttpServletRequest request) {
 
-		mDAO.userbuylist(b, request);
+		mDAO.userBuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/buylist.jsp");
 
@@ -236,9 +236,9 @@ public class MemberController {
 
 	// 구매목록 삭제 - 캠핑용품
 	@RequestMapping(value = "buyproduct.del", method = RequestMethod.GET)
-	public String buyproductdel(Buy b, HttpServletRequest request) {
-		mDAO.buyproductdel(b, request);
-		mDAO.userbuylist(b, request);
+	public String buyproductDel(Buy b, HttpServletRequest request) {
+		mDAO.buyproductDel(b, request);
+		mDAO.userBuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/buylist.jsp");
 
@@ -247,9 +247,9 @@ public class MemberController {
 
 	// 구매목록 삭제 - 밀키트
 	@RequestMapping(value = "buymeal.del", method = RequestMethod.GET)
-	public String buymealdel(Buy b, HttpServletRequest request) {
-		mDAO.buymealdel(b, request);
-		mDAO.userbuylist(b, request);
+	public String buymealDel(Buy b, HttpServletRequest request) {
+		mDAO.buymealDel(b, request);
+		mDAO.userBuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/buylist.jsp");
 
