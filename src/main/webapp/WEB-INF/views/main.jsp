@@ -33,7 +33,7 @@ ${result }
 <header>
       <div class="gnb-inner">       
         <div class="logo">
-			<a href="home"><img src="resources/img/camping-tent.png"> Go Camping</a>
+			<a href="home">고캠핑</a>
 		</div>        
         <div class="gnb">
         <div class="menu">       

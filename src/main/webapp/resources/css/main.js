@@ -6,7 +6,7 @@ $(function() {
 		scrollHorizontally: true,
 		navigation:true,
 		navigationPosition:'right',
-		sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#eee', '#ccddff']
+		sectionsColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']
 	});
 });
 
