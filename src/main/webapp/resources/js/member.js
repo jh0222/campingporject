@@ -191,3 +191,28 @@ $("#button1").click(function(){
 			$(".successPhoneChk").css("color", "red"); } return false }
 });
 
+// 사용자 마이페이지
+function userInfo(){
+	location.href = "user.info";
+}
+
+// 사용자 탈퇴
+function userBye(){
+	let ok = confirm("정말 탈퇴하시겠습니까?");
+	if (ok) {
+		location.href = "user.bye";
+	}
+}
+
+// 사장 마이페이지
+function bossInfo(){
+	location.href = "boss.info";
+}
+
+// 사장 탈퇴
+function bossBye(){
+	let ok = confirm("정말 탈퇴하시겠습니까?");
+	if (ok) {
+		location.href = "boss.bye";
+	}
+}

@@ -16,8 +16,8 @@
 			<td>${sessionScope.loginMember.u_id }</td>
 			<td>(${sessionScope.loginMember.u_name })</td>
 			<td>
-				<button>장바구니</button>
-				<button onclick="goMemberInfo()">내 정보</button>
+				<button onclick="location.href='UserCart'">장바구니</button>
+				<button onclick="location.href='user.info'">마이페이지</button>
 				<button onclick="logout()">로그아웃</button>
 			</td>
 		<tr>
@@ -29,8 +29,8 @@
 			<td>${sessionScope.loginMember2.bo_id }사장님</td>
 			<td>(${sessionScope.loginMember2.bo_name })</td>
 			<td>
-				<button>장바구니</button>
-				<button onclick="goMemberInfo()">내 정보</button>
+				<button onclick="location.href='BossCart'">장바구니</button>
+				<button onclick="bossInfo()">마이페이지</button>
 				<button onclick="logout()">로그아웃</button>
 			</td>
 		<tr>
@@ -42,8 +42,6 @@
 			<td>${sessionScope.loginMember3.root_id }</td>
 			<td>(관리자)</td>
 			<td>
-				<button>장바구니</button>
-				<button onclick="goMemberInfo()">내 정보</button>
 				<button onclick="logout()">로그아웃</button>
 			</td>
 		<tr>

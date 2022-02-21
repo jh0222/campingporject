@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fi.pj.member.ReviewMapper">
+
+<update id="campingreviewupdate" parameterType="com.fi.pj.member.Communities">
+	update campingreview_table set c_campingreview = #{c_campingreview} where c_no = #{c_no} 
+</update>
+
+<delete id="campingreviewdel" parameterType="com.fi.pj.member.Communities">
+	delete from campingreview_table where c_no = #{c_no}
+</delete>
+
+<update id="productreviewupdate" parameterType="com.fi.pj.member.Communities">
+	update product_review_table set pr_txt = #{pr_txt} where pr_no = #{pr_no}
+</update>
+
+<delete id="productreviewdel" parameterType="com.fi.pj.member.Communities">
+	delete from product_review_table where pr_no = #{pr_no}
+</delete>
+
+<update id="mealreviewupdate" parameterType="com.fi.pj.member.Communities">
+	update foodproduct_review_table set fpr_txt = #{fpr_txt} where fpr_no = #{fpr_no}
+</update>
+
+<delete id="mealreviewdel" parameterType="com.fi.pj.member.Communities">
+	delete from foodproduct_review_table where fpr_no = #{fpr_no}
+</delete>
+
+<update id="freeboardreviewupdate" parameterType="com.fi.pj.member.Communities">
+	update free_board_reply_table set fr_replytxt = #{fr_replytxt} where fr_no = #{fr_no}
+</update>
+
+<delete id="freeboardreviewdel" parameterType="com.fi.pj.member.Communities">
+	delete from free_board_reply_table where fr_no = #{fr_no}
+</delete>
+
+<update id="recipereviewupdate" parameterType="com.fi.pj.member.Communities">
+	update recipe_board_reply_table set rr_replytxt = #{rr_replytxt} where rr_no = #{rr_no}
+</update>
+
+<delete id="recipereviewdel" parameterType="com.fi.pj.member.Communities">
+	delete from recipe_board_reply_table where rr_no = #{rr_no}
+</delete>
+
+<update id="campingtipreviewupdate" parameterType="com.fi.pj.member.Communities">
+	update campingtip_board_reply_table set tipr_replytxt = #{tipr_replytxt} where tipr_no = #{tipr_no}
+</update>
+
+<delete id="campingtipreviewdel" parameterType="com.fi.pj.member.Communities">
+	delete from campingtip_board_reply_table where tipr_no = #{tipr_no}
+</delete>
+
+</mapper>
