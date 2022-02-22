@@ -27,7 +27,7 @@ public class MilkitDAO {
 
 //밀키트 목록
 	public void getAllMilkit(HttpServletRequest req) {
-		int rowSize = 6; // 한페이지에 보여줄 글의 수
+		int rowSize = 12; // 한페이지에 보여줄 글의 수
 		int pg = 1; // 페이지 , list.jsp로 넘어온 경우 , 초기값 =1
 
 		String strPg = req.getParameter("pg");

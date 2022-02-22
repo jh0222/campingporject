@@ -90,20 +90,19 @@ function change () {
 <title>Insert title here</title>
 </head>
 <body onload="init();">
-	<table border="0" width="100%" >
+	<table width="100%" >
 
 		<h2>상품 상세정보</h2> 
 		<td>
-			<table border="0">
+			<table class="detail_picture_table">
 				<tr>
-					<td><img src="resources/img/${p.p_picture }" width="90%"
-					height="auto"></td>
+					<td><img src="resources/img/${p.p_picture }" class="detail_img"></td>
 				<tr>
 			</table>
 		</td>
 		
 		<td>
-				<table border="1" style='width: 450px; table-layout: fixed; word-break: break-all; height: auto; position:top;' >
+				<table border="1" class="detail_table1" >
 					<tr align="center">
 						<td>상품명</td>
 						<td>${p.p_name }</td>

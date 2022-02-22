@@ -36,6 +36,8 @@ public interface ShoppingMapper {
 	public int regProductbuy(ProductBuy pbuy);
 	//총 상품 게시물 수 
 	public int getAllProductcnt();
+	//디테일 리뷰 수
+	public int getAllProductReviewcnt();
 	//상품랭킹
 	public List<ProductRank> ProductRank();
 	

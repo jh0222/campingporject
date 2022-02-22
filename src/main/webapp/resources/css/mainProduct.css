@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+h3 {
+	font-family: 'Cafe24Ohsquareair';
+	color: red;
+	
+}
+
+
+table.table_product{
+  display: inline-block;
+  align-items: center;
+  position: relative;
+  left: 100px; 
+  margin: 5px;
+  padding: 25px;
+
+}
+img.table_product_picture{
+	width: 220px; 
+	height: 200px;
+	border-radius: 15px;
+}
+img.table_product_picture:hover{
+	background-color:#CCCCCC;
+	transform: scale(0.9);
+    transition: all 0.2s;
+}
+
+img.mainpicture{
+	height: 500px; width: 1300px; display: block; margin: 0px auto;
+}
+
+td.table_product_td1{
+	color:#607d8b;
+}
+td.table_product_td2{
+	font-weight: 700;
+}
+
+button.table_product_del{
+	position: absolute;
+	margin-left: 180px;	
+}
+
+.c_searchtable{
+	position:relative;
+    left: 1300px;
+}
+h3.Product_h3 {
+	font-family: 'LeferiPoint-BlackA';
+	margin-left:135px;
+	margin-top:50px;
+	font-size: 25pt;
+}
+@font-face {
+    font-family: 'LeferiPoint-BlackA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

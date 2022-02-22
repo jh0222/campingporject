@@ -11,8 +11,8 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="resources/summernote/summernote.min.js"></script>
 <link rel="stylesheet" href="resources/css/board.css">
-<link rel="stylesheet" href="resources/css/product.css">
 <link rel="stylesheet" href="resources/css/detailProduct.css">
+<link rel="stylesheet" href="resources/css/mainProduct.css">
 <script type="text/javascript" src="resources/js/site_jquery.js"></script>
 <script type="text/javascript" src="resources/js/member.js"></script>
 <script type="text/javascript" src="resources/js/board.js"></script>
@@ -27,6 +27,10 @@
 <link rel="stylesheet" href="resources/css/main.css">
 <script src="resources/css/jquery.fullPage.js"></script>
 <script src="resources/css/main.js"></script>
+<!-- 아래3줄 부트스트랩 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>

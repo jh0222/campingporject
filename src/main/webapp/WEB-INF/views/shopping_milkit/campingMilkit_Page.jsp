@@ -11,7 +11,7 @@
     *{margin:0;padding:0;}
     ul,li{list-style:none;}
     .slide{height:500px;overflow:hidden;}
-    .slide ul{width:calc(100% * 4);display:flex;animation:slide 13s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
+    .slide ul{width:calc(100% * 4);display:flex;animation:slide 17s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
     .slide li{width:calc(100% / 4);height:300px;}
     .slide li:nth-child(1){background:#f5f5f5;} /*background-image:url(resources/css/xx.jpg);*/
     .slide li:nth-child(2){background:#f5f5f5;}
@@ -36,48 +36,48 @@
 			<td>
 				<form action="search.milkit">
 					<input name="fp_name">
-					<button>검색</button>
+					<button class="btn btn-light btn-xs">검색</button>
 				</form>
 			</td>
 			<c:if test="${sessionScope.loginMember3.root_id != null}">
 				<td>
-					<button onClick="location.href='regmilkit.go'">상품등록</button>
+					<button class="btn btn-light btn-xs" onClick="location.href='regmilkit.go'">상품등록</button>
 				</td>
 			</c:if>
 		</tr>
 	</table>
 <div class="slide">
     <ul>
-      <li><img src="resources/css/shoppingmain/밀키트메인1.JPG" style="height: 500px; width: 1300px; display: block; margin: 0px auto;"></li>
-      <li><img src="resources/css/shoppingmain/밀키트메인2.JPG" style="height: 500px; width: 1300px; display: block; margin: 0px auto;"></li>
-      <li><img src="resources/css/shoppingmain/밀키트메인3.JPG" style="height: 500px; width: 1300px; display: block; margin: 0px auto;"></li>
-      <li><img src="resources/css/shoppingmain/밀키트메인4.JPG" style="height: 500px; width: 1300px; display: block; margin: 0px auto;"></li>
+      <li><img src="resources/css/shoppingmain/밀키트메인1.JPG" class="mainpicture"></li>
+      <li><img src="resources/css/shoppingmain/밀키트메인2.JPG" class="mainpicture"></li>
+      <li><img src="resources/css/shoppingmain/밀키트메인3.JPG" class="mainpicture"></li>
+      <li><img src="resources/css/shoppingmain/밀키트메인4.JPG" class="mainpicture"></li>
     </ul>
   </div>
   	
-	<h3>상품목록</h3>
+	<h3 class="Product_h3">고캠핑 밀키트</h3>
 	
 	
 
 		<c:forEach var="fp" items="${milkits}">
-		<table border="1" class="table_product">
+		<table class="table_product">
 			<tr>
 			<td><img src="resources/img/${fp.fp_picture }"
-				style="width: 120px; height: 110px;"
+				class="table_product_picture"
 				onclick="location.href = 'detail.milkit?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&MilkitName=${fp.fp_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'"></td>
 			</tr>
 			
 			<tr>	
-			<td onclick="location.href = 'detail.milkit?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&MilkitName=${fp.fp_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'">${fp.fp_name }</td>
+			<td class="table_product_td1" onclick="location.href = 'detail.milkit?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&MilkitName=${fp.fp_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'">${fp.fp_name }</td>
 			</tr>
 			
 			<tr>
-			<td><fmt:formatNumber value="${fp.fp_price}" type="currency" /></td>
+			<td class="table_product_td2"><fmt:formatNumber value="${fp.fp_price}" type="currency" /></td>
 			</tr>
 			
 			<tr>
 			<c:if test="${sessionScope.loginMember3.root_id != null}">
-				<td><button onclick="m_del(${fp.fp_no})">삭제</button></td>
+				<td><button class="table_product_del" onclick="m_del(${fp.fp_no})">삭제</button></td>
 			</c:if>
 			</tr>
 		</table>

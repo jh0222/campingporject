@@ -43,9 +43,8 @@
 </update>
 
 <!-- 리뷰목록 -->
-<select id="getAllProductReview" resultType="com.fi.pj.shopping.ProductReview" parameterType="String">
- 		select * from product_review_table where pr_p_no = #{pr_p_no} order by pr_no DESC
-<!--  select * from product_review_table where pr_p_no = #{value} order by pr_no DESC-->
+ <select id="getAllProductReview" resultType="com.fi.pj.shopping.ProductReview" parameterType="String"> 
+  	select * from product_review_table where pr_p_no = #{pr_p_no} order by pr_no DESC
 </select>
 
 <!-- 리뷰등록:(구매계정)쿼리 -->
@@ -85,7 +84,7 @@
 	select count(*) from product_registration_table
 </select>
 
-
+<!-- 상품 인기순위 -->
 <select id="ProductRank" resultType="com.fi.pj.shopping.ProductRank">
 select ROWNUM, A.*
 from 

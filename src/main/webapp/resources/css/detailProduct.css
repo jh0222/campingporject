@@ -1,13 +1,19 @@
 @charset "UTF-8";
 
-h2 {
-	color: red;
+table .detail_picture_table{
+	margin-left: 200px;
 }
 
-table.table_product{
-  display: inline-block;
-  align-items: center;
-  /*position: relative;
-  left: 300px; 
- */
+
+table .detail_table1{
+	width: 600px;
+	table-layout: fixed;
+	word-break: break-all; 
+	height: 650px; 
+	margin-right: 200px;
+}
+img.detail_img{
+	width: 90%;
+	height: auto;
+	border-radius: 35px;
 }

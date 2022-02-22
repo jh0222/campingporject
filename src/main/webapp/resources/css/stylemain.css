@@ -2,12 +2,12 @@
 
 body{
 	margin:0; /*배경이미지 여백을 없애줌 , 바디영역이 디폴트값 margin:8px정도 들어가있기 때문 */
-	height:800px; /*바디영역의 높이를 높게 줘서 스크롤할수있도록*/
+	height:600px; /*바디영역의 높이를 높게 줘서 스크롤할수있도록*/
 }
 
 section {
 	height: 100vh; /*view height*/
-	background-image:url('캠핑커플.jpg'); 
+	background-image:url("cam2.jpg"); 
 	background-size : cover /*배경 꽉 채우게(배경이 반복되는현상 방지*/
 }
 /*그라데이션효과*/
@@ -16,7 +16,7 @@ section:before{ /* 섹션 '전'이라는 소리니까 위에*/
 	background: linear-gradient(to right,black,transparent) fixed;/*그라데이션 효과: 방향,색깔,투명하게,fixed:이미지고정*/
 	position: absolute;
 	left:0;
-	height: 230px;     /*100%*/
+	height: 500px;     /*100%*/
 	width: 43%;
 	top:300px;
 	border-radius: 30px;
@@ -32,15 +32,13 @@ section:before{ /* 섹션 '전'이라는 소리니까 위에*/
 	font-family:WandohopeB;
 	animation: slide 2s ease-out;   /*아래 @keyframes slide */
 }
-/*이미지*/
-.camimg1 {
-	width:500px;
-	height:300px;
+.campingrank {
+	color:white;
+	font-size: 1em;
 	position: absolute;
-	top:300px;
-	right:200px;
-	
-	
+	top:470px;
+	left:30px;
+	font-family:WandohopeB;
 }
 
 
@@ -87,50 +85,5 @@ section:before{ /* 섹션 '전'이라는 소리니까 위에*/
 	}
 	
 }
-/* '스크롤내리면' 다시 애니메이션 효과로 오->왼으로 하려면 js이용하면 됨*/
 
-
-/*
-
-nav:first-child {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2em;
-    font-size: 20px;
-}
-nav:nth-child(2){
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-nav a {
-    text-decoration: none;
-    color:black;
-    margin: 1em;
-    font-size: 2em;
-}
-
-#horizontal-underline{
-    position: absolute;
-    left:0;
-    height: 4px;
-    width: 0;
-    border-radius: 3px;
-    transition: 0.5s;
-    background-color: pink;
-    top:0;
-
-}
-
-#vertical-underline{
-    position: absolute;
-    left:0;
-    height: 4px;
-    width: 0;
-    border-radius: 3px;
-    transition: 0.5s;
-    background-color: skyblue;
-    top:0;
-
-}
 */
