@@ -148,6 +148,7 @@ create sequence campingreview_seq;
 insert into campingreview_table values(campingreview_seq.nextval,1,'kim','좋아요',5,sysdate);
 
 select * from campingreview_table;
+
 select * from camping_table order by cam_no desc
 
 SELECT a.컬럼1, a.컬럼2, b.컬럼3
@@ -174,7 +175,9 @@ from camping_table a,
 	group by c_cam_no) b
 where a.cam_no=b.c_cam_no
 ORDER BY a.cam_no desc;
+=======
 -------------------------------------------------------------------------------------------------------------------------------------
+
 7. 캠핑 리뷰 댓글달기(사장이)
 /*
  * 사장이 자신의 캠핑에서만 대댓글 달게 만들기
@@ -286,15 +289,19 @@ select * from guest_foodproduct_buy_table;
 
 -------------------------------------------------------------------------------------------------------------------------------------
 12. 캠핑용품 장바구니
+
+drop table guest_product_basket_table;
 drop table guest_product_basket_table
 create table guest_product_basket_table(
-	ba_no number(5) primary key,  /*장바구니 no*/
-	ba_p_no	number(5) not null,   /*상품 no*/
-	ba_u_bo_id varchar2(20 char) not null, /*유저,보스 아이디*/
-	ba_p_name varchar2(20 char) not null, /*상품명 */
-	ba_p_picture varchar2(20 char) not null, /*상품이미지*/
-	ba_price number(10) not null, /*(수량*p_price) = 가격*/  
-	ba_number number(10) not null/*수량*/                 
+
+create table guest_product_basket_table(
+
+	ba_no number(5) primary key, /*캠핑용품 장바구니 번호*/
+	ba_p_no	number(5) not null,  /* 캠핑용품 등록 번호*/
+	ba_u_bo_id varchar2(20 char) not null, /* 사용자와 사장 id*/
+	ba_p_name varchar2(20 char) not null, /*캠핑용품 이름*/
+	ba_price number(5) not null, /*(수량*p_price)*/
+	ba_number number(5) not null /* 갯수 */
 );
 
 drop table guest_product_basket_table;
@@ -306,15 +313,22 @@ insert into guest_product_basket_table values (product_basket_seq.nextval,3,'kim
 select * from guest_product_basket_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 13. 밀키트 장바구니
+drop table guest_foodproduct_basket_table;
 drop table guest_foodproduct_basket_table
 create table guest_foodproduct_basket_table(
 	fba_no number(5) primary key,
 	fba_fp_no	number(5) not null,
 	fba_u_bo_id varchar2(20 char) not null,
 	fba_fp_name varchar2(20 char) not null,
-	fba_fp_picture varchar2(20 char) not null,
-	fba_price number(10) not null, /*(수량*p_price)*/
-	fba_number number(10) not null
+
+create table guest_foodproduct_basket_table(
+
+	fba_no number(5) primary key, /*밀키트 장바구니 번호*/
+	fba_fp_no number(5) not null, /*밀키트 등록 번호*/
+	fba_u_bo_id varchar2(20 char) not null, /*사용자와 사장 id*/
+	fba_fp_name varchar2(20 char) not null,/*밀키트 이름*/
+	fba_price number(5) not null, /*(수량*p_price)*/
+	fba_number number(5) not null /*갯수*/
 );
 
 create sequence foodproduct_basket_seq;
@@ -362,6 +376,7 @@ select * from foodproduct_review_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 16. 자유게시판
 drop table free_board_table;
+
 create table free_board_table(	
 	f_no number(5) primary key,
 	f_u_id varchar2(20 char) not null,
@@ -407,6 +422,7 @@ select count(*) from free_board_reply_table where fr_owner_no=
 select fr_no from free_board_reply_table where fr_u_id='(알수없음)';
 select count(*) from free_board_reply_table where fr_owner_no=411;
 select count(*) from free_board_reply_table where fr_u_id='(알수없음)' and fr_no=403;
+
 -------------------------------------------------------------------------------------------------------------------------------------
 18. 캠핑팁게시판
 drop table campingtip_board_table
@@ -414,14 +430,13 @@ create table campingtip_board_table(
 	tip_no number(5) primary key,
 	tip_u_id varchar2(20 char) not null,
 	tip_subject varchar2(20 char)	not null,
-	tip_txt clob not null,	
-	tip_readcount	number(5) not null,
-	tip_date date	not null
-
+	tip_txt varchar2(100 char) not null,
+	tip_picture varchar2(200 char) null,
+	tip_readcount number(5) not null,
+	tip_date date not null
 );
 
 create sequence campingtip_board_seq;
-
 
 insert into campingtip_board_table values(campingtip_board_seq.nextval,'kim','자유게시판','자유자유자유','h.jpg',0,'20220110');
 insert into campingtip_board_table values(campingtip_board_seq.nextval,'kim2','자유게시판','자유자유자유','h.jpg',0,'20220110');
@@ -433,19 +448,19 @@ select * from campingtip_board_table;
 drop table campingtip_board_reply_table
 
 create table campingtip_board_reply_table(
-	tipr_no number(5) primary key,
-	tipr_tip_no	number(5) not null,
-	tipr_u_id	varchar2(100 char) not null,
-	tipr_owner_no	varchar2(100 char) null,
-	tipr_owner_id	varchar2(100 char) null,
-	tipr_replytxt	varchar2(100 char) not null,
-	tipr_date	date not null,
-	tipr_depth number(5) not null,
-	tipr_picture varchar2(200 char) not null,
-	constraint campingtip
-		foreign key(tipr_tip_no)
-		references campingtip_board_table(tip_no)
-		on delete cascade
+    tipr_no number(5) primary key,
+    tipr_tip_no    number(5) not null,
+    tipr_u_id    varchar2(100 char) not null,
+    tipr_owner_no    varchar2(100 char) null,
+    tipr_owner_id    varchar2(100 char) null,
+    tipr_replytxt    varchar2(100 char) not null,
+    tipr_date    date not null,
+    tipr_depth number(5) not null,
+    tipr_picture varchar2(200 char) not null,
+    constraint campingtip
+        foreign key(tipr_f_no)
+        references campingtip_board_table(tip_no)
+        on delete cascade
 );
 create sequence campingtip_board_reply_seq;
 
@@ -476,19 +491,19 @@ select * from recipe_board_table;
 21. 레시피 리뷰
 drop table recipe_board_reply_table
 create table recipe_board_reply_table(
-    rr_no number(5) primary key,
-    rr_rb_no    number(5) not null,
-    rr_u_id    varchar2(100 char) not null,
-    rr_owner_no    varchar2(100 char) null,
-    rr_owner_id    varchar2(100 char) null,
-    rr_replytxt    varchar2(100 char) not null,
-    rr_date    date not null,
-    rr_depth number(5) not null,
-    rr_picture varchar2(200 char) not null,
-    constraint recipe
-        foreign key(rr_f_no)
-        references recipe_board_table(rb_no)
-        on delete cascade
+	rr_no number(5) primary key,
+	rr_rb_no number(5) not null,
+	rr_u_id	varchar2(100 char) not null,
+	rr_owner_no	varchar2(100 char) null,
+	rr_owner_id	varchar2(100 char) null,
+	rr_replytxt	varchar2(100 char) not null,
+	rr_date	date not null,
+	rr_depth number(5) not null,
+	rr_picture varchar2(200 char) not null,
+	constraint recipe
+		foreign key(rr_rb_no)
+		references recipe_board_table(rb_no)
+		on delete cascade
 );
 
 create sequence recipe_board_reply_seq;
@@ -496,8 +511,8 @@ create sequence recipe_board_reply_seq;
 insert into recipe_board_reply_table values(recipe_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
 insert into recipe_board_reply_table values(recipe_board_reply_seq.nextval,1,'kim2',null,null,'댓글입니다','20220210',3,'a.jpg');
 
-select * from recipe_board_reply_table;
 
+select * from recipe_board_reply_table;
 select * from recipe_board_reply_table;
 
 
@@ -508,5 +523,4 @@ from (select *
 	  from free_board_table
 	  ORDER BY f_readcount DESC) A
 where ROWNUM <= 5;
-
 

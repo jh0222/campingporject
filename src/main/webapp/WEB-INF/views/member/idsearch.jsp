@@ -38,7 +38,6 @@
 					</div>
 					<div class="form-group">
 						<button id="searchBtn" type="button" onclick="idSearch_click()" class="btn btn-primary btn-block">확인</button>
-					<a class="btn btn-danger btn-block"	href="${pageContext.request.contextPath}">취소</a>
 					</div>
 				</div>
 				<div id="searchP" style="display: none;">
@@ -56,8 +55,6 @@
 					</div>
 					<div class="form-group">
 						<button id="searchBtn2" type="button" class="btn btn-primary btn-block">확인</button>
-					<a class="btn btn-danger btn-block"	href="${pageContext.request.contextPath}">취소</a>
-				</div>
 				</div>
 			</div>
 		</div>
