@@ -10,7 +10,7 @@
 <main id="fullpage">
 		<section class="section">
 				<div class="slide">
-				<h3 align="center">고캠핑 상품</h3>
+					<img class="main_img" src="resources/img/tent.png" height="400" weight="400">
 				</div>		
 				<div class="slide">
 				<h3>slide 02</h3>
@@ -25,13 +25,13 @@
 		<section class="section">
 				<h2>section1</h2>				
 		</section>
-		<section class="section">
-				<h2>section1</h2>				
-		</section>
 		<footer class="section fp-auto-height"> <!-- fp-auto-height : 하단구역 클래스 -->
 			<h2>footer</h2>
 		</footer>
 </main>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2ef879647e496ca55888e3a1c20cc55f0ccf9460
 </body>
 </html>
