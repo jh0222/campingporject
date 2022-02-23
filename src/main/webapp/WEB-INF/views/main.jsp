@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <title>Insert title here</title>
 <html>
@@ -36,6 +37,14 @@
 </head>
 <body>
 ${result }
+<c:choose>
+<c:when test="${contentPage eq 'home.jsp' }">
+	<div class="main_home">
+</c:when>
+<c:otherwise>
+	<div class="main_other">
+</c:otherwise>
+</c:choose>
 <header>
       <div class="gnb-inner">       
         <div class="logo">
@@ -74,9 +83,8 @@ ${result }
       </div>
       
     </header>
+</div>
 
 <jsp:include page="${contentPage }"></jsp:include>
-
-	
 </body>
 </html>

@@ -44,7 +44,7 @@ body {
 header { 
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
 }
 header a {
 	color: black;
@@ -57,11 +57,13 @@ header a {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 15px 12px;
+  padding: 10px 12px;
+  
 }
 
 .logo {
   float: left;
+  margin: 0 0 0 20px;
   font-size: 30px;
   font-weight: 900;
 }
@@ -116,6 +118,7 @@ header a {
   display: block;
 }
 .login {
+  margin: 0 20px 0 0;
   display: inline;
   float: right;
   font-size: 25px;

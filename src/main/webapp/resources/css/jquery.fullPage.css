@@ -21,7 +21,7 @@ html.fp-enabled,
     box-sizing: border-box;
 }
 .fp-slide {
-    float: left;
+    float: left;    
 }
 .fp-slide, .fp-slidesContainer {
     height: 100%;
@@ -72,12 +72,12 @@ html.fp-enabled,
     left: 70px;
     width: 0;
     border-width: 38.5px 34px 38.5px 0;
-    border-color: transparent #222 transparent transparent;
+    border-color: transparent #808080 transparent transparent;
 }
 .fp-controlArrow.fp-next {
     right: 70px;
     border-width: 38.5px 0 38.5px 34px;
-    border-color: transparent transparent transparent #222;
+    border-color: transparent transparent transparent #808080;
 }
 .fp-scrollable {
     overflow: hidden;
@@ -94,6 +94,7 @@ html.fp-enabled,
     transition: none !important;
 }
 #fp-nav {
+	color: white;
     position: fixed;
     z-index: 100;
     margin-top: -32px;
