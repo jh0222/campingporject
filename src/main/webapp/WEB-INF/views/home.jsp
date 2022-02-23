@@ -42,9 +42,16 @@
 				</section>				
 		</section>
 		<section class="section">
-				<section class="third_section">
+			<section class="third_section">
+					<section class="third_section">
+						
+					</section>				
+			</section>
+		</section>
+		<section class="section">
+				<section class="fourth_section">
 					<div class="reserve_box">
-						<p>캠핑 예약하러가기</p>
+						<a href="place.go">캠핑 예약하러가기</a>
 					</div>
 				</section>				
 		</section>

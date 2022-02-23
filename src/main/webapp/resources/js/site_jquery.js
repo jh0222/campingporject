@@ -146,5 +146,7 @@ $(function() {
 			updatebtnVal = $(this).attr('value', 'updateGo');
 		}
 	});
-	
+
 });
+
+
