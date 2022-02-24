@@ -9,4 +9,11 @@
 	select * from guest_foodproduct_basket_table where fba_u_bo_id = #{fba_u_bo_id}
 </select>
 
+<update id="cartup">
+	update guest_product_basket_table set ba_number = #{ba_number} where ba_no = #{ba_no}
+</update>
+
+<delete id="cartdel" parameterType="com.fi.pj.Cart.CartBean">
+	delete from guest_product_basket_table where ba_no = #{ba_no}
+</delete>
 </mapper>

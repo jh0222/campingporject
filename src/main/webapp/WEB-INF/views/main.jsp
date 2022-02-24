@@ -18,6 +18,7 @@
 <script type="text/javascript" src="resources/js/validCheck.js"></script>
 <script type="text/javascript" src="resources/js/review.js"></script>
 <script type="text/javascript" src="resources/js/communities.js"></script>
+<script type="text/javascript" src="resources/js/cart.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <link rel="stylesheet" href="resources/jsjs/style.css">
@@ -26,7 +27,6 @@
 <link rel="stylesheet" href="resources/css/main.css">
 <script src="resources/css/jquery.fullPage.js"></script>
 <script src="resources/css/main.js"></script>
-<title>Insert title here</title>
 </head>
 <body>
 <header>

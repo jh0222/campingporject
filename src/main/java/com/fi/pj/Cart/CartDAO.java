@@ -23,4 +23,23 @@ public class CartDAO {
 		List<CartBean> mealkit = ss.getMapper(CartMapper.class).mealkit(c);
 		request.setAttribute("mealkit", mealkit);
 	}
+
+	public void cartup(CartBean c, HttpServletRequest request) {
+		
+		
+	}
+
+	public void cartdel(CartBean c, HttpServletRequest request) {
+		try {
+			int cd = ss.getMapper(CartMapper.class).cartdel(c);
+			if (cd == 1) {
+				request.setAttribute("result", "삭제성공");
+			} else {
+				request.setAttribute("result", "삭제실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("result", "삭제실패");
+		}
+	}
 }

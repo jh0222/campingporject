@@ -286,7 +286,7 @@ public class MemberDAO {
 			String phone2 = mr.getParameter("up_phonenumber2");
 			String phone3 = mr.getParameter("up_phonenumber3");
 			String u_phonenumber = phone1 + phone2 + phone3;
-			Date u_birth = formatter.parse(mr.getParameter("newbirth"));
+			Date u_birth = formatter.parse(mr.getParameter("up_birth"));
 			String oldpicture = mr.getParameter("oldpicture");
 			String newpicture = mr.getFilesystemName("newpicture");
 

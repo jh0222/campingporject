@@ -13,12 +13,30 @@ public class CartController {
 	@Autowired
 	private CartDAO sdao;
 
-	// 사용자 장바구니 전체 목록
+	// 장바구니 전체 목록
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
-	public String usercart(CartBean c, HttpServletRequest request) {
+	public String cart(CartBean c, HttpServletRequest request) {
 		sdao.cart(c, request);
 		request.setAttribute("contentPage", "cart/cart.jsp");
 		return "main";
 	}
-	
+
+	// 장바구니 수량 변경
+	@RequestMapping(value = "cart.update", method = RequestMethod.POST)
+	public String cartup(CartBean c, HttpServletRequest request) {
+		sdao.cartup(c, request);
+		sdao.cart(c, request);
+		request.setAttribute("contentPage", "cart/cart.jsp");
+		return "main";
+	}
+
+	// 장바구니 수량 변경
+	@RequestMapping(value = "cart.delete", method = RequestMethod.POST)
+	public String cartdel(CartBean c, HttpServletRequest request) {
+		sdao.cartdel(c, request);
+		sdao.cart(c, request);
+		request.setAttribute("contentPage", "cart/cart.jsp");
+		return "main";
+	}
+
 }

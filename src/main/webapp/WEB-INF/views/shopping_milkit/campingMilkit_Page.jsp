@@ -28,7 +28,7 @@
 	<h3>상품목록</h3>
 	
 	
-	<table border="1" style="position: absolute; width: 100%";>
+	<table border="1" style="position: absolute; width: 100%">
 		<c:set var="i" value="0" />
 		<c:set var="j" value="2" />
 
@@ -41,13 +41,12 @@
 				onclick="location.href = 'detail.milkit?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&MilkitName=${fp.fp_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'"></td>
 			<td onclick="location.href = 'detail.milkit?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&MilkitName=${fp.fp_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'">${fp.fp_name }</td>
 
-			<td><fmt:formatNumber value="${fp.fp_price}" type="currency" /></td></td>
+			<td><fmt:formatNumber value="${fp.fp_price}" type="currency" /></td>
 			
 			<c:if test="${sessionScope.loginMember3.root_id != null}">
 				<td><button onclick="m_del(${fp.fp_no})">삭제</button></td>
 			</c:if>
 			<c:if test="${i%j == j-1 }">
-				</tr>
 			</c:if>
 			<c:set var="i" value="${i+1 }" />
 		</c:forEach>

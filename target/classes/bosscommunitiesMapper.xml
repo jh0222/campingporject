@@ -22,10 +22,12 @@
 
 <!-- 캠핑예약정보 -->
 <select id="campingreserve" parameterType="com.fi.pj.member.BossCommunities" resultType="com.fi.pj.member.BossCommunities">
-	select * from reservation_table where r_cam_no = #{cam_no}
+	select *
+	from reservation_table
+	where r_cam_no = (select cam_no from camping_table where cam_bo_id=#{cam_bo_id})
 </select>
 
-<!-- 캠핑용품 구매 목록 -->
+<!-- 캠핑용품 구매 목록 -->  
 <select id="pbuylist" parameterType="com.fi.pj.member.BossCommunities" resultType="com.fi.pj.member.BossCommunities">
 	select * from guest_product_buy_table where b_u_bo_id = #{b_u_bo_id}
 </select>
@@ -43,11 +45,6 @@
 <!-- 자유게시판 -->
 <select id="freeboard" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
 	select * from free_board_table where f_u_id = #{f_u_id}
-</select>
-
-<!-- 캠핑찜 -->
-<select id="campingjjim" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
-	select * from campingheart_table where h_u_id = #{h_u_id}
 </select>
 
 <!-- 캠핑팁 -->
@@ -70,7 +67,7 @@
 	select * from foodproduct_review_table where fpr_u_bo_id = #{fpr_u_bo_id}
 </select>
 
-<!-- 자유게시판 리뷰 -->
+<!-- 자유게시판 댓글 -->
 <select id="freeboardreview" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
 	select * from free_board_reply_table where fr_u_id = #{fr_u_id}
 </select>
@@ -84,11 +81,6 @@
 <select id="recipereview" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
 	select * from recipe_board_reply_table where rr_u_id = #{rr_u_id}
 </select>
-
-<!-- 캠핑찜 삭제 -->
-<delete id="campingjjimdel" parameterType="com.fi.pj.member.BossCommunities">
-	delete from campingheart_table where h_no = #{h_no}
-</delete>
 
 <!-- 캠핑용품 리뷰 수정 -->
 <update id="productreviewupdate" parameterType="com.fi.pj.member.BossCommunities">
@@ -110,32 +102,32 @@
 	delete from foodproduct_review_table where fpr_no = #{fpr_no}
 </delete>
 
-<!-- 자유게시판 리뷰 수정 -->
+<!-- 자유게시판 댓글 수정 -->
 <update id="freeboardreviewupdate" parameterType="com.fi.pj.member.BossCommunities">
 	update free_board_reply_table set fr_replytxt = #{fr_replytxt} where fr_no = #{fr_no} and fr_u_id = #{fr_u_id}
 </update>
 
-<!-- 자유게시판 리뷰 삭제 -->
+<!-- 자유게시판 댓글 삭제 -->
 <delete id="freeboardreviewdel" parameterType="com.fi.pj.member.BossCommunities">
 	delete from free_board_reply_table where fr_no = #{fr_no}
 </delete>
 
-<!-- 레시피 리뷰 수정 -->
+<!-- 레시피 댓글 수정 -->
 <update id="recipereviewupdate" parameterType="com.fi.pj.member.BossCommunities">
 	update recipe_board_reply_table set rr_replytxt = #{rr_replytxt} where rr_no = #{rr_no}
 </update>
 
-<!-- 레시피 리뷰 삭제 -->
+<!-- 레시피 댓글 삭제 -->
 <delete id="recipereviewdel" parameterType="com.fi.pj.member.BossCommunities">
 	delete from recipe_board_reply_table where rr_no = #{rr_no}
 </delete>
 
-<!-- 캠핑팁 리뷰 수정  -->
+<!-- 캠핑팁 댓글 수정  -->
 <update id="campingtipreviewupdate" parameterType="com.fi.pj.member.BossCommunities">
 	update campingtip_board_reply_table set tipr_replytxt = #{tipr_replytxt} where tipr_no = #{tipr_no}
 </update>
 
-<!--캠핑팁 리뷰 삭제  -->
+<!--캠핑팁 댓글 삭제  -->
 <delete id="campingtipreviewdel" parameterType="com.fi.pj.member.BossCommunities">
 	delete from campingtip_board_reply_table where tipr_no = #{tipr_no}
 </delete>

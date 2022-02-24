@@ -11,4 +11,8 @@ public interface CartMapper {
 
 	public List<CartBean> mealkit(CartBean c);
 
+	public int cartup(CartBean c);
+
+	public int cartdel(CartBean c);
+
 }

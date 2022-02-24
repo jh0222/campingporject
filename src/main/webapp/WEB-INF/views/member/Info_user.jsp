@@ -11,7 +11,7 @@
 </head>
 <body>
 <jsp:include page="${myPage }"></jsp:include>
-	<form action="user.update?u_id="${sessionScope.loginMember.u_id }
+	<form action="user.update?u_id=${sessionScope.loginMember.u_id }"
 		method="post" enctype="multipart/form-data" name="updateUserForm" onsubmit="return updateUserCheck();">
 		<table id="joinTable">
 			<tr>
@@ -59,7 +59,7 @@
 			<tr> 
 				<td>생년월일</td>
 				<td>
-				  	<input value="${sessionScope.birth }" type="date" name="newbirth">
+				  	<input value="${sessionScope.birth }" type="date" name="up_birth">
 				</td>				
 			</tr>
 			<tr>

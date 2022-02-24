@@ -12,6 +12,7 @@
 <c:choose>
 	<c:when test="${campinginfo.cam_no eq null}">
 		<h1>등록된 정보가 없습니다.</h1>
+		<button onclick="">캠핑 등록하기</button>
 	</c:when>
 	<c:otherwise>
 <form action="boss_camping.infoupdate?cam_no=${campinginfo.cam_no }&cam_bo_id=${campinginfo.cam_bo_id}"

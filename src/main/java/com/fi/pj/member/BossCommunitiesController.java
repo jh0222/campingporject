@@ -75,31 +75,6 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 캠핑찜
-	@RequestMapping(value = "boss_campingjjim", method = RequestMethod.GET)
-	public String campingjjim(BossCommunities bc, HttpServletRequest request) {
-
-		bcDAO.campingjjim(bc, request);
-
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("contentPage", "member/BossCampingjjim.jsp");
-
-		return "main";
-	}
-
-	// 캠핑찜 삭제
-	@RequestMapping(value = "boss_campingjjim.del", method = RequestMethod.GET)
-	public String campingjjimdel(BossCommunities bc, HttpServletRequest request) {
-
-		bcDAO.campingjjimdel(bc, request);
-		bcDAO.campingjjim(bc, request);
-
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("contentPage", "member/BossCampingjjim.jsp");
-
-		return "main";
-	}
-
 	// 내글
 	@RequestMapping(value = "boss_communities", method = RequestMethod.GET)
 	public String communities(BossCommunities bc, HttpServletRequest request) {
@@ -203,7 +178,7 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 자유게시판 리뷰
+	// 자유게시판 댓글
 	@RequestMapping(value = "boss_freeboardreview", method = RequestMethod.GET)
 	public String freeboardreview(BossCommunities bc, HttpServletRequest request) {
 		bcDAO.freeboardreview(bc, request);
@@ -214,7 +189,7 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 자유게시판 리뷰 수정
+	// 자유게시판 댓글 수정
 	@RequestMapping(value = "boss_freeboardreview.update", method = RequestMethod.GET)
 	public String freeboardreviewupdate(BossCommunities bc, HttpServletRequest request) {
 		bcDAO.freeboardreviewupdate(bc, request);
@@ -226,7 +201,7 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 자유게시판 리뷰 삭제
+	// 자유게시판 댓글 삭제
 	@RequestMapping(value = "boss_freeboardreview.delete", method = RequestMethod.GET)
 	public String freeboardreviewdel(BossCommunities bc, HttpServletRequest request) {
 		bcDAO.freeboardreviewdel(bc, request);
@@ -238,7 +213,7 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 캠핑팁 리뷰
+	// 캠핑팁 댓글
 	@RequestMapping(value = "boss_campingtipreview", method = RequestMethod.GET)
 	public String campingtipreview(BossCommunities bc, HttpServletRequest request) {
 		bcDAO.campingtipreview(bc, request);
@@ -249,7 +224,7 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 캠핑팁 리뷰 수정
+	// 캠핑팁 댓글 수정
 	@RequestMapping(value = "boss_campingtipreview.update", method = RequestMethod.GET)
 	public String campingtipreviewupdate(BossCommunities bc, HttpServletRequest request) {
 		bcDAO.campingtipreviewupdate(bc, request);
@@ -261,7 +236,7 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 캠핑팁 리뷰 삭제
+	// 캠핑팁 댓글 삭제
 	@RequestMapping(value = "boss_campingtipreview.delete", method = RequestMethod.GET)
 	public String campingtipreviewdel(BossCommunities bc, HttpServletRequest request) {
 		bcDAO.campingtipreviewdel(bc, request);
@@ -273,7 +248,7 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 레시피 리뷰
+	// 레시피 댓글
 	@RequestMapping(value = "boss_recipereview", method = RequestMethod.GET)
 	public String recipereview(BossCommunities bc, HttpServletRequest request) {
 		bcDAO.recipereview(bc, request);
@@ -284,7 +259,7 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 레시피 리뷰 수정
+	// 레시피 댓글 수정
 	@RequestMapping(value = "boss_recipereview.update", method = RequestMethod.GET)
 	public String recipereviewupdate(BossCommunities bc, HttpServletRequest request) {
 		bcDAO.recipereviewupdate(bc, request);
@@ -296,7 +271,7 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 레시피 리뷰 삭제
+	// 레시피 댓글 삭제
 	@RequestMapping(value = "boss_recipereview.delete", method = RequestMethod.GET)
 	public String recipereviewdel(BossCommunities bc, HttpServletRequest request) {
 		bcDAO.recipereviewdel(bc, request);

@@ -30,7 +30,7 @@ create table user_table(
 create sequence user_seq;
 
 insert into user_table values(user_seq.nextval,'김태희','kim','k1234!','kim1234@naver.com','서울특별시 종로구','01012341234','19970101','a.jpg',0);
-delete user_table where u_no = 81;
+delete user_table where u_no = 141;
 select * from USER_TABLE;
 -------------------------------------------------------------------------------------------------------------------------------------
 2. 사장 테이블
@@ -85,6 +85,11 @@ select * from camping_table;
 startdate~enddate예약되어있으면 처음부터 막아놓기,어제 날짜 막아놓기			
 dbex) where sysdate> and startdate< enddate>  where cam_number			
 */
+select cam_no from camping_table where cam_bo_id='kim2'
+
+select *
+from reservation_table
+where r_cam_no = (select cam_no from camping_table where cam_bo_id='kim2');
 
 drop table reservation_table;
 
@@ -106,7 +111,8 @@ create table reservation_table(
 
 create sequence reservation_seq;
 
-insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
+insert into reservation_table values(reservation_seq.nextval,101,'kim','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
+insert into reservation_table values(reservation_seq.nextval,102,'kim','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 
 select * from reservation_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -267,7 +273,7 @@ create table guest_product_basket_table(
 	ba_u_bo_id varchar2(20 char) not null, /* 사용자와 사장 id*/
 	ba_p_name varchar2(20 char) not null, /*캠핑용품 이름*/
 	ba_p_picture varchar2(20 char) not null,
-	ba_price number(5) not null, /*(수량*p_price)*/
+	ba_price number(10) not null, /*(수량*p_price)*/
 	ba_number number(5) not null /* 갯수 */
 );
 
@@ -275,6 +281,10 @@ create sequence product_basket_seq;
 
 insert into guest_product_basket_table values (product_basket_seq.nextval,1,'kim','캠핑용품','a.jpg',10000,1);
 insert into guest_product_basket_table values (product_basket_seq.nextval,3,'kim2','캠핑용품','b.jpg',10000,1);
+insert into guest_product_basket_table values (product_basket_seq.nextval,2,'kim2','램프','b.jpg',5000,3);
+insert into guest_product_basket_table values (product_basket_seq.nextval,45,'kim2','텐트','b.jpg',100000,1);
+insert into guest_product_basket_table values (product_basket_seq.nextval,24,'kim2','접의식의자','b.jpg',30000,4);
+insert into guest_product_basket_table values (product_basket_seq.nextval,22,'kim2','수저세트','b.jpg',5000,5);
 
 select * from guest_product_basket_table;
 -------------------------------------------------------------------------------------------------------------------------------------
