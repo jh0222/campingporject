@@ -11,45 +11,32 @@
 </head>
 <body>
 <div class="board">
-	<table class="table2">
-		<tr>
-			<td colspan="4" id="titleTd"><span class="title">자유게시판</span></td>
-		</tr>	
-	</table>
-	
-		<table border="1" class="table">		
-			<tr>
-				<td>제목</td>
-				<td>작성자</td>
-				<td>조회수</td>
-				<td>작성날짜</td>
-			</tr>
-			<tr>
-				<td>
-					${fb.f_subject }
-				</td>
-				<td>
-					${fb.f_u_id }
-				</td>
-				<td>
-					${fb.f_readcount }
-				</td>
-				<td>
-					<fmt:formatDate value="${fb.f_date }"/> 
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4">${fb.f_txt }</td>
-			</tr>
-			<c:if test="${fb.f_u_id == sessionScope.loginMember.u_id 
+	<div class="board_border">
+	<div class="board_subject">
+		${fb.f_subject }
+	</div>
+	<div class="board_id">
+		${fb.f_u_id }
+	</div>
+	<div class="board_detail">
+		<fmt:formatDate value="${fb.f_date }"/> &nbsp;
+		조회수:${fb.f_readcount } &nbsp;&nbsp;
+		<c:if test="${fb.f_u_id == sessionScope.loginMember.u_id 
 						|| fb.f_u_id == sessionScope.loginMember2.bo_id 
 						|| sessionScope.loginMember3 != null}">
-				<tr>
-					<td><button onclick="location.href='fbwrite.updatego?f_no=${fb.f_no}'">수정</button></td>
-					<td><button onclick="fbdelete('${fb.f_no}' );">삭제</button></td>
-				</tr>
-			</c:if>
-		</table>
+			<button onclick="location.href='fbwrite.updatego?f_no=${fb.f_no}'">수정</button>
+			<button onclick="fbdelete('${fb.f_no}' );">삭제</button>				
+		</c:if>
+	</div>
+	<hr>
+	<div class="board_txt">
+		${fb.f_txt }
+	</div>	
+	</div>
+	<hr>
+		<div class="board_chat">
+			<img src="resources/img/free-icon-chat-117013.png" width="20" height="20"> 댓글
+		</div>
 		
 		<!-- 댓글 insert -->
 		<c:if test="${sessionScope.loginMember.u_id != null

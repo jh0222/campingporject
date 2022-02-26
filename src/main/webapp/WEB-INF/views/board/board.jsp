@@ -10,18 +10,15 @@
 </head>
 <body>
 <div class="board">
-	<table class="table2">
-		<tr>
-			<c:choose>
-				<c:when test="${fb != null }">
-					<td colspan="4" id="titleTd"><span class="title">자유게시판</span></td>
-				</c:when>
-				<c:otherwise>
-					<td colspan="4" id="titleTd"><span class="title">캠핑팁게시판</span></td>
-				</c:otherwise>
-			</c:choose>
-		</tr>	
-	</table>
+	<c:choose>
+		<c:when test="${fb != null }">
+			<div class="title">자유게시판</div>
+		</c:when>
+		<c:otherwise>
+			<div class="title">캠핑팁게시판</div>
+		</c:otherwise>
+	</c:choose>
+	
 	<table class="table">	
 		<tr>
 			<th class="subject">제목</th>
@@ -71,6 +68,7 @@
 		
 	</table>
 	
+	<div class="board_page">
 	<c:choose>
 		<c:when test = "${pg > block}">
             [<a href="${c }pg=1">◀◀</a>]
@@ -115,6 +113,7 @@
 	    </select>
 		<input name="search"> <button>검색</button>
 	</form>
+	</div>
 </div>	
 </body>
 </html>

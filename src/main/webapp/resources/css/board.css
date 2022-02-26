@@ -1,13 +1,15 @@
 @charset "UTF-8";
-#titleTd{
-  border-color: white;
-  height: 25px;
-  width: 120px;
-  background-color: #8080c0;
-  border-radius: 8px;
-  text-align: center;
-  color: white;
+.title{
+  font-size:30px;
+  margin: 0 0 10px 410px;
 }
+
+.board_page{
+  margin: 10px 0 0 0;
+  text-align: center;
+  width: 100wv;
+}
+
 .board {
   vertical-align: center;
   position: relative;
@@ -44,24 +46,27 @@ table.table td {
 .subject{
   width: 500px;
 }
+
 .board_subject{
-  font-size: 30px;
+  font-size: 50px;
   margin-left: 30px;
+  text-align: left;
 }
 .board_detail{
-  display: flex;
+  font-size: 16px;
+  display: block;
+  margin-left: 30px;
 }
 .board_id{
   font-size: 20px;
   margin-left: 30px;
 }
-.board_date{
-  font-size: 20px;
+.board_txt{
   margin-left: 30px;
 }
-.board_count{
+.board_chat{
+  margin-left: 30px;
   font-size: 20px;
-  margin-left: 20px;
 }
 table.table_recipe{
   display: inline-block;
