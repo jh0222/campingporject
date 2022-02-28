@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="resources/jsjs/responsive.css">
 <link rel="stylesheet" href="resources/css/jquery.fullPage.css">
 <link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="resources/css/member_jh.css">
 <script src="resources/css/jquery.fullPage.js"></script>
 <script src="resources/css/main.js"></script>
 <title>Insert title here</title>

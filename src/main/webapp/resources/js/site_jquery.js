@@ -55,7 +55,35 @@ $(function() {
 	connectJoinIdInputEvent();
 	connectAddrSearchEvent();
 	connectSNSWriteFormSummonEvent();
+	
+	$(".reply3_insert").click(function() {
+		let FormVisible = $(this).attr('value');
 
+		if (FormVisible == 1) {
+			$(this).next().next().css('display', 'none');
+			FormVisible = $(this).attr('value', '0');
+		} else {
+			$(this).next().next().css('display', 'block');
+			FormVisible = $(this).attr('value', '1');
+		}
+	});
+	
+	$(".replybtn2").click(function() {
+		let FormVisible = $(this).attr('value');
+
+		if (FormVisible == 1) {
+			// 숨기기
+			document.getElementByid("test").sytle.display="none";
+			$(this).text("답글 보기▼");
+			FormVisible = $(this).attr('value', '0');
+		} else {
+			$(this).closest('.asdasd').show();
+			$(this).text("답글 숨기기▲");
+			FormVisible = $(this).attr('value', '1');
+		}
+	});
+	
+	
 	$(".replybtn").click(function() {
 		let FormVisible = $(this).attr('value');
 
