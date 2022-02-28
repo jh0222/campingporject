@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="content_area">
-	<div class="content_subject"><span>캠핑용품</span>	</div>
+	<div class="content_subject"><span><a >캠핑용품</span>	</div>
 	<!-- 장바구니 리스트 -->
 	<div class="content_middle_section"></div>
 	<!-- 장바구니 가격 합계 -->

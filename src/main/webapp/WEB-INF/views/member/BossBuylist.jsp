@@ -7,6 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script><!-- jQuery CDN --->
+<script>
+  function cancelPay() {
+    jQuery.ajax({
+      "url": "{환불요청을 받을 서비스 URL}", // 예: http://www.myservice.com/payments/cancel
+      "type": "POST",
+      "contentType": "application/json",
+      "data": JSON.stringify({
+        "merchant_uid": "{pbuylist.b_p_no}", // 환불할 물건 번호
+        "cancel_request_amount": "{pbuylist.b_price}", // 환불 금액
+        "reason": "테스트 결제 환불" // 환불사유
+        "refund_holder": "홍길동", // [가상계좌 환불시 필수입력] 환불 수령계좌 예금주
+        "refund_bank": "88" // [가상계좌 환불시 필수입력] 환불 수령계좌 은행코드(예: KG이니시스의 경우 신한은행은 88번)
+        "refund_account": "56211105948400" // [가상계좌 환불시 필수입력] 환불 수령계좌 번호
+      }),
+      "dataType": "json"
+    });
+  }
+</script>
 </head>
 <body>
 	<jsp:include page="${BossCommunities }"></jsp:include>
@@ -41,12 +64,11 @@
 							</c:otherwise>
 						</c:choose>
 						<td><fmt:formatDate value="${p.b_date }" /></td>
-						<td><button
-								onclick="buyproductdel('${p.b_no}','${p.b_u_bo_id}')">취소/환불</button></td>
+						<td><button	onclick="camcelPay()">취소/환불</button></td>
 					</tr>
 			</c:otherwise>
 		</c:choose>
-				</c:forEach>
+		</c:forEach>
 	</table>
 
 	<br> 밀키트 구매목록

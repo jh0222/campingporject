@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/community/community.css">
 </head>
 <body>
 <c:choose>
@@ -17,7 +18,7 @@
 	<c:otherwise>
 <form action="boss_camping.infoupdate?cam_no=${campinginfo.cam_no }&cam_bo_id=${campinginfo.cam_bo_id}"
 	method="post" enctype="multipart/form-data" name="updateBossForm" onsubmit="return updateBossCheck();">
-	<table border="1">
+	<table border="1" class="cd1">
 			<tr>
 				<td>캠핑명</td>
 				<td><input name="name" value="${campinginfo.cam_name }"></td>
