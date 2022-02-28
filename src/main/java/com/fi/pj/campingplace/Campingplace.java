@@ -13,29 +13,12 @@ public class Campingplace {
 	private String cam_longitude;
 	private int cam_headcount;
 	private double star;
+	private int from;
+	private int to;
 	
 	
 	public Campingplace() {
 		// TODO Auto-generated constructor stub
-	}
-
-
-	public Campingplace(int cam_no, String cam_bo_id, String cam_name, String cam_picture, String cam_txt,
-			String cam_phonenumber, int cam_price, String cam_address, String cam_latitude, String cam_longitude,
-			int cam_headcount, double star) {
-		super();
-		this.cam_no = cam_no;
-		this.cam_bo_id = cam_bo_id;
-		this.cam_name = cam_name;
-		this.cam_picture = cam_picture;
-		this.cam_txt = cam_txt;
-		this.cam_phonenumber = cam_phonenumber;
-		this.cam_price = cam_price;
-		this.cam_address = cam_address;
-		this.cam_latitude = cam_latitude;
-		this.cam_longitude = cam_longitude;
-		this.cam_headcount = cam_headcount;
-		this.star = star;
 	}
 
 
@@ -156,6 +139,47 @@ public class Campingplace {
 
 	public void setStar(double star) {
 		this.star = star;
+	}
+
+
+	public int getFrom() {
+		return from;
+	}
+
+
+	public void setFrom(int from) {
+		this.from = from;
+	}
+
+
+	public int getTo() {
+		return to;
+	}
+
+
+	public void setTo(int to) {
+		this.to = to;
+	}
+
+
+	public Campingplace(int cam_no, String cam_bo_id, String cam_name, String cam_picture, String cam_txt,
+			String cam_phonenumber, int cam_price, String cam_address, String cam_latitude, String cam_longitude,
+			int cam_headcount, double star, int from, int to) {
+		super();
+		this.cam_no = cam_no;
+		this.cam_bo_id = cam_bo_id;
+		this.cam_name = cam_name;
+		this.cam_picture = cam_picture;
+		this.cam_txt = cam_txt;
+		this.cam_phonenumber = cam_phonenumber;
+		this.cam_price = cam_price;
+		this.cam_address = cam_address;
+		this.cam_latitude = cam_latitude;
+		this.cam_longitude = cam_longitude;
+		this.cam_headcount = cam_headcount;
+		this.star = star;
+		this.from = from;
+		this.to = to;
 	}
 
 }

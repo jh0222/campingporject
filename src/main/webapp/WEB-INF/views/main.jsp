@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="resources/jsjs/responsive.css">
 <link rel="stylesheet" href="resources/css/jquery.fullPage.css">
 <link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="resources/css/campingplace.css">
 <script src="resources/css/jquery.fullPage.js"></script>
 <script src="resources/css/main.js"></script>
 <title>Insert title here</title>
@@ -40,7 +41,7 @@ ${result }
         <div class="gnb">
         <div class="menu">       
           <ul class="menu_list">
-			<li><a href="place.go">캠핑예약</a>
+			<li><a href="place.go?h_u_id=${sessionScope.loginMember.u_id}">캠핑예약</a>
 			</li>
 			<li><a href="shopping.go">밀키트/캠핑용품</a>
 				<ul class="sub">

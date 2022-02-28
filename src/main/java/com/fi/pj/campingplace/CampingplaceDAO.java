@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import com.fi.pj.board.BoardMapper;
+import com.fi.pj.board.BoardPage;
+import com.fi.pj.board.Freeboard;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -24,8 +28,42 @@ public class CampingplaceDAO {
 	private SqlSession ss;
 	
 	public void getAllPlace(HttpServletRequest req) {
+		int rowSize = 10; //한페이지에 보여줄 글의 수
+	    int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+	   
+	    String strPg = req.getParameter("pg");
+	    if(strPg != null){ //list.jsp?pg=2
+	    	pg = Integer.parseInt(strPg); //.저장
+	    }
+
+	    int from = (pg * rowSize) - (rowSize-1); //(1*10)-(10-1)=10-9=1 //from
+	    int to=(pg * rowSize); //(1*10) = 10 //to
 		
-		req.setAttribute("places", ss.getMapper(PlaceMapper.class).getAllPlace());
+	    Campingplace p = new Campingplace();
+	    p.setFrom(from);
+	    p.setTo(to);
+
+		List<Campingplace> places = ss.getMapper(PlaceMapper.class).getAllPlace(p);   	 
+
+	    int total = ss.getMapper(PlaceMapper.class).getAllPlacecnt(); //총 게시물 수
+	    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+	    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+	    int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+	    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+	    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+	    if(toPage> allPage){ // 예) 20>17
+	        toPage = allPage;
+	    }
+
+	    req.setAttribute("pg", pg);
+	    req.setAttribute("block", block);
+	    req.setAttribute("fromPage", fromPage);
+	    req.setAttribute("toPage", toPage);
+	    req.setAttribute("allPage", allPage);
+		req.setAttribute("places", places);
+		req.setAttribute("c", "place.go?");
+		
 	}
 	
 	public void regPlace(Campingplace p, HttpServletRequest req) {
@@ -85,7 +123,6 @@ public class CampingplaceDAO {
 		} else {
 			req.setAttribute("result", "삭제실패");
 		}
-		req.setAttribute("places", ss.getMapper(PlaceMapper.class).getAllPlace());
 
 	}
 
@@ -169,15 +206,6 @@ public class CampingplaceDAO {
 		} catch (Exception e) {
 			System.out.println("에러");
 		}
-		
-		
-		/*
-		if (ss.getMapper(PlaceMapper.class).ReviewReg(pr) == 1) {
-			req.setAttribute("result", "등록성공");
-		} else {
-			req.setAttribute("result", "등록실패");
-		}
-		*/
 	}
 
 	public void getAllReview(placeReview pr, HttpServletRequest req) {
@@ -254,36 +282,211 @@ public class CampingplaceDAO {
 		
 	}
 
-
-	public void likePlace(Campingplace p, placeReview pr, campingLike cl, HttpServletRequest req) {
-		if (ss.getMapper(PlaceMapper.class).placeLike(cl) == 1) {
-			req.setAttribute("result", "찜 성공");
-		} else {
-			req.setAttribute("result", "찜 실패");
-		}
-		req.setAttribute("places", ss.getMapper(PlaceMapper.class).getOnePlace(p));
-		
-	}
-
+	
 	public void getHeartList( HttpServletRequest req) {
 		req.setAttribute("hearts", ss.getMapper(PlaceMapper.class).getHeartList());
 		
 	}
+	
 
-	public void likePlace2(campingLike cl, HttpServletRequest req) {
+	public void likePlace(campingLike cl, HttpServletRequest req) {
 		if (ss.getMapper(PlaceMapper.class).placeLike(cl) == 1) {
 			req.setAttribute("result", "찜 성공");
 		} else {
 			req.setAttribute("result", "찜 실패");
+		}		
+	}
+	
+	public void likePlace_del(campingLike cl, HttpServletRequest req) {
+		if (ss.getMapper(PlaceMapper.class).placeLike_del(cl) == 1) {
+			req.setAttribute("result", "찜 성공");
+		} else {
+			req.setAttribute("result", "찜 실패");
+		}		
+	}
+	
+	//찜 있는지 없는지
+	public void getheart(campingLike cl, HttpServletRequest req) {
+		String heart = ss.getMapper(PlaceMapper.class).getheart(cl);
+		req.setAttribute("heart", heart);		
+	}
+
+	//캠핑장 검색 
+	public void getPlaceSearch(placeSearch ps, HttpServletRequest req) {
+		int rowSize = 10; //한페이지에 보여줄 글의 수
+	    int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+	   
+	    String strPg = req.getParameter("pg");
+	    if(strPg != null){ //list.jsp?pg=2
+	    	pg = Integer.parseInt(strPg); //.저장
+	    }
+
+	    int from = (pg * rowSize) - (rowSize-1); //(1*10)-(10-1)=10-9=1 //from
+	    int to=(pg * rowSize); //(1*10) = 10 //to
+
+	    ps.setFrom(from);
+	    ps.setTo(to);
+		if(ps.getSearchplace().equals("placename")) {
+			List<Campingplace> p = ss.getMapper(PlaceMapper.class).Search_place(ps);
+			
+			int total = ss.getMapper(PlaceMapper.class).Search_place_cnt(ps); //총 게시물 수
+			System.out.println(total);
+		    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+		    System.out.println(allPage);
+		    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+		    int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+		    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+		    System.out.println(fromPage);
+		    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+		    System.out.println(toPage);
+		    if(toPage> allPage){ // 예) 20>17
+		        toPage = allPage;
+		    }
+
+		    String c = "placce.search?searchplace=placename&search=" + ps.getSearch() + "&";
+		    
+		    req.setAttribute("pg", pg);
+		    req.setAttribute("block", block);
+		    req.setAttribute("fromPage", fromPage);
+		    req.setAttribute("toPage", toPage);
+		    req.setAttribute("allPage", allPage);
+			req.setAttribute("places", p);
+			req.setAttribute("c", c);
+			//req.setAttribute("place", "p");
+		} else if(ps.getSearchplace().equals("star")) {
+			
+			List<Campingplace> places = ss.getMapper(PlaceMapper.class).Search_star(ps);  	 
+
+			int total = ss.getMapper(PlaceMapper.class).getAllPlacecnt(); //총 게시물 수
+		    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+		    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+		    int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+		    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+		    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+		    if(toPage> allPage){ // 예) 20>17
+		        toPage = allPage;
+		    }
+
+		    req.setAttribute("pg", pg);
+		    req.setAttribute("block", block);
+		    req.setAttribute("fromPage", fromPage);
+		    req.setAttribute("toPage", toPage);
+		    req.setAttribute("allPage", allPage);
+			req.setAttribute("places", places);
+			req.setAttribute("c", "place.go?");
+		}else if(ps.getSearchplace().equals("p")) {
+			
+			List<Campingplace> places = ss.getMapper(PlaceMapper.class).Search_p(ps);  	 
+
+			int total = ss.getMapper(PlaceMapper.class).getpricecnt(ps); //총 게시물 수
+		    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+		    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+		    int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+		    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+		    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+		    if(toPage> allPage){ // 예) 20>17
+		        toPage = allPage;
+		    }
+
+		    req.setAttribute("pg", pg);
+		    req.setAttribute("block", block);
+		    req.setAttribute("fromPage", fromPage);
+		    req.setAttribute("toPage", toPage);
+		    req.setAttribute("allPage", allPage);
+			req.setAttribute("places", places);
+			req.setAttribute("c", "place.go?");
+		}else {
+			List<Campingplace> places = ss.getMapper(PlaceMapper.class).Search_area(ps);  	 
+
+			int total = ss.getMapper(PlaceMapper.class).getareacnt(ps); //총 게시물 수
+		    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+		    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+		    int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+		    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+		    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+		    if(toPage> allPage){ // 예) 20>17
+		        toPage = allPage;
+		    }
+
+		    req.setAttribute("pg", pg);
+		    req.setAttribute("block", block);
+		    req.setAttribute("fromPage", fromPage);
+		    req.setAttribute("toPage", toPage);
+		    req.setAttribute("allPage", allPage);
+			req.setAttribute("places", places);
+			req.setAttribute("c", "place.go?");
 		}
-		req.setAttribute("places", ss.getMapper(PlaceMapper.class).getAllPlace());
 		
 	}
 
-	public void getAvgStar(placeReview pr, HttpServletRequest req) {
-		req.setAttribute("stars", ss.getMapper(PlaceMapper.class).getAvgStar());
+	public void starSearch(placeSearch ps, HttpServletRequest req) {
+		int rowSize = 10; //한페이지에 보여줄 글의 수
+	    int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+	   
+	    String strPg = req.getParameter("pg");
+	    if(strPg != null){ //list.jsp?pg=2
+	    	pg = Integer.parseInt(strPg); //.저장
+	    }
+
+	    int from = (pg * rowSize) - (rowSize-1); //(1*10)-(10-1)=10-9=1 //from
+	    int to=(pg * rowSize); //(1*10) = 10 //to
 		
+	    Campingplace p = new Campingplace();
+	    p.setFrom(from);
+	    p.setTo(to);
+
+		List<Campingplace> places = ss.getMapper(PlaceMapper.class).Search_star(ps);     	 
+
+	    int total = ss.getMapper(PlaceMapper.class).Search_star_cnt(ps); //총 게시물 수
+	    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+	    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+	    int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+
+	    int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+	    int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+	    if(toPage> allPage){ // 예) 20>17
+	        toPage = allPage;
+	    }
+
+	    req.setAttribute("pg", pg);
+	    req.setAttribute("block", block);
+	    req.setAttribute("fromPage", fromPage);
+	    req.setAttribute("toPage", toPage);
+	    req.setAttribute("allPage", allPage);
+		req.setAttribute("places", places);
+		//req.setAttribute("c", "place.search_star?");
+		
+	}
+
+	public void getheartlist(campingLike cl, HttpServletRequest req) {
+		
+		List<campingLike> cll = ss.getMapper(PlaceMapper.class).getheartlist(cl); 
+		req.setAttribute("cl", cll);
+		
+	}
+	
+	public void getAllReply(placeReply re, HttpServletRequest req) {
+		req.setAttribute("reply", ss.getMapper(PlaceMapper.class).getAllReply(re));
+		
+	}
+
+	public void regReplyTxt(placeReply re, HttpServletRequest req) {
+		
+		try {
+			if (ss.getMapper(PlaceMapper.class).ReplytxtReg(re) == 1) {
+				req.setAttribute("result", "등록성공");
+			} else {
+				req.setAttribute("result", "등록실패");
+			}
+		} catch (Exception e) {
+			System.out.println("에러");
+		}
 	}
 
 	
+
 }

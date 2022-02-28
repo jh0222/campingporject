@@ -2,6 +2,8 @@ package com.fi.pj.board;
 
 import java.util.List;
 
+
+
 public interface BoardMapper {
 	//자유게시판 전체목록
 	public List<Freeboard> getAllfreeboard(BoardPage p);
@@ -121,5 +123,6 @@ public interface BoardMapper {
 	public List<Freeboard> freepopular();
 	public List<Campingtipboard> tippopular();
 	public List<Recipe> recipepopular();
+	
 	
 }

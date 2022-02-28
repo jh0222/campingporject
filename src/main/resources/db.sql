@@ -102,6 +102,7 @@ create sequence reservation_seq;
 insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 
 select * from reservation_table;
+select * from campingheart_table where h_u_id='kim';
 -------------------------------------------------------------------------------------------------------------------------------------
 5. 캠핑찜
 drop table campingheart_table;
@@ -116,7 +117,7 @@ create table campingheart_table(
 
 create sequence campingheart_seq;
 
-insert into campingheart_table values(campingheart_seq.nextval,1,'kim','난지캠핑장','서울 마포구 한강난지로 28',1);
+insert into campingheart_table values(campingheart_seq.nextval,21,'kim','난지캠핑장','서울 마포구 한강난지로 28',1);
 
 select * from campingheart_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -129,11 +130,7 @@ drop table campingreview_table;
 create table campingreview_table(		
 	c_no number(5) primary key,
 	c_cam_no number(5) not null,
-<<<<<<< HEAD
 	c_u_id varchar2(20 char) not null,	
-=======
-	c_u_id varchar2(20 char) not null,
->>>>>>> 594b9e42b87530840362d993b472636e97c77cf7
 	c_campingreview	varchar2(100) not null,
 	c_campingstar number(5) not null,
 	c_date date not null
@@ -144,7 +141,6 @@ create sequence campingreview_seq;
 insert into campingreview_table values(campingreview_seq.nextval,1,'kim','좋아요',5,sysdate);
 
 select * from campingreview_table;
-<<<<<<< HEAD
 
 select * from camping_table order by cam_no desc
 
@@ -169,12 +165,51 @@ select *
 from camping_table a,
 (select c_cam_no, avg(c_campingstar) as star
 	from campingreview_table 
-	group by c_cam_no) b
+	group by c_cam_no) b, 
 where a.cam_no=b.c_cam_no
 ORDER BY a.cam_no desc;
-=======
--------------------------------------------------------------------------------------------------------------------------------------
->>>>>>> 594b9e42b87530840362d993b472636e97c77cf7
+select * from campingheart_table where h_u_id='kim'
+
+select rn,c.*
+		from(select Rownum as rn,a.*,star
+			from camping_table a,
+				(select c_cam_no, avg(c_campingstar) as star
+				from campingreview_table 
+				group by c_cam_no) b
+			where a.cam_no=b.c_cam_no
+			ORDER BY a.cam_no desc) c
+		where RN >=1 and RN <=10 and c.cam_price>=30000 and c.cam_price<=100000;
+
+
+select rn,c.*
+	from(select *
+		from camping_table a,
+			(select c_cam_no, avg(c_campingstar) as star
+			from campingreview_table 
+			group by c_cam_no) b
+		where a.cam_no=b.c_cam_no
+		ORDER BY a.cam_no desc) c
+	where RN >=1 and RN <=10;
+
+	select rn,c.*
+	from(select Rownum as rn,a.*,star
+		from (select * from camping_table where cam_bo_id like '%난지%' ) a,
+			(select c_cam_no, avg(c_campingstar) as star
+			from (campingreview_table)
+			group by c_cam_no) b
+		where a.cam_no=b.c_cam_no
+		ORDER BY a.cam_no desc) c
+	where RN >=1 and RN <=10;
+
+select rn,cam_no,cam_name,cam_txt,cam_phonenumber,cam_price, cam_address
+	from (select Rownum as rn,cam_no,cam_name,cam_txt,cam_phonenumber,cam_price, cam_address
+	from (select cam_no,cam_name,cam_txt,cam_phonenumber,cam_price, cam_address
+	from camping_table
+	where cam_bo_id like '%ㄴ%' 
+	order by cam_no desc))
+	where RN >=1 and RN <=10;
+	
+	
 7. 캠핑 리뷰 댓글달기(사장이)
 /*
  * 사장이 자신의 캠핑에서만 대댓글 달게 만들기
@@ -372,7 +407,7 @@ create table free_board_table(
 
 create sequence free_board_seq;
 
-insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유자유','h.jpg',0,'20220110');
+insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유자유',0,'20220110');
 
 select * from free_board_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -392,10 +427,6 @@ create table free_board_reply_table(
 		foreign key(fr_f_no)
 		references free_board_table(f_no)
 		on delete cascade
-<<<<<<< HEAD
-=======
-
->>>>>>> 594b9e42b87530840362d993b472636e97c77cf7
 );
 
 create sequence free_board_reply_seq;
@@ -407,10 +438,9 @@ select count(*) from free_board_reply_table where fr_owner_no=
 select fr_no from free_board_reply_table where fr_u_id='(알수없음)';
 select count(*) from free_board_reply_table where fr_owner_no=411;
 select count(*) from free_board_reply_table where fr_u_id='(알수없음)' and fr_no=403;
-<<<<<<< HEAD
-=======
+
 -------------------------------------------------------------------------------------------------------------------------------------
->>>>>>> 594b9e42b87530840362d993b472636e97c77cf7
+
 18. 캠핑팁게시판
 drop table campingtip_board_table
 create table campingtip_board_table(	
@@ -431,21 +461,7 @@ select * from campingtip_board_table;
 19. 캠핑팁 리뷰
 drop table campingtip_board_reply_table
 create table campingtip_board_reply_table(
-<<<<<<< HEAD
-    tipr_no number(5) primary key,
-    tipr_tip_no    number(5) not null,
-    tipr_u_id    varchar2(100 char) not null,
-    tipr_owner_no    varchar2(100 char) null,
-    tipr_owner_id    varchar2(100 char) null,
-    tipr_replytxt    varchar2(100 char) not null,
-    tipr_date    date not null,
-    tipr_depth number(5) not null,
-    tipr_picture varchar2(200 char) not null,
-    constraint campingtip
-        foreign key(tipr_f_no)
-        references campingtip_board_table(tip_no)
-        on delete cascade
-=======
+
 	tipr_no number(5) primary key,
 	tipr_tip_no	number(5) not null,
 	tipr_u_id	varchar2(100 char) not null,
@@ -460,7 +476,6 @@ create table campingtip_board_reply_table(
 		foreign key(tipr_tip_no)
 		references campingtip_board_table(tip_no)
 		on delete cascade
->>>>>>> 594b9e42b87530840362d993b472636e97c77cf7
 );
 create sequence campingtip_board_reply_seq;
 

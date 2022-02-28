@@ -2,14 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fi.pj.campingplace.PlaceMapper">
 
-<select id ="getAllPlace" resultType="com.fi.pj.campingplace.Campingplace">
-	select *
-	from camping_table a,
-		(select c_cam_no, avg(c_campingstar) as star
-		from campingreview_table 
-		group by c_cam_no) b
-	where a.cam_no=b.c_cam_no
-	ORDER BY a.cam_no desc
+<select id ="getAllPlace" resultType="com.fi.pj.campingplace.Campingplace" parameterType="com.fi.pj.campingplace.Campingplace">
+	select rn,c.*
+		from(select Rownum as rn,a.*,star
+			from camping_table a,
+				(select c_cam_no, avg(c_campingstar) as star
+				from campingreview_table 
+				group by c_cam_no) b
+			where a.cam_no=b.c_cam_no
+			ORDER BY a.cam_no desc) c
+		where RN &gt;=#{from} and RN &lt;=#{to}
+</select>
+
+<select id="getAllPlacecnt" resultType="Integer" >
+		select count(*) from camping_table
 </select>
 
 <insert id="PlaceReg" parameterType="com.fi.pj.campingplace.Campingplace">
@@ -70,10 +76,87 @@
 	select * from campingheart_table order by h_no desc
 </select>
 
-<select id ="getAvgStar" resultType="com.fi.pj.campingplace.placeReview">
-	select c_cam_no, avg(c_campingstar) as star
-	from campingreview_table
-	group by c_cam_no
-	order by c_cam_no desc
+<delete id="placeLike_del" parameterType="com.fi.pj.campingplace.campingLike">
+	delete from campingheart_table where h_cam_no=#{h_cam_no} and h_u_id=#{h_u_id}
+</delete>
+<select id="getheart" resultType="String" parameterType="com.fi.pj.campingplace.campingLike">
+	select h_cam_name from campingheart_table where h_cam_no=#{h_cam_no} and h_u_id=#{h_u_id}
 </select>
+
+
+<select id ="Search_place" resultType="com.fi.pj.campingplace.Campingplace" parameterType="com.fi.pj.campingplace.placeSearch">
+	select rn,c.*
+	from(select Rownum as rn,a.*,star
+		from (select * from camping_table where cam_name like '%'||#{search}||'%') a,
+			(select c_cam_no, avg(c_campingstar) as star
+			from (campingreview_table)
+			group by c_cam_no) b
+		where a.cam_no=b.c_cam_no
+		ORDER BY a.cam_no desc) c
+	where RN &gt;=#{from} and RN &lt;=#{to}
+</select>
+
+<select id ="Search_place_cnt" resultType="Integer" parameterType="com.fi.pj.campingplace.placeSearch">
+	select count(*) from camping_table where cam_name like '%'||#{search}||'%' order by cam_no desc 
+</select>
+
+
+<select id ="Search_star" resultType="com.fi.pj.campingplace.Campingplace" parameterType="com.fi.pj.campingplace.placeSearch">
+	select rn,c.*
+		from(select Rownum as rn,a.*,star
+			from camping_table a,
+				(select c_cam_no, avg(c_campingstar) as star
+				from campingreview_table 
+				group by c_cam_no) b
+			where a.cam_no=b.c_cam_no
+			ORDER BY star desc) c
+		where RN &gt;=#{from} and RN &lt;=#{to}
+</select>
+
+<select id ="Search_p" resultType="com.fi.pj.campingplace.Campingplace" parameterType="com.fi.pj.campingplace.placeSearch">
+	select rn,c.*
+		from(select Rownum as rn,a.*,star
+			from camping_table a,
+				(select c_cam_no, avg(c_campingstar) as star
+				from campingreview_table 
+				group by c_cam_no) b
+			where a.cam_no=b.c_cam_no
+			ORDER BY star desc) c
+		where RN &gt;=#{from} and RN &lt;=#{to} and c.cam_price&gt;=#{from_p} and c.cam_price&lt;=#{to_p}
+</select>
+
+<select id="getpricecnt" resultType="Integer"  parameterType="com.fi.pj.campingplace.placeSearch">
+		select count(*) from camping_table where cam_price&gt;=#{from_p} and cam_price&lt;=#{to_p}
+</select>
+
+<select id="getheartlist" parameterType="com.fi.pj.campingplace.campingLike" resultType="com.fi.pj.campingplace.campingLike">
+	select * from campingheart_table where h_u_id=#{h_u_id}
+</select>
+
+<select id ="Search_area" resultType="com.fi.pj.campingplace.Campingplace" parameterType="com.fi.pj.campingplace.placeSearch">
+	select rn,c.*
+	from(select Rownum as rn,a.*,star
+		from (select * from camping_table where cam_address like '%'||#{search }||'%') a,
+			(select c_cam_no, avg(c_campingstar) as star
+			from (campingreview_table)
+			group by c_cam_no) b
+		where a.cam_no=b.c_cam_no
+		ORDER BY a.cam_no desc) c
+	where RN &gt;=#{from} and RN &lt;=#{to}
+</select>
+
+<select id ="getareacnt" resultType="Integer" parameterType="com.fi.pj.campingplace.placeSearch">
+	select count(*) from camping_table where cam_address like '%'||#{search }||'%' order by cam_no desc 
+</select>
+
+<select id ="getAllReply" resultType="com.fi.pj.campingplace.placeReply" parameterType="com.fi.pj.campingplace.placeReply">
+	select * from campingreview_bossreply_table where cr_cam_no = ${cr_cam_no} order by cr_no desc
+</select>
+
+<insert id="ReplytxtReg" parameterType="com.fi.pj.campingplace.placeReply" >
+	insert into campingreview_bossreply_table
+	values(campingreview_bossreply_seq.nextval,#{cr_cam_no},#{cr_bo_id},#{cr_u_id}
+	,#{cr_replytxt},sysdate)
+</insert>
+
 </mapper>
