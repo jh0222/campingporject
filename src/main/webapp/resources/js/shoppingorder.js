@@ -1,4 +1,4 @@
-//체크박스 선택시 '기존배송지' 뜨도록 (미완성)
+//체크박스 선택시 '기존배송지' 뜨도록 
 
 $(document).ready(function(){
 	$("#offline2").change(function(){         

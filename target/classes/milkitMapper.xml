@@ -86,4 +86,17 @@
 	select count(*) from foodproduct_registration_table
 </select>
 
+<!-- 밀키트 인기순위 -->
+<select id="MilkitRank" resultType="com.fi.pj.milkit.MilkitRank">
+select ROWNUM, A.*
+from 
+(select * from foodproduct_registration_table a,
+(select count(fb_fp_no) as c,fb_fp_no
+from guest_foodproduct_buy_table
+group by fb_fp_no) b
+where a.fp_no=b.fb_fp_no
+ORDER BY b.c desc) A
+where ROWNUM &lt;= 5
+</select>
+
 </mapper>

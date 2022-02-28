@@ -17,6 +17,8 @@ import com.fi.pj.member.BossMember;
 import com.fi.pj.member.LoginMember;
 import com.fi.pj.member.Root;
 import com.fi.pj.member.UserMember;
+import com.fi.pj.milkit.MilkitMapper;
+import com.fi.pj.milkit.MilkitRank;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -28,7 +30,7 @@ public class ShoppingDAO {
 
 //캠핑용품 목록
 	public void getAllProduct(HttpServletRequest req) {
-		int rowSize = 12; // 한페이지에 보여줄 글의 수
+		int rowSize = 15; // 한페이지에 보여줄 글의 수
 		int pg = 1; // 페이지 , list.jsp로 넘어온 경우 , 초기값 =1
 
 		String strPg = req.getParameter("pg");
@@ -299,6 +301,13 @@ public class ShoppingDAO {
 		
 		List<ProductRank> productrank = ss.getMapper(ShoppingMapper.class).ProductRank();
 		req.setAttribute("productrank", productrank);
+		
+	}
+	
+	public void milkitrank(HttpServletRequest req) {
+		
+		List<MilkitRank> milkitrank = ss.getMapper(MilkitMapper.class).MilkitRank();
+		req.setAttribute("milkitrank", milkitrank);
 		
 	}
 

@@ -149,29 +149,29 @@ function CheckForm(check){
 		</thead>
 		<tbody>
 			<tr>
-				<td><input type="checkbox" name="U_checkAgreement1" id="U_checkAgreement1" value=""></td>
+				<td><input type="checkbox" name="chk" value="1"></td>
 				<td colspan="2">[필수] 개인정보 수집 및 이용 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a onclick="showPopup1();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="U_checkAgreement2" id="U_checkAgreement2"></td>
+				<td><input type="checkbox" name="chk" value="2"></td>
 				<td>[필수] 개인정보 제 3자 제공 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a onclick="showPopup2();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="U_checkAgreement3" id="U_checkAgreement3"></td>
+				<td><input type="checkbox" name="chk" value="3"></td>
 				<td>[필수] 전자결제대행 이용 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a onclick="showPopup3();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="U_checkAgreement4" id="U_checkAgreement4"></td>
+				<td><input type="checkbox" name="chk" value="4"></td>
 				<td>[필수] 상품정보, 거래조건 확인 및 구매 진행 동의</td> 
 			</tr>
 		</tbody>
 	</table>
-	<input type="submit" id="check_module" value="결제하기">
-</form>	
-<!--  <button id="check_module" type="button" onclick="">결제하기</button>-->
+<button id="check_module" type="button" onclick="">결제하기</button>
+
+ </form>	
 	
 · 입점업체 배송은 낮은 확률로 상품이 품절일 가능성이 있습니다. 이에 품절 시 빠르게 환불 처리해드립니다.<br>
 · 현금 환불의 경우, 예금정보가 일치해야 환불 처리가 가능합니다. 은행명, 계좌번호, 예금주명을 정확히 기재 부탁드립니다.<br>
@@ -207,9 +207,6 @@ var msg = '결제에 실패하였습니다.';
 alert(msg);
 });
 });
-
-</script>
-
 
 </body>
 </html>

@@ -13,10 +13,10 @@
     .slide{height:500px;overflow:hidden;}
     .slide ul{width:calc(100% * 4);display:flex;animation:slide 17s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
     .slide li{width:calc(100% / 4);height:300px;}
-    .slide li:nth-child(1){background:#f5f5f5;} /*background-image:url(resources/css/xx.jpg);*/
-    .slide li:nth-child(2){background:#f5f5f5;}
-    .slide li:nth-child(3){background:#f5f5f5;}
-    .slide li:nth-child(4){background:#f5f5f5;}
+    .slide li:nth-child(1){background:#f5f5f5; background-color: white} /*background-image:url(resources/css/xx.jpg);*/
+    .slide li:nth-child(2){background:#f5f5f5; background-color: white}
+    .slide li:nth-child(3){background:#f5f5f5; background-color: white}
+    .slide li:nth-child(4){background:#f5f5f5; background-color: white}
     @keyframes slide {
       0% {margin-left:0;} /* 0 ~ 10  : 정지 */
       10% {margin-left:0;} /* 10 ~ 25 : 변이 */
@@ -37,12 +37,12 @@
 			<td>
 				<form action="search.product">
 					<input name="p_name">
-					<button class="btn btn-light btn-xs">검색</button>
+					<button style="border: none;"><i class="fa-solid fa-magnifying-glass fa-lg" style="color:black;"></i></button>
 				</form>
 			</td>
 			<c:if test="${sessionScope.loginMember3.root_id != null}">
 				<td>
-					<button class="btn btn-light btn-xs" onClick="location.href='regproduct.go'" id="b">상품등록</button>
+					<button class="btn btn-light btn-xs" onClick="location.href='regproduct.go'" id="b" style="background-color: white">상품등록</button>
 				</td>
 			</c:if>
 		</tr>
@@ -56,7 +56,6 @@
       <li><img src="resources/css/shoppingmain/캠핑용품메인4.JPG" style="height: 500px; width: 1300px; display: block; margin: 0px auto;"></li>
     </ul>
   </div>
-  
 	<h3 class="Product_h3">고캠핑 캠핑용품</h3>
 
 	<c:forEach var="p" items="${products}">
@@ -72,11 +71,13 @@
 			</tr>		
 			<tr>
 				<td class="table_product_td2"><fmt:formatNumber value="${p.p_price}" type="currency" /> </td>
+				
 			</tr>
 			<tr>
 				<c:if test="${sessionScope.loginMember3.root_id != null}">
-					<td><button onclick="del(${p.p_no})" class="table_product_del">삭제</button></td>
+					<td><button onclick="del(${p.p_no})" class="table_product_del"><i class="fa-solid fa-trash-can fa-2x" style="color:#707070"></i></button></td>
 				</c:if>
+				
 			</tr>		
 		</table>
 	</c:forEach>

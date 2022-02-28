@@ -218,31 +218,6 @@ insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',109,'gd',10
 
 select * from guest_product_buy_table;
 
-select * from product_registration_table
-
-select a.b_p_no,count(*),b.p_no
-from guest_product_buy_table a,product_registration_table b
-where a.b_p_no=b.p_no
-group by a.b_p_no
-order by count(*) desc;
-
-select count(*),b.*
-from guest_product_buy_table a,product_registration_table b
-where a.b_p_no=b.p_no
-group by a.b_p_no
-
-select MAX(b_p_no) from guest_product_buy_table;
-select * from guest_product_buy_table where b_p_no= (select MAX(b_p_no) from guest_product_buy_table); --서브쿼리
-select b_p_name,b_price, dense_rank() over(order by b_p_no) As rank from guest_product_buy_table;
-
-select *
-from camping_table a,
-(select c_cam_no, avg(c_campingstar) as star
-    from campingreview_table 
-    group by c_cam_no) b
-where a.cam_no=b.c_cam_no
-ORDER BY a.cam_no desc;
-
 select ROWNUM, A.*
 from 
 (select * from product_registration_table a,
@@ -253,21 +228,6 @@ where a.p_no=b.b_p_no
 ORDER BY b.c desc) A
 where ROWNUM <= 5;
 
-
-select tb.b_p_name,b_price, dense_rank() over(order by tb.b_p_no) As rank, counts.cnt, tb.b_p_no 
-from guest_product_buy_table tb LEFT JOIN (SELECT b_p_no, count(b_p_no) as cnt 
-											FROM guest_product_buy_table 
-											GROUP BY b_p_no) counts
-								ON tb.b_p_no = counts.b_p_no
-ORDER BY counts.cnt DESC;
-							
---select b_p_name,b_price, rank() over(order by b_p_no desc) As rank from guest_product_buy_table;
-
-select ROWNUM, A.*
-from (select *
-      from guest_product_buy_table
-      ORDER BY b_p_no DESC) A
-where ROWNUM <= 5
 
 -------------------------------------------------------------------------------------------------------------------------------------
 11. 밀키트 구매목록
@@ -290,9 +250,20 @@ create table guest_foodproduct_buy_table(
 
 create sequence g_fp_buy_seq;
 
-insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',206,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',273,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_foodproduct_buy_table;
+
+select ROWNUM, A.*
+from 
+(select * from foodproduct_registration_table a,
+(select count(fb_fp_no) as c,fb_fp_no
+from guest_foodproduct_buy_table
+group by fb_fp_no) b
+where a.fp_no=b.fb_fp_no
+ORDER BY b.c desc) A
+where ROWNUM <= 5;
+
 
 -------------------------------------------------------------------------------------------------------------------------------------
 12. 캠핑용품 장바구니

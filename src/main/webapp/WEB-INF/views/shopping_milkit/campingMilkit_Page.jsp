@@ -13,10 +13,10 @@
     .slide{height:500px;overflow:hidden;}
     .slide ul{width:calc(100% * 4);display:flex;animation:slide 17s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
     .slide li{width:calc(100% / 4);height:300px;}
-    .slide li:nth-child(1){background:#f5f5f5;} /*background-image:url(resources/css/xx.jpg);*/
-    .slide li:nth-child(2){background:#f5f5f5;}
-    .slide li:nth-child(3){background:#f5f5f5;}
-    .slide li:nth-child(4){background:#f5f5f5;}
+    .slide li:nth-child(1){background:#f5f5f5; background-color: white} /*background-image:url(resources/css/xx.jpg);*/
+    .slide li:nth-child(2){background:#f5f5f5; background-color: white}
+    .slide li:nth-child(3){background:#f5f5f5; background-color: white}
+    .slide li:nth-child(4){background:#f5f5f5; background-color: white}
     @keyframes slide {
       0% {margin-left:0;} /* 0 ~ 10  : 정지 */
       10% {margin-left:0;} /* 10 ~ 25 : 변이 */

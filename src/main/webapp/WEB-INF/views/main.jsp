@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="resources/css/board.css">
 <link rel="stylesheet" href="resources/css/detailProduct.css">
 <link rel="stylesheet" href="resources/css/mainProduct.css">
+<link rel="stylesheet" href="resources/css/regProduct.css">
 <script type="text/javascript" src="resources/js/site_jquery.js"></script>
 <script type="text/javascript" src="resources/js/member.js"></script>
 <script type="text/javascript" src="resources/js/board.js"></script>
@@ -20,11 +21,13 @@
 <script type="text/javascript" src="resources/js/shopping.js"></script>
 <script type="text/javascript" src="resources/js/shoppingorder.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script><!--SweetAlert2는 CDN 링크(alert) -->
 <link rel="stylesheet" href="resources/jsjs/style.css">
 <link rel="stylesheet" href="resources/jsjs/responsive.css">
 <link rel="stylesheet" href="resources/css/jquery.fullPage.css">
 <link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- font awesome (아이콘) -->
 <script src="resources/css/jquery.fullPage.js"></script>
 <script src="resources/css/main.js"></script>
 <!-- 아래3줄 부트스트랩 -->

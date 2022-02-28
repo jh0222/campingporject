@@ -35,6 +35,6 @@ public int regMilkitbasket(MilkitBasket fpb);
 public int regMilkitbuy(MilkitBuy mbuy);
 //총 밀키트 게시물 수
 public int getAllMilkitcnt();
-
-
+//밀키트 랭킹(최다구매)
+public List<MilkitRank> MilkitRank();
 }

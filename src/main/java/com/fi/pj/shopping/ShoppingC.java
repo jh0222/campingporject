@@ -30,6 +30,7 @@ public class ShoppingC {
 	public String shoppinggo(ProductRank prk,HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		sdao.productrank(req);
+		sdao.milkitrank(req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/campingandmilkitMain.jsp");
 		return "main";
