@@ -164,6 +164,11 @@ table.table_recipe{
   display: flex;
   align-items:center;
 }
+.reply_insert2_2{
+  margin: 10px 0 10px 50px;
+  display: flex;
+  align-items:center;
+}
 .reply_select_txt_css_head{
   display: flex;
 }
@@ -172,4 +177,5 @@ table.table_recipe{
   margin: 10px 0 10px 70px;
   display: flex;
   align-items:center;
+
 }

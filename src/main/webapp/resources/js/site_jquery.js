@@ -60,10 +60,10 @@ $(function() {
 		let FormVisible = $(this).attr('value');
 
 		if (FormVisible == 1) {
-			$(this).next().next().css('display', 'none');
+			$(this).parents('div').next('.reply_insertt').css('display', 'none');
 			FormVisible = $(this).attr('value', '0');
 		} else {
-			$(this).next().next().css('display', 'block');
+			$(this).parents('div').next('.reply_insertt').css('display', 'block');
 			FormVisible = $(this).attr('value', '1');
 		}
 	});
@@ -73,12 +73,25 @@ $(function() {
 
 		if (FormVisible == 1) {
 			// 숨기기
-			document.getElementByid("test").sytle.display="none";
+			$(this).parents('div').next().next().css('display', 'none');
 			$(this).text("답글 보기▼");
 			FormVisible = $(this).attr('value', '0');
 		} else {
-			$(this).closest('.asdasd').show();
+			$(this).parents('div').next().next().css('display', 'block');
 			$(this).text("답글 숨기기▲");
+			FormVisible = $(this).attr('value', '1');
+		}
+	});
+	
+	$(".replybtnbtn").click(function() {
+		let FormVisible = $(this).attr('value');
+
+		if (FormVisible == 1) {
+			// 숨기기
+			$(this).parents('div').next('.reply1_insert').css('display', 'none');
+			FormVisible = $(this).attr('value', '0');
+		} else {
+			$(this).parents('div').next('.reply1_insert').css('display', 'block');
 			FormVisible = $(this).attr('value', '1');
 		}
 	});

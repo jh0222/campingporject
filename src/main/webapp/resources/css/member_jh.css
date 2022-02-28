@@ -61,3 +61,112 @@
   margin-top: 10px;
   text-align: center;
 }
+.joingo_btn_all {
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  width: 100wv;
+}
+.joingo_btn_all2 {
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  margin: 50px auto;
+  width: 100wv;
+}
+.joingo_btn {
+  text-align: center;
+  font-size:30px;
+  width: 250px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: white;
+  color: black;
+  border: solid;
+  border:1px thick solid black ;
+  margin-right: 30px;
+}
+.joingo_btn:hover{
+  box-shadow: 0 1px 15px grey;
+  text-align: center;
+  font-size:30px;
+  width: 250px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: black;
+  border:1px thick solid black ;
+  border: solid;
+  color: white;
+}
+
+.join{
+  border-radius:10px;
+  box-shadow: 0 1px 15px grey;
+  width: 500px;
+  height: 950px;
+  font-size: 20px;
+  margin-top:20px;
+  margin-left: 50%;
+  margin-bottom:10px;
+  transform:translate(-50%,0);
+}
+.join input{
+  transform:translate(0,0);
+  width:300px;
+  height: 30px;
+  border:1px thick solid black ;
+}
+.join_title{
+  text-align:center;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.join_title2{
+  margin-left: 100px;
+}
+.join_txt{
+  text-align:center;
+  margin-bottom: 20px;
+}
+.join_id input{
+  width: 230px;
+  height: 30px;
+}
+.join_email{
+  display: inline-flex;	
+}
+.join_email input{
+  width: 180px;
+  height: 30px;
+}
+.join_email_addr input{
+  width: 100px;
+  height: 30px;
+}
+.join_addr input{
+  width: 238px;
+  height: 30px;
+}
+
+.join_phonenumber select{
+  width: 60px;
+  height: 30px;
+}
+.join_phonenumber input{
+  width: 100px;
+  height: 30px;
+}
+
+.joinbtn{
+  width: 300px;
+  height: 40px;
+  border-radius: 0px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+
+
+
+

@@ -64,29 +64,32 @@
 			</div>
 		</form>
 		</c:if>
-			
-		[댓글]	<br>
+
+	<br>
+
 		<c:forEach var="fr" items="${fr }">	
 		<!-- 댓글 select -->		
 		<div class="reply_select">
 			<div><img class="reply_img" src="resources/img/${fr.fr_picture }" width="30" height="30"></div>
 			<div class="reply_select_txt_css">
-				${fr.fr_u_id } &nbsp;
+				${fr.fr_u_id }<c:if test="${fr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if> &nbsp;
 				<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${fr.fr_date }"/>
 				<br>						
 				${fr.fr_replytxt }	
 				<br>
-				<c:choose>
-					<c:when test="${fr.fr_u_id == sessionScope.loginMember.u_id 
-								|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
-								|| sessionScope.loginMember3 != null}">
-						<button id="replybtn" class="replybtn2" value='0'>답글 보기▼</button>
-					</c:when>
-					<c:otherwise>
-						<button id="replybtn" class="logout_replybtn" value='0'>답글 보기▼</button>
-					</c:otherwise>
-				</c:choose>
-				<div class="reply3_insert">답글</div>
+				<c:if test="${frr != null }">
+					<c:choose>
+						<c:when test="${fr.fr_u_id == sessionScope.loginMember.u_id 
+									|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
+									|| sessionScope.loginMember3 != null}">
+							<button id="replybtn" class="replybtn2" value='0'>답글 보기▼</button>
+						</c:when>
+						<c:otherwise>
+							<button id="replybtn" class="logout_replybtn" value='0'>답글 보기▼</button>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+				<button class="reply3_insert">답글</button>
 			</div>
 			<div>
 				<c:if test="${fr.fr_u_id == sessionScope.loginMember.u_id 
@@ -100,6 +103,7 @@
 			</div>	
 		</div>	
 		
+		<div class="reply_insertt" style="display:none;">
 		<c:if test="${sessionScope.loginMember.u_id != null
 				|| sessionScope.loginMember2.bo_id != null
 				|| sessionScope.loginMember3 != null}">
@@ -116,33 +120,34 @@
 				<div class="reply_txt_css">		
 					<textarea class="reply_txt_css2_2" name="fr_replytxt"></textarea>
 				</div>
-					<input type="hidden" name="fr_u_id"
-					value="${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }${sessionScope.loginMember3.root_name }">					
-					<input type="hidden" name="fr_f_no" value="${fb.f_no}">
-					<input type="hidden" name="f_no" value="${fb.f_no}">
-					<input type="hidden" name="fr_owner_no" value="${fr.fr_no}">
-					<input type="hidden" name="fr_owner_id" value="${fr.fr_u_id}">
-					<input type="hidden" name="fr_depth" value="0">
-					<button class="register2">등록</button>
+				<input type="hidden" name="fr_u_id"
+				value="${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }${sessionScope.loginMember3.root_name }">					
+				<input type="hidden" name="fr_f_no" value="${fb.f_no}">
+				<input type="hidden" name="f_no" value="${fb.f_no}">
+				<input type="hidden" name="fr_owner_no" value="${fr.fr_no}">
+				<input type="hidden" name="fr_owner_id" value="${fr.fr_u_id}">
+				<input type="hidden" name="fr_depth" value="0">
+				<button class="register2">등록</button>
 				</div>
 			</form>
 		</c:if>  
+		</div>
 					
 		<!-- 대댓글 select겸 insert -->
-		<div class="asdasd" display="none">
+		<div class="asdasd" style="display:none;">
 		<c:forEach var="frr" items="${frr }">
 		<c:if test="${frr.fr_owner_no == fr.fr_no }">				
 			<div class="replybtn_display">
-				<div class="reply_insert2">
+				<div class="reply_insert2_2">
 				<div>
 				<img class="reply_img2" src="resources/img/${frr.fr_picture }" width="30" height="30">
 				</div>
 				<div class="reply_select_txt_css">		
 					<div class="reply_select_txt_css_head">
 						<c:if test="${frr.fr_depth == 1 }">
-							<div style="color:red">${frr.fr_owner_id }</div> &nbsp;
+							<div style="color:red">${frr.fr_owner_id }<c:if test="${fr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if></div> &nbsp;
 						</c:if>					
-						${frr.fr_u_id } &nbsp;
+						${frr.fr_u_id }<c:if test="${fr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if> &nbsp;
 						<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${frr.fr_date }"/> 
 						 &nbsp;
 						<c:if test="${frr.fr_u_id == sessionScope.loginMember.u_id 
@@ -157,12 +162,12 @@
 						</c:if>	
 					</div>
 					${frr.fr_replytxt }
-					<button>답글</button>
+					<button class="replybtnbtn">답글</button>
 				</div>
 				</div>
 			</div>
 			
-			<div display="none">
+			<div class="reply1_insert" style="display:none;">
 			<c:if test="${sessionScope.loginMember.u_id != null
 						|| sessionScope.loginMember2.bo_id != null
 						|| sessionScope.loginMember3 != null}">
@@ -194,156 +199,6 @@
 	</div>
 	</c:forEach>
 		
-			
-	<c:forEach var="fr" items="${fr }">	
-		[댓글]		
-		<!-- 댓글 select -->			
-			<table border="1">	
-				<tr><td colspan="4" style="background-color:red;">댓글</td></tr>	
-				<tr>
-					<td>
-						<img src="resources/img/${fr.fr_picture }" width="30" height="30">
-					</td>
-					<td colspan="2">${fr.fr_u_id }</td>
-					<td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${fr.fr_date }"/></td>					
-				</tr>
-				<tr>
-					<td colspan="3" class="replyTd">${fr.fr_replytxt }</td>	
-					<c:if test="${fr.fr_u_id == sessionScope.loginMember.u_id 
-						|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
-						|| sessionScope.loginMember3 != null}">
-						<td colspan="3">
-							<button class="replyUpdateBtn" value="updateGo">수정</button>
-							<input type="hidden" value="${fb.f_no}" class="fbVal">
-							<input type="hidden" value="${fr.fr_no}" class="frVal1">
-							<button onclick="frdelete(${fr.fr_no},${fb.f_no},${fr.fr_depth });">삭제</button>
-						</td>		
-					</c:if>								
-				</tr>
-				<tr>
-					<c:choose>
-						<c:when test="${fr.fr_u_id == sessionScope.loginMember.u_id 
-								|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
-								|| sessionScope.loginMember3 != null}">
-							<td colspan="4">
-								<button id="replybtn" class="replybtn" value='0'>답글 보기▼</button>
-							</td>
-						</c:when>
-						<c:otherwise>
-							<td colspan="4">
-								<button id="replybtn" class="logout_replybtn" value='0'>답글 보기▼</button>
-							</td>
-						</c:otherwise>
-					</c:choose>
-				</tr>
-			</table>
-
-		<c:if test="${sessionScope.loginMember.u_id != null
-				|| sessionScope.loginMember2.bo_id != null
-				|| sessionScope.loginMember3 != null}">
-		<!-- 대댓글 inset -->
-			<form action="fb_replyinsert" name="frrwriteForm" onsubmit="return frr_writeCheck()">
-				<table class="replyreply" border="1">
-					<tr><td colspan="2">답글작성</td></tr>
-					<tr>
-						<td rowspan="2">
-							<img src="resources/img/${sessionScope.loginMember.u_picture }
-							${sessionScope.loginMember2.bo_picture }
-							${sessionScope.loginMember3.root_picture }" width="30" height="30">
-							<input type="hidden" name="fr_picture" 
-							value="${sessionScope.loginMember.u_picture }${sessionScope.loginMember2.bo_picture }${sessionScope.loginMember3.root_picture }">
-						</td>
-						<td>
-							${sessionScope.loginMember.u_id }
-							${sessionScope.loginMember2.bo_id }
-							${sessionScope.loginMember3.root_name }
-							<input type="hidden" name="fr_u_id"
-							value="${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }${sessionScope.loginMember3.root_name }">					
-						</td>
-					</tr>
-					<tr><td><input name="fr_replytxt"></td></tr>
-					<tr>
-						<td>
-							<input type="hidden" name="fr_f_no" value="${fb.f_no}">
-							<input type="hidden" name="f_no" value="${fb.f_no}">
-							<input type="hidden" name="fr_owner_no" value="${fr.fr_no}">
-							<input type="hidden" name="fr_owner_id" value="${fr.fr_u_id}">
-							<input type="hidden" name="fr_depth" value="0">
-							<button>등록</button>
-						</td>
-					</tr>
-				</table>
-			</form>
-		</c:if>  
-					
-		<!-- 대댓글 select겸 insert -->
-		<div class="asdasd" style="display: none">
-		<c:forEach var="frr" items="${frr }">
-		<c:if test="${frr.fr_owner_no == fr.fr_no }">				
-			<table border="1" class="aabbcc">
-				<tr>
-					<td>
-						<img src="resources/img/${frr.fr_picture }" width="30" height="30">
-					</td>
-					<c:if test="${frr.fr_depth == 1 }">
-						<td style="color:red; background-color:yellow;">${frr.fr_owner_id }</td>
-					</c:if>					
-					<td style="background-color:orange;">${frr.fr_u_id }:</td>
-					<td class="replyTd">${frr.fr_replytxt }</td>
-					<td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${frr.fr_date }"/></td>
-					<c:if test="${frr.fr_u_id == sessionScope.loginMember.u_id 
-						|| frr.fr_u_id == sessionScope.loginMember2.bo_id 
-						|| sessionScope.loginMember3 != null}">
-						<td>
-							<button class="replyUpdateBtn" value="updateGo">수정</button>
-							<input type="hidden" value="${fb.f_no}" class="fbVal">
-							<input type="hidden" value="${frr.fr_no}" class="frVal1">
-							<button onclick="frrdelete(${frr.fr_no},${fb.f_no},${frr.fr_depth },${frr.fr_owner_no });">삭제</button>
-						</td>
-					</c:if>	
-					<td><button>답글</button></td>
-				</tr>
-			</table>
-			<c:if test="${sessionScope.loginMember.u_id != null
-						|| sessionScope.loginMember2.bo_id != null
-						|| sessionScope.loginMember3 != null}">
-			<form action="fb_replyinsert">				
-			<table border="1">
-				<tr>							
-					<td style="color:red;">
-						${frr.fr_u_id }							
-					</td>
-					<td rowspan="2">
-						<img src="resources/img/${sessionScope.loginMember.u_picture }
-						${sessionScope.loginMember2.bo_picture }
-						${sessionScope.loginMember3.root_picture }" width="30" height="30">
-						<input type="hidden" name="fr_picture" 
-						value="${sessionScope.loginMember.u_picture }${sessionScope.loginMember2.bo_picture }${sessionScope.loginMember3.root_picture }">
-					</td>
-					<td class="replyTd">
-						${sessionScope.loginMember.u_id }
-						${sessionScope.loginMember2.bo_id }
-						${sessionScope.loginMember3.root_name }						
-						<input name="fr_replytxt">
-					</td>
-					<td>
-						<input type="hidden" name="fr_u_id"
-							value="${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }${sessionScope.loginMember3.root_name }">
-						<input type="hidden" name="fr_f_no" value="${frr.fr_f_no }">
-						<input type="hidden" name="fr_owner_no" value="${fr.fr_no }">
-						<input type="hidden" name="fr_owner_id" value="${frr.fr_u_id }">
-						<input type="hidden" name="fr_depth" value="1">
-						<input type="hidden" name="f_no" value="${fb.f_no}">
-						<button  class="replyinsert">등록</button>
-					</td>
-				</tr>
-			</table>
-			</form>
-			</c:if>	
-		</c:if>
-		</c:forEach>				
-	</div>
-	</c:forEach>
 	
 	<c:choose>
 		<c:when test = "${pg > block}">
@@ -358,7 +213,7 @@
     <c:forEach var="i" begin="${fromPage }" end="${toPage }">
       	<c:choose>
 	       	<c:when test = "${i == pg }">
-        		[${i }]
+        		[<span style="font-weight: bolder;">${i }</span>]
         	</c:when>        	
       	    <c:otherwise>
         		[<a href="fb.onego?pg=${i }&f_no=${fb.f_no}">${i }</a>]
