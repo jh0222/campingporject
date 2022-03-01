@@ -1,6 +1,10 @@
 package com.fi.pj.member;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -86,6 +90,52 @@ public class MemberController {
 	@RequestMapping(value = "pwsearch.go", method = RequestMethod.GET)
 	public String PwsearchGo(HttpServletRequest req) {
 		req.setAttribute("contentPage", "member/pwsearch.jsp");
+		return "main";
+	}
+	
+	//비번찾기
+	@RequestMapping(value = "pw_search", method = RequestMethod.POST)
+	public String Pwsearch(HttpServletRequest req) {
+		String email = (String)req.getParameter("email");
+		String id = (String)req.getParameter("id");
+
+		UserMember vo = mDAO.selectMember_U(email);
+		BossMember vo2 = mDAO.selectMember_B(email);
+
+		if (vo.getU_id().equals(id)) {
+			req.setAttribute("sucess", id);
+			req.setAttribute("division", "U");
+		}else if(vo2.getBo_id().equals(id)) {
+			req.setAttribute("sucess", id);
+			req.setAttribute("division", "B");
+		}
+
+		req.setAttribute("contentPage", "member/pwsearch_result.jsp");
+		return "main";
+	}
+	
+	//비번 찾기 페이지로
+	@RequestMapping(value = "pw_search_update", method = RequestMethod.POST)
+	public String Pwsearchupdate(Login l,HttpServletRequest req,HttpServletResponse response) throws IOException {
+		System.out.println(l.getId());
+		System.out.println(l.getPw());
+		String division = req.getParameter("division");
+		System.out.println(division);
+		if(division.equals("U")) {
+			mDAO.pwUpdate_U(l,req);
+		}else{
+			mDAO.pwUpdate_B(l,req);
+		}
+		response.setContentType("text/html; charset=UTF-8");
+		 
+		PrintWriter out = response.getWriter();
+		 
+		out.println("<script>alert('비밀번호가 재설정 되었습니다."
+				+ " 다시 로그인하세요.');</script>");
+		 
+		out.flush();
+
+		req.setAttribute("contentPage", "home.jsp");
 		return "main";
 	}
 	

@@ -13,6 +13,7 @@
 		name="joinForm" onsubmit="return joinCheck();">
 		<div class="join">
 			<div class="join_title">
+				<br>
 				사용자 회원가입
 			</div>
 			<div class="join_title2">
@@ -94,14 +95,14 @@
 		                <option value="018">018</option>
 		                <option value="019">019</option>
             		</select>
-            		-<input name="phonenumber2" maxlength="4">
-					-<input name="phonenumber3" maxlength="4">
+            		- <input name="phonenumber2" maxlength="4">
+					- <input name="phonenumber3" maxlength="4">
 				</div>
 			</div>
 			<div class="join_title2">
 				프로필 사진
 			</div>
-			<div class="join_txt">
+			<div class="join_file">
 				<input name="picture" type="file">
 			</div>
 			<div style="text-align:center;">

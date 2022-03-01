@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="idsearch_result">
 <c:choose>
 	<c:when test="${id !=null }">
 		당신의 아이디는 ${fn:substring(id,0,fn:length(id) - 2) } 
@@ -21,6 +22,6 @@
 		없는 회원정보입니다.
 	</c:otherwise>
 </c:choose>
-
+</div>
 </body>
 </html>

@@ -72,24 +72,22 @@
 		<div class="reply_select">
 			<div><img class="reply_img" src="resources/img/${fr.fr_picture }" width="30" height="30"></div>
 			<div class="reply_select_txt_css">
-				${fr.fr_u_id }<c:if test="${fr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if> &nbsp;
+				${fr.fr_u_id }<c:if test="${fr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if> &nbsp; 
 				<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${fr.fr_date }"/>
 				<br>						
 				${fr.fr_replytxt }	
 				<br>
-				<c:if test="${frr != null }">
-					<c:choose>
-						<c:when test="${fr.fr_u_id == sessionScope.loginMember.u_id 
-									|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
-									|| sessionScope.loginMember3 != null}">
-							<button id="replybtn" class="replybtn2" value='0'>답글 보기▼</button>
-						</c:when>
-						<c:otherwise>
-							<button id="replybtn" class="logout_replybtn" value='0'>답글 보기▼</button>
-						</c:otherwise>
-					</c:choose>
+				<c:forEach var="cnt" items="${frr_cnt }">
+					<c:if test="${cnt.fr_owner_no == fr.fr_no }">
+						<button id="replybtn" class="replybtn2" value='0'>답글 ${cnt.cnt }개 보기▼</button>
+						<input type="hidden" value=${cnt.cnt } class="replycnt">
+					</c:if>	
+				</c:forEach>
+				<c:if test="${sessionScope.loginMember.u_id != null
+						|| sessionScope.loginMember2.bo_id != null
+						|| sessionScope.loginMember3 != null}">
+					<button class="reply3_insert">답글</button>
 				</c:if>
-				<button class="reply3_insert">답글</button>
 			</div>
 			<div>
 				<c:if test="${fr.fr_u_id == sessionScope.loginMember.u_id 
@@ -145,15 +143,14 @@
 				<div class="reply_select_txt_css">		
 					<div class="reply_select_txt_css_head">
 						<c:if test="${frr.fr_depth == 1 }">
-							<div style="color:red">${frr.fr_owner_id }<c:if test="${fr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if></div> &nbsp;
+							<div style="color:red">${frr.fr_owner_id }<c:if test="${frr.fr_owner_id ==  fb.f_u_id}">(글쓴이)</c:if></div> &nbsp;
 						</c:if>					
-						${frr.fr_u_id }<c:if test="${fr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if> &nbsp;
+						${frr.fr_u_id }<c:if test="${frr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if> &nbsp;
 						<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${frr.fr_date }"/> 
 						 &nbsp;
 						<c:if test="${frr.fr_u_id == sessionScope.loginMember.u_id 
 						|| frr.fr_u_id == sessionScope.loginMember2.bo_id 
 						|| sessionScope.loginMember3 != null}">
-
 							<button class="replyUpdateBtn" value="updateGo">수정</button>
 							<input type="hidden" value="${fb.f_no}" class="fbVal">
 							<input type="hidden" value="${frr.fr_no}" class="frVal1">
@@ -162,7 +159,11 @@
 						</c:if>	
 					</div>
 					${frr.fr_replytxt }
-					<button class="replybtnbtn">답글</button>
+					<c:if test="${sessionScope.loginMember.u_id != null
+								|| sessionScope.loginMember2.bo_id != null
+								|| sessionScope.loginMember3 != null}">
+						<button class="replybtnbtn">답글</button>
+					</c:if>
 				</div>
 				</div>
 			</div>

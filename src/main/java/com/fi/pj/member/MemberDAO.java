@@ -34,7 +34,7 @@ public class MemberDAO {
 		System.out.println(dbMember3);
 
 		if (dbMember != null) {
-			if (l.pw.equals(dbMember.getU_pw())) {
+			if (l.getPw().equals(dbMember.getU_pw())) {
 				req.getSession().setAttribute("loginMember", dbMember);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				req.getSession().setAttribute("birth", sdf.format(dbMember.getU_birth()));
@@ -43,14 +43,14 @@ public class MemberDAO {
 				req.setAttribute("result", "로그인 실패(PW오류)");
 			}
 		} else if (dbMember2 != null) {
-			if (l.pw.equals(dbMember2.getBo_pw())) {
+			if (l.getPw().equals(dbMember2.getBo_pw())) {
 				req.getSession().setAttribute("loginMember2", dbMember2);
 				req.getSession().setMaxInactiveInterval(60 * 10);
 			} else {
 				req.setAttribute("result", "로그인 실패(PW오류)");
 			}
 		} else if (dbMember3 != null) {
-			if (l.pw.equals(dbMember3.getRoot_pw())) {
+			if (l.getPw().equals(dbMember3.getRoot_pw())) {
 				req.getSession().setAttribute("loginMember3", dbMember3);
 				req.getSession().setMaxInactiveInterval(60 * 10);
 			} else {
@@ -769,6 +769,32 @@ public class MemberDAO {
 			req.setAttribute("id", ss.getMapper(MemberMapper.class).idsearch(l));
 		} else if (ss.getMapper(MemberMapper.class).bo_idsearch(l) != null) {
 			req.setAttribute("id", ss.getMapper(MemberMapper.class).bo_idsearch(l));
+		}
+	}
+
+	public UserMember selectMember_U(String email) {
+		return ss.getMapper(MemberMapper.class).selectMember_U(email);
+	}
+	
+	public BossMember selectMember_B(String email) {
+		return ss.getMapper(MemberMapper.class).selectMember_B(email);
+	}
+
+	//비번 재설정
+	public void pwUpdate_U(Login l,HttpServletRequest req) {
+		
+		if (ss.getMapper(MemberMapper.class).pwUpdate_U(l) == 1) {
+			req.setAttribute("result", "수정성공");
+		} else {
+			req.setAttribute("result", "수정실패");
+		}
+	}
+	public void pwUpdate_B(Login l,HttpServletRequest req) {
+		
+		if (ss.getMapper(MemberMapper.class).pwUpdate_B(l) == 1) {
+			req.setAttribute("result", "수정성공");
+		} else {
+			req.setAttribute("result", "수정실패");
 		}
 	}
 

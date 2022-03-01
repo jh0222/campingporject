@@ -70,15 +70,16 @@ $(function() {
 	
 	$(".replybtn2").click(function() {
 		let FormVisible = $(this).attr('value');
-
+		let cnt = $(this).next('input').attr('value');
+		
 		if (FormVisible == 1) {
 			// 숨기기
 			$(this).parents('div').next().next().css('display', 'none');
-			$(this).text("답글 보기▼");
+			$(this).text("답글 "+ cnt +"개 보기▼");
 			FormVisible = $(this).attr('value', '0');
 		} else {
 			$(this).parents('div').next().next().css('display', 'block');
-			$(this).text("답글 숨기기▲");
+			$(this).text("답글 "+ cnt +"개 숨기기▲");
 			FormVisible = $(this).attr('value', '1');
 		}
 	});
@@ -131,8 +132,8 @@ $(function() {
 		
 		if(updatebtnVal == 'updateGo'){
 			let updateInput = $('<input>');
-			let replyTd = $(this).closest('tr').find('.replyTd')
-			let myVal = replyTd.text();
+			let reply = $(this).parents('div').find('.reply_select_txt_css')
+			let myVal = reply.text();
 			replyTd.text('');
 			replyTd.append(updateInput);
 			$(updateInput).val(myVal);

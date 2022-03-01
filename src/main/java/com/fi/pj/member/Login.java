@@ -1,23 +1,16 @@
 package com.fi.pj.member;
 
 public class Login {
-	public String id;
-	public String pw;
+	private String id;
+	private String pw;
 
-	public String name;
-	public String phonenumber;
+	private String name;
+	private String phonenumber;
 
+	private String email;
 	
 	public Login() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public Login(String id, String pw, String name, String phonenumber) {
-		super();
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.phonenumber = phonenumber;
 	}
 
 	public String getId() {
@@ -36,12 +29,6 @@ public class Login {
 		this.pw = pw;
 	}
 
-	public Login(String id, String pw) {
-		super();
-		this.id = id;
-		this.pw = pw;
-	}
-	
 	public String getName() {
 		return name;
 	}
@@ -58,5 +45,23 @@ public class Login {
 		this.phonenumber = phonenumber;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Login(String id, String pw, String name, String phonenumber, String email) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.phonenumber = phonenumber;
+		this.email = email;
+	}
+	
+	
 	
 }

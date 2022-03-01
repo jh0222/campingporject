@@ -36,6 +36,8 @@ public interface BoardMapper {
 	public int Fr3Delete(FbReply fr);
 	//자유게시판 대댓글 보기
 	public List<FbReply> getfbrreply(Freeboard fb);
+	//대댓글 총갯수
+	public List<FbReply> getfbrreply_cnt(Freeboard fb);
 	//조회수
 	public int Fbcount_update(Freeboard fb);
 	//총 자유게시판 수
@@ -121,5 +123,6 @@ public interface BoardMapper {
 	public List<Freeboard> freepopular();
 	public List<Campingtipboard> tippopular();
 	public List<Recipe> recipepopular();
+	
 	
 }

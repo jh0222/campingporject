@@ -130,7 +130,36 @@ function joinCheck(){
 		
 }
 
+function joinCheck2(){
+	let name = document.joinForm.name;
+	let id = document.joinForm.id;
+	let pw = document.joinForm.pw;
+	let pwChk = document.joinForm.pwChk;
+	let email = document.joinForm.email;
+	let email_address = document.joinForm.email_address;
+	let phonenumber2 = document.joinForm.phonenumber2;
+	let phonenumber3 = document.joinForm.phonenumber3;
 
+	//비번
+	if (isEmpty(pw)) {
+		alert('비밀번호를 입력해주세요.');
+		pw.value = "";
+		pw.focus();
+		return false;
+	} else if (lessThan(pw, 3)){
+		alert('비밀번호를 3자리 이상 입력해주세요.');
+		pw.value = "";
+		pw.focus();
+		return false;		
+	} 
+	
+	if (notEquals(pw, pwChk)) {
+		alert('비밀번호가 다릅니다.');
+		pwChk.value = "";
+		pwChk.focus();
+		return false;
+	}
+}
 
 function logincall(){
 	let id = document.myForm.id;

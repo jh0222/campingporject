@@ -60,4 +60,22 @@
 		select bo_id from boss_table 
         where bo_name = #{name} and bo_phonenumber = #{phonenumber}
 	</select>
+	
+	<select id="selectMember_U" resultType="com.fi.pj.member.UserMember" parameterType="String">
+		select * from user_table 
+        where u_email = #{email}
+	</select>
+	
+	<select id="selectMember_B" resultType="com.fi.pj.member.BossMember" parameterType="String">
+		select * from boss_table 
+        where bo_email = #{email}
+	</select>
+	
+	<update id="pwUpdate_U" parameterType="com.fi.pj.member.Login">
+		update user_table set u_pw=#{pw} where u_id=#{id}
+	</update>
+	
+	<update id="pwUpdate_B" parameterType="com.fi.pj.member.Login">
+		update boss_table set bo_pw=#{pw} where bo_id=#{id}
+	</update>
 </mapper>

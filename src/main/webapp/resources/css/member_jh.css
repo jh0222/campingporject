@@ -103,7 +103,7 @@
   border-radius:10px;
   box-shadow: 0 1px 15px grey;
   width: 500px;
-  height: 950px;
+  height: 980px;
   font-size: 20px;
   margin-top:20px;
   margin-left: 50%;
@@ -111,10 +111,9 @@
   transform:translate(-50%,0);
 }
 .join input{
-  transform:translate(0,0);
+  border:1px solid black;
   width:300px;
   height: 30px;
-  border:1px thick solid black ;
 }
 .join_title{
   text-align:center;
@@ -137,7 +136,7 @@
   display: inline-flex;	
 }
 .join_email input{
-  width: 180px;
+  width: 179px;
   height: 30px;
 }
 .join_email_addr input{
@@ -145,19 +144,26 @@
   height: 30px;
 }
 .join_addr input{
-  width: 238px;
+  width: 239px;
   height: 30px;
 }
 
 .join_phonenumber select{
   width: 60px;
   height: 30px;
+  border:1px solid black;
 }
 .join_phonenumber input{
   width: 100px;
   height: 30px;
 }
-
+.join_file{
+  text-align:center;
+  margin-bottom: 20px;
+}
+.join_file input{
+  border:1px solid white;
+}
 .joinbtn{
   width: 300px;
   height: 40px;
@@ -166,7 +172,61 @@
   font-weight: 500;
 }
 
+.id_search{
+  border:1px thick solid black;
+  border-radius:0px;
+  width: 500px;
+  height: 200px;
+  font-size: 20px;
+  margin-top:20px;
+  margin-left: 50%;
+  margin-bottom:10px;
+  transform:translate(-50%,0);
+}
+.id_search2{
+  display: flex;
+}
+.id_search input{
+  border:1px solid black;
+  width:300px;
+  height: 25px;
+}
+.search_title{
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.search_title2{
+  font-size: 25px;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+.id_search_title{
+  margin-left: 48px;
+}
+.id_search_title_name{
+  margin-left: 48px;
+  margin-right: 48px;
+}
+.id_search_txt {
+  text-align: center;
+}
+.id_search_txt input{
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+.searchbtn{
+  width: 200px;
+  height: 30px;
+  border-radius: 0px;
+  font-size: 18px;
+}
 
-
-
+.idsearch_result{
+  font-size: 30px;
+  font-weight:bolder;
+  text-align: center;
+  margin-top: 50px;
+}

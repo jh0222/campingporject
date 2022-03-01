@@ -268,7 +268,7 @@
     <c:forEach var="i" begin="${fromPage }" end="${toPage }">
       	<c:choose>
 	       	<c:when test = "${i == pg }"> 
-        		[${i }]
+        		[<span style="font-weight: bolder;">${i }</span>]
         	</c:when>        	
       	    <c:otherwise>
         		[<a href="r.onego?pg=${i }&rb_no=${fb.rb_no}">${i }</a>]

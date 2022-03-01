@@ -103,6 +103,12 @@
 		select * from free_board_reply_table where fr_f_no=#{f_no} and fr_owner_no is not null order by fr_no asc
 	</select>
 	
+	<select id="getfbrreply_cnt" resultType="com.fi.pj.board.FbReply" parameterType="com.fi.pj.board.Freeboard">
+		select count(*)as cnt ,fr_owner_no from free_board_reply_table 
+		where fr_f_no=#{f_no} and fr_owner_no is not null 
+		group by fr_owner_no
+	</select>
+
 	<update id="Fbcount_update" parameterType="com.fi.pj.board.Freeboard">
 		update free_board_table set f_readcount=#{f_readcount } + 1
 		where f_no = #{f_no}

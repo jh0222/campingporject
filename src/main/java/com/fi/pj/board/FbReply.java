@@ -12,9 +12,25 @@ public class FbReply {
 	private Date fr_date;
 	private int fr_depth;
 	private String fr_picture;
+	private int cnt;
 	
 	public FbReply() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public FbReply(int fr_no, int fr_f_no, String fr_u_id, int fr_owner_no, String fr_owner_id, String fr_replytxt,
+			Date fr_date, int fr_depth, String fr_picture, int cnt) {
+		super();
+		this.fr_no = fr_no;
+		this.fr_f_no = fr_f_no;
+		this.fr_u_id = fr_u_id;
+		this.fr_owner_no = fr_owner_no;
+		this.fr_owner_id = fr_owner_id;
+		this.fr_replytxt = fr_replytxt;
+		this.fr_date = fr_date;
+		this.fr_depth = fr_depth;
+		this.fr_picture = fr_picture;
+		this.cnt = cnt;
 	}
 
 	public int getFr_no() {
@@ -89,18 +105,13 @@ public class FbReply {
 		this.fr_picture = fr_picture;
 	}
 
-	public FbReply(int fr_no, int fr_f_no, String fr_u_id, int fr_owner_no, String fr_owner_id, String fr_replytxt,
-			Date fr_date, int fr_depth, String fr_picture) {
-		super();
-		this.fr_no = fr_no;
-		this.fr_f_no = fr_f_no;
-		this.fr_u_id = fr_u_id;
-		this.fr_owner_no = fr_owner_no;
-		this.fr_owner_id = fr_owner_id;
-		this.fr_replytxt = fr_replytxt;
-		this.fr_date = fr_date;
-		this.fr_depth = fr_depth;
-		this.fr_picture = fr_picture;
+	public int getCnt() {
+		return cnt;
 	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
 
 }

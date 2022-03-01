@@ -523,4 +523,27 @@ from (select *
 	  from free_board_table
 	  ORDER BY f_readcount DESC) A
 where ROWNUM <= 5;
-
+select * from free_board_reply_table
+select COUNT(A.*), A.*
+from (select * from free_board_reply_table 
+		where fr_f_no=341 and fr_owner_no is not null 
+		order by fr_no asc) A;
+		
+		
+		
+select count(*)as cnt ,fr_owner_no from free_board_reply_table 
+		where fr_f_no=341 and fr_owner_no is not null 
+		group by fr_owner_no
+		order by fr_no asc	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	

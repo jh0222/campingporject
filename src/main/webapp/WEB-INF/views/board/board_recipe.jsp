@@ -53,7 +53,7 @@
     <c:forEach var="i" begin="${fromPage }" end="${toPage }">
       	<c:choose>
 	       	<c:when test = "${i == pg }">
-        		[${i }]
+        		[<span style="font-weight: bolder;">${i }</span>]
         	</c:when>        	
       	    <c:otherwise>
         		[<a href="${c }pg=${i }">${i }</a>]

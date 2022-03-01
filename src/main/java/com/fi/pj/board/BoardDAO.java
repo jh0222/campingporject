@@ -259,6 +259,7 @@ public class BoardDAO {
 	    
 		List<FbReply> fr = ss.getMapper(BoardMapper.class).getfbreply(p);
 		List<FbReply> frr = ss.getMapper(BoardMapper.class).getfbrreply(fb);
+		List<FbReply> frr_cnt = ss.getMapper(BoardMapper.class).getfbrreply_cnt(fb);
 
 		int total = ss.getMapper(BoardMapper.class).getAllfreeboardreplycnt(fb); //총 게시물 수
 	    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
@@ -278,6 +279,7 @@ public class BoardDAO {
 	    req.setAttribute("allPage", allPage);
 	    req.setAttribute("fr", fr);
 	    req.setAttribute("frr", frr);
+	    req.setAttribute("frr_cnt", frr_cnt);
 	}
 
 	//자유게시판 댓글 삭제
