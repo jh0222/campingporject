@@ -690,6 +690,7 @@ public class BoardDAO {
 		req.setAttribute("b", b);
 		req.setAttribute("c", "recipe.go?");	
 		req.setAttribute("sort", "r");
+		req.setAttribute("br",1);
 	}
 
 	//캠핑팁 등록

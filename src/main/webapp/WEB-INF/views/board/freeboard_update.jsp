@@ -16,26 +16,21 @@ $(function(){
 </script>
 </head>
 <body>
-자유게시판
+<div class="board_write_title">자유게시판</div>
 		<form action="fbwrite.update?f_no=${fb.f_no}"
 			method="post" enctype="multipart/form-data"
 			name="writeForm" onsubmit="return writeCheck();">
-		<table border="1">		
-			<tr>
-			<td>제목</td>
-			<td><input name="subject" value="${fb.f_subject }"></td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td>
-					<textarea name="txt" id="txt" rows="10" cols="80">${fb.f_txt }</textarea>	            	
-            	</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><button>수정</button></td>
-			</tr>
-		</table>
+			<div class="board_write_content">
+				<div class="board_write_subject">제목</div>
+				<div><input class="board_write_txt1" name="subject" value="${fb.f_subject }"></div>
+			</div>
+			<div class="board_write_content2">
+				<div class="board_write_subject2">내용</div>
+				<div class="board_write_txt2"><textarea name="txt" id="txt" rows="10" cols="80">${fb.f_txt }</textarea></div>	            	
+            </div>
+			<div style="text-align: center;">
+				<button class="board_write_btn">수정</button>
+			</div>
 		</form>
-		<button>삭제</button>
 </body>
 </html>

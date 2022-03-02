@@ -10,14 +10,41 @@
 </head>
 <body>
 <div class="board">
-	<c:choose>
-		<c:when test="${fb != null }">
-			<div class="title">자유게시판</div>
-		</c:when>
-		<c:otherwise>
-			<div class="title">캠핑팁게시판</div>
-		</c:otherwise>
-	</c:choose>
+	<div class="board_write_go">
+		<c:if test="${sessionScope.loginMember.u_id != null
+			|| sessionScope.loginMember2.bo_id != null
+			|| sessionScope.loginMember3 != null}">
+			<button onclick="location.href='${sort }write.go'">글쓰기</button></br>
+		</c:if>
+	</div>
+	<div class="first_board_title">
+		<c:choose>
+			<c:when test="${fb != null }">
+				<div class="title">자유게시판</div>
+				<div class="board_search">
+					<form action="${sort }.search">
+						<select name="searchsort">
+					    	<option value="subject">제목</option>
+					    	<option value="id">작성자</option>
+					    </select>
+						<input name="search"> <button>검색</button>
+					</form>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="title">캠핑팁게시판</div>
+				<div class="board_search2">
+					<form action="${sort }.search">
+						<select name="searchsort">
+					    	<option value="subject">제목</option>
+					    	<option value="id">작성자</option>
+					    </select>
+						<input name="search"> <button>검색</button>
+					</form>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
 	
 	<table class="table">	
 		<tr>
@@ -99,20 +126,6 @@
             [<span style="color:gray">▶▶</span>]
        	</c:otherwise>       
     </c:choose>
-    
-	<c:if test="${sessionScope.loginMember.u_id != null
-				|| sessionScope.loginMember2.bo_id != null
-				|| sessionScope.loginMember3 != null}">
-	<button onclick="location.href='${sort }write.go'">글쓰기</button></br>
-	</c:if>
-	
-	<form action="${sort }.search">
-		<select name="searchsort">
-	    	<option value="subject">제목</option>
-	    	<option value="id">작성자</option>
-	    </select>
-		<input name="search"> <button>검색</button>
-	</form>
 	</div>
 </div>	
 </body>

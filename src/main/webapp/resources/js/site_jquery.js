@@ -56,6 +56,36 @@ $(function() {
 	connectAddrSearchEvent();
 	connectSNSWriteFormSummonEvent();
 	
+
+	
+	$(".replybtn").click(function() {
+		let FormVisible = $(this).attr('value');
+
+		if (FormVisible == 1) {
+			$(this).closest('table').next().next().css('display', 'none');
+			$(this).text("답글 보기▼");
+			FormVisible = $(this).attr('value', '0');
+		} else {
+			$(this).closest('table').next().next().css('display', 'block');
+			$(this).text("답글 숨기기▲");
+			FormVisible = $(this).attr('value', '1');
+		}
+	});
+	
+	$(".logout_replybtn").click(function() {
+		let FormVisible = $(this).attr('value');
+
+		if (FormVisible == 1) {
+			$(this).closest('table').next().css('display', 'none');
+			$(this).text("답글 보기▼");
+			FormVisible = $(this).attr('value', '0');
+		} else {
+			$(this).closest('table').next().css('display', 'block');
+			$(this).text("답글 숨기기▲");
+			FormVisible = $(this).attr('value', '1');
+		}
+	});
+	
 	$(".reply3_insert").click(function() {
 		let FormVisible = $(this).attr('value');
 
@@ -97,34 +127,6 @@ $(function() {
 		}
 	});
 	
-	
-	$(".replybtn").click(function() {
-		let FormVisible = $(this).attr('value');
-
-		if (FormVisible == 1) {
-			$(this).closest('table').next().next().css('display', 'none');
-			$(this).text("답글 보기▼");
-			FormVisible = $(this).attr('value', '0');
-		} else {
-			$(this).closest('table').next().next().css('display', 'block');
-			$(this).text("답글 숨기기▲");
-			FormVisible = $(this).attr('value', '1');
-		}
-	});
-	
-	$(".logout_replybtn").click(function() {
-		let FormVisible = $(this).attr('value');
-
-		if (FormVisible == 1) {
-			$(this).closest('table').next().css('display', 'none');
-			$(this).text("답글 보기▼");
-			FormVisible = $(this).attr('value', '0');
-		} else {
-			$(this).closest('table').next().css('display', 'block');
-			$(this).text("답글 숨기기▲");
-			FormVisible = $(this).attr('value', '1');
-		}
-	});
 
 	$('.replyUpdateBtn').click(function name() {
 		let updatebtnVal = $(this).attr('value');
@@ -132,16 +134,16 @@ $(function() {
 		
 		if(updatebtnVal == 'updateGo'){
 			let updateInput = $('<input>');
-			let reply = $(this).parents('div').find('.reply_select_txt_css')
+			let reply = $(this).parents('div').next('.reply_select_txt')
 			let myVal = reply.text();
-			replyTd.text('');
-			replyTd.append(updateInput);
+			reply.text('');
+			reply.append(updateInput);
 			$(updateInput).val(myVal);
 			updatebtnVal = $(this).attr('value', 'updateDo');
 		} else{
 			let f_no = $(this).next('.fbVal').val();
 			let fr_no = $(this).next().next('.frVal1').val();
-			let fr_replytxt = $(this).closest('tr').find('.replyTd').find('input').val();
+			let fr_replytxt = $(this).parents('div').next('.reply_select_txt').find('input').val();
 			location.href="fr.update?fr_no=" + fr_no  + "&fr_replytxt=" + fr_replytxt + "&f_no=" + f_no;
 			updatebtnVal = $(this).attr('value', 'updateGo');
 		}

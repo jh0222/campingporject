@@ -9,12 +9,29 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="board">
-	<table class="table2">
-		<tr>
-			<td colspan="4" id="titleTd"><span class="title">레시피</span></td>
-		</tr>	
-	</table>
+<div class="recipe_board">
+<div class="board_write_go2">
+			<c:if test="${sessionScope.loginMember.u_id != null
+						|| sessionScope.loginMember2.bo_id != null
+						|| sessionScope.loginMember3 != null}">
+			<button onclick="location.href='${sort }write.go'">글쓰기</button></br>
+			</c:if>
+		</div>
+	<div class="first_board_title">
+		<div class="recipe_title">레시피${total }</div>
+		
+		<div class="board_search3">
+			<form action="${sort }.search">
+				<select name="searchsort">
+			    	<option value="subject">제목</option>
+			    	<option value="id">작성자</option>
+			    </select>
+				<input name="search"> <button>검색</button>
+			</form>
+		</div>
+		
+	</div>
+	
 	<c:forEach var="b" items="${b }">
 	<table class="table_recipe">	
 		<tr>
@@ -39,7 +56,9 @@
 		</tr>
 	</table>
 	</c:forEach>
-	<br>
+	
+
+	<div class="board_page">
 	<c:choose>
 		<c:when test = "${pg > block}">
             [<a href="${c }pg=1">◀◀</a>]
@@ -70,20 +89,7 @@
             [<span style="color:gray">▶▶</span>]
        	</c:otherwise>       
     </c:choose>
-    
-	<c:if test="${sessionScope.loginMember.u_id != null
-				|| sessionScope.loginMember2.bo_id != null
-				|| sessionScope.loginMember3 != null}">
-	<button onclick="location.href='${sort }write.go'">글쓰기</button></br>
-	</c:if>
-	
-	<form action="${sort }.search">
-		<select name="searchsort">
-	    	<option value="subject">제목</option>
-	    	<option value="id">작성자</option>
-	    </select>
-		<input name="search"> <button>검색</button>
-	</form>
+    </div>
 </div>	
 </body>
 </html>

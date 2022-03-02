@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="board">
 	<div class="board_border">
 	<div class="board_subject">
 		${fb.f_subject }
@@ -33,8 +32,9 @@
 		${fb.f_txt }
 	</div>	
 	</div>
-	<hr>
-	
+
+	<div class="board_one">	
+	<br>
 		<div class="board_chat">
 			<img src="resources/img/free-icon-chat-117013.png" width="20" height="20"> 댓글
 		</div>
@@ -70,35 +70,36 @@
 		<c:forEach var="fr" items="${fr }">	
 		<!-- 댓글 select -->		
 		<div class="reply_select">
-			<div><img class="reply_img" src="resources/img/${fr.fr_picture }" width="30" height="30"></div>
-			<div class="reply_select_txt_css">
-				${fr.fr_u_id }<c:if test="${fr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if> &nbsp; 
-				<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${fr.fr_date }"/>
-				<br>						
-				${fr.fr_replytxt }	
-				<br>
-				<c:forEach var="cnt" items="${frr_cnt }">
-					<c:if test="${cnt.fr_owner_no == fr.fr_no }">
-						<button id="replybtn" class="replybtn2" value='0'>답글 ${cnt.cnt }개 보기▼</button>
-						<input type="hidden" value=${cnt.cnt } class="replycnt">
+			<div><img class="reply_img" src="resources/img/${fr.fr_picture }"></div>
+			<div class="reply_select_2">
+				<div>
+					${fr.fr_u_id }<c:if test="${fr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if> &nbsp; 
+					<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${fr.fr_date }"/>
+					<c:if test="${fr.fr_u_id == sessionScope.loginMember.u_id 
+							|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
+							|| sessionScope.loginMember3 != null}">
+						&nbsp;
+						<button class="replyUpdateBtn" value="updateGo">수정</button>
+						<input type="hidden" value="${fb.f_no}" class="fbVal">
+						<input type="hidden" value="${fr.fr_no}" class="frVal1">
+						<button onclick="frdelete(${fr.fr_no},${fb.f_no},${fr.fr_depth });">삭제</button>
 					</c:if>	
-				</c:forEach>
-				<c:if test="${sessionScope.loginMember.u_id != null
-						|| sessionScope.loginMember2.bo_id != null
-						|| sessionScope.loginMember3 != null}">
-					<button class="reply3_insert">답글</button>
-				</c:if>
+				</div>	
+				<div class="reply_select_txt">${fr.fr_replytxt }</div>
+				<div>
+					<c:forEach var="cnt" items="${frr_cnt }">
+						<c:if test="${cnt.fr_owner_no == fr.fr_no }">
+							<button id="replybtn" class="replybtn2" value='0'>답글 ${cnt.cnt }개 보기▼</button>
+							<input type="hidden" value=${cnt.cnt } class="replycnt">
+						</c:if>	
+					</c:forEach>
+					<c:if test="${sessionScope.loginMember.u_id != null
+							|| sessionScope.loginMember2.bo_id != null
+							|| sessionScope.loginMember3 != null}">
+						<button class="reply3_insert">답글</button>
+					</c:if>
+				</div>
 			</div>
-			<div>
-				<c:if test="${fr.fr_u_id == sessionScope.loginMember.u_id 
-						|| fr.fr_u_id == sessionScope.loginMember2.bo_id 
-						|| sessionScope.loginMember3 != null}">
-					<button class="replyUpdateBtn" value="updateGo">수정</button>
-					<input type="hidden" value="${fb.f_no}" class="fbVal">
-					<input type="hidden" value="${fr.fr_no}" class="frVal1">
-					<button onclick="frdelete(${fr.fr_no},${fb.f_no},${fr.fr_depth });">삭제</button>
-				</c:if>	
-			</div>	
 		</div>	
 		
 		<div class="reply_insertt" style="display:none;">
@@ -135,37 +136,33 @@
 		<div class="asdasd" style="display:none;">
 		<c:forEach var="frr" items="${frr }">
 		<c:if test="${frr.fr_owner_no == fr.fr_no }">				
-			<div class="replybtn_display">
-				<div class="reply_insert2_2">
-				<div>
-				<img class="reply_img2" src="resources/img/${frr.fr_picture }" width="30" height="30">
-				</div>
-				<div class="reply_select_txt_css">		
-					<div class="reply_select_txt_css_head">
-						<c:if test="${frr.fr_depth == 1 }">
-							<div style="color:red">${frr.fr_owner_id }<c:if test="${frr.fr_owner_id ==  fb.f_u_id}">(글쓴이)</c:if></div> &nbsp;
-						</c:if>					
-						${frr.fr_u_id }<c:if test="${frr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if> &nbsp;
-						<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${frr.fr_date }"/> 
+			<div class="reply_insert2_2">
+				<div><img class="reply_img2" src="resources/img/${frr.fr_picture }"></div>
+				<div class="reply_select_2">
+				<div class="reply_select_txt_css_head">
+					<c:if test="${frr.fr_depth == 1 }">
+						<div style="color:red">${frr.fr_owner_id }<c:if test="${frr.fr_owner_id ==  fb.f_u_id}">(글쓴이)</c:if></div> &nbsp;
+					</c:if>					
+					${frr.fr_u_id }<c:if test="${frr.fr_u_id ==  fb.f_u_id}">(글쓴이)</c:if> &nbsp;
+					<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${frr.fr_date }"/> 
+					 &nbsp;
+					<c:if test="${frr.fr_u_id == sessionScope.loginMember.u_id 
+					|| frr.fr_u_id == sessionScope.loginMember2.bo_id 
+					|| sessionScope.loginMember3 != null}">
+						<button class="replyUpdateBtn" value="updateGo">수정</button>
+						<input type="hidden" value="${fb.f_no}" class="fbVal">
+						<input type="hidden" value="${frr.fr_no}" class="frVal1">
 						 &nbsp;
-						<c:if test="${frr.fr_u_id == sessionScope.loginMember.u_id 
-						|| frr.fr_u_id == sessionScope.loginMember2.bo_id 
-						|| sessionScope.loginMember3 != null}">
-							<button class="replyUpdateBtn" value="updateGo">수정</button>
-							<input type="hidden" value="${fb.f_no}" class="fbVal">
-							<input type="hidden" value="${frr.fr_no}" class="frVal1">
-							 &nbsp;
-							<button onclick="frrdelete(${frr.fr_no},${fb.f_no},${frr.fr_depth },${frr.fr_owner_no });">삭제</button>
-						</c:if>	
-					</div>
-					${frr.fr_replytxt }
+						<button onclick="frrdelete(${frr.fr_no},${fb.f_no},${frr.fr_depth },${frr.fr_owner_no });">삭제</button>
+					</c:if>	
+				</div>
+				<div class="reply_select_txt">${frr.fr_replytxt }</div>
 					<c:if test="${sessionScope.loginMember.u_id != null
 								|| sessionScope.loginMember2.bo_id != null
 								|| sessionScope.loginMember3 != null}">
 						<button class="replybtnbtn">답글</button>
 					</c:if>
-				</div>
-				</div>
+					</div>
 			</div>
 			
 			<div class="reply1_insert" style="display:none;">
@@ -174,14 +171,18 @@
 						|| sessionScope.loginMember3 != null}">
 			<form action="fb_replyinsert">
 				<div class="reply_insert3">								
-					<img class="reply_img2" src="resources/img/${sessionScope.loginMember.u_picture }
-					${sessionScope.loginMember2.bo_picture }
-					${sessionScope.loginMember3.root_picture }">
-					<input type="hidden" name="fr_picture" 
-					value="${sessionScope.loginMember.u_picture }${sessionScope.loginMember2.bo_picture }${sessionScope.loginMember3.root_picture }">
-					<div style="color:red">${frr.fr_u_id }</div>
-					<textarea name="fr_replytxt"></textarea>
-					
+					<div>
+						<img class="reply_img2" src="resources/img/${sessionScope.loginMember.u_picture }
+						${sessionScope.loginMember2.bo_picture }
+						${sessionScope.loginMember3.root_picture }">
+						<input type="hidden" name="fr_picture" 
+						value="${sessionScope.loginMember.u_picture }${sessionScope.loginMember2.bo_picture }${sessionScope.loginMember3.root_picture }">
+					</div>
+					<div class="reply_txt_css">	
+						<div style="color:red">${frr.fr_u_id }</div>
+						<textarea  class="reply_txt_css2_2" name="fr_replytxt"></textarea>
+					</div>
+					<div>
 						<input type="hidden" name="fr_u_id"
 							value="${sessionScope.loginMember.u_id }${sessionScope.loginMember2.bo_id }${sessionScope.loginMember3.root_name }">
 						<input type="hidden" name="fr_f_no" value="${frr.fr_f_no }">
@@ -189,10 +190,10 @@
 						<input type="hidden" name="fr_owner_id" value="${frr.fr_u_id }">
 						<input type="hidden" name="fr_depth" value="1">
 						<input type="hidden" name="f_no" value="${fb.f_no}">
-						<button  class="register2">등록</button>
+						<button  class="register3">등록</button>
+					</div>
 				</div>
 			</form>
-			
 			</c:if>	
 			</div>
 		</c:if>
@@ -200,7 +201,7 @@
 	</div>
 	</c:forEach>
 		
-	
+	<div class="one_board_page">
 	<c:choose>
 		<c:when test = "${pg > block}">
             [<a href="fb.onego?pg=1">◀◀</a>]
@@ -231,6 +232,7 @@
             [<span style="color:gray">▶▶</span>]
        	</c:otherwise>       
     </c:choose>
+    </div>
 </div>
 </body>
 </html>
