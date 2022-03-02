@@ -137,8 +137,10 @@ function change () {
 					<br>
  					 <input type="button" value="장바구니" class="detail_basket" onclick='mySubmit(2)' />
 					<input type="button" value="구매하기" class="detail_order" onclick='mySubmit(1)' />
-					<button class="detailupdatebtn" type="button"
+<%-- 					<c:if test="${sessionScope.loginMember3.root_id == p.pr_u_root_id  != null } ">
+ --%>					<button class="detailupdatebtn" type="button"
 							onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }&pr_p_no=${p.p_no}'"><i class="fa-solid fa-pen-to-square"></i></button>
+					<%-- </c:if> --%>
 					</td>
 						</tr>
 						</table>
