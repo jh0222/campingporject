@@ -36,8 +36,8 @@
 		<tr>
 			<td>
 				<form action="search.product">
-					<input name="p_name">
-					<button style="border: none;"><i class="fa-solid fa-magnifying-glass fa-lg" style="color:black;"></i></button>
+					<input name="p_name" placeholder="&nbsp;상품명 입력" class="main_searchinput">
+					<button class="main_searchbtn"><i class="fa-solid fa-magnifying-glass fa-lg" style="color:#725b53;"></i></button>
 				</form>
 			</td>
 			<c:if test="${sessionScope.loginMember3.root_id != null}">
@@ -56,7 +56,13 @@
       <li><img src="resources/css/shoppingmain/캠핑용품메인4.JPG" style="height: 500px; width: 1300px; display: block; margin: 0px auto;"></li>
     </ul>
   </div>
-	<h3 class="Product_h3">고캠핑 캠핑용품</h3>
+  <div>
+	<h3 class="Product_h3"><i class="fa-solid fa-campground"></i>&nbsp;<span class="main_span2">고캠핑 캠핑용품</span></h3>
+
+</div>
+	<h4 class="main_click"><i class="fa-solid fa-computer-mouse"></i>&nbsp;상품이미지를 <span class="main_span"><b>클릭</b></span>하면 자세히 볼 수 있어요.</h4>
+	
+<div>
 
 	<c:forEach var="p" items="${products}">
 		<table class="table_product ">		
@@ -81,38 +87,39 @@
 			</tr>		
 		</table>
 	</c:forEach>
+	</div>
 
 
 
-	<div>
+	<div class="campingmain_paging">
 		<c:choose>
         <c:when test = "${pg > block}">
-            [<a href="camping.product?pg=1">◀◀</a>]
-            [<a href="camping.product?pg=${fromPage -1}">◀</a>] 
+            <a href="camping.product?pg=1">◀◀</a>
+            <a href="camping.product?pg=${fromPage -1}">◀  </a>
         </c:when>
         <c:otherwise>
-            [<span style="color:gray">◀◀</span>]
-            [<span style="color:gray">◀</span>]
+            <span style="color:gray;font-size: 20px;">◀◀</span>
+            <span style="color:gray;font-size: 20px;">◀  </span>
         </c:otherwise>
     </c:choose>
     <c:forEach var="i" begin="${fromPage }" end="${toPage }">
           <c:choose>
                <c:when test = "${i == pg }">
-                [${i }]
+                <span class="paging_num">${i }</span> 
             </c:when>
               <c:otherwise>
-                [<a href="camping.product?pg=${i }">${i }</a>]
+                <a href="camping.product?pg=${i }" class="paging_num2">${i }</a>
                </c:otherwise>
            </c:choose>
     </c:forEach>
     <c:choose>
            <c:when test = "${toPage < allPage }">
-               [<a href="camping.product?pg=${toPage + 1}">▶</a>]
-            [<a href="camping.product?pg=${allPage}">▶▶</a>]
+               <a href="camping.product?pg=${toPage + 1}">  ▶</a>
+            <a href="camping.product?pg=${allPage}">▶▶</a>
           </c:when>
          <c:otherwise>
-               [<span style="color:gray">▶</span>]
-            [<span style="color:gray">▶▶</span>]
+               <span style="color:gray;font-size: 20px;">  ▶</span>
+            <span style="color:gray;font-size: 20px;">▶▶</span>
            </c:otherwise>
     </c:choose>
     </div>

@@ -92,7 +92,7 @@ function change () {
 </head>
 <body onload="init();">
 
-	<table width="100%" >
+	<table width="100%">
 		<hr>
 		<h2 class="detail_h2">상품 상세정보</h2> 
 		<hr><br>
@@ -137,6 +137,8 @@ function change () {
 					<br>
  					 <input type="button" value="장바구니" class="detail_basket" onclick='mySubmit(2)' />
 					<input type="button" value="구매하기" class="detail_order" onclick='mySubmit(1)' />
+					<button class="detailupdatebtn" type="button"
+							onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }&pr_p_no=${p.p_no}'"><i class="fa-solid fa-pen-to-square"></i></button>
 					</td>
 						</tr>
 						</table>
@@ -146,29 +148,29 @@ function change () {
 					</td>
 					</table>
 					</form>
-					<button
-							onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }&pr_p_no=${p.p_no}'">수정하기</button>
 			<hr size="3">
 			<h2 class="detail_h2">상품리뷰</h2>
-			<hr><br>
+			<hr><br> 
 			
 			<jsp:include page="${reviewPage }"></jsp:include>
 			<table border="0" class="detail_reviewtb" >
 				<tr>
-					<th>No</th>
-					<th>Id</th>
-					<th>Content</th>	
-					<th>Date</th>	
+					<th class="pr_reviewselect">No</th>
+					<th class="pr_reviewselect">ID</th>
+					<th class="pr_reviewselect">Content</th>	
+					<th class="pr_reviewselect">Date</th>
+					<tr><hr></tr>	
 				</tr>
+				<tr><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td></tr>
 					<c:forEach var="p" items="${productreviews }">
 				<tr>
-					<td>${p.pr_no }</td>
-					<td>${p.pr_u_bo_id }</td>
-					<td >${p.pr_txt }</td>
-				<td><fmt:formatDate value="${p.pr_date }" dateStyle="short"/></td>
+					<td class="pr_reviewselect2">${p.pr_no }</td>
+					<td class="pr_reviewselect2">${p.pr_u_bo_id }</td>
+					<td class="pr_reviewselect2">${p.pr_txt }</td>
+				<td class="pr_reviewselect2"><fmt:formatDate value="${p.pr_date }" dateStyle="short"/></td>
 					<c:if test="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id == p.pr_u_bo_id }">
-					<td onclick="updatereview('${p.pr_no}','${p.pr_txt }')">수정</td>
-					<td onclick="delreview(${p.pr_no})">삭제</td>
+					<td class="pr_reviewselect2" onclick="updatereview('${p.pr_no}','${p.pr_txt }')">수정</td>
+					<td class="pr_reviewselect2"  onclick="delreview(${p.pr_no})">삭제</td>
 				</c:if>
 				</tr>
 				<tr>

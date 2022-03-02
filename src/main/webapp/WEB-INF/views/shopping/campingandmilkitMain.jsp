@@ -10,7 +10,9 @@
 </head>
 <body>
 
-	<h3 class="text1">캠핑용품 인기순위<br></h1>
+	<hr>
+		<h3 class="detail_h2">캠핑용품 인기순위</h3>
+	<hr>
 	<div>
 	<c:forEach var="p" items="${productrank }">
 		<table border="1" class="rank_producttable">
@@ -30,8 +32,10 @@
 	</c:forEach>
 	
 </section>
+<hr>
+		<h3 class="detail_h2">밀키트 인기순위</h3>
+<hr>
 
-<h3 class="text1">밀키트 인기순위<br></h1>
 <c:forEach var="fp" items="${milkitrank }">
 		<table border="1" class="rank_milkittable">
 			<tr>

@@ -145,6 +145,18 @@ button.pr_reviewregbtn {
 	margin-left: 950px;
 }
 
+button.detailupdatebtn {
+	width: 40px;
+	height: 60px;
+	background-color: #408080;
+	border: none;
+	border-radius: 10px;
+	font-size: 18pt;
+	font-weight: bold;
+	color: white;
+	font-family: 'GowunBatang-Regular';
+}
+
 h3.pr_reviewh3 {
 	font-family: 'MaruBuri-Regular';
 	font-size: 20pt;
@@ -163,6 +175,35 @@ h3.pr_reviewh3 {
 div.pr_reviewtd1 {
 	margin-left: 600px;
 	padding-top: 10px;
+}
+
+th.pr_reviewselect{
+	font-family: 'GowunDodum-Regular';
+	font-size: 23pt;
+}
+
+td.pr_reviewselect2{
+	font-family: 'Pretendard-Regular';
+	font-size: 18pt;
+}
+hr.detailhr{
+ 	border: 0;
+    height: 3px;
+    background: #ccc;	
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
