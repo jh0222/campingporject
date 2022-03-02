@@ -258,8 +258,21 @@ create sequence g_p_buy_seq;
 
 insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim2',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',109,'gd',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_product_buy_table;
+
+select ROWNUM, A.*
+from 
+(select * from product_registration_table a,
+(select count(b_p_no) as c,b_p_no
+from guest_product_buy_table
+group by b_p_no) b
+where a.p_no=b.b_p_no
+ORDER BY b.c desc) A
+where ROWNUM <= 5;
+
+
 -------------------------------------------------------------------------------------------------------------------------------------
 11. 밀키트 구매목록
 /*
@@ -284,8 +297,20 @@ create sequence g_fp_buy_seq;
 
 insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim2',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',273,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_foodproduct_buy_table;
+
+select ROWNUM, A.*
+from 
+(select * from foodproduct_registration_table a,
+(select count(fb_fp_no) as c,fb_fp_no
+from guest_foodproduct_buy_table
+group by fb_fp_no) b
+where a.fp_no=b.fb_fp_no
+ORDER BY b.c desc) A
+where ROWNUM <= 5;
+
 
 -------------------------------------------------------------------------------------------------------------------------------------
 12. 캠핑용품 장바구니
@@ -345,6 +370,7 @@ create table product_review_table(
 	pr_p_no number(5) not null, 
 	pr_u_bo_id varchar2(20 char) not null,
 	pr_txt varchar2(100 char) not null,
+	pr_star number(5) not null,
 	pr_date	date not null
 );
 
@@ -353,6 +379,7 @@ create sequence product_review_seq;
 
 insert into product_review_table values(product_review_seq.nextval,'kim','좋아요','20220301');
 insert into product_review_table values(product_review_seq.nextval,'kim2','좋아요','20220301');
+insert into product_review_table values(product_review_seq.nextval,182,'kim','좋아요',5,'20220301');
 
 select * from product_review_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -390,6 +417,7 @@ create sequence free_board_seq;
 
 insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유자유','h.jpg',0,'20220110');
 insert into free_board_table values(free_board_seq.nextval,'kim2','자유게시판','자유자유자유','h.jpg',0,'20220110');
+insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유',0,'20220110');
 
 select * from free_board_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -416,6 +444,7 @@ create sequence free_board_reply_seq;
 
 insert into free_board_reply_table values(free_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
 insert into free_board_reply_table values(free_board_reply_seq.nextval,1,'kim2',null,null,'댓글입니다','20220210',3,'a.jpg');
+insert into free_board_reply_table values(free_board_reply_seq.nextval,3,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
 
 select * from free_board_reply_table;
 select count(*) from free_board_reply_table where fr_owner_no=
@@ -510,6 +539,13 @@ create sequence recipe_board_reply_seq;
 
 insert into recipe_board_reply_table values(recipe_board_reply_seq.nextval,1,'kim',null,null,'댓글입니다','20220210',3,'a.jpg');
 insert into recipe_board_reply_table values(recipe_board_reply_seq.nextval,1,'kim2',null,null,'댓글입니다','20220210',3,'a.jpg');
+
+select * from recipe_board_reply_table;
+
+
+select * from guest_product_buy_table;
+
+SELECT count(b_p_no), b_p_no FROM	guest_product_buy_table GROUP BY b_p_no;
 
 
 select * from recipe_board_reply_table;

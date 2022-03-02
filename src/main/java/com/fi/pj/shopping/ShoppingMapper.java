@@ -31,10 +31,16 @@ public interface ShoppingMapper {
 	//상품리뷰수정
 	public int updateProductreview(ProductReview pr);
 	//장바구니등록
-	public int regProductbasket(ProductBasket pb); //장바구니 등록
+	public int regProductbasket(ProductBasket pb); 
 	//상품구매(등록)
 	public int regProductbuy(ProductBuy pbuy);
 	//총 상품 게시물 수 
 	public int getAllProductcnt();
+	//디테일 리뷰 수
+	public int getAllProductReviewcnt();
+	//상품랭킹(최다구매)
+	public List<ProductRank> ProductRank();
+	
+	
 	
 }

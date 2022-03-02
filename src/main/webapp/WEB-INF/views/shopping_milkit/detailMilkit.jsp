@@ -62,6 +62,7 @@ function change () {
 //주문하기 + 장바구니
   function mySubmit(index) {
     if (index == 3) {
+      document.form.method = 'GET'	
       document.form.action='ordermilkit.go?fp_no=${fp.fp_no}&fp_name=${fp.fp_name}&fp_price=${fp.fp_price }&fp_picture=${fp.fp_picture }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }';
       document.form.submit();
     }
@@ -70,12 +71,13 @@ function change () {
     	let price = document.getElementById('sum').value; //id값   
     	let amount = document.form.amount.value; //name값
     	
-    	
+	
     	document.form.method = 'POST'
     	document.form.action='reg.milkitbasket?fba_fp_no=${fp.fp_no}&fba_fp_name=${fp.fp_name}&fba_price='+price+'&fba_fp_picture=${fp.fp_picture }&fba_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&fba_number='+amount;
     	document.form.submit();
        }else {
-    	document.form.reset();
+    	//document.form.reset();
+     window.location.reload();
     }
     }
     

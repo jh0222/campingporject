@@ -7,6 +7,7 @@
 <html>
 <head>
 <script type="text/javascript">
+
 function delreview(no) {
 	let d = confirm('리뷰를 삭제하시겠습니까?');			
 	if(d) {
@@ -60,8 +61,10 @@ function change () {
 }  
 
 //주문하기 + 장바구니
+
   function mySubmit(index) {
     if (index == 1) {
+      document.form.method = 'GET'
       document.form.action='orderproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_price=${p.p_price }&p_picture=${p.p_picture }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }';
       document.form.submit();
     }
@@ -74,11 +77,12 @@ function change () {
     	document.form.method = 'POST'
     	document.form.action='reg.productbasket?ba_p_no=${p.p_no}&ba_p_name=${p.p_name}&ba_price='+price+'&ba_p_picture=${p.p_picture }&ba_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&ba_number='+amount;
     	document.form.submit();
-       }else {
-    	document.form.reset();
+       } else {
+    	//document.form.reset();
+    	window.location.reload();
     }
     }
-    
+	  
   }
 
 </script>
@@ -87,54 +91,38 @@ function change () {
 <title>Insert title here</title>
 </head>
 <body onload="init();">
-	<table border="0" width="100%" >
 
-		<h2>상품 상세정보</h2> 
+	<table width="100%">
+		<hr>
+		<h2 class="detail_h2">상품 상세정보</h2> 
+		<hr><br>
 		<td>
-			<table border="0">
+			<table class="detail_picture_table">
 				<tr>
-					<td><img src="resources/img/${p.p_picture }" width="90%"
-					height="auto"></td>
+					<td><img src="resources/img/${p.p_picture }" class="detail_img"></td>
 				<tr>
 			</table>
 		</td>
 		
 		<td>
-				<table border="1" style='width: 450px; table-layout: fixed; word-break: break-all; height: auto; position:top;' >
-					<tr align="center">
-						<td>상품명</td>
-						<td>${p.p_name }</td>
-					</tr>
-					<tr align="center">
-						<td>가격</td>
-						<td><fmt:formatNumber value="${p.p_price }"
-								pattern="###,###,###" /></td>
-					</tr>
-					<tr align="center">
-						<td>상품소개</td>
-						<td>${p.p_txt }</td>
-					</tr>
-					<tr>
-					<td colspan="2" align="center">
-					<button onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }&pr_p_no=${p.p_no}'">수정하기</button>
-					</td>
-					
-					</tr>
-					
-					</table>
-					<!-- ---------------------------------------------------------------------------------->
+		<div class="deatil_div0">
+		<div class="detail_div1" align="center">${p.p_name }</div><br><br>
+		<div class="detail_div2"><b>상품가격&nbsp;&nbsp;</b>  ${p.p_price }원</div><hr><br>
+		<div class="detail_div2"><b>배송비&nbsp;&nbsp;&nbsp;&nbsp; </b> 무료</div><hr><br>
+		<div class="detail_div3"><b>상품소개&nbsp;&nbsp;</b></div><div class="detail_div2" style="width: 500px;">${p.p_txt }</div><hr><br>
+		</div>
 
 					  <form name="form" method="GET" enctype="multipart/form-data"> 
-					<table border="1" style="border-collapse: collapse";>
+					<table border="0" style="border-collapse: collapse";>
 					<tr>
 					<td align="center"> 
-						<table border="1" style="border-collapse: collapse";>
+						<table border="0" style="border-collapse: collapse";>
 						<tr>
-							<td>
-								수량 : <input type=hidden name="sell_price" value="${p.p_price }">
-									 <input type="text" name="amount" value="1" size="3" onchange="change();">
-									 <input type="button" value=" + " onclick="plus();"><input type="button" value=" - " onclick="minus();"><br>
-								금액 : <input type="text" name="sum" id="sum" size="11" readonly>원
+							<td class="detail_p_name2">
+									 <input type=hidden name="sell_price" value="${p.p_price }" class="detail_price"><div class="detail_price">${p.p_price }&nbsp;&nbsp;원</div>
+							수량&nbsp;&nbsp;	 <input type="text" name="amount" value="1" size="1" onchange="change();">
+								 	 <input type="button" value=" + " class="plus_btn" onclick="plus();"><input type="button" value=" - " class="plus_btn2" onclick="minus();"><br>
+								총 결제 금액<input type="text" name="sum" id="sum" size="6" readonly style="border:none" class="detail_sum"><span class=detail_won>원</span>
 									 <input type="hidden" name="p_no" value="${p.p_no}">
 									 <input type="hidden" name="p_name" value="${p.p_name}">
 									 <input type="hidden" name="p_price" value="${p.p_price }">
@@ -143,10 +131,14 @@ function change () {
 									 
 							</td>
 						</tr>
+						
 						<tr>
 					<td colspan="2" align="center">
-					<input type="button" value="주문하기" onclick='mySubmit(1)' />
- 					 <input type="button" value="장바구니" onclick='mySubmit(2)' />
+					<br>
+ 					 <input type="button" value="장바구니" class="detail_basket" onclick='mySubmit(2)' />
+					<input type="button" value="구매하기" class="detail_order" onclick='mySubmit(1)' />
+					<button class="detailupdatebtn" type="button"
+							onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }&pr_p_no=${p.p_no}'"><i class="fa-solid fa-pen-to-square"></i></button>
 					</td>
 						</tr>
 						</table>
@@ -156,29 +148,33 @@ function change () {
 					</td>
 					</table>
 					</form>
-			
 			<hr size="3">
-			<h2>상품 리뷰</h2>
+			<h2 class="detail_h2">상품리뷰</h2>
+			<hr><br> 
 			
 			<jsp:include page="${reviewPage }"></jsp:include>
-			<table border="1" style="width: 1107px; margin-left: 167px;">
+			<table border="0" class="detail_reviewtb" >
 				<tr>
-					<th>no</th>
-					<th>ID</th>
-					<th>내용</th>
-					<th>date</th>		
+					<th class="pr_reviewselect">No</th>
+					<th class="pr_reviewselect">ID</th>
+					<th class="pr_reviewselect">Content</th>	
+					<th class="pr_reviewselect">Date</th>
+					<tr><hr></tr>	
 				</tr>
-		
+				<tr><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td></tr>
 					<c:forEach var="p" items="${productreviews }">
 				<tr>
-					<td>${p.pr_no }</td>
-					<td>${p.pr_u_bo_id }</td>
-					<td>${p.pr_txt }</td>
-					<td><fmt:formatDate value="${p.pr_date }" dateStyle="short"/></td>
+					<td class="pr_reviewselect2">${p.pr_no }</td>
+					<td class="pr_reviewselect2">${p.pr_u_bo_id }</td>
+					<td class="pr_reviewselect2">${p.pr_txt }</td>
+				<td class="pr_reviewselect2"><fmt:formatDate value="${p.pr_date }" dateStyle="short"/></td>
 					<c:if test="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id == p.pr_u_bo_id }">
-					<td onclick="updatereview('${p.pr_no}','${p.pr_txt }')">수정</td>
-					<td onclick="delreview(${p.pr_no})">삭제</td>
-					</c:if> 
+					<td class="pr_reviewselect2" onclick="updatereview('${p.pr_no}','${p.pr_txt }')">수정</td>
+					<td class="pr_reviewselect2"  onclick="delreview(${p.pr_no})">삭제</td>
+				</c:if>
+				</tr>
+				<tr>
+				<td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td>
 				</tr>
 					</c:forEach>
 			</table>			

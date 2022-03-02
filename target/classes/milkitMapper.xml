@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fi.pj.milkit.MilkitMapper">
-<!-- 밀키트목록(페이징)  -->
-<select id="getAllMilkit" resultType="com.fi.pj.milkit.Milkit">
-select * from foodproduct_registration_table
+<!-- 상품목록(페이징)  -->
+<select id="getAllMilkit" resultType="com.fi.pj.milkit.Milkit" parameterType="com.fi.pj.milkit.MPage">
+	select rn,fp_no,fp_name,fp_price,fp_picture,fp_txt
+        from (select Rownum as rn,fp_no,fp_name,fp_price,fp_picture,fp_txt
+        from (select fp_no,fp_name,fp_price,fp_picture,fp_txt
+        from foodproduct_registration_table
+        order by fp_no desc))
+        where RN &gt;=#{from} and RN &lt;=#{to}
 </select>
 
 <!-- 밀키트등록 -->
@@ -70,10 +75,28 @@ select * from foodproduct_registration_table
 	values (product_basket_seq.nextval,#{fba_fp_no},#{fba_u_bo_id},#{fba_fp_name},#{fba_fp_picture},#{fba_price},#{fba_number})
 </insert>
 
-<!-- 상품구매(등록) -->
+<!-- 밀키트구매(등록) -->
 <insert id="regMilkitbuy" parameterType="com.fi.pj.milkit.MilkitBuy" > <!-- jdbcType=VARCHAR는 null값 허용해주는 테이블이 있을때 쓰임 -->
 	insert into guest_foodproduct_buy_table (fb_no,fb_u_bo_id,fb_fp_no,fb_fp_name,fb_price,fb_number,fb_u_address,fb_new_address,fb_date)
 	values (g_fp_buy_seq.nextval,#{fb_u_bo_id,jdbcType=VARCHAR},#{fb_fp_no,jdbcType=VARCHAR},#{fb_fp_name,jdbcType=VARCHAR},#{fb_price,jdbcType=VARCHAR},#{fb_number,jdbcType=VARCHAR},#{fb_u_address,jdbcType=VARCHAR},#{fb_new_address,jdbcType=VARCHAR},sysdate)
 </insert>
+
+<!-- 밀키트게시물 수(페이징) -->
+<select id="getAllMilkitcnt" resultType="Integer">
+	select count(*) from foodproduct_registration_table
+</select>
+
+<!-- 밀키트 인기순위 -->
+<select id="MilkitRank" resultType="com.fi.pj.milkit.MilkitRank">
+select ROWNUM, A.*
+from 
+(select * from foodproduct_registration_table a,
+(select count(fb_fp_no) as c,fb_fp_no
+from guest_foodproduct_buy_table
+group by fb_fp_no) b
+where a.fp_no=b.fb_fp_no
+ORDER BY b.c desc) A
+where ROWNUM &lt;= 5
+</select>
 
 </mapper>

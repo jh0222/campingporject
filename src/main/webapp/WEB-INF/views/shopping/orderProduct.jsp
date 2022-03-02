@@ -33,11 +33,6 @@ $(document).ready(function(){
 
 });
 
-//체크박스 유효성(미완)
-function button1_click() {
-		alert("에러문구를 표시"); 
-}
-
 //체크박스 중복방지
 function addrCheck(chk){
     var obj = document.getElementsByName("offline1");//name값
@@ -51,110 +46,154 @@ function addrCheck(chk){
     }
 }
 
-
+//체크박스 유효성검사
+function CheckForm(check){
+    
+    //체크박스 체크여부 확인 
+    var chk1=document.ordercheck.U_checkAgreement1.checked;
+    var chk2=document.ordercheck.U_checkAgreement2.checked;
+    var chk3=document.ordercheck.U_checkAgreement3.checked;
+    var chk4=document.ordercheck.U_checkAgreement4.checked;
+    
+    if(!chk1){
+        alert('약관1에 동의해 주세요');
+        return false;
+        //e.preventDefault();
+    } 
+    if(!chk2) {
+        alert('약관2에 동의해 주세요');
+        return false;
+       //e.preventDefault();
+    }
+    if(!chk3) {
+        alert('약관3에 동의해 주세요');
+        return false;
+       //e.preventDefault();
+    }
+    if(!chk4) {
+        alert('약관4에 동의해 주세요');
+        return false;
+       //e.preventDefault();
+    }
+}
 </script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h2>수령자 정보</h2>
-<table border="1" style="width:500px; height:auto; border-collapse: collapse"; id="information_table" name="information_table">
+<br>
+<h1 class="order_h1"><i class="fa-solid fa-credit-card" style="color:#49599a;"></i>&nbsp;<span class="order_span1">고캠핑 <b> 주문/결제</b></span></h1>
+<br>
+<div class="order_div">
+<h2 class="order_recipient">Recipient Info <span class="order_info">수령자 정보</span></h2>
+<table border="1" class="order_table1" id="information_table" name="information_table">
 		<tr>
-			<td>배송지 선택</td>
-			<td colspan="2"><input type="checkbox" checked="checked" name="offline1" id="offline1" onclick="addrCheck(this);"/>${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }님 배송지 <input type="checkbox" name="offline1" id="offline2" onclick="addrCheck(this);"/>신규 배송지 </td>		
+			<td class="order_font">배송지 선택</td>
+			<td colspan="2" class="order_font2"><input type="checkbox" checked="checked" name="offline1" id="offline1" onclick="addrCheck(this);"/> ${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }님 배송지 <input type="checkbox" name="offline1" id="offline2" onclick="addrCheck(this);"/> 신규 배송지 </td>		
       	</tr>
 		<tr>
-			<td>수령인</td>
-			<td colspan="2"><input name="recipient" id="recipient" value="${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }"></td>		
+			<td class="order_font">수령인</td>
+			<td colspan="2" class="order_font2"><input name="recipient" id="recipient" size="20" value="${sessionScope.loginMember2.bo_name }${sessionScope.loginMember.u_name }"></td>		
 			
 		</tr>
 		<tr>
-			<td>휴대전화</td>
-			<td colspan="2"><input name="phonenumber" id="phonenumber" value="${sessionScope.loginMember2.bo_phonenumber }${sessionScope.loginMember.u_phonenumber }"></td>		
+			<td class="order_font">휴대전화</td>
+			<td colspan="2" class="order_font2"><input name="phonenumber" id="phonenumber" size="20" value="${sessionScope.loginMember2.bo_phonenumber }${sessionScope.loginMember.u_phonenumber }"></td>		
 		</tr>
 		<tr>
-			<td id="addrname">배송지 주소</td>
-			<td colspan="2"><input name="addr" id="addr" value="${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }"></td>		
+			<td id="addrname" class="order_font">배송지 주소</td>
+			<td colspan="2" class="order_font2"><input name="addr" id="addr" size="61" value="${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }"></td>		
 		</tr>
+
 		<tr>
-			<td>배송 메모</td>
-			<td colspan="2"><select id="addrmsg">
+			<td class="order_font">배송 메모</td>
+			<td colspan="2" class="order_font2"><select id="addrmsg">
     						<option>배송 시 요청사항을 선택해주세요</option>
     						<option>부재 시 경비실에 맡겨주세요</option>
    							<option>부재 시 택배함에 넣어주세요</option>
     						<option>부재 시 집앞에 놔주세요</option>
     						<option>배송 전 연락바랍니다.</option>
 							</select>
-							<input id="addrtext"></td>		
+							&nbsp;<input id="addrtext" size="30"></td>		
 		</tr>
 		
 </table>
-<table border="1" id="addrtable" style="display: none;">
+
+<table border="1" id="addrtable" class="order_table2" style="display: none;">
 <tr>
-<td class="td2" colspan="2">주소:
+<td class="order_font3" style="width: 150px;">신규 배송지</td>
+<td class="order_newadrr" colspan="2">
+		<div style="margin-left: 25px;">
 			<input id="addr3Input" readonly="readonly" name="u_addr3" maxlength="5" autocomplete="off" placeholder="우편번호">
 			<span id="addrSearchBtn">[검색]</span><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="addr1Input" readonly="readonly" name="u_addr1" maxlength="30" autocomplete="off" placeholder="주소"><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="u_addr2" id="u_addr2" maxlength="30" autocomplete="off" placeholder="상세주소">
+			<input id="addr1Input" readonly="readonly" name="u_addr1" maxlength="30" autocomplete="off" placeholder="주소"><br>
+			<input name="u_addr2" id="u_addr2" maxlength="30" autocomplete="off" placeholder="상세주소">
 		</td>
+		</div>
 </tr>		
 </table>
 
-<h2>상품 정보</h2>
-<table border="1">
+<h2 class="order_recipient">Product Info<span class="order_info"> 상품 정보</span></h2>
+<table border="1" class="order_table3">
 <tr>
-<td rowspan="3"><img src="resources/img/${p.p_picture }" width="200px;" height="auto"></td>
-<td>상품번호</td><td>상품명</td><td>수량</td><td>배송비</td><td>주문금액</td>
+<td rowspan="3" width="150px;"><img src="resources/img/${p.p_picture }" width="150px;" height="150px;"></td>
+<td class="order_productinfo">상품번호</td><td class="order_productinfo">상품명</td><td class="order_productinfo">수량</td><td class="order_productinfo">배송비</td><td class="order_productinfo">주문금액</td>
 </tr>
 <tr>
-<td rowspan="2">${p.p_no }</td><td>${p.p_name }</td><td>${so.amount}</td><td>무료</td><td><fmt:formatNumber value="${so.sum}"  pattern="###,###,###" />원</td>
+<td rowspan="2" width="100px;" class="order_productinfo">${p.p_no }</td><td class="order_productinfo">${p.p_name }</td><td class="order_productinfo">${so.amount}</td><td class="order_productinfo">무료</td><td class="order_productinfo"><fmt:formatNumber value="${so.sum}"  pattern="###,###,###" />원</td>
 </tr>
 </table>
+<div class="order_text">
 · 구매 가능 수량이 1개로 제한된 상품은 주문 취소 시, 24시간 내 가상계좌 재주문이 불가합니다.<br>
-· 캠핑쇼핑몰은 기본적으로 대한민국 내 제주도 및 도서 산간 지역 포함  <b>전 지역, 전 상품 무료배송</b>입니다.<br>
+· 고캠핑은 기본적으로 대한민국 내 제주도 및 도서 산간 지역 포함  <b>전 지역, 전 상품 무료배송</b>입니다.<br>
 · 해외 배송 상품이나 일부 업체의 경우, 교환/환불 시 반송료가 다를 수 있으며 상품 페이지에 별도 표기되어 있습니다.<br>
-
-
-<table border="1">
+</div>
+ <br>
+<form name="ordercheck" action=""  onSubmit="return CheckForm(this)">
+<table border="1" class="order_table3">
 		<thead>
 			<tr>
-				<td><input type="checkbox" id="cbx_chkAll"></td>
-				<td><b>필수 항목 전체 동의하기</b></td>
+				<td class="order_checkbox"><input type="checkbox" id="cbx_chkAll"></td>
+				<td class="order_checkbox2"><b>필수 항목 전체 동의하기</b></td>
 			</tr>	
 		</thead>
 		<tbody>
 			<tr>
-				<td><input type="checkbox" name="chk" value="1"></td>
-				<td colspan="2">[필수] 개인정보 수집 및 이용 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td class="order_checkbox"><input type="checkbox" name="chk" value="1"></td>
+				<td colspan="2" class="order_checkbox2">[필수] 개인정보 수집 및 이용 동의 
 				<a onclick="showPopup1();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="chk" value="2"></td>
-				<td>[필수] 개인정보 제 3자 제공 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td class="order_checkbox"><input type="checkbox" name="chk" value="2"></td>
+				<td class="order_checkbox2">[필수] 개인정보 제 3자 제공 동의 
 				<a onclick="showPopup2();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="chk" value="3"></td>
-				<td>[필수] 전자결제대행 이용 동의 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td class="order_checkbox"><input type="checkbox" name="chk" value="3"></td>
+				<td class="order_checkbox2">[필수] 전자결제대행 이용 동의 
 				<a onclick="showPopup3();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="chk" value="4"></td>
-				<td>[필수] 상품정보, 거래조건 확인 및 구매 진행 동의</td> 
+				<td class="order_checkbox"><input type="checkbox" name="chk" value="4"></td>
+				<td class="order_checkbox2">[필수] 상품정보, 거래조건 확인 및 구매 진행 동의</td> 
 			</tr>
 		</tbody>
 	</table>
-<button id="check_module" type="button" onclick="">결제하기</button>
-	
+	<br>
+<button id="check_module" type="button" class="order_paymentbtn" onclick=""><fmt:formatNumber value="${so.sum}"  pattern="###,###,###" />원 결제하기</button>
+
+ </form>	
+ <br>
+<div class="order_text">	
 · 입점업체 배송은 낮은 확률로 상품이 품절일 가능성이 있습니다. 이에 품절 시 빠르게 환불 처리해드립니다.<br>
 · 현금 환불의 경우, 예금정보가 일치해야 환불 처리가 가능합니다. 은행명, 계좌번호, 예금주명을 정확히 기재 부탁드립니다.<br>
 · 환불 받으신 날짜 기준으로 3~5일(주말 제외) 후 결제대행사에서 직접 고객님의 계좌로 환불 처리됩니다.<br>
-
+</div>
+</div>
 
 <!-- 결제하기 -->
 <script>
-
-
 $("#check_module").click(function () {
 var IMP = window.IMP; // 생략가능
 IMP.init('imp46581722');
@@ -182,9 +221,6 @@ var msg = '결제에 실패하였습니다.';
 alert(msg);
 });
 });
-
 </script>
-
-
 </body>
 </html>
