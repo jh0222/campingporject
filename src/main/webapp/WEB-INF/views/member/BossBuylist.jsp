@@ -110,6 +110,5 @@
 			</c:choose>
 		</table>
 	</c:forEach>
-
 </body>
 </html>

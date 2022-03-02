@@ -8,18 +8,96 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left: 300px;
+}
+
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 5px;
+  text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.column.side {
+  width: 20%;
+}
+
+.column.middle {
+  width: 80%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+table, td, th {
+    border-collapse : collapse;
+    border-bottom: 1px solid black;
+    padding : 10px;
+}
+</style>
+
 </head>
 <body>
-<jsp:include page="${myPage }"></jsp:include>
-	<form action="user.update?u_id=${sessionScope.loginMember.u_id }"
+<div class="row">
+  <div class="column side">
+   	<jsp:include page="${myPage }"></jsp:include>
+  </div>
+  
+  <div class="topnav">
+  </div>
+	
+  <div class="column middle">
+    	<form action="user.update?u_id=${sessionScope.loginMember.u_id }"
 		method="post" enctype="multipart/form-data" name="updateUserForm" onsubmit="return updateUserCheck();">
 		<table id="joinTable">
-			<tr>
-				
-			</tr>
-			<tr>
-				<td colspan="2" align="center">	내 정보  </td>
-			</tr>
 			<tr>
 				<td>ID</td>
 				<td>
@@ -34,7 +112,9 @@
 			</tr>
 			<tr>
 				<td>PW확인</td>
-				<td><input name="up_pwChk" value="${sessionScope.loginMember.u_pw }" placeholder="필수, 숫자 하나이상 반드시" type="password" maxlength="10" autocomplete="off"></td>
+				<td>
+					<input name="up_pwChk" value="${sessionScope.loginMember.u_pw }" placeholder="필수, 숫자 하나이상 반드시" type="password" maxlength="10" autocomplete="off">
+				</td>
 			</tr>
 			<tr>
 				<td>이름</td>
@@ -43,8 +123,8 @@
 			<tr>
 				<td>이메일</td>
 				<td>
-					<input name="up_email" value="${email[0] }" type="text" readonly="readonly" required><span id="middle">@</span>
-					<input name="up_email_address" value="${email[1] }" type="text" readonly="readonly" required>					
+					<input name="up_email" value="${email[0] }" type="text" required><span id="middle">@</span>
+					<input name="up_email_address" value="${email[1] }" type="text" required>					
 				</td>
 			</tr>
 			<tr>
@@ -138,16 +218,23 @@
 				<td>
 					<img src="resources/img/${sessionScope.loginMember.u_picture }" id="updateMemberPhoto" width="100" height="100">
 				    <input type="hidden" name="oldpicture" value="${sessionScope.loginMember.u_picture }">
-				    <input name="newpicture" type="file">
+				    <input name="newpicture" type="file" >
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center" style="background-color: #FFFFFF;">
+				<td colspan="2" align="center">
 					<button>수정</button>
 					<button onclick="userBye();" type="button">탈퇴</button>
 				</td>
 			</tr>
 		</table>
 	</form>
+   </div>
+</div>
+
+<div class="footer">
+	<p>Footer</p>
+</div>
+
 </body>
 </html>

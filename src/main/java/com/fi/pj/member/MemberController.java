@@ -184,6 +184,7 @@ public class MemberController {
 	// 캠핑찜
 	@RequestMapping(value = "campingjjim", method = RequestMethod.GET)
 	public String campingJjim(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.campingJjim(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingjjim.jsp");
@@ -194,7 +195,7 @@ public class MemberController {
 	// 캠핑찜 삭제
 	@RequestMapping(value = "campingjjim.del", method = RequestMethod.GET)
 	public String campingJjimdel(Communities c, HttpServletRequest request) {
-
+		mDAO.loginCheck(request);
 		mDAO.campingJjimdel(c, request);
 		mDAO.campingJjim(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
@@ -206,6 +207,7 @@ public class MemberController {
 	// 캠핑예약
 	@RequestMapping(value = "campingreservation", method = RequestMethod.GET)
 	public String campingReserve(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.campingReserve(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/reservation_confirm.jsp");
@@ -215,6 +217,7 @@ public class MemberController {
 	// 캠핑예약 삭제
 	@RequestMapping(value = "campingreserve.del", method = RequestMethod.GET)
 	public String campingreserveDel(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.campingreserveDel(c, request);
 		mDAO.campingReserve(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
@@ -226,7 +229,7 @@ public class MemberController {
 	// 사용자 구매목록
 	@RequestMapping(value = "userbuylist", method = RequestMethod.GET)
 	public String userBuylist(Buy b, HttpServletRequest request) {
-
+		mDAO.loginCheck(request);
 		mDAO.userBuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/buylist.jsp");
@@ -237,6 +240,7 @@ public class MemberController {
 	// 구매목록 삭제 - 캠핑용품
 	@RequestMapping(value = "buyproduct.del", method = RequestMethod.GET)
 	public String buyproductDel(Buy b, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.buyproductDel(b, request);
 		mDAO.userBuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
@@ -248,6 +252,7 @@ public class MemberController {
 	// 구매목록 삭제 - 밀키트
 	@RequestMapping(value = "buymeal.del", method = RequestMethod.GET)
 	public String buymealDel(Buy b, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.buymealDel(b, request);
 		mDAO.userBuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
@@ -259,9 +264,9 @@ public class MemberController {
 	// 내글
 	@RequestMapping(value = "communities", method = RequestMethod.GET)
 	public String communities(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.communities(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/UserCommunities.jsp");
 
 		return "main";
@@ -270,9 +275,9 @@ public class MemberController {
 	// 자유게시판
 	@RequestMapping(value = "freeboard", method = RequestMethod.GET)
 	public String freeboard(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.freeboard(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/UserCommunities.jsp");
 
 		return "main";
@@ -281,9 +286,9 @@ public class MemberController {
 	// 캠핑팁
 	@RequestMapping(value = "campingtip", method = RequestMethod.GET)
 	public String campingtip(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.campingtip(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingtip.jsp");
 
 		return "main";
@@ -292,9 +297,9 @@ public class MemberController {
 	// 레시피
 	@RequestMapping(value = "recipe", method = RequestMethod.GET)
 	public String recipe(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.recipe(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/recipe.jsp");
 
 		return "main";
@@ -303,9 +308,9 @@ public class MemberController {
 	// 캠핑 리뷰
 	@RequestMapping(value = "campingreview", method = RequestMethod.GET)
 	public String campingreview(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.campingreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingreview.jsp");
 
 		return "main";
@@ -314,10 +319,10 @@ public class MemberController {
 	// 캠핑 리뷰 수정
 	@RequestMapping(value = "campingreview.update", method = RequestMethod.GET)
 	public String campingreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.campingreviewupdate(c, request);
 		mDAO.campingreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingreview.jsp");
 
 		return "main";
@@ -326,10 +331,10 @@ public class MemberController {
 	// 캠핑 리뷰 삭제
 	@RequestMapping(value = "campingreview.delete", method = RequestMethod.GET)
 	public String campingreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.campingreviewdel(c, request);
 		mDAO.campingreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingreview.jsp");
 
 		return "main";
@@ -338,9 +343,9 @@ public class MemberController {
 	// 구매용품 리뷰
 	@RequestMapping(value = "productreview", method = RequestMethod.GET)
 	public String productreview(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.productreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/productreview.jsp");
 
 		return "main";
@@ -349,10 +354,10 @@ public class MemberController {
 	// 캠핑용품 리뷰 수정
 	@RequestMapping(value = "productreview.update", method = RequestMethod.GET)
 	public String productreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.productreviewupdate(c, request);
 		mDAO.productreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/productreview.jsp");
 
 		return "main";
@@ -361,10 +366,10 @@ public class MemberController {
 	// 캠핑용품 리뷰 삭제
 	@RequestMapping(value = "productreview.delete", method = RequestMethod.GET)
 	public String productreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.productreviewdel(c, request);
 		mDAO.productreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/productreview.jsp");
 
 		return "main";
@@ -373,10 +378,10 @@ public class MemberController {
 	// 밀키트 리뷰 수정
 	@RequestMapping(value = "mealreview.update", method = RequestMethod.GET)
 	public String mealreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.mealreviewupdate(c, request);
 		mDAO.productreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/productreview.jsp");
 
 		return "main";
@@ -385,10 +390,10 @@ public class MemberController {
 	// 밀키트 리뷰 삭제
 	@RequestMapping(value = "mealreview.delete", method = RequestMethod.GET)
 	public String mealreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.mealreviewdel(c, request);
 		mDAO.productreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/productreview.jsp");
 
 		return "main";
@@ -397,9 +402,9 @@ public class MemberController {
 	// 자유게시판 리뷰
 	@RequestMapping(value = "freeboardreview", method = RequestMethod.GET)
 	public String freeboardreview(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.freeboardreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/freeboardreview.jsp");
 
 		return "main";
@@ -408,10 +413,10 @@ public class MemberController {
 	// 자유게시판 리뷰 수정
 	@RequestMapping(value = "freeboardreview.update", method = RequestMethod.GET)
 	public String freeboardreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.freeboardreviewupdate(c, request);
 		mDAO.freeboardreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/freeboardreview.jsp");
 
 		return "main";
@@ -420,10 +425,10 @@ public class MemberController {
 	// 자유게시판 리뷰 삭제
 	@RequestMapping(value = "freeboardreview.delete", method = RequestMethod.GET)
 	public String freeboardreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.freeboardreviewdel(c, request);
 		mDAO.freeboardreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/freeboardreview.jsp");
 
 		return "main";
@@ -432,9 +437,9 @@ public class MemberController {
 	// 캠핑팁 리뷰
 	@RequestMapping(value = "campingtipreview", method = RequestMethod.GET)
 	public String campingtipreview(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.campingtipreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingtipreview.jsp");
 
 		return "main";
@@ -443,10 +448,10 @@ public class MemberController {
 	// 캠핑팁 리뷰 수정
 	@RequestMapping(value = "campingtipreview.update", method = RequestMethod.GET)
 	public String campingtipreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.campingtipreviewupdate(c, request);
 		mDAO.campingtipreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingtipreview.jsp");
 
 		return "main";
@@ -455,10 +460,10 @@ public class MemberController {
 	// 캠핑팁 리뷰 삭제
 	@RequestMapping(value = "campingtipreview.delete", method = RequestMethod.GET)
 	public String campingtipreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.campingtipreviewdel(c, request);
 		mDAO.campingtipreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/campingtipreview.jsp");
 
 		return "main";
@@ -467,9 +472,9 @@ public class MemberController {
 	// 레시피 리뷰
 	@RequestMapping(value = "recipereview", method = RequestMethod.GET)
 	public String recipereview(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.recipereview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/recipereview.jsp");
 
 		return "main";
@@ -478,10 +483,10 @@ public class MemberController {
 	// 레시피 리뷰 수정
 	@RequestMapping(value = "recipereview.update", method = RequestMethod.GET)
 	public String recipereviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.recipereviewupdate(c, request);
 		mDAO.recipereview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/recipereview.jsp");
 
 		return "main";
@@ -490,10 +495,10 @@ public class MemberController {
 	// 레시피 리뷰 삭제
 	@RequestMapping(value = "recipereview.delete", method = RequestMethod.GET)
 	public String recipereviewdel(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
 		mDAO.recipereviewdel(c, request);
 		mDAO.recipereview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("community", "../member/community.jsp");
 		request.setAttribute("contentPage", "member/recipereview.jsp");
 
 		return "main";

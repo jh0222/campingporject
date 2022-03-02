@@ -1,7 +1,6 @@
 package com.fi.pj.member;
 
 import java.util.Date;
-import java.util.List;
 
 public class UserMember {
 	private int u_no;

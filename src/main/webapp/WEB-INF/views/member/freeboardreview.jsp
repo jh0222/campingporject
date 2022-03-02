@@ -9,8 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="${myPage}"></jsp:include>
-<jsp:include page="${community}"></jsp:include>
+<jsp:include page="${myPage }"></jsp:include>
 	<table border="1">
 		<tr>
 			<td>번호</td>

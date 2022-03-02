@@ -796,7 +796,7 @@ public class BossCommunities {
 		return f_readcount;
 	}
 
-	public void setF_readcount(int freeboard) {
+	public void setF_readcount(int f_readcount) {
 		this.f_readcount = f_readcount;
 	}
 

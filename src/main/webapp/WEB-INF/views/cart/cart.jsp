@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="content_area">
-	<div class="content_subject"><span><a >캠핑용품</span>	</div>
+	<div class="content_subject"><span>캠핑용품</span>	</div>
 	<!-- 장바구니 리스트 -->
 	<div class="content_middle_section"></div>
 	<!-- 장바구니 가격 합계 -->
@@ -63,7 +63,7 @@
 						<td class="td_width_4 table_text_align_center">
 							<fmt:formatNumber value="${c.ba_price * c.ba_number}" pattern="#,### 원" /></td>
 						<td class="td_width_4 table_text_align_center delete_btn">
-							<button class="delete_btn" data-cartid="${c.ba_no}">삭제</button>
+							<button class="delete_btn" type="button" value="${c.ba_no}">삭제${c.ba_no}</button>
 						</td>
 					</tr>
 				</c:forEach>
@@ -116,15 +116,15 @@
 	
 	<!-- 수량 조정 form -->
 	<form action="cart.update" method="post" class="quantity_update_form">
-		<input type="hidden" name="cartId" class="update_cartId">
-		<input type="hidden" name="bookCount" class="update_bookCount">
-		<input type="hidden" name="memberId" value="'${c.ba_u_bo_id}'">
+		<input type="hidden" name="ba_no" class="update_cartId">
+		<input type="hidden" name="ba_number" class="update_bookCount">
+		<input type="hidden" name="ba_u_bo_id" value="'${c.ba_u_bo_id}'">
 	</form>
 	
 	<!-- 삭제 form -->
-	<form action="cart.delete" method="post" class="quantity_delete_form">
-		<input type="hidden" name="cartId" class="delete_cartId">
-		<input type="hidden" name="memberId" value="${c.ba_u_bo_id}">
+	<form action="cart.delete" method="get" class="quantity_delete_form">
+		<input type="hidden" name="ba_no" class="delete_cartId">
+		<input type="hidden" name="ba_u_bo_id" value="'${c.ba_u_bo_id}'">
 	</form>
 	
 </div>			
@@ -204,10 +204,9 @@
 		});
 		
 		/* 장바구니 삭제 버튼 */
-		$(".delete_btn").on("click", function(e){
-			e.preventDefault();
-			const cartId = $(this).data("cartid");
-			$(".delete_cartId").val(cartId);
+		$(".delete_btn").click(function(){
+			let cartId2 = $(this).val();
+			$(".delete_cartId").val(cartId2);
 			$(".quantity_delete_form").submit();
 		});
 		
