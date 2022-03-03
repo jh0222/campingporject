@@ -13,7 +13,8 @@
 }
 
 .row {
-  margin-left: 300px;
+  margin-right: 150px;
+  margin-left: 150px;
 }
 
 /* Style the header */

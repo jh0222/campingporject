@@ -14,7 +14,8 @@
 }
 
 .row {
-  margin-left: 300px;
+  margin-right: 150px;
+  margin-left: 150px;
 }
 
 /* Style the header */
@@ -139,7 +140,7 @@ table, td, th {
 			<tr> 
 				<td>생년월일</td>
 				<td>
-				  	<input value="${sessionScope.birth }" type="date" name="up_birth">
+				  	<input value="${sessionScope.birth }" type="date" name="newbirth">
 				</td>				
 			</tr>
 			<tr>

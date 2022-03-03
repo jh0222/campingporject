@@ -14,7 +14,7 @@ public class MemberController {
 	@Autowired
 	private MemberDAO mDAO;
 
-	//로그인 페이지로 
+	// 로그인 페이지로
 	@RequestMapping(value = "login.go", method = RequestMethod.GET)
 	public String gologin(UserMember m, HttpServletRequest req) {
 		req.setAttribute("contentPage", "member/login.jsp");
@@ -82,14 +82,14 @@ public class MemberController {
 		return "main";
 	}
 
-	//비번 찾기 페이지로
+	// 비번 찾기 페이지로
 	@RequestMapping(value = "pwsearch.go", method = RequestMethod.GET)
 	public String PwsearchGo(HttpServletRequest req) {
 		req.setAttribute("contentPage", "member/pwsearch.jsp");
 		return "main";
 	}
-	
-	//로그아웃
+
+	// 로그아웃
 	@RequestMapping(value = "member.logout", method = RequestMethod.GET)
 	public String logout(UserMember m, HttpServletRequest req) {
 		mDAO.logout(req);
@@ -97,13 +97,13 @@ public class MemberController {
 		req.setAttribute("contentPage", "home.jsp");
 		return "main";
 	}
-	
-	//아이디 찾기
+
+	// 아이디 찾기
 	@RequestMapping(value = "id.search", method = RequestMethod.GET)
 	public String Idsearch(Login l, HttpServletRequest req) {
-		System.out.println("ss"+l.getName());
+		System.out.println("ss" + l.getName());
 		System.out.println(l.getPhonenumber());
-		mDAO.idsearch(l,req);
+		mDAO.idsearch(l, req);
 		mDAO.loginCheck(req);
 		req.setAttribute("contentPage", "member/idsearch2.jsp");
 		return "main";
@@ -180,7 +180,7 @@ public class MemberController {
 
 		return "main";
 	}
-	
+
 	// 캠핑찜
 	@RequestMapping(value = "campingjjim", method = RequestMethod.GET)
 	public String campingJjim(Communities c, HttpServletRequest request) {
@@ -226,13 +226,24 @@ public class MemberController {
 		return "main";
 	}
 
-	// 사용자 구매목록
-	@RequestMapping(value = "userbuylist", method = RequestMethod.GET)
-	public String userBuylist(Buy b, HttpServletRequest request) {
+	// 사용자 구매목록 - 캠핑용품
+	@RequestMapping(value = "Cbuylist", method = RequestMethod.GET)
+	public String CBuylist(Buy b, HttpServletRequest request) {
 		mDAO.loginCheck(request);
-		mDAO.userBuylist(b, request);
+		mDAO.CBuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/buylist.jsp");
+
+		return "main";
+	}
+
+	// 사용자 구매목록 - 밀키트
+	@RequestMapping(value = "Mbuylist", method = RequestMethod.GET)
+	public String MBuylist(Buy b, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.MBuylist(b, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("contentPage", "member/buylist2.jsp");
 
 		return "main";
 	}
@@ -242,7 +253,7 @@ public class MemberController {
 	public String buyproductDel(Buy b, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		mDAO.buyproductDel(b, request);
-		mDAO.userBuylist(b, request);
+		mDAO.CBuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/buylist.jsp");
 
@@ -254,7 +265,7 @@ public class MemberController {
 	public String buymealDel(Buy b, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		mDAO.buymealDel(b, request);
-		mDAO.userBuylist(b, request);
+		mDAO.MBuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/buylist.jsp");
 
@@ -278,7 +289,7 @@ public class MemberController {
 		mDAO.loginCheck(request);
 		mDAO.freeboard(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("contentPage", "member/UserCommunities.jsp");
+		request.setAttribute("contentPage", "member/freeboard.jsp");
 
 		return "main";
 	}
@@ -340,61 +351,72 @@ public class MemberController {
 		return "main";
 	}
 
-	// 구매용품 리뷰
-	@RequestMapping(value = "productreview", method = RequestMethod.GET)
-	public String productreview(Communities c, HttpServletRequest request) {
+	// 캠핑용품 후기
+	@RequestMapping(value = "Cproductreview", method = RequestMethod.GET)
+	public String Cproductreview(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
-		mDAO.productreview(c, request);
+		mDAO.Cproductreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/productreview.jsp");
 
 		return "main";
 	}
+	
+	// 밀키트 후기
+	@RequestMapping(value = "Mproductreview", method = RequestMethod.GET)
+	public String Mproductreview(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.Mproductreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("contentPage", "member/productreview2.jsp");
 
-	// 캠핑용품 리뷰 수정
+		return "main";
+	}
+
+	// 캠핑용품 후기 수정
 	@RequestMapping(value = "productreview.update", method = RequestMethod.GET)
 	public String productreviewupdate(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		mDAO.productreviewupdate(c, request);
-		mDAO.productreview(c, request);
+		mDAO.Cproductreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/productreview.jsp");
 
 		return "main";
 	}
 
-	// 캠핑용품 리뷰 삭제
+	// 캠핑용품 후기 삭제
 	@RequestMapping(value = "productreview.delete", method = RequestMethod.GET)
 	public String productreviewdel(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		mDAO.productreviewdel(c, request);
-		mDAO.productreview(c, request);
+		mDAO.Cproductreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/productreview.jsp");
 
 		return "main";
 	}
 
-	// 밀키트 리뷰 수정
+	// 밀키트 후기 수정
 	@RequestMapping(value = "mealreview.update", method = RequestMethod.GET)
 	public String mealreviewupdate(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		mDAO.mealreviewupdate(c, request);
-		mDAO.productreview(c, request);
+		mDAO.Mproductreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("contentPage", "member/productreview.jsp");
+		request.setAttribute("contentPage", "member/productreview2.jsp");
 
 		return "main";
 	}
 
-	// 밀키트 리뷰 삭제
+	// 밀키트 후기 삭제
 	@RequestMapping(value = "mealreview.delete", method = RequestMethod.GET)
 	public String mealreviewdel(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		mDAO.mealreviewdel(c, request);
-		mDAO.productreview(c, request);
+		mDAO.Mproductreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("contentPage", "member/productreview.jsp");
+		request.setAttribute("contentPage", "member/productreview2.jsp");
 
 		return "main";
 	}

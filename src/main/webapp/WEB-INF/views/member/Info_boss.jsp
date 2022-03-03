@@ -8,15 +8,96 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-right: 150px;
+  margin-left: 150px;
+}
+
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 5px;
+  text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.column.side {
+  width: 20%;
+}
+
+.column.middle {
+  width: 80%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+table, td, th {
+    border-collapse : collapse;
+    border-bottom: 1px solid black;
+    padding : 10px;
+}
+</style>
 </head>
 <body>
-<jsp:include page="${BossCommunities }"></jsp:include>
+<div class="row">
+  <div class="column side">
+   	<jsp:include page="${BossCommunities }"></jsp:include>
+  </div>
+  
+  <div class="topnav">
+  </div>
+	
+  <div class="column middle">
 	<form action="boss.update?bo_id="${sessionScope.loginMember2.bo_id }
 		method="post" enctype="multipart/form-data" name="updateBossForm" onsubmit="return updateBossCheck();">
 		<table id="joinTable">
-			<tr>
-				<td colspan="2" align="center">	내 정보  </td>
-			</tr>
 			<tr>
 				<td>ID</td>
 				<td>
@@ -40,8 +121,8 @@
 			<tr>
 				<td>이메일</td>
 				<td>
-					<input name="up_email" value="${email[0] }" type="text" readonly="readonly" required><span id="middle">@</span>
-					<input name="up_email_address" value="${email[1] }" type="text" readonly="readonly" required>					
+					<input name="up_email" value="${email[0] }" type="text" required><span id="middle">@</span>
+					<input name="up_email_address" value="${email[1] }" type="text" required>					
 				</td>
 			</tr>
 			<tr>
@@ -146,5 +227,7 @@
 			</tr>
 		</table>
 	</form>
+</div>
+</div>
 </body>
 </html>

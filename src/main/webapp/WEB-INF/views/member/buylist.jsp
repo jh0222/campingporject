@@ -13,7 +13,8 @@
 }
 
 .row {
-  margin-left: 300px;
+  margin-right: 150px;
+  margin-left: 150px;
 }
 
 /* Style the header */
@@ -82,6 +83,10 @@ table, td, th {
     padding : 10px;
 }
 
+.td1 {
+	text-align: center;
+}
+
 .hidden {
 	display: none;
 }
@@ -94,70 +99,42 @@ table, td, th {
   </div>
   
   <div class="topnav">
+  	<a href = "Cbuylist?b_u_bo_id=${sessionScope.loginMember.u_id}">캠핑용품</a>
+  	<a href = "Mbuylist?fb_u_bo_id=${sessionScope.loginMember.u_id}">밀키트</a>
   </div>
 	
   <div class="column middle">
   <h2>캠핑 용품</h2>
-  
-	<table border="1">
+	<table>
 		<tr>
-			<td>상품번호</td>
-			<td>상품명</td>
-			<td>상품수량</td>
-			<td>구매가격</td>
-			<td>구매주소지</td>
-			<td>구매날짜</td>
-			<td colspan="2" align="center">취소/환불</td>
+			<td class="hidden"></td>
+			<td class="td1">상품명</td>
+			<td class="td1">상품수량</td>
+			<td class="td1">구매가격</td>
+			<td class="td1">구매주소지</td>
+			<td class="td1">구매날짜</td>
+			<td colspan="2" class="td1">취소/환불</td>
 		</tr>
-<c:forEach var="buy" items="${userbuylist }">
+		<c:forEach var="buy" items="${userbuylist }">
 		<tr>
-			<td>${buy.b_p_no }</td>
-			<td>${buy.b_p_name }</td>
-			<td>${buy.b_number }</td>
-			<td>${buy.b_number * buy.b_price}</td>		
+			<td class="hidden"></td>
+			<td class="td1">${buy.b_p_name }</td>
+			<td class="td1">${buy.b_number }</td>
+			<td class="td1">${buy.b_number * buy.b_price}</td>		
 			<c:choose>
 				<c:when test="${buy.b_new_address !=null}">
-					<td>${buy.b_new_address}</td>
+					<td class="td1">${buy.b_new_address}</td>
 				</c:when>
 				<c:otherwise>
-					<td>${buy.b_u_address}</td>
+					<td class="td1">${buy.b_u_address}</td>
 				</c:otherwise>
 			</c:choose>
-			<td><fmt:formatDate value="${buy.b_date }"/></td>
-			<td><button onclick="buyproductdel('${buy.b_no}','${buy.b_u_bo_id}')">취소/환불</button></td>
+			<td class="td1"><fmt:formatDate value="${buy.b_date }"/></td>
+			<td class="td1"><button onclick="buyproductdel('${buy.b_no}','${buy.b_u_bo_id}')">취소/환불</button></td>
 		</tr>
+		</c:forEach>
 	</table>
-</c:forEach>
-<br>
-밀키트 구매목록
-<c:forEach var="buy" items="${mealbuylist }">
-	<table border="1">
-		<tr>
-			<td>상품번호</td>
-			<td>상품명</td>
-			<td>상품수량</td>
-			<td>구매가격</td>
-			<td>구매주소지</td>
-			<td>구매날짜</td>
-			
-		</tr>
-		<tr>
-			<td>${buy.fb_p_no }</td>
-			<td>${buy.fb_p_name }</td>
-			<td>${buy.fb_number }</td>
-			<td>${buy.fb_number * buy.fb_price}</td>
-			<c:choose>
-				<c:when test="${buy.fb_new_address !=null}">
-					<td>${buy.fb_new_address}</td>
-				</c:when>
-				<c:otherwise>
-					<td>${buy.fb_u_address}</td>
-				</c:otherwise>
-			</c:choose>
-			<td><fmt:formatDate value="${buy.fb_date }"/></td>
-			<td><button onclick="buymealdel('${buy.fb_no}','${buy.fb_u_bo_id }')">취소/환불</button></td>
-		</tr>
-	</table>
-</c:forEach>
+</div>
+</div>
 </body>
 </html>

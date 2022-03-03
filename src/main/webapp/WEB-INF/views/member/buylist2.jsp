@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,27 +91,42 @@ table, td, th {
 <body>
 <div class="row">
   <div class="column side">
-   	<jsp:include page="${myPage }"></jsp:include>
+	<jsp:include page="${myPage }"></jsp:include>
   </div>
   
   <div class="topnav">
+  	<a href = "Cbuylist?b_u_bo_id=${sessionScope.loginMember.u_id}">캠핑용품</a> /
+  	<a href = "Mbuylist?fb_u_bo_id=${sessionScope.loginMember.u_id}">밀키트</a>
   </div>
 	
   <div class="column middle">
-  <h2></h2>
+  <h2>밀키트</h2>
 	<table>
 		<tr>
 			<td class="hidden"></td>
-			<td>캠핑명</td>
-			<td>캠핑주소</td>
-			<td></td>
+			<td>상품명</td>
+			<td>상품수량</td>
+			<td>구매가격</td>
+			<td>구매주소지</td>
+			<td>구매날짜</td>
+			<td colspan="2" align="center">취소/환불</td>
 		</tr>
-	<c:forEach var="cj" items="${campingjjim}">
-		<tr>	
-			<td id="cj${cj.h_no}" class="hidden"></td>
-			<td><a href="">${cj.h_cam_name}</a></td>
-			<td>${cj.h_cam_address }</td>
-			<td><button value="${cj.h_campingheart }" onclick="jjimdel('${cj.h_no }','${cj.h_u_id }')">삭제</button></td>
+	<c:forEach var="buy" items="${mealbuylist }">
+		<tr>
+			<td class="hidden"></td>
+			<td>${buy.fb_p_name }</td>
+			<td>${buy.fb_number }</td>
+			<td>${buy.fb_number * buy.fb_price}</td>
+			<c:choose>
+				<c:when test="${buy.fb_new_address !=null}">
+					<td>${buy.fb_new_address}</td>
+				</c:when>
+				<c:otherwise>
+					<td>${buy.fb_u_address}</td>
+				</c:otherwise>
+			</c:choose>
+			<td><fmt:formatDate value="${buy.fb_date }"/></td>
+			<td><button onclick="buymealdel('${buy.fb_no}','${buy.fb_u_bo_id }')">취소/환불</button></td>
 		</tr>
 	</c:forEach>
 	</table>

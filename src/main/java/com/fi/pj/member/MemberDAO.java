@@ -286,7 +286,7 @@ public class MemberDAO {
 			String phone2 = mr.getParameter("up_phonenumber2");
 			String phone3 = mr.getParameter("up_phonenumber3");
 			String u_phonenumber = phone1 + phone2 + phone3;
-			Date u_birth = formatter.parse(mr.getParameter("up_birth"));
+			Date birth = formatter.parse(mr.getParameter("newbirth"));
 			String oldpicture = mr.getParameter("oldpicture");
 			String newpicture = mr.getFilesystemName("newpicture");
 
@@ -294,7 +294,7 @@ public class MemberDAO {
 			m.setU_email(u_email);
 			m.setU_address(u_address);
 			m.setU_phonenumber(u_phonenumber);
-			m.setU_birth(u_birth);
+			m.setU_birth(birth);
 
 			if (newpicture != null) {
 				m.setU_picture(newpicture);
@@ -414,13 +414,15 @@ public class MemberDAO {
 	}
 
 	// 구매목록
-	public void userBuylist(Buy b, HttpServletRequest request) {
+	public void CBuylist(Buy b, HttpServletRequest request) {
 		List<Buy> userbuylist = ss.getMapper(BuylistMapper.class).userbuylist(b);
 		request.setAttribute("userbuylist", userbuylist);
-
+	}
+	
+	// 구매목록
+	public void MBuylist(Buy b, HttpServletRequest request) {
 		List<Buy> mealbuylist = ss.getMapper(BuylistMapper.class).mealbuylist(b);
-		request.setAttribute("mealbuylist", mealbuylist);
-
+		request.setAttribute("mealbuylist", mealbuylist);		
 	}
 
 	// 구매목록 삭제
@@ -567,10 +569,13 @@ public class MemberDAO {
 	}
 
 	// 구매용품 리뷰
-	public void productreview(Communities c, HttpServletRequest request) {
+	public void Cproductreview(Communities c, HttpServletRequest request) {
 		List<Communities> productreview = ss.getMapper(CommunitiesMapper.class).productreview(c);
 		request.setAttribute("productreview", productreview);
-
+	}
+	
+	// 구매용품 리뷰
+	public void Mproductreview(Communities c, HttpServletRequest request) {
 		List<Communities> mealreview = ss.getMapper(CommunitiesMapper.class).mealreview(c);
 		request.setAttribute("mealreview", mealreview);
 	}

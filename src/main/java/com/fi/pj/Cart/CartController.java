@@ -21,6 +21,7 @@ public class CartController {
 	// 장바구니 전체 목록
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String cart(CartBean c, HttpServletRequest request) {
+		Mdao.loginCheck(request);
 		sdao.cart(c, request);
 		request.setAttribute("contentPage", "cart/cart.jsp");
 		return "main";

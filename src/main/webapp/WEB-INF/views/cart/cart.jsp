@@ -11,7 +11,6 @@
 </head>
 <body>
 <div class="content_area">
-	<div class="content_subject"><span>캠핑용품</span>	</div>
 	<!-- 장바구니 리스트 -->
 	<div class="content_middle_section"></div>
 	<!-- 장바구니 가격 합계 -->
@@ -58,7 +57,7 @@
 								<button class="quantity_btn plus_btn">+</button>
 								<button class="quantity_btn minus_btn">-</button>
 							</div>
-								<a class="quantity_modify_btn" data-cartId="${c.ba_no}" >변경</a>
+								<button class="quantity_modify_btn" data-cartId="${c.ba_no}">변경</button>
 						</td>
 						<td class="td_width_4 table_text_align_center">
 							<fmt:formatNumber value="${c.ba_price * c.ba_number}" pattern="#,### 원" /></td>
@@ -74,32 +73,37 @@
 	</div>
 	<!-- 가격 종합 -->
 	<div class="content_total_section">
-		<div class="total_wrap">
-			<table>
-				<tr>
-					<td>
-						<table>
-							<tr>
-								<td>총 상품 가격</td>
-								<td><span class="totalPrice_span">${c.ba_price * c.ba_number}</span> 원</td>
-							</tr>
-							<tr>
-								<td>총 주문 상품수</td>
-								<td><span class="totalCount_span">${c.ba_number}</span>개</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-			<div class="boundary_div">구분선</div>
+		<div class="total_wrap">			
 			<table>
 				<tr>
 					<td>
 						<table>
 							<tbody>
 								<tr>
-									<td><strong>총 결제 예상 금액</strong></td>
-									<td><span class="finalTotalPrice_span">${c.ba_price * c.ba_number}</span> 원</td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td>
+						<table>
+							<tbody>
+								<tr>
+									<td>총 상품 가격</td>
+									<td><span class="totalPrice_span">${c.ba_price * c.ba_number}</span>원</td>
+								</tr>
+								<tr>
+									<td>총 주문 상품수</td>
+									<td><span class="totalCount_span">${c.ba_number}</span>개</td>
+								</tr>	
+								<tr>
+									<td>
+										<strong>총 결제 예상 금액</strong>				
+									</td>
+									<td>
+										<span class="finalTotalPrice_span">${c.ba_price * c.ba_number}</span> 원
+									</td>
 								</tr>
 							</tbody>
 						</table>
