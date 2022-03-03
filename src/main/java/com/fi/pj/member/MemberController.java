@@ -151,7 +151,7 @@ public class MemberController {
 
 		mDAO.loginCheck(request);
 		mDAO.splitBossAddr(request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/Info_boss.jsp");
 
 		return "main";
@@ -164,7 +164,7 @@ public class MemberController {
 		mDAO.loginCheck(request);
 		mDAO.bossUpdate(boss, request);
 		mDAO.splitBossAddr(request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/Info_boss.jsp");
 
 		return "main";

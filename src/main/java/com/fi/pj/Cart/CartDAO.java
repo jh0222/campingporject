@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fi.pj.member.BossMember;
+import com.fi.pj.member.UserMember;
 
 @Service
 public class CartDAO {
@@ -16,31 +17,56 @@ public class CartDAO {
 	@Autowired /* sql세션 땡겨오기 */
 	private SqlSession ss;
 
-	public void cart(CartBean c, HttpServletRequest request) {
-		
-		// 캠핑용품
-		BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
-		c.setBa_u_bo_id(b.getBo_id()); 
-		
-		if(c.getBa_u_bo_id() != null) {
-			
-		List<CartBean> campingproduct = ss.getMapper(CartMapper.class).campingproduct(c);
-		request.setAttribute("campingproduct", campingproduct);
+	// 캠핑용품
+	public void campingproduct(CartBean c, HttpServletRequest request) {
+
+		UserMember u = (UserMember) request.getSession().getAttribute("loginMember");
+		c.setBa_u_bo_id(u.getU_id());
+
+		if (c.getBa_u_bo_id() != null) {
+			List<CartBean> campingproduct = ss.getMapper(CartMapper.class).campingproduct(c);
+			request.setAttribute("campingproduct", campingproduct);
 		}
+	}
 
-		c.setFba_u_bo_id(b.getBo_id());  
-		
-		// 밀키트
-		if(c.getFba_u_bo_id() != null) {
+	// 밀키트
+	public void mealkit(CartBean c, HttpServletRequest request) {
 
-		List<CartBean> mealkit = ss.getMapper(CartMapper.class).mealkit(c);
-		request.setAttribute("mealkit", mealkit);
-		
+		UserMember u = (UserMember) request.getSession().getAttribute("loginMember");
+		c.setFba_u_bo_id(u.getU_id());
+
+		if (c.getFba_u_bo_id() != null) {
+			List<CartBean> mealkit = ss.getMapper(CartMapper.class).mealkit(c);
+			request.setAttribute("mealkit", mealkit);
+		}
+	}
+
+	// 캠핑용품
+	public void bosscampingproduct(CartBean c, HttpServletRequest request) {
+
+		BossMember m = (BossMember) request.getSession().getAttribute("loginMember2");
+		c.setBa_u_bo_id(m.getBo_id());
+
+		if (c.getBa_u_bo_id() != null) {
+			List<CartBean> campingproduct = ss.getMapper(CartMapper.class).campingproduct(c);
+			request.setAttribute("campingproduct", campingproduct);
+		}
+	}
+
+	// 밀키트
+	public void bossmealkit(CartBean c, HttpServletRequest request) {
+
+		BossMember m = (BossMember) request.getSession().getAttribute("loginMember2");
+		c.setFba_u_bo_id(m.getBo_id());
+
+		if (c.getFba_u_bo_id() != null) {
+			List<CartBean> mealkit = ss.getMapper(CartMapper.class).mealkit(c);
+			request.setAttribute("mealkit", mealkit);
 		}
 	}
 
 	public void cartup(CartBean c, HttpServletRequest request) {
-		if(ss.getMapper(CartMapper.class).cartup(c)==1) {
+		if (ss.getMapper(CartMapper.class).cartup(c) == 1) {
 			System.out.println("수정 성공");
 		} else {
 			System.out.println("수정 실패");
@@ -50,6 +76,7 @@ public class CartDAO {
 	public void cartdel(CartBean c, HttpServletRequest request) {
 		try {
 			int cd = ss.getMapper(CartMapper.class).cartdel(c);
+			System.out.println(cd);
 			if (cd == 1) {
 				request.setAttribute("result", "삭제성공");
 			} else {

@@ -22,7 +22,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(req);
 		bcDAO.CampingInfo(bc, req);
 
-		req.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		req.setAttribute("mypage2", "../member/mypage2.jsp");
 		req.setAttribute("contentPage", "member/BossCampingInformation.jsp");
 
 		return "main";
@@ -35,7 +35,7 @@ public class BossCommunitiesController {
 		bcDAO.CampingInfoUp(bc, req);
 		bcDAO.CampingInfo(bc, req);
 
-		req.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		req.setAttribute("mypage2", "../member/mypage2.jsp");
 		req.setAttribute("contentPage", "member/BossCampingInformation.jsp");
 
 		return "main";
@@ -48,7 +48,7 @@ public class BossCommunitiesController {
 		bcDAO.campinginfodel(bc, req);
 		bcDAO.CampingInfo(bc, req);
 
-		req.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		req.setAttribute("mypage2", "../member/mypage2.jsp");
 		req.setAttribute("contentPage", "member/BossCampingInformation.jsp");
 
 		return "main";
@@ -60,7 +60,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(req);
 		bcDAO.campingreserve(bc, req);
 
-		req.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		req.setAttribute("mypage2", "../member/mypage2.jsp");
 		req.setAttribute("contentPage", "member/BossCampingReserve.jsp");
 
 		return "main";
@@ -72,7 +72,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(req);
 		bcDAO.buylist(bc, req);
 
-		req.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
+		req.setAttribute("mypage2", "../member/mypage2.jsp");
 		req.setAttribute("contentPage", "member/BossBuylist.jsp");
 
 		return "main";
@@ -83,8 +83,7 @@ public class BossCommunitiesController {
 	public String communities(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.communities(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossFreeboard.jsp");
 
 		return "main";
@@ -95,8 +94,7 @@ public class BossCommunitiesController {
 	public String freeboard(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.Bfreeboard(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossFreeboard.jsp");
 
 		return "main";
@@ -107,8 +105,7 @@ public class BossCommunitiesController {
 	public String campingtip(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.campingtip(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossCampingtip.jsp");
 
 		return "main";
@@ -119,8 +116,7 @@ public class BossCommunitiesController {
 	public String recipe(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.recipe(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossRecipe.jsp");
 
 		return "main";
@@ -131,8 +127,7 @@ public class BossCommunitiesController {
 	public String productreview(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.productreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossProductreview.jsp");
 
 		return "main";
@@ -144,8 +139,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(request);
 		bcDAO.productreviewupdate(bc, request);
 		bcDAO.productreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossProductreview.jsp");
 
 		return "main";
@@ -157,8 +151,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(request);
 		bcDAO.productreviewdel(bc, request);
 		bcDAO.productreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossProductreview.jsp");
 
 		return "main";
@@ -170,8 +163,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(request);
 		bcDAO.mealreviewupdate(bc, request);
 		bcDAO.productreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossProductreview.jsp");
 
 		return "main";
@@ -183,8 +175,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(request);
 		bcDAO.mealreviewdel(bc, request);
 		bcDAO.productreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossProductreview.jsp");
 
 		return "main";
@@ -195,8 +186,7 @@ public class BossCommunitiesController {
 	public String freeboardreview(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.freeboardreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossFreeboardreview.jsp");
 
 		return "main";
@@ -208,8 +198,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(request);
 		bcDAO.freeboardreviewupdate(bc, request);
 		bcDAO.freeboardreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossFreeboardreview.jsp");
 
 		return "main";
@@ -221,8 +210,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(request);
 		bcDAO.freeboardreviewdel(bc, request);
 		bcDAO.freeboardreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossFreeboardreview.jsp");
 
 		return "main";
@@ -233,8 +221,7 @@ public class BossCommunitiesController {
 	public String campingtipreview(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.campingtipreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossCampingtipreview.jsp");
 
 		return "main";
@@ -246,8 +233,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(request);
 		bcDAO.campingtipreviewupdate(bc, request);
 		bcDAO.campingtipreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossCampingtipreview.jsp");
 
 		return "main";
@@ -259,8 +245,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(request);
 		bcDAO.campingtipreviewdel(bc, request);
 		bcDAO.campingtipreview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossCampingtipreview.jsp");
 
 		return "main";
@@ -271,8 +256,7 @@ public class BossCommunitiesController {
 	public String recipereview(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.recipereview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossRecipereview.jsp");
 
 		return "main";
@@ -284,8 +268,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(request);
 		bcDAO.recipereviewupdate(bc, request);
 		bcDAO.recipereview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossRecipereview.jsp");
 
 		return "main";
@@ -297,8 +280,7 @@ public class BossCommunitiesController {
 		mDAO.loginCheck(request);
 		bcDAO.recipereviewdel(bc, request);
 		bcDAO.recipereview(bc, request);
-		request.setAttribute("BossCommunities", "../member/BossCommunities.jsp");
-		request.setAttribute("community", "../member/community2.jsp");
+		request.setAttribute("mypage2", "../member/mypage2.jsp");
 		request.setAttribute("contentPage", "member/BossRecipereview.jsp");
 
 		return "main";

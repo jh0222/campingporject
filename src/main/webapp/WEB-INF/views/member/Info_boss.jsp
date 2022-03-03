@@ -88,7 +88,7 @@ table, td, th {
 <body>
 <div class="row">
   <div class="column side">
-   	<jsp:include page="${BossCommunities }"></jsp:include>
+   	<jsp:include page="${mypage2 }"></jsp:include>
   </div>
   
   <div class="topnav">
