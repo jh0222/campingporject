@@ -12,7 +12,10 @@ public class Campingplace {
 	private String cam_latitude;
 	private String cam_longitude;
 	private int cam_headcount;
+	private int cam_liked;
 	private double star;
+	private int from;
+	private int to;
 	
 	
 	public Campingplace() {
@@ -22,7 +25,7 @@ public class Campingplace {
 
 	public Campingplace(int cam_no, String cam_bo_id, String cam_name, String cam_picture, String cam_txt,
 			String cam_phonenumber, int cam_price, String cam_address, String cam_latitude, String cam_longitude,
-			int cam_headcount, double star) {
+			int cam_headcount, int cam_liked, double star, int from, int to) {
 		super();
 		this.cam_no = cam_no;
 		this.cam_bo_id = cam_bo_id;
@@ -35,7 +38,10 @@ public class Campingplace {
 		this.cam_latitude = cam_latitude;
 		this.cam_longitude = cam_longitude;
 		this.cam_headcount = cam_headcount;
+		this.cam_liked = cam_liked;
 		this.star = star;
+		this.from = from;
+		this.to = to;
 	}
 
 
@@ -149,6 +155,16 @@ public class Campingplace {
 	}
 
 
+	public int getCam_liked() {
+		return cam_liked;
+	}
+
+
+	public void setCam_liked(int cam_liked) {
+		this.cam_liked = cam_liked;
+	}
+
+
 	public double getStar() {
 		return star;
 	}
@@ -157,5 +173,26 @@ public class Campingplace {
 	public void setStar(double star) {
 		this.star = star;
 	}
+
+
+	public int getFrom() {
+		return from;
+	}
+
+
+	public void setFrom(int from) {
+		this.from = from;
+	}
+
+
+	public int getTo() {
+		return to;
+	}
+
+
+	public void setTo(int to) {
+		this.to = to;
+	}
+	
 
 }

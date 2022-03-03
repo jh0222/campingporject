@@ -10,10 +10,10 @@
 <script type="text/javascript" src="resources/js/place.js"></script>
 <!-- include libraries(jQuery, bootstrap) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="resources/summernote/summernote.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/board.css">
 <link rel="stylesheet" href="resources/css/detailProduct.css">
 <link rel="stylesheet" href="resources/css/mainProduct.css">
@@ -40,6 +40,7 @@
 <link rel="stylesheet" href="resources/css/main.css">
 <link rel="stylesheet" href="resources/css/member_jh.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- font awesome (아이콘) -->
+<link rel="stylesheet" href="resources/css/campingplace.css">
 <script src="resources/css/jquery.fullPage.js"></script>
 <script src="resources/css/main.js"></script>
 <!-- 아래3줄 부트스트랩 
@@ -67,7 +68,7 @@ ${result }
         <div class="gnb">
         <div class="menu">       
           <ul class="menu_list">
-			<li><a href="place.go">캠핑예약</a>
+			<li><a href="place.go?h_u_id=${sessionScope.loginMember.u_id}">캠핑예약</a>
 			</li>
 			<li><a href="shopping.go">밀키트/캠핑용품</a>
 				<ul class="sub">

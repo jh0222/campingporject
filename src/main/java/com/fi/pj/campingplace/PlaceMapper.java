@@ -2,9 +2,12 @@ package com.fi.pj.campingplace;
 
 import java.util.List;
 
+import com.fi.pj.board.Freeboard;
+
 public interface PlaceMapper {
 	//전체 캠핑 목록
-	public List<Campingplace> getAllPlace();
+	public List<Campingplace> getAllPlace(Campingplace p);
+	public int getAllPlacecnt();
 	//캠핑 등록
 	public int PlaceReg(Campingplace p);
 	//캠핑 삭제
@@ -27,13 +30,47 @@ public interface PlaceMapper {
 	public int reserve(placeReserve res);
 	
 	//캠핑장 찜 
-	public int placeLike(campingLike cl);
+	public int placeLike(Campingplace p);
 	//캠핑장 찜 목록
 	public List<campingLike> getHeartList();
+	//찜 취소 
+	public int placeLike_del(Campingplace p);
+	//찜 있는지 없는지
+	public String getheart(campingLike cl);
 	
-	//캠핑장 평균 별점
-	public List<placeReview> getAvgStar();
-
+	//캠핑장 이름 검색
+	public List<Campingplace> Search_place(placeSearch ps);
+	//public List<Campingplace> Search_host(placeSearch ps);
+	
+	//캠핑장 검색결과 총 cnt 
+	public int Search_place_cnt(placeSearch ps);
+	//public int Search_host_cnt(placeSearch ps);
+	
+	
+	public List<Campingplace> Search_star(placeSearch ps);
+	public int Search_star_cnt(placeSearch ps);
+	public List<Campingplace> Search_p(placeSearch ps);
+	public int getpricecnt(placeSearch ps);
+	public List<Campingplace> Search_area(placeSearch ps);
+	public int getareacnt(placeSearch ps);
+	
+	//찜리스트
+	public List<campingLike> getheartlist(campingLike cl);
+	
+	//사장님 리뷰 답글 목록
+	public List<placeReply> getAllReply(placeReply re);
+	//사장님 리뷰 답글 등록
+	public int ReplytxtReg(placeReply re);
+	//사장님 리뷰 답글 삭제
+	public int ReplyDel(placeReply re);
+	//사장님 리뷰 답글 수정
+	public int ReplyUpdate(placeReply re);
+	//리뷰체크
+	public String reserveCheck(placeReserve pre);
+	
+	
+	
+	
 	
 
 }

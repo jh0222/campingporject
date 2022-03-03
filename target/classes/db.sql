@@ -71,14 +71,42 @@ create table camping_table(
     cam_address varchar2(100 char) not null,
     cam_latitude varchar2(30 char) not null,   
     cam_longitude varchar2(30 char) not null,    
-    cam_headcount number(5) not null
+    cam_headcount number(5) not null,
+    cam_liked number(1) default 0 not null
 );
+
+alter table camping_table add cam_liked number(1) default 0 not null;
 
 create sequence camping_seq;
 
 insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','cam.jpg','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40);
 
 select * from camping_table;
+
+IF  THEN
+처리문
+ELSIF 조건2 THEN
+처리문
+
+	select rn,c.*
+		from(select Rownum as rn,a.*,star
+			from camping_table a,
+				(select c_cam_no, avg(c_campingstar) as star
+				from campingreview_table 
+				group by c_cam_no) b
+			where a.cam_no=b.c_cam_no(+)
+			ORDER BY a.cam_no desc) c
+		where RN >=1 and RN <=10;
+	
+		
+		select Rownum as rn,a.*,star
+			from camping_table a,
+				(select c_cam_no, avg(c_campingstar) as star
+				from campingreview_table 
+				group by c_cam_no) b
+			where a.cam_no=b.c_cam_no
+			ORDER BY a.cam_no desc
+
 -------------------------------------------------------------------------------------------------------------------------------------
 4. 예약 테이블
 /*
@@ -107,8 +135,15 @@ create table reservation_table(
 create sequence reservation_seq;
 
 insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
+insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
+insert into reservation_table values(reservation_seq.nextval,121,'kim','김태희','01012341234','난지캠핑장','20220301','20220302',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 
 select * from reservation_table;
+select r_u_id from reservation_table where r_cam_no=121 and r_u_id='kim' and  sysdate > r_campingenddate;
+select * from campingheart_table where h_u_id='kim';
+
+
+
 -------------------------------------------------------------------------------------------------------------------------------------
 5. 캠핑찜
 drop table campingheart_table;
@@ -123,7 +158,7 @@ create table campingheart_table(
 
 create sequence campingheart_seq;
 
-insert into campingheart_table values(campingheart_seq.nextval,1,'kim','난지캠핑장','서울 마포구 한강난지로 28',1);
+insert into campingheart_table values(campingheart_seq.nextval,21,'kim','난지캠핑장','서울 마포구 한강난지로 28',1);
 
 select * from campingheart_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -172,22 +207,72 @@ select *
 from camping_table a,
 (select c_cam_no, avg(c_campingstar) as star
 	from campingreview_table 
-	group by c_cam_no) b
+	group by c_cam_no) b, 
 where a.cam_no=b.c_cam_no
 ORDER BY a.cam_no desc;
-=======
 -------------------------------------------------------------------------------------------------------------------------------------
+select * from campingheart_table where h_u_id='kim'
+
+select rn,c.*
+		from(select Rownum as rn,a.*,star
+			from camping_table a,
+				(select c_cam_no, avg(c_campingstar) as star
+				from campingreview_table 
+				group by c_cam_no) b
+			where a.cam_no=b.c_cam_no
+			ORDER BY a.cam_no desc) c
+		where RN >=1 and RN <=10 and c.cam_price>=30000 and c.cam_price<=100000;
+
+
+select rn,c.*
+	from(select *
+		from camping_table a,
+			(select c_cam_no, avg(c_campingstar) as star
+			from campingreview_table 
+			group by c_cam_no) b
+		where a.cam_no=b.c_cam_no
+		ORDER BY a.cam_no desc) c
+	where RN >=1 and RN <=10;
+
+	select rn,c.*
+	from(select Rownum as rn,a.*,star
+		from (select * from camping_table where cam_bo_id like '%난지%' ) a,
+			(select c_cam_no, avg(c_campingstar) as star
+			from (campingreview_table)
+			group by c_cam_no) b
+		where a.cam_no=b.c_cam_no
+		ORDER BY a.cam_no desc) c
+	where RN >=1 and RN <=10;
+
+select rn,cam_no,cam_name,cam_txt,cam_phonenumber,cam_price, cam_address
+	from (select Rownum as rn,cam_no,cam_name,cam_txt,cam_phonenumber,cam_price, cam_address
+	from (select cam_no,cam_name,cam_txt,cam_phonenumber,cam_price, cam_address
+	from camping_table
+	where cam_bo_id like '%ㄴ%' 
+	order by cam_no desc))
+	where RN >=1 and RN <=10;
+	
+	
+select rn,c.*
+		from(select Rownum as rn,a.*,star
+			from camping_table a, campingheart_table d,
+				(select c_cam_no, avg(c_campingstar) as star
+				from campingreview_table 
+				group by c_cam_no) b
+			where a.cam_no=b.c_cam_no and b.c_cam_no=d.h_cam_no
+			ORDER BY a.cam_no desc) c
+		where RN >=1 and RN <=10;
 
 7. 캠핑 리뷰 댓글달기(사장이)
 /*
  * 사장이 자신의 캠핑에서만 대댓글 달게 만들기
  */
-
+drop table campingreview_bossreply_table
 create table campingreview_bossreply_table(	
 	cr_no number(5) primary key,
+	cr_c_no number(5) not null,
 	cr_cam_no number(5) not null,
 	cr_bo_id varchar2(20 char) not null,
-	cr_u_id	varchar2(20 char) not null,
 	cr_replytxt	varchar2(100 char) not null,
 	cr_date	date not null
 );
@@ -415,9 +500,13 @@ create table free_board_table(
 
 create sequence free_board_seq;
 
+<<<<<<< HEAD
 insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유자유','h.jpg',0,'20220110');
 insert into free_board_table values(free_board_seq.nextval,'kim2','자유게시판','자유자유자유','h.jpg',0,'20220110');
 insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유',0,'20220110');
+=======
+insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유자유',0,'20220110');
+>>>>>>> 5d9eaf9a42f07a9b5362930044ff2ae005281223
 
 select * from free_board_table;
 -------------------------------------------------------------------------------------------------------------------------------------
