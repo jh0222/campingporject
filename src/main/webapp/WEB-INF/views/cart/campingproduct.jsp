@@ -108,6 +108,7 @@ table, td, th {
 		<!-- 체크박스 전체 여부 -->
 		<div class="all_check_input_div">
 			<input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
+			<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();">
 		</div>
 		
 		<table class="subject_table">
@@ -130,7 +131,7 @@ table, td, th {
 				<c:forEach items="${campingproduct}" var="c">
 					<tr>
 						<td class="td_width_1 cart_info_td">
-							<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
+							<input name="RowCheck" type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
 							<input type="hidden" class="individual_bookPrice_input" value="${c.ba_price}">
 							<input type="hidden" class="individual_bookCount_input" value="${c.ba_number}">
 							<input type="hidden" class="individual_totalPrice_input" value="${c.ba_price * c.ba_number}">

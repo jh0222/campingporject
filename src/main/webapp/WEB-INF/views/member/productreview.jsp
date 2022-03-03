@@ -105,7 +105,6 @@ table, td, th {
   </div>
 	
   <div class="column middle">
-  <h2>캠핑용품</h2>
 	<table>
 		<tr>
 			<td class="hidden"></td>

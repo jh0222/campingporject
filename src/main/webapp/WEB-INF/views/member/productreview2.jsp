@@ -105,7 +105,6 @@ table, td, th {
   </div>
 	
   <div class="column middle">
-  <h2>밀키트</h2>
 	<table>
 		<tr>
 			<td class="hidden"></td>

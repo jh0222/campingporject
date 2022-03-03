@@ -260,7 +260,7 @@ table, td, th {
 					// 총 갯수
 					totalCount += parseInt($(element).find(".individual_bookCount_input").val());
 				}
-			});
+		});
 			
 			/* 최종 가격 */
 			finalTotalPrice = totalPrice;

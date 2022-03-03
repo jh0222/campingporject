@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,6 +121,11 @@ table, td, th {
 			<td id="cr${cr.r_no }" class="hidden"></td>
 			<td class = "td1">${cr.r_u_name}</td>
 			<td class = "td1">${cr.r_u_phonenumber}</td>
+			<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 0, 3)}"></c:out>
+			-
+			<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 3, 7)}"></c:out>
+         	-
+         	<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 7, 11)}"></c:out>
 			<td class = "td1">${cr.r_cam_name}</td>
 			<td class = "td1"><fmt:formatDate value="${cr.r_campingstartdate}"/> ~ <fmt:formatDate value="${cr.r_campingenddate}"/></td>
 			<td class = "td1">${cr.r_campingheadcount}</td>
