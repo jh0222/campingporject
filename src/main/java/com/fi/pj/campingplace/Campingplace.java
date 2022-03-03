@@ -12,6 +12,7 @@ public class Campingplace {
 	private String cam_latitude;
 	private String cam_longitude;
 	private int cam_headcount;
+	private int cam_liked;
 	private double star;
 	private int from;
 	private int to;
@@ -19,6 +20,28 @@ public class Campingplace {
 	
 	public Campingplace() {
 		// TODO Auto-generated constructor stub
+	}
+
+
+	public Campingplace(int cam_no, String cam_bo_id, String cam_name, String cam_picture, String cam_txt,
+			String cam_phonenumber, int cam_price, String cam_address, String cam_latitude, String cam_longitude,
+			int cam_headcount, int cam_liked, double star, int from, int to) {
+		super();
+		this.cam_no = cam_no;
+		this.cam_bo_id = cam_bo_id;
+		this.cam_name = cam_name;
+		this.cam_picture = cam_picture;
+		this.cam_txt = cam_txt;
+		this.cam_phonenumber = cam_phonenumber;
+		this.cam_price = cam_price;
+		this.cam_address = cam_address;
+		this.cam_latitude = cam_latitude;
+		this.cam_longitude = cam_longitude;
+		this.cam_headcount = cam_headcount;
+		this.cam_liked = cam_liked;
+		this.star = star;
+		this.from = from;
+		this.to = to;
 	}
 
 
@@ -132,6 +155,16 @@ public class Campingplace {
 	}
 
 
+	public int getCam_liked() {
+		return cam_liked;
+	}
+
+
+	public void setCam_liked(int cam_liked) {
+		this.cam_liked = cam_liked;
+	}
+
+
 	public double getStar() {
 		return star;
 	}
@@ -160,26 +193,6 @@ public class Campingplace {
 	public void setTo(int to) {
 		this.to = to;
 	}
-
-
-	public Campingplace(int cam_no, String cam_bo_id, String cam_name, String cam_picture, String cam_txt,
-			String cam_phonenumber, int cam_price, String cam_address, String cam_latitude, String cam_longitude,
-			int cam_headcount, double star, int from, int to) {
-		super();
-		this.cam_no = cam_no;
-		this.cam_bo_id = cam_bo_id;
-		this.cam_name = cam_name;
-		this.cam_picture = cam_picture;
-		this.cam_txt = cam_txt;
-		this.cam_phonenumber = cam_phonenumber;
-		this.cam_price = cam_price;
-		this.cam_address = cam_address;
-		this.cam_latitude = cam_latitude;
-		this.cam_longitude = cam_longitude;
-		this.cam_headcount = cam_headcount;
-		this.star = star;
-		this.from = from;
-		this.to = to;
-	}
+	
 
 }

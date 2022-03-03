@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class placeReply {
 	private int cr_no;
+	private int cr_c_no;
 	private int cr_cam_no;
 	private String cr_bo_id;
-	private String cr_u_id;
 	private String cr_replytxt;
 	private Date cr_date;
 	
@@ -14,12 +14,12 @@ public class placeReply {
 		// TODO Auto-generated constructor stub
 	}
 
-	public placeReply(int cr_no, int cr_cam_no, String cr_bo_id, String cr_u_id, String cr_replytxt, Date cr_date) {
+	public placeReply(int cr_no, int cr_c_no, int cr_cam_no, String cr_bo_id, String cr_replytxt, Date cr_date) {
 		super();
 		this.cr_no = cr_no;
+		this.cr_c_no = cr_c_no;
 		this.cr_cam_no = cr_cam_no;
 		this.cr_bo_id = cr_bo_id;
-		this.cr_u_id = cr_u_id;
 		this.cr_replytxt = cr_replytxt;
 		this.cr_date = cr_date;
 	}
@@ -30,6 +30,14 @@ public class placeReply {
 
 	public void setCr_no(int cr_no) {
 		this.cr_no = cr_no;
+	}
+
+	public int getCr_c_no() {
+		return cr_c_no;
+	}
+
+	public void setCr_c_no(int cr_c_no) {
+		this.cr_c_no = cr_c_no;
 	}
 
 	public int getCr_cam_no() {
@@ -48,14 +56,6 @@ public class placeReply {
 		this.cr_bo_id = cr_bo_id;
 	}
 
-	public String getCr_u_id() {
-		return cr_u_id;
-	}
-
-	public void setCr_u_id(String cr_u_id) {
-		this.cr_u_id = cr_u_id;
-	}
-
 	public String getCr_replytxt() {
 		return cr_replytxt;
 	}
@@ -72,6 +72,4 @@ public class placeReply {
 		this.cr_date = cr_date;
 	}
 
-	
-	
 }

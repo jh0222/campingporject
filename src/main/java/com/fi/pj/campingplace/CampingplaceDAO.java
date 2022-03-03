@@ -289,19 +289,19 @@ public class CampingplaceDAO {
 	}
 	
 
-	public void likePlace(campingLike cl, HttpServletRequest req) {
-		if (ss.getMapper(PlaceMapper.class).placeLike(cl) == 1) {
+	public void likePlace(Campingplace p,HttpServletRequest req) {
+		if (ss.getMapper(PlaceMapper.class).placeLike(p) == 1) {
 			req.setAttribute("result", "찜 성공");
 		} else {
 			req.setAttribute("result", "찜 실패");
 		}		
 	}
 	
-	public void likePlace_del(campingLike cl, HttpServletRequest req) {
-		if (ss.getMapper(PlaceMapper.class).placeLike_del(cl) == 1) {
-			req.setAttribute("result", "찜 성공");
+	public void likePlace_del(Campingplace p, HttpServletRequest req) {
+		if (ss.getMapper(PlaceMapper.class).placeLike_del(p) == 1) {
+			req.setAttribute("result", "찜 삭제성공");
 		} else {
-			req.setAttribute("result", "찜 실패");
+			req.setAttribute("result", "찜 삭제실패");
 		}		
 	}
 	
@@ -485,6 +485,49 @@ public class CampingplaceDAO {
 		} catch (Exception e) {
 			System.out.println("에러");
 		}
+	}
+
+	public void solveLike(HttpServletRequest req) {
+		// 누를때마다 올꺼니까 눌렀을때 값이 1인지 0-인지 구분
+		
+		// 0이면 찜 목록에 안넣었다는거니까 insert
+		//ss.getMapper(PlaceMapper.class).likeIn(cam_no 들고가기);
+		
+		// 1인데 눌렀다는건 삭제한다는거니까
+	//	ss.getMapper(PlaceMapper.class).likeOut();
+		
+		
+	}
+
+	public void delReplyTxt(placeReply re, HttpServletRequest req) {
+		if (ss.getMapper(PlaceMapper.class).ReplyDel(re) == 1) {
+			req.setAttribute("result", "삭제성공");
+		} else {
+			req.setAttribute("result", "삭제실패");
+		}
+		req.setAttribute("reply", ss.getMapper(PlaceMapper.class).getAllReply(re));
+		
+	}
+
+	public void updateReplyTxt(placeReply re, HttpServletRequest req) {
+		try {
+			if (ss.getMapper(PlaceMapper.class).ReplyUpdate(re) == 1) {
+				req.setAttribute("result", "댓글수정성공");
+			} else {
+				req.setAttribute("result", "댓글수정실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("result", "댓글수정실패");
+		}
+		
+	}
+	
+	//사용자가 리뷰달 수 있는지 확인
+	public void reserveCheck(placeReserve pre, HttpServletRequest req) {
+		req.setAttribute("reserve",ss.getMapper(PlaceMapper.class).reserveCheck(pre));
+		
 	}
 
 	

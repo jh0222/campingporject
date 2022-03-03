@@ -7,18 +7,34 @@ function placedelete(no) {
 }
 
 //캠핑장 리뷰 delete
-function reviewdelete(no,n) {
+function reviewdelete(no,n,id) {
 	let ok = confirm("삭제 하시겠습니까?")
 	if(ok){
-		location.href='review.del?c_no=' + no + '&c_cam_no=' + n + '&cam_no=' + n;
+		location.href='review.del?c_no=' + no + '&c_cam_no=' + n + '&cam_no=' + n + '&r_cam_no=' + n + '&r_u_id=' + id;
 	}
 }
 
 //캠핑장 리뷰 update
-function reviewupdate(no, t, n) {
+function reviewupdate(no, t, n,id) {
 	t = prompt("수정할 내용을 입력하세요.", t);
 	if (t != null && t.length > 0 && t.length < 250) {
-		location.href = 'review.update?c_no=' + no + '&c_campingreview=' + t + '&c_cam_no=' + n + '&cam_no=' + n;
+		location.href = 'review.update?c_no=' + no + '&c_campingreview=' + t + '&c_cam_no=' + n + '&cam_no=' + n + '&r_cam_no=' + n + '&r_u_id=' + id;
+	}
+}
+
+//캠핑장 캠핑장 사장님 댓글 delete
+function replydelete(no,m,n) {
+	let ok = confirm("삭제 하시겠습니까?")
+	if(ok){
+		location.href='reply.del?cr_no=' + no +'&cr_cam_no=' + m+ '&cr_c_no=' + n + '&cam_no=' + m + '&c_cam_no=' + m;
+	}
+}
+
+//캠핑장 사장님 댓글 update
+function replyupdate(no, t, n) {
+	t = prompt("수정할 내용을 입력하세요.", t);
+	if (t != null && t.length > 0 && t.length < 250) {
+		location.href = 'reply.update?cr_no=' + no + '&cr_replytxt=' + t + '&cr_cam_no=' + n + '&cam_no=' + n + '&c_cam_no=' + n;
 	}
 }
 

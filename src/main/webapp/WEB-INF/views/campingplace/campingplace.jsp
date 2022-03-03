@@ -10,29 +10,19 @@ $(function() {
 	//하트찜	
 	$('#heart a').click(function(){ 
 	    let FormVisible = $(this).attr('value');
-		alert(FormVisible);
 		
 		if (FormVisible == 1) {
 			//value=0 찜취소
 			$(this).parent().children("a").removeClass("on");
-			let h_cam_no = $("#cam_no").val();
-		   	alert('111');
-		    let h_u_id = $("#h_u_id").val();
-		    location.href="placelike.delgo?h_cam_no=" + h_cam_no + "&h_u_id=" + h_u_id
-		   				 + "&cam_no=" + h_cam_no + "&c_cam_no=" + h_cam_no;     
+			let cam_no = $(this).next('input').attr('value');
+		    location.href="placelike.delgo2?cam_no=" + cam_no;     
 		    FormVisible = $(this).attr('value', '0'); 
 		    console.log($(this).attr("value")); 
 	    } else {
 	    	//value=0 찜
 		    $(this).addClass("on").prevAll("a").addClass("on");
-		    let h_cam_no = $("#cam_no").val();
-		    alert('000');
-		    let h_u_id = $("#h_u_id").val();
-		    let h_cam_address =  $("#h_cam_address").val();
-		    let h_cam_name =  $("#h_cam_name").val();
-		    let h_campingheart = 0;
-		    location.href="place.go?h_cam_no=" + h_cam_no + "&h_u_id=" + h_u_id + "&h_cam_address=" + h_cam_address +"&h_cam_name=" + h_cam_name + "&h_campingheart=0"
-		    		+ "&cam_no=" + h_cam_no + "&c_cam_no=" + h_cam_no;
+		    let cam_no = $(this).next('input').attr('value');
+		    location.href="placelike.go2?cam_no=" + cam_no;
 		    FormVisible = $(this).attr('value', '1');
 		    console.log($(this).attr("value")); 
 		} 
@@ -91,7 +81,7 @@ ${result }
  -->
 <table border="1">
 	<tr>
-		<th>이름</th>
+		<th>이름</th> 
 		<th>상세설명</th>
 		<th>연락처</th>
 		<th>가격</th>
@@ -101,32 +91,31 @@ ${result }
 	
 	<c:forEach var="c" items="${places}">
 		<tr>
-			<td><a href='placedetail.go?cam_no=${c.cam_no }&c_cam_no=${c.cam_no }&h_cam_no=${c.cam_no }&h_u_id=${sessionScope.loginMember.u_id}'>${c.cam_name }</a></td>
+			<td><a href='placedetail.go?r_cam_no=${c.cam_no }&r_u_id=${sessionScope.loginMember.u_id}&cam_no=${c.cam_no }&c_cam_no=${c.cam_no }&cr_cam_no=${c.cam_no }'>${c.cam_name }</a></td>
 			<td>${c.cam_txt }</td>
 			<td>${c.cam_phonenumber }</td>
 			<td><fmt:formatNumber value="${c.cam_price}" pattern="###,###,###" type="currency" /></td>
 			<td>${c.cam_address }</td>
-			<td>${c.star }</td>
+			<td><fmt:formatNumber value="${c.star }" pattern="0.0"/></td>
 			<td>
-				<input type="hidden" id="cam_no" value="${c.cam_no }" />
-				<input type="hidden" id="h_u_id" value="${sessionScope.loginMember.u_id}" /> 
-				<input type="hidden" id="h_cam_name" value="${c.cam_name }" /> 
-				<input type="hidden" id="h_cam_address" value="${c.cam_address }" /> 
-				<input type="hidden" id="c_cam_no" value="${c.cam_no}" /> 
-				<input type="hidden" id="campingheart" value='0' /> 
-				
-				<c:choose>
-						<c:when test="${heart != null}">
-							<p id="heart">
-								<a href="#" value="1" style="color: red;">♥</a>
-							</p>
-						</c:when>
-						<c:otherwise>
-							<p id="heart">
-								<a href="#" value="0">♥</a>
-							</p>
-						</c:otherwise>
-				</c:choose>
+	
+				<c:if test="${sessionScope.loginMember.u_id != null}">
+	                  <c:choose>
+			               <c:when test="${c.cam_liked == 1 }">
+			                  <p id="heart">
+			                     <a href="#" value="1" style="color: red;">♥</a>
+				<input type="hidden" class="cam_no" value="${c.cam_no }" />
+			                  </p>
+			               </c:when>
+			               <c:otherwise>
+			                  <p id="heart">
+			                     <a href="#" value="0">♥</a>
+			                     <input type="hidden" class="cam_no" value="${c.cam_no }" />
+			                  </p>  
+			               </c:otherwise>
+			            </c:choose>
+   
+				</c:if>
 			</td>
 		</tr>
 	</c:forEach>
@@ -166,5 +155,14 @@ ${result }
 <c:if test="${sessionScope.loginMember3.root_id != null || sessionScope.loginMember2.bo_id != null}">
 	<button onclick="location.href='placereg.go'">캠핑장 등록하기</button>
 </c:if>
+
+<script>
+
+
+</script>
+
+
+
+
 </body>
 </html>

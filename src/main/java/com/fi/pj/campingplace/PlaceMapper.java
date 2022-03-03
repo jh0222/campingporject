@@ -30,11 +30,11 @@ public interface PlaceMapper {
 	public int reserve(placeReserve res);
 	
 	//캠핑장 찜 
-	public int placeLike(campingLike cl);
+	public int placeLike(Campingplace p);
 	//캠핑장 찜 목록
 	public List<campingLike> getHeartList();
 	//찜 취소 
-	public int placeLike_del(campingLike cl);
+	public int placeLike_del(Campingplace p);
 	//찜 있는지 없는지
 	public String getheart(campingLike cl);
 	
@@ -61,6 +61,12 @@ public interface PlaceMapper {
 	public List<placeReply> getAllReply(placeReply re);
 	//사장님 리뷰 답글 등록
 	public int ReplytxtReg(placeReply re);
+	//사장님 리뷰 답글 삭제
+	public int ReplyDel(placeReply re);
+	//사장님 리뷰 답글 수정
+	public int ReplyUpdate(placeReply re);
+	//리뷰체크
+	public String reserveCheck(placeReserve pre);
 	
 	
 	

@@ -37,29 +37,19 @@ $(function() {
 //하트찜	
 	$('#heart a').click(function(){ 
 	    let FormVisible = $(this).attr('value');
-		alert(FormVisible);
 		
 		if (FormVisible == 1) {
 			//value=0 찜취소
 			$(this).parent().children("a").removeClass("on");
-			let h_cam_no = $("#cam_no").val();
-		   	alert('111');
-		    let h_u_id = $("#h_u_id").val();
-		    location.href="placelike.delgo?h_cam_no=" + h_cam_no + "&h_u_id=" + h_u_id
-		   				 + "&cam_no=" + h_cam_no + "&c_cam_no=" + h_cam_no;     
+			let cam_no = $("#cam_no").val();
+		    location.href="placelike.delgo?cam_no=" + cam_no;     
 		    FormVisible = $(this).attr('value', '0'); 
 		    console.log($(this).attr("value")); 
 	    } else {
 	    	//value=0 찜
 		    $(this).addClass("on").prevAll("a").addClass("on");
-		    let h_cam_no = $("#cam_no").val();
-		    alert('000');
-		    let h_u_id = $("#h_u_id").val();
-		    let h_cam_address =  $("#h_cam_address").val();
-		    let h_cam_name =  $("#h_cam_name").val();
-		    let h_campingheart = 0;
-		    location.href="placelike.go?h_cam_no=" + h_cam_no + "&h_u_id=" + h_u_id + "&h_cam_address=" + h_cam_address +"&h_cam_name=" + h_cam_name + "&h_campingheart=0"
-		    		+ "&cam_no=" + h_cam_no + "&c_cam_no=" + h_cam_no;
+		    let cam_no = $("#cam_no").val();
+		    location.href="placelike.go?cam_no=" + cam_no;
 		    FormVisible = $(this).attr('value', '1');
 		    console.log($(this).attr("value")); 
 		} 
@@ -166,7 +156,7 @@ $(function() {
 						pattern="###,###,###" type="currency" /></td>
 				<td>${places.cam_address }</td>
 				<td><img src="resources/img/${places.cam_picture }" width="300"
-					height="200"></td>
+					height="200" class="place"></td>
 
 				<!-- 자신의 아이디일 경우 -->
 				<c:if test="${sessionScope.loginMember2.bo_id == places.cam_bo_id}">
@@ -181,9 +171,10 @@ $(function() {
 					<input type="hidden" id="h_cam_address" value="${places.cam_address }" /> 
 					<input type="hidden" id="c_cam_no" value="${places.cam_no}" /> 
 					<input type="hidden" id="campingheart" value='0' /> 
- 
+ 					
+ 					<c:if test="${sessionScope.loginMember.u_id != null}">
 					<c:choose>
-						<c:when test="${heart != null}">
+						<c:when test="${places.cam_liked == 1}">
 							<p id="heart">
 								<a href="#" value="1" style="color: red;">♥</a>
 							</p>
@@ -194,13 +185,13 @@ $(function() {
 							</p>
 						</c:otherwise>
 					</c:choose>
-				
+					</c:if>
 				</td>
 				
 			</tr>
 		</table>
 	
-<c:if test="">
+	<c:if test="${reserve != null }">
 		<form action="review.Reg">
 			<table border="1" >
 				<tr>
@@ -223,12 +214,16 @@ $(function() {
 						<input type="hidden" name="cam_no" value="${places.cam_no }"> 
 						<input type="hidden" name="c_u_id" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}">
 						<input type="hidden" name="c_campingstar" value=""/>
+						<input type="hidden" name="cr_cam_no" value="${places.cam_no }"/>
+						<input type="hidden" name="r_cam_no" value="${places.cam_no }"/>
+						<input type="hidden" name="r_u_id" value="${sessionScope.loginMember.u_id}"/>
 						<input type="submit" name="submit"  value="등록">
 					</td>
 				</tr>
 			</table>
 		</form>
-</c:if>	
+	</c:if>
+	
 	<c:forEach var="r" items="${reviews}">
 	<table border="1">
 			
@@ -236,7 +231,7 @@ $(function() {
 					
 					<td width="50" align="center">${r.c_u_id }</td>
 					<td width="200" height="50">${r.c_campingreview }</td>
-					
+					<td width="100">${r.c_date }</td>
  				<td width="100" align="center">
 				<c:if test="${r.c_campingstar == 1}">
 				<p id="star"><a href="#"style="color: red;">★ </a></p>
@@ -254,18 +249,18 @@ $(function() {
 				<p id="star"><a href="#"style="color: red;">★★★★★</a></p>
 				</c:if>
 				</td>
-					
 					<c:if test="${sessionScope.loginMember.u_id == r.c_u_id}">
 						<td colspan="2" width="100" align="center">
-							<button onclick="reviewdelete(${r.c_no},${places.cam_no });">삭제</button>
-							<button onclick="reviewupdate(${r.c_no},'${r.c_campingreview }',${places.cam_no });">수정</button>
+							<button onclick="reviewdelete(${r.c_no},${places.cam_no },${sessionScope.loginMember.u_id});">삭제</button>
+							<button onclick="reviewupdate(${r.c_no},'${r.c_campingreview }',${places.cam_no },${sessionScope.loginMember.u_id});">수정</button>
 						</td>
 					</c:if>
 				</tr>
 			
 	</table>
+	
 	<!-- 사장님 답글 insert-->
-		<c:if test="${sessionScope.loginMember.u_id != null || sessionScope.loginMember2.bo_id != null || sessionScope.loginMember3 != null}">
+		<c:if test="${sessionScope.loginMember2.bo_id == places.cam_bo_id}">
 			<form action="replytxt.Reg">
 					<table border="1" >
 						<tr>
@@ -277,35 +272,38 @@ $(function() {
 								<textarea name="cr_replytxt"></textarea>
 							</td>
 							<td width="93" align="center">
-								
+								<input type="hidden" name="cr_c_no" value="${r.c_no }"> 
 								<input type="hidden" name="cr_cam_no" value="${places.cam_no }"> 
 								<input type="hidden" name="cr_bo_id" value="${sessionScope.loginMember2.bo_id}">
-								<input type="hidden" name="cr_u_id" value="${sessionScope.loginMember.u_id}">
-								<input type="hidden" name="cr_replytxt" value=""/>
+								<input type="hidden" name="cam_no" value="${places.cam_no }">
+								<input type="hidden" name="c_cam_no" value="${places.cam_no }">
 								<input type="submit" name="submit"  value="등록">
 							</td>
 						</tr>
 					</table>
 			</form>
 			</c:if>
+			
+			
 			<!-- 사장님 답글 select -->
-			<c:if test="${r.c_no==param.cr_no }">
+			<c:forEach var="reply" items="${reply}">
+			<c:if test="${r.c_no==reply.cr_c_no }">
 			<table border="1">
 				<tr>			
-					<td width="50" align="center">사장님:${param.cr_bo_id }</td>
-					<td width="200" height="50">${param.cr_replytxt }</td>
-	 				<td width="100">${param.cr_date }</td>
-					<c:if test="${sessionScope.loginMember2.bo_id == param.cr_bo_id}">
+					<td width="50" align="center">사장님:${reply.cr_bo_id }</td>
+					<td width="200" height="50">${reply.cr_replytxt }</td>
+	 				<td width="100">${reply.cr_date }</td>
+					<c:if test="${sessionScope.loginMember2.bo_id == reply.cr_bo_id}">
 						<td colspan="2" width="100" align="center">
-							<button onclick="replydelete(${param.cr_no},${param.cr_cam_no });">삭제</button>
-							<button onclick="replyupdate(${param.cr_no},'${param.cr_replytxt }',${param.cr_cam_no });">수정</button>
+							<button onclick="replydelete(${reply.cr_no},${reply.cr_cam_no },${reply.cr_c_no });">삭제</button>
+							<button onclick="replyupdate(${reply.cr_no},'${reply.cr_replytxt }',${reply.cr_cam_no });">수정</button>
 						</td>
 					</c:if>
 				</tr>
 			</table>
 		</c:if>
+			</c:forEach>
 	</c:forEach>
-
 <!-- 캠핑장 예약 -->
 </div>
 	<div style="float: right">
