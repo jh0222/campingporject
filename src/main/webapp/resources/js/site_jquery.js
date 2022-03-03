@@ -155,16 +155,16 @@ $(function() {
 		
 		if(updatebtnVal == 'updateGo'){
 			let updateInput = $('<input>');
-			let replyTd = $(this).closest('tr').find('.replyTd')
-			let myVal = replyTd.text();
-			replyTd.text('');
-			replyTd.append(updateInput);
+			let reply = $(this).parents('div').next('.reply_select_txt')
+			let myVal = reply.text();
+			reply.text('');
+			reply.append(updateInput);
 			$(updateInput).val(myVal);
 			updatebtnVal = $(this).attr('value', 'updateDo');
 		} else{
 			let tip_no = $(this).next('.fbVal').val();
 			let tipr_no = $(this).next().next('.frVal1').val();
-			let tipr_replytxt = $(this).closest('tr').find('.replyTd').find('input').val();
+			let tipr_replytxt = $(this).parents('div').next('.reply_select_txt').find('input').val();
 			location.href="ctr.update?tipr_no=" + tipr_no  + "&tipr_replytxt=" + tipr_replytxt + "&tip_no=" + tip_no;
 			updatebtnVal = $(this).attr('value', 'updateGo');
 		}
@@ -176,16 +176,16 @@ $(function() {
 		
 		if(updatebtnVal == 'updateGo'){
 			let updateInput = $('<input>');
-			let replyTd = $(this).closest('tr').find('.replyTd')
-			let myVal = replyTd.text();
-			replyTd.text('');
-			replyTd.append(updateInput);
+			let reply = $(this).parents('div').next('.reply_select_txt')
+			let myVal = reply.text();
+			reply.text('');
+			reply.append(updateInput);
 			$(updateInput).val(myVal);
 			updatebtnVal = $(this).attr('value', 'updateDo');
 		} else{
 			let rb_no = $(this).next('.fbVal').val();
 			let rr_no = $(this).next().next('.frVal1').val();
-			let rr_replytxt = $(this).closest('tr').find('.replyTd').find('input').val();
+			let rr_replytxt = $(this).parents('div').next('.reply_select_txt').find('input').val();
 			location.href="rr.update?rr_no=" + rr_no  + "&rr_replytxt=" + rr_replytxt + "&rb_no=" + rb_no;
 			updatebtnVal = $(this).attr('value', 'updateGo');
 		}

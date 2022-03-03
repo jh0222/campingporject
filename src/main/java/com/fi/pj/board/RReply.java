@@ -12,6 +12,7 @@ public class RReply {
 	private Date rr_date;
 	private int rr_depth;
 	private String rr_picture;
+	private int cnt;
 	public RReply() {
 		// TODO Auto-generated constructor stub
 	}
@@ -69,8 +70,14 @@ public class RReply {
 	public void setRr_picture(String rr_picture) {
 		this.rr_picture = rr_picture;
 	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public RReply(int rr_no, int rr_rb_no, String rr_u_id, int rr_owner_no, String rr_owner_id, String rr_replytxt,
-			Date rr_date, int rr_depth, String rr_picture) {
+			Date rr_date, int rr_depth, String rr_picture, int cnt) {
 		super();
 		this.rr_no = rr_no;
 		this.rr_rb_no = rr_rb_no;
@@ -81,6 +88,8 @@ public class RReply {
 		this.rr_date = rr_date;
 		this.rr_depth = rr_depth;
 		this.rr_picture = rr_picture;
+		this.cnt = cnt;
 	}
+	
 	
 }

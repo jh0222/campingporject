@@ -516,7 +516,8 @@ public class BoardDAO {
 	    
 		List<CtReply> fr = ss.getMapper(BoardMapper.class).getctreply(p);
 		List<CtReply> frr = ss.getMapper(BoardMapper.class).getctrreply(cb);
-
+		List<CtReply> frr_cnt = ss.getMapper(BoardMapper.class).getctrreply_cnt(cb);
+		
 		int total = ss.getMapper(BoardMapper.class).getAllctreplycnt(cb); //총 게시물 수
 	    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
 	    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
@@ -535,7 +536,7 @@ public class BoardDAO {
 	    req.setAttribute("allPage", allPage);
 	    req.setAttribute("fr", fr);
 	    req.setAttribute("frr", frr);
-		
+	    req.setAttribute("frr_cnt", frr_cnt);
 	}
 
 	//캠핑팁 수정
@@ -833,7 +834,8 @@ public class BoardDAO {
 	    
 		List<RReply> fr = ss.getMapper(BoardMapper.class).getrreply(p);
 		List<RReply> frr = ss.getMapper(BoardMapper.class).getrrreply(r);
-
+		List<RReply> frr_cnt = ss.getMapper(BoardMapper.class).getrrreply_cnt(r);
+		
 		int total = ss.getMapper(BoardMapper.class).getAllrreplycnt(r); //총 게시물 수
 	    int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
 	    //int totalPage = total/rowSize + (total%rowSize==0?0:1);
@@ -852,7 +854,7 @@ public class BoardDAO {
 	    req.setAttribute("allPage", allPage);
 	    req.setAttribute("fr", fr);
 	    req.setAttribute("frr", frr);
-		
+	    req.setAttribute("frr_cnt", frr_cnt);
 	}
 
 	//캠핑팁 수정

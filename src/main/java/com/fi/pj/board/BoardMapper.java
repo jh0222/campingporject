@@ -124,5 +124,8 @@ public interface BoardMapper {
 	public List<Campingtipboard> tippopular();
 	public List<Recipe> recipepopular();
 	
+	public List<CtReply> getctrreply_cnt(Campingtipboard cb);
+	public List<RReply> getrrreply_cnt(Recipe r);
+	
 	
 }

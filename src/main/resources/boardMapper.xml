@@ -203,6 +203,12 @@
 		select count(*) from campingtip_board_reply_table where tipr_tip_no=#{tip_no} and tipr_owner_no is null
 	</select>
 	
+	<select id="getctrreply_cnt" resultType="com.fi.pj.board.CtReply" parameterType="com.fi.pj.board.Campingtipboard">
+		select count(*)as cnt ,tipr_owner_no from campingtip_board_reply_table
+		where tipr_tip_no=#{tip_no} and tipr_owner_no is not null 
+		group by tipr_owner_no
+	</select>
+	
 	<!-- 수정 -->
 	<update id="CtUpdate" parameterType="com.fi.pj.board.Campingtipboard">
 		update campingtip_board_table set tip_subject=#{tip_subject},tip_txt=#{tip_txt}
@@ -334,6 +340,12 @@
 	
 	<select id="getAllrreplycnt" resultType="Integer" parameterType="com.fi.pj.board.Recipe">
 		select count(*) from  recipe_board_reply_table where rr_rb_no=#{rb_no} and rr_owner_no is null
+	</select>
+	
+	<select id="getrrreply_cnt" resultType="com.fi.pj.board.RReply" parameterType="com.fi.pj.board.Recipe">
+		select count(*)as cnt ,rr_owner_no from recipe_board_reply_table
+		where rr_rb_no=#{rb_no} and rr_owner_no is not null 
+		group by rr_owner_no
 	</select>
 	
 	<!-- 수정 -->

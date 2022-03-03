@@ -162,7 +162,7 @@
 								|| sessionScope.loginMember3 != null}">
 						<button class="replybtnbtn">답글</button>
 					</c:if>
-					</div>
+				</div>
 			</div>
 			
 			<div class="reply1_insert" style="display:none;">
