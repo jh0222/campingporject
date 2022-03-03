@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,6 +83,10 @@ table, td, th {
     padding : 10px;
 }
 
+.td1 {	
+	text-align: center;
+}
+
 .hidden {
 	display: none;
 }
@@ -90,27 +95,25 @@ table, td, th {
 <body>
 <div class="row">
   <div class="column side">
-   	<jsp:include page="${myPage }"></jsp:include>
+	<jsp:include page="${myPage }"></jsp:include>
   </div>
-  
   <div class="topnav">
   </div>
-	
   <div class="column middle">
-  <h2></h2>
 	<table>
 		<tr>
-			<td class="hidden"></td>
-			<td>캠핑명</td>
-			<td>캠핑주소</td>
-			<td></td>
+			<td class="hidden">번호</td>
+			<td class="td1">제목</td>
+			<td class="td1">조회수</td>
+			<td class="td1">작성 날짜</td>
 		</tr>
-	<c:forEach var="cj" items="${campingjjim}">
-		<tr>	
-			<td id="cj${cj.h_no}" class="hidden"></td>
-			<td><a href="">${cj.h_cam_name}</a></td>
-			<td>${cj.h_cam_address }</td>
-			<td><button value="${cj.h_campingheart }" onclick="jjimdel('${cj.h_no }','${cj.h_u_id }')">삭제</button></td>
+	<c:forEach var="f" items="${freeboard}">
+		<tr>
+			<td class="hidden"></td>
+			<td class="td1"><a href="">${f.f_subject }</a></td>
+			<!-- 제목 클릭하면 내가 쓴 자유게시판으로 넘어가기 -->
+			<td class="td1">${f.f_readcount }</td>
+			<td class="td1"><fmt:formatDate value="${f.f_date}"/></td>
 		</tr>
 	</c:forEach>
 	</table>

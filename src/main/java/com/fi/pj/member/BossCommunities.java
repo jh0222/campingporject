@@ -14,6 +14,7 @@ public class BossCommunities {
 	private int cam_price;
 	private String cam_address;
 	
+	
 	// 캠핑을 예약한 사용자의 정보
 	private int r_no;
 	private int r_cam_no;
@@ -795,7 +796,7 @@ public class BossCommunities {
 		return f_readcount;
 	}
 
-	public void setF_readcount(int freeboard) {
+	public void setF_readcount(int f_readcount) {
 		this.f_readcount = f_readcount;
 	}
 

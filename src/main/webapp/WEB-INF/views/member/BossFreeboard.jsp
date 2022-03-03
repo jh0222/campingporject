@@ -11,7 +11,11 @@
 <body>
 <jsp:include page="${BossCommunities }"></jsp:include>
 <jsp:include page="${community }"></jsp:include>
-
+<c:choose>
+	<c:when test="${f.f_no eq null}">
+		<h1>작성한 내용이 없습니다.</h1>
+	</c:when>
+	<c:otherwise>
 	<table border="1">
 		<tr>
 			<td>번호</td>
@@ -29,7 +33,7 @@
 		</tr>
 	</c:forEach>
 	</table>
-
-
+</c:otherwise>
+</c:choose>
 </body>
 </html>

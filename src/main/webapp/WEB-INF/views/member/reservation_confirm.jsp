@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,6 +85,10 @@ table, td, th {
     padding : 10px;
 }
 
+.td1 {	
+	text-align: center;
+}
+
 .hidden {
 	display: none;
 }
@@ -90,7 +97,7 @@ table, td, th {
 <body>
 <div class="row">
   <div class="column side">
-   	<jsp:include page="${myPage }"></jsp:include>
+	<jsp:include page="${myPage }"></jsp:include>
   </div>
   
   <div class="topnav">
@@ -101,16 +108,29 @@ table, td, th {
 	<table>
 		<tr>
 			<td class="hidden"></td>
-			<td>캠핑명</td>
-			<td>캠핑주소</td>
-			<td></td>
+			<td class = "td1">예약자명</td>
+			<td class = "td1">전화번호</td>
+			<td class = "td1">캠핑명</td>
+			<td class = "td1">예약 날짜</td>
+			<td class = "td1">예약 인원수</td>
+			<td class = "td1">최종금액</td>
+			<td class = "td1">예약 취소<td>
 		</tr>
-	<c:forEach var="cj" items="${campingjjim}">
-		<tr>	
-			<td id="cj${cj.h_no}" class="hidden"></td>
-			<td><a href="">${cj.h_cam_name}</a></td>
-			<td>${cj.h_cam_address }</td>
-			<td><button value="${cj.h_campingheart }" onclick="jjimdel('${cj.h_no }','${cj.h_u_id }')">삭제</button></td>
+	<c:forEach var="cr" items="${campingreserve}">
+		<tr>
+			<td id="cr${cr.r_no }" class="hidden"></td>
+			<td class = "td1">${cr.r_u_name}</td>
+			<td class = "td1">${cr.r_u_phonenumber}</td>
+			<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 0, 3)}"></c:out>
+			-
+			<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 3, 7)}"></c:out>
+         	-
+         	<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 7, 11)}"></c:out>
+			<td class = "td1">${cr.r_cam_name}</td>
+			<td class = "td1"><fmt:formatDate value="${cr.r_campingstartdate}"/> ~ <fmt:formatDate value="${cr.r_campingenddate}"/></td>
+			<td class = "td1">${cr.r_campingheadcount}</td>
+			<td class = "td1">${cr.r_campingprice}</td>
+			<td class = "td1"><button onclick="reservedel('${cr.r_no}','${cr.r_u_id }')" >취소</button></td>
 		</tr>
 	</c:forEach>
 	</table>

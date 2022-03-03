@@ -22,25 +22,41 @@ public class BossCommunitiresDAO {
 
 	// 등록된 캠핑 정보
 	public void CampingInfo(BossCommunities bc, HttpServletRequest req) {
-
-		List<BossCommunities> campinginfo = ss.getMapper(BossCommunitiesMapper.class).campinginfo(bc);
-
-		req.setAttribute("cam" + "" + "pinginfo", campinginfo);
+		
+		req.setAttribute("campinginfo", ss.getMapper(BossCommunitiesMapper.class).campinginfo(bc));
+		
 	}
 
 	// 캠핑 정보 수정
 	public void CampingInfoUp(BossCommunities bc, HttpServletRequest req) {
-
+		System.out.println(bc.getCam_no());
+		System.out.println(bc.getCam_name());
 		String path = req.getSession().getServletContext().getRealPath("resources/img");
 		MultipartRequest mr = null;
 		String oldFile = bc.getCam_picture();
 		String newFile = null;
 		try {
 			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+			int cam_no = Integer.parseInt(mr.getParameter("cam_no"));
+			String cam_name = mr.getParameter("name");
+			String cam_txt = mr.getParameter("txt");
+			String cam_phonenumber = mr.getParameter("phonenumber");
+			int cam_price = Integer.parseInt(mr.getParameter("price"));
+			String cam_address = mr.getParameter("address");
+			
+			bc.setCam_no(cam_no);
+			bc.setCam_name(cam_name);
+			bc.setCam_txt(cam_txt);
+			bc.setCam_phonenumber(cam_phonenumber);
+			bc.setCam_price(cam_price);
+			bc.setCam_address(cam_address);
+			
 			newFile = mr.getFilesystemName("cam_picture");
 			if (newFile == null) {
 				newFile = oldFile;
+				bc.setCam_picture(oldFile);
 			} else {
+				bc.setCam_picture(newFile);
 				newFile = URLEncoder.encode(newFile, "utf-8");
 				newFile = newFile.replace("+", " ");
 			}
@@ -105,9 +121,9 @@ public class BossCommunitiresDAO {
 
 	// 사용자들이 예약한 정보
 	public void campingreserve(BossCommunities bc, HttpServletRequest req) {
-		
 		List<BossCommunities> campingreserve = ss.getMapper(BossCommunitiesMapper.class).campingreserve(bc);
 		req.setAttribute("campingreserve", campingreserve);
+		System.out.println(bc.getR_no());
 	}
 
 	// 구매 목록
@@ -122,58 +138,35 @@ public class BossCommunitiresDAO {
 	// 내글
 	public void communities(BossCommunities bc, HttpServletRequest request) {
 
-		List<Communities> communities = ss.getMapper(BossCommunitiesMapper.class).communities(bc);
+		List<BossCommunities> communities = ss.getMapper(BossCommunitiesMapper.class).communities(bc);
 		request.setAttribute("freeboard", communities);
 	}
 
 	// 자유게시판
 	public void Bfreeboard(BossCommunities bc, HttpServletRequest request) {
 
-		List<Communities> freeboard = ss.getMapper(BossCommunitiesMapper.class).freeboard(bc);
+		List<BossCommunities> freeboard = ss.getMapper(BossCommunitiesMapper.class).freeboard(bc);
 		request.setAttribute("freeboard", freeboard);
-	}
-
-	// 캠핑찜
-	public void campingjjim(BossCommunities bc, HttpServletRequest request) {
-
-		List<Communities> campingjjim = ss.getMapper(BossCommunitiesMapper.class).campingjjim(bc);
-		request.setAttribute("campingjjim", campingjjim);
-	}
-
-	// 캠핑찜 삭제
-	public void campingjjimdel(BossCommunities bc, HttpServletRequest request) {
-		try {
-			int jjimdel = ss.getMapper(BossCommunitiesMapper.class).campingjjimdel(bc);
-
-			if (jjimdel == 1) {
-				request.setAttribute("result", "삭제성공");
-			} else {
-				request.setAttribute("result", "삭제실패");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("result", "삭제실패");
-		}
 	}
 
 	// 캠핑팁
 	public void campingtip(BossCommunities bc, HttpServletRequest request) {
-		List<Communities> campingtip = ss.getMapper(BossCommunitiesMapper.class).campingtip(bc);
+		List<BossCommunities> campingtip = ss.getMapper(BossCommunitiesMapper.class).campingtip(bc);
 		request.setAttribute("campingtip", campingtip);
 	}
 
 	// 레시피
 	public void recipe(BossCommunities bc, HttpServletRequest request) {
-		List<Communities> recipe = ss.getMapper(BossCommunitiesMapper.class).recipe(bc);
+		List<BossCommunities> recipe = ss.getMapper(BossCommunitiesMapper.class).recipe(bc);
 		request.setAttribute("recipe", recipe);
 	}
 
 	// 구매용품 리뷰
 	public void productreview(BossCommunities bc, HttpServletRequest request) {
-		List<Communities> productreview = ss.getMapper(BossCommunitiesMapper.class).productreview(bc);
+		List<BossCommunities> productreview = ss.getMapper(BossCommunitiesMapper.class).productreview(bc);
 		request.setAttribute("productreview", productreview);
 
-		List<Communities> mealreview = ss.getMapper(BossCommunitiesMapper.class).mealreview(bc);
+		List<BossCommunities> mealreview = ss.getMapper(BossCommunitiesMapper.class).mealreview(bc);
 		request.setAttribute("mealreview", mealreview);
 	}
 
@@ -247,7 +240,7 @@ public class BossCommunitiresDAO {
 
 	// 자유게시판 리뷰
 	public void freeboardreview(BossCommunities bc, HttpServletRequest request) {
-		List<Communities> freeboardreview = ss.getMapper(BossCommunitiesMapper.class).freeboardreview(bc);
+		List<BossCommunities> freeboardreview = ss.getMapper(BossCommunitiesMapper.class).freeboardreview(bc);
 		request.setAttribute("freeboardreview", freeboardreview);
 	}
 
@@ -287,7 +280,7 @@ public class BossCommunitiresDAO {
 
 	// 캠핑팁 리뷰
 	public void campingtipreview(BossCommunities bc, HttpServletRequest request) {
-		List<Communities> campingtipreview = ss.getMapper(BossCommunitiesMapper.class).campingtipreview(bc);
+		List<BossCommunities> campingtipreview = ss.getMapper(BossCommunitiesMapper.class).campingtipreview(bc);
 		request.setAttribute("campingtipreview", campingtipreview);
 	}
 
@@ -327,7 +320,7 @@ public class BossCommunitiresDAO {
 
 	// 레시피 리뷰
 	public void recipereview(BossCommunities bc, HttpServletRequest request) {
-		List<Communities> recipereview = ss.getMapper(BossCommunitiesMapper.class).recipereview(bc);
+		List<BossCommunities> recipereview = ss.getMapper(BossCommunitiesMapper.class).recipereview(bc);
 		request.setAttribute("recipereview", recipereview);
 	}
 

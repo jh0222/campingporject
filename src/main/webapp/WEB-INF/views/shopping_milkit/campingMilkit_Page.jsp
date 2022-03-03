@@ -58,7 +58,9 @@
 	<h3 class="Product_h3">고캠핑 밀키트</h3>
 	
 	
-
+	<table border="1" style="position: absolute; width: 100%">
+		<c:set var="i" value="0" />
+		<c:set var="j" value="2" />
 		<c:forEach var="fp" items="${milkits}">
 		<table class="table_product">
 			<tr>
@@ -70,6 +72,9 @@
 			<tr>	
 			<td class="table_product_td1" onclick="location.href = 'detail.milkit?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&MilkitName=${fp.fp_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'">${fp.fp_name }</td>
 			</tr>
+			<td onclick="location.href = 'detail.milkit?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&MilkitName=${fp.fp_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'">${fp.fp_name }</td>
+
+			<td><fmt:formatNumber value="${fp.fp_price}" type="currency" /></td>
 			
 			<tr>
 			<td class="table_product_td2"><fmt:formatNumber value="${fp.fp_price}" type="currency" /></td>
@@ -78,6 +83,9 @@
 			<tr>
 			<c:if test="${sessionScope.loginMember3.root_id != null}">
 				<td><button class="table_product_del" onclick="m_del(${fp.fp_no})">삭제</button></td>
+				<td><button onclick="m_del(${fp.fp_no})">삭제</button></td>
+			</c:if>
+			<c:if test="${i%j == j-1 }">
 			</c:if>
 			</tr>
 		</table>

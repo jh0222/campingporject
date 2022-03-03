@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,35 +83,44 @@ table, td, th {
     padding : 10px;
 }
 
+.td1 {	
+	text-align: center;
+}
+
 .hidden {
 	display: none;
 }
 </style>
+
 </head>
 <body>
 <div class="row">
   <div class="column side">
-   	<jsp:include page="${myPage }"></jsp:include>
+	<jsp:include page="${myPage }"></jsp:include>
   </div>
   
   <div class="topnav">
+  	<a href = "Cproductreview?pr_u_bo_id=${sessionScope.loginMember.u_id}">캠핑용품</a> /
+  	<a href = "Mproductreview?fpr_u_bo_id=${sessionScope.loginMember.u_id}">밀키트</a>
   </div>
 	
   <div class="column middle">
-  <h2></h2>
 	<table>
 		<tr>
 			<td class="hidden"></td>
-			<td>캠핑명</td>
-			<td>캠핑주소</td>
-			<td></td>
+			<td class="td1">내용</td>
+			<td class="td1">작성날짜</td>
+			<td colspan="2" class="td1">수정/삭제</td>
 		</tr>
-	<c:forEach var="cj" items="${campingjjim}">
-		<tr>	
-			<td id="cj${cj.h_no}" class="hidden"></td>
-			<td><a href="">${cj.h_cam_name}</a></td>
-			<td>${cj.h_cam_address }</td>
-			<td><button value="${cj.h_campingheart }" onclick="jjimdel('${cj.h_no }','${cj.h_u_id }')">삭제</button></td>
+	<c:forEach var="m" items="${mealreview}">
+		<tr>
+			<td class="hidden" id="fpru${m.fpr_no}"></td>
+			<td class="td1"><input name="fpr_txt" value="${m.fpr_txt}"></td>
+			<td class="td1"><fmt:formatDate value="${m.fpr_date}"/></td>
+			<td class="td1">
+				<button onclick="mealreviewup('${m.fpr_no}','${m.fpr_u_bo_id}')">수정</button>
+				<button onclick="mealreviewdel('${m.fpr_no}','${m.pr_u_bo_id}')">삭제</button>
+			</td>
 		</tr>
 	</c:forEach>
 	</table>

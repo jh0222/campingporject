@@ -28,6 +28,7 @@
 <script type="text/javascript" src="resources/js/shopping.js"></script>
 <script type="text/javascript" src="resources/js/shoppingorder.js"></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="resources/js/cart.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/shopping.js"></script>
 <script type="text/javascript" src="resources/js/shoppingorder.js"></script>
@@ -48,7 +49,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 -->
-<title>Insert title here</title>
 </head>
 <body>
 ${result }
