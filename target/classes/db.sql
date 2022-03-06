@@ -423,7 +423,7 @@ create table guest_product_basket_table(
 	ba_price number(10) not null, /*(수량*p_price)*/
 	ba_number number(5) not null /* 갯수 */
 );
-
+select * from guest_product_basket_table;
 create sequence product_basket_seq;
 
 insert into guest_product_basket_table values (product_basket_seq.nextval,3,'kim','캠핑용품','b.jpg',10000,1);
@@ -442,12 +442,6 @@ select * from guest_product_basket_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 13. 밀키트 장바구니
 drop table guest_foodproduct_basket_table;
-drop table guest_foodproduct_basket_table
-create table guest_foodproduct_basket_table(
-	fba_no number(5) primary key,
-	fba_fp_no	number(5) not null,
-	fba_u_bo_id varchar2(20 char) not null,
-	fba_fp_name varchar2(20 char) not null,
 
 create table guest_foodproduct_basket_table(
 
@@ -463,7 +457,18 @@ create table guest_foodproduct_basket_table(
 create sequence foodproduct_basket_seq;
 
 insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,1,'kim','밀키트','a.jpg',10000,1);
-insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,3,'kim2','밀키트','b.jpg',10000,1);
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,3,'kim','밀키트','a.jpg',5000,3);
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,45,'kim','밀키트','a.jpg',13000,3);
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,35,'kim','밀키트','a.jpg',21000,6);
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,2,'kim','밀키트','a.jpg',21000,2);
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,67,'kim','밀키트','a.jpg',10000,5);
+
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,1,'kim2','밀키트','a.jpg',10000,1);
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,3,'kim2','밀키트','a.jpg',5000,3);
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,45,'kim2','밀키트','a.jpg',13000,3);
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,35,'kim2','밀키트','a.jpg',21000,6);
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,2,'kim2','밀키트','a.jpg',21000,2);
+insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,67,'kim2','밀키트','a.jpg',10000,5);
 
 select * from guest_foodproduct_basket_table;
 -------------------------------------------------------------------------------------------------------------------------------------

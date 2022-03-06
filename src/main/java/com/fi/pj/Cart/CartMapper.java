@@ -13,6 +13,11 @@ public interface CartMapper {
 
 	public int cartup(CartBean c);
 
+	public int mealkitup(CartBean c);
+
 	public int cartdel(CartBean c);
+
+	public int selectdel(String no);
+
 
 }

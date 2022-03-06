@@ -65,6 +65,7 @@ public class CartDAO {
 		}
 	}
 
+	// 캠핑용품 수량 변경
 	public void cartup(CartBean c, HttpServletRequest request) {
 		if (ss.getMapper(CartMapper.class).cartup(c) == 1) {
 			System.out.println("수정 성공");
@@ -73,6 +74,16 @@ public class CartDAO {
 		}
 	}
 
+	// 밀키트 수량 변경
+	public void mealkitup(CartBean c, HttpServletRequest request) {
+		if (ss.getMapper(CartMapper.class).mealkitup(c) == 1) {
+			System.out.println("수정 성공");
+		} else {
+			System.out.println("수정 실패");
+		}
+	}
+
+	// 캠핑용품 품목 하나만 삭제
 	public void cartdel(CartBean c, HttpServletRequest request) {
 		try {
 			int cd = ss.getMapper(CartMapper.class).cartdel(c);
@@ -87,4 +98,24 @@ public class CartDAO {
 			request.setAttribute("result", "삭제실패");
 		}
 	}
+
+	// 캠핑용품 선택 삭제
+	public void selectdelete(HttpServletRequest req) {
+		String[] a = req.getParameterValues("valueArr");
+		for (String string : a) {
+			System.out.println(string);
+			ss.getMapper(CartMapper.class).selectdel(string);
+		}
+
+	}
+
+//	public void selectdelete2(HttpServletRequest req) {
+//		String a = req.getParameter("valueArr");
+//		System.out.println(a);
+//		String[] aa = a.split(",");
+//		for (String s : aa) {
+//			System.out.println(s);
+//			ss.getMapper(CartMapper.class).selectdel(s);
+//		}
+
 }

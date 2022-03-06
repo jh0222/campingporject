@@ -13,7 +13,16 @@
 	update guest_product_basket_table set ba_number = #{ba_number} where ba_no = #{ba_no}
 </update>
 
+<update id="mealkitup" parameterType="com.fi.pj.Cart.CartBean">
+	update guest_foodproduct_basket_table set fba_number = #{fba_number} where fba_no = #{fba_no}
+</update>
+
 <delete id="cartdel" parameterType="com.fi.pj.Cart.CartBean">
 	delete from guest_product_basket_table where ba_no = #{ba_no}
 </delete>
+
+<delete id="selectdel">
+	delete from guest_product_basket_table where ba_no = ${value}
+</delete>
+
 </mapper>

@@ -18,7 +18,7 @@ public class CartController {
 	@Autowired
 	private MemberDAO Mdao;
 
-	// 사장 장바구니 전체 목록
+	// 장바구니 전체 목록
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String cart(CartBean c, HttpServletRequest request) {
 		if (Mdao.loginCheck(request)) {
@@ -30,7 +30,7 @@ public class CartController {
 		return "main";
 	}
 
-	// 사장 장바구니 전체 목록
+	// 밀키트 전체 목록
 	@RequestMapping(value = "mealkit", method = RequestMethod.GET)
 	public String mealkit(CartBean c, HttpServletRequest request) {
 		if (Mdao.loginCheck(request)) {
@@ -51,6 +51,15 @@ public class CartController {
 		return cart(c, request);
 	}
 
+	// 밀키트 수량 변경
+	@RequestMapping(value = "mealkit.update", method = RequestMethod.POST)
+	public String mealkitup(CartBean c, HttpServletRequest request) {
+		if (Mdao.loginCheck(request)) {
+			sdao.mealkitup(c, request);
+		}
+		return mealkit(c, request);
+	}
+
 	// 장바구니 삭제
 	@RequestMapping(value = "cart.delete", method = RequestMethod.GET)
 	public String cartdel(CartBean c, HttpServletRequest request) {
@@ -58,5 +67,15 @@ public class CartController {
 			sdao.cartdel(c, request);
 		}
 		return cart(c, request);
+	}
+
+	// 장바구니 선택삭제
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String selectdelete(HttpServletRequest request) {
+		if (Mdao.loginCheck(request)) {
+			sdao.selectdelete(request);
+//			sdao.selectdelete2(request);
+		}
+		return "redirect:cart";
 	}
 }
