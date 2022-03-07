@@ -694,6 +694,10 @@ select count(*)as cnt ,fr_owner_no from free_board_reply_table
 		
 		
 		
+select * from campingreview_bossreply_table where cr_cam_no = 41 order by cr_no desc
+
+select * from camping_table;
+		
 		
 		
 		

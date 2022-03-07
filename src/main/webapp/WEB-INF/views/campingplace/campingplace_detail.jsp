@@ -13,7 +13,10 @@
 <!-- <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
-
+<!-- 아래 세줄 부트스트랩 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style type="text/css">
 #star a{
    text-decoration: none;
@@ -141,44 +144,28 @@ $(function() {
 <title>CampingPlace</title>
 </head>
 <body>
-
-<button onclick="location.href='place.go'">홈</button>
-<button onclick="location.href='heart.go'">찜 목록</button>
-	${result }
-	<br>
-	<div style="float: left">
-		<table border="1">
-			<tr>
-				<th>이름</th>
-				<th>상세설명</th>
-				<th>연락처</th>
-				<th>가격</th>
-				<th>주소</th>
-			</tr>
-			<tr>
-				<td>${places.cam_name }</td>
-				<td>${places.cam_txt }</td>
-				<td>${places.cam_phonenumber }</td>
-				<td><fmt:formatNumber value="${places.cam_price}"
-						pattern="###,###,###" type="currency" /></td>
-				<td>${places.cam_address }</td>
-				<td><img src="resources/img/${places.cam_picture }" width="300"
-					height="200" class="place"></td>
-
-				<!-- 자신의 아이디일 경우 -->
-				<c:if test="${sessionScope.loginMember2.bo_id == places.cam_bo_id}">
-					<td><button onclick="placedelete(${places.cam_no});">삭제</button></td>
-					<td><button onclick="location.href='placeup.go?cam_no=${places.cam_no}'">수정</button></td>
-				</c:if>
-
-				<td>
+<table width="100%">
+	<hr><h2 class="detail_h2">캠핑장 상세정보</h2> 
+	<hr><br>
+	<tr>
+		<td>
+			<table class="detail_picture_table">
+				<tr>
+					<td><img src="resources/img/${places.cam_picture }" class="detail_img"></td>
+				<tr>
+			</table>
+		</td>
+		<td>
+			<div class="deatil_div0">
+				<div class="detail_div1_div" align="center">	
 					<input type="hidden" id="cam_no" value="${places.cam_no }" />
 					<input type="hidden" id="h_u_id" value="${sessionScope.loginMember.u_id}" /> 
 					<input type="hidden" id="h_cam_name" value="${places.cam_name }" /> 
 					<input type="hidden" id="h_cam_address" value="${places.cam_address }" /> 
 					<input type="hidden" id="c_cam_no" value="${places.cam_no}" /> 
 					<input type="hidden" id="campingheart" value='0' /> 
- 					
+ 					<div>${places.cam_name }&nbsp;&nbsp;</div>
+ 					<div>
  					<c:if test="${sessionScope.loginMember.u_id != null}">
 					<c:choose>
 						<c:when test="${heart != null}">
@@ -193,176 +180,190 @@ $(function() {
 						</c:otherwise>
 					</c:choose>
 					</c:if>
-				</td>
+ 					</div>
+	 			</div>
+	 				<div class="detail_div1_1">
 				
-			</tr>
-		</table>
-	
-	<c:if test="${reserve != null }">
-		<form action="review.Reg">
-			<table border="1" >
-				<tr>
-					<td>ID:${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}</td>
-					<td>별점
-						<p id="star">
-							<a href="#" value="1">★</a>
-							<a href="#" value="2">★</a> 
-							<a href="#" value="3">★</a> 
-							<a href="#" value="4">★</a> 
-							<a href="#" value="5">★</a>
-						<p>
-					</td>
-					<td width="500" height="100">
-						<textarea name="c_campingreview"></textarea>
-					</td>
+					</div>	
+				
+				<br><br>
+				<div class="detail_div2"><b>주소&nbsp;&nbsp;</b>${places.cam_address }</div><hr><br>
+				<div class="detail_div2"><b>가격&nbsp;&nbsp;</b>  ${places.cam_price}원</div><hr><br>
+				<div class="detail_div2"><b>연락처&nbsp;&nbsp;</b>${places.cam_phonenumber }</div><hr><br>
+				<div class="detail_div2"><b>소개&nbsp;&nbsp;</b></div>
+				<div class="detail_div2" style="width: 500px;">${places.cam_txt }</div><hr><br>
+				
+			</div>
+				<form action="reservation.go">
+								<table border="0" style="border-collapse: collapse";>
+									<tr>
+										<td><strong>체크인</strong></td>
+										<td><strong>체크아웃</strong></td>
+									</tr>
+									<tr>
+										<td><input type="text" name="start" id="fromDate" class="inputtype1"></td>
+										<td><input type="text" name="end" id="toDate" class="inputtype1"></td>
+									</tr>
+									<tr>
+										<td><strong>인원</strong></td>
+										<td><input type="number" min="1" max="10"
+											value="r_campingheadcount" name="headcount"></td>
+									</tr>
+									<tr>
+										<td class="reserve_btn">
+											<input type="hidden" name="r_cam_no" value="${places.cam_no }" />
+											<input type="hidden" name="r_campingprice" value="${places.cam_price }" />
+											<input type="hidden" name="r_cam_name" value="${places.cam_name }" /> 
+											<input type="hidden" name="r_u_id" value="${sessionScope.loginMember.u_id}" /> 
+											<input type="hidden" name="r_cam_phonenumber" value="${places.cam_phonenumber }" /> 
+											<input type="hidden" name="r_cam_address" value="${places.cam_address }" /> 
+											<input type="hidden" name="r_u_name" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_name}" />
+											<input type="hidden" name="r_u_phonenumber" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_phonenumber}" />
+											<input type="submit" class="detail_basket" value="예약하기"/>
+										</td>
+									</tr>
+								</table>
+				</form>
+	</tr>
+</table>
+<!-- 자신의 아이디일 경우 -->
 
-					<td>
-						<input type="hidden" name="c_cam_no" value="${places.cam_no }"> 
-						<input type="hidden" name="cam_no" value="${places.cam_no }"> 
-						<input type="hidden" name="c_u_id" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}">
-						<input type="hidden" name="c_campingstar" value=""/>
-						<input type="hidden" name="cr_cam_no" value="${places.cam_no }"/>
-						<input type="hidden" name="r_cam_no" value="${places.cam_no }"/>
-						<input type="hidden" name="r_u_id" value="${sessionScope.loginMember.u_id}"/>
-						<input type="submit" name="submit"  value="등록">
-					</td>
-				</tr>
-			</table>
-		</form>
+	<c:if test="${sessionScope.loginMember2.bo_id == places.cam_bo_id}">
+		<div class="place_detail_bossBtn"><button onclick="placedelete(${places.cam_no});">삭제</button>
+		<button onclick="location.href='placeup.go?cam_no=${places.cam_no}'">수정</button></div>
 	</c:if>
-	
-	<c:forEach var="r" items="${reviews}">
-	<table border="1">
-			
-				<tr>
-					
-					<td width="50" align="center">${r.c_u_id }</td>
-					<td width="200" height="50">${r.c_campingreview }</td>
-					<td width="100">${r.c_date }</td>
- 				<td width="100" align="center">
-				<c:if test="${r.c_campingstar == 1}">
-				<p id="star"><a href="#"style="color: red;">★ </a></p>
-				</c:if>
-				<c:if test="${r.c_campingstar == 2}">
-				<p id="star"><a href="#"style="color: red;">★★ </a></p>
-				</c:if>
-				<c:if test="${r.c_campingstar == 3}">
-				<p id="star"><a href="#"style="color: red;">★★★ </a></p>
-				</c:if>
-				<c:if test="${r.c_campingstar == 4}">
-				<p id="star"><a href="#"style="color: red;">★★★★ </a></p>
-				</c:if>
-				<c:if test="${r.c_campingstar == 5}">
-				<p id="star"><a href="#"style="color: red;">★★★★★</a></p>
-				</c:if>
-				</td>
-					<c:if test="${sessionScope.loginMember.u_id == r.c_u_id}">
-						<td colspan="2" width="100" align="center">
-							<button onclick="reviewdelete(${r.c_no},${places.cam_no },${sessionScope.loginMember.u_id});">삭제</button>
-							<button onclick="reviewupdate(${r.c_no},'${r.c_campingreview }',${places.cam_no },${sessionScope.loginMember.u_id});">수정</button>
-						</td>
-					</c:if>
-				</tr>
-			
-	</table>
-	
-	<!-- 사장님 답글 insert-->
-		<c:if test="${sessionScope.loginMember2.bo_id == places.cam_bo_id}">
-			<form action="replytxt.Reg">
-					<table border="1" >
-						<tr>
-							<td colspan="3">답글작성</td>
-						</tr>
-						<tr>
-							<td>ID:${sessionScope.loginMember2.bo_id}</td>
-							<td width="200" height="50">
-								<textarea name="cr_replytxt"></textarea>
-							</td>
-							<td width="93" align="center">
-								<input type="hidden" name="cr_c_no" value="${r.c_no }"> 
-								<input type="hidden" name="cr_cam_no" value="${places.cam_no }"> 
-								<input type="hidden" name="cr_bo_id" value="${sessionScope.loginMember2.bo_id}">
-								<input type="hidden" name="cam_no" value="${places.cam_no }">
-								<input type="hidden" name="c_cam_no" value="${places.cam_no }">
-								<input type="submit" name="submit"  value="등록">
-							</td>
-						</tr>
-					</table>
+
+				
+		<hr size="3">
+			<h2 class="detail_h2">캠핑장 리뷰</h2>
+		<hr><br> 
+		<c:if test="${reserve != null }">
+			<form action="review.Reg">	
+				<div class="place_reviwReg">
+					<div class="review_id">ID:${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}</div>
+					<div class="review_id">별점
+								<p id="star">
+									<a href="#" value="1">★</a>
+									<a href="#" value="2">★</a> 
+									<a href="#" value="3">★</a> 
+									<a href="#" value="4">★</a> 
+									<a href="#" value="5">★</a>
+								<p>
+					</div>
+					<div class="review_id">
+								<textarea name="c_campingreview"></textarea>
+					</div>
+					<div>
+								<input type="hidden" name="c_cam_no" value="${places.cam_no }"> 
+								<input type="hidden" name="cam_no" value="${places.cam_no }"> 
+								<input type="hidden" name="c_u_id" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}">
+								<input type="hidden" name="c_campingstar" value=""/>
+								<input type="hidden" name="cr_cam_no" value="${places.cam_no }"/>
+								<input type="hidden" name="r_cam_no" value="${places.cam_no }"/>
+								<input type="hidden" name="r_u_id" value="${sessionScope.loginMember.u_id}"/>
+								<input type="submit" name="submit" value="등록">
+					</div>
+				</div>
 			</form>
-			</c:if>
-			
-			
-			<!-- 사장님 답글 select -->
-			<c:forEach var="reply" items="${reply}">
-			<c:if test="${r.c_no==reply.cr_c_no }">
-			<table border="1">
-				<tr>			
-					<td width="50" align="center">사장님:${reply.cr_bo_id }</td>
-					<td width="200" height="50">${reply.cr_replytxt }</td>
-	 				<td width="100">${reply.cr_date }</td>
-					<c:if test="${sessionScope.loginMember2.bo_id == reply.cr_bo_id}">
-						<td colspan="2" width="100" align="center">
-							<button onclick="replydelete(${reply.cr_no},${reply.cr_cam_no },${reply.cr_c_no });">삭제</button>
-							<button onclick="replyupdate(${reply.cr_no},'${reply.cr_replytxt }',${reply.cr_cam_no });">수정</button>
-						</td>
-					</c:if>
-				</tr>
-			</table>
 		</c:if>
-			</c:forEach>
-	</c:forEach>
-<!-- 캠핑장 예약 -->
-</div>
-	<div style="float: right">
-		<form action="reservation.go">
-		<table border="1" style="width: 200;">	
-			<tr>
-				<td>체크인</td>
-				<td>체크아웃</td>
-			</tr>
-			<tr>
-				<td><input type="text" name="start" id="fromDate" class="inputtype1"></td>
-				<td><input type="text" name="end" id="toDate" class="inputtype1"></td>
-			</tr>
-			<tr>
-				<td>인원</td>
-				<td><input type="number" min="1" max="10"
-					value="r_campingheadcount" name="headcount"></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="hidden" name="r_cam_no" value="${places.cam_no }" />
-					<input type="hidden" name="cam_price" value="${places.cam_price }" />
-					<input type="hidden" name="r_cam_name" value="${places.cam_name }" /> 
-					<input type="hidden" name="r_u_id" value="${sessionScope.loginMember.u_id}" /> 
-					<input type="hidden" name="r_cam_phonenumber" value="${places.cam_phonenumber }" /> 
-					<input type="hidden" name="r_cam_address" value="${places.cam_address }" /> 
-					<input type="hidden" name="r_u_name" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_name}" />
-					<input type="hidden" name="r_u_phonenumber" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_phonenumber}" />
-					<button onclick="location.href='reservation.go'">예약하기</button>
-				</td>
-			</tr>
-		</table>
-	</form>
-</div>
-
-
-
+			
+			<jsp:include page="${reviewPage }"></jsp:include>
+			<table border="0" class="detail_reviewtb" >
+				<tr>
+					<th class="pr_reviewselect" width="100">ID</th>
+					<th class="pr_reviewselect">Content</th>	
+					<th class="pr_reviewselect"  width="150">Date</th>
+					<th class="pr_reviewselect">Star</th>
+					<tr><hr></tr>	
+				</tr>
+				<tr><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td></tr>
+				<c:forEach var="r" items="${reviews}">
+				<tr>
+					<td class="pr_reviewselect2">${r.c_u_id }</td>
+					<td class="pr_reviewselect2">${r.c_campingreview }</td>
+				    <td class="pr_reviewselect2"><fmt:formatDate value="${r.c_date }" dateStyle="short"/></td>
+				    <td class="pr_reviewselect2">
+				    	<c:if test="${r.c_campingstar == 1}">
+						<p id="star"><a href="#"style="color: red;">★ </a></p>
+						</c:if>
+						<c:if test="${r.c_campingstar == 2}">
+						<p id="star"><a href="#"style="color: red;">★★ </a></p>
+						</c:if>
+						<c:if test="${r.c_campingstar == 3}">
+						<p id="star"><a href="#"style="color: red;">★★★ </a></p>
+						</c:if>
+						<c:if test="${r.c_campingstar == 4}">
+						<p id="star"><a href="#"style="color: red;">★★★★ </a></p>
+						</c:if>
+						<c:if test="${r.c_campingstar == 5}">
+						<p id="star"><a href="#"style="color: red;">★★★★★</a></p>
+						</c:if>
+				    </td>
+					<c:if test="${sessionScope.loginMember.u_id == r.c_u_id}">
+					<td class="pr_reviewselect2" onclick="reviewupdate(${r.c_no},'${r.c_campingreview }',${places.cam_no },${sessionScope.loginMember.u_id});">수정</td>
+					<td class="pr_reviewselect2"  onclick="reviewdelete(${r.c_no},${places.cam_no },${sessionScope.loginMember.u_id});">삭제</td>
+				</c:if>
+				</tr>
+				
+				
+				
+				<!-- 사장님 답글 insert-->
+					<c:if test="${sessionScope.loginMember2.bo_id == places.cam_bo_id}">
+						<form action="replytxt.Reg">
+									<tr>
+										<td>ID : ${sessionScope.loginMember2.bo_id}</td>
+										<td width="200" height="50">
+											<textarea name="cr_replytxt"></textarea>
+										</td>
+										<td width="93" align="center">
+											<input type="hidden" name="cr_c_no" value="${r.c_no }"> 
+											<input type="hidden" name="cr_cam_no" value="${places.cam_no }"> 
+											<input type="hidden" name="cr_bo_id" value="${sessionScope.loginMember2.bo_id}">
+											<input type="hidden" name="cam_no" value="${places.cam_no }">
+											<input type="hidden" name="c_cam_no" value="${places.cam_no }">
+											<input type="submit" name="submit"  value="등록">
+										</td>
+									</tr>
+							</form>
+						</c:if>
+						
+						
+						<!-- 사장님 답글 select -->
+						<c:forEach var="reply" items="${reply}">
+						<c:if test="${r.c_no==reply.cr_c_no }">
+							<tr class="reply_boss">			
+								<td align="center">└ 사장님</td>
+								<td height="50">${reply.cr_replytxt }</td>
+				 				<td><fmt:formatDate value="${reply.cr_date }" dateStyle="short"/></td>
+								<c:if test="${sessionScope.loginMember2.bo_id == reply.cr_bo_id}">
+									<td colspan="2" width="100" align="center">
+										<button onclick="replydelete(${reply.cr_no},${reply.cr_cam_no },${reply.cr_c_no });">삭제</button>
+										<button onclick="replyupdate(${reply.cr_no},'${reply.cr_replytxt }',${reply.cr_cam_no });">수정</button>
+									</td>
+								</c:if>
+							</tr>
+						</c:if>
+						</c:forEach>
+				</c:forEach>
+			</table>
+				
+	
+<hr size="3">
+	<h2 class="detail_h2">캠핑장 위치</h2>
+<hr><br> 
 <!-- 캠핑장 지도 -->
-
-<p style="margin-top:250px">
-
+<p>
     <em class="link">
-        <a type="">지도</a>
+        <a type=""></a>
     </em>
 </p>
 <div id="container" class="view_map">
-    <div id="mapWrapper" style="width:100%;height:300px;position:relative;">
-        <div id="map" style="width:100%;height:100%"></div> <!-- 지도를 표시할 div 입니다 -->
+    <div id="mapWrapper" style="justify-content:center;display: flex;align-items:center;width:1200px;height:700px;position:absolute;">
+        <div id="map" style="justify-content:center;display: flex;align-items:center;width:1200px;height:700px"></div> <!-- 지도를 표시할 div 입니다 -->
         <input type="button" id="btnRoadview" onclick="toggleMap(false)" title="로드뷰 보기" value="로드뷰">
     </div>
-    <div id="rvWrapper" style="width:100%;height:300px;position:absolute;top:0;left:0;">
-        <div id="roadview" style="height:100%"></div> <!-- 로드뷰를 표시할 div 입니다 -->
+    <div id="rvWrapper" style="justify-content:center;display: flex;align-items:center;width:1200px;height:700px;position:absolute;">
+        <div id="roadview" style="justify-content:center;display: flex;align-items:center;height:700px"></div> <!-- 로드뷰를 표시할 div 입니다 -->
         <input type="button" id="btnMap" onclick="toggleMap(true)" title="지도 보기" value="지도">
     </div>
 </div>

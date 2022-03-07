@@ -23,7 +23,7 @@ $("#check_module").click(function () {
 
 	name: '${param.r_cam_name }',
 
-	amount: '${diffDays}' * '${param.headcount}' * '${param.cam_price }',
+	amount: '${diffDays}' * '${param.headcount}' * '${param.r_campingprice }',
 
 	buyer_email: 'iamport@siot.do',
 	buyer_name: '구매자이름',
@@ -52,58 +52,62 @@ $("#check_module").click(function () {
 <title>Insert title here</title>
 </head>
 <body>
-<h3>예약정보</h3>
 <br>
-<table border="1">
+<h1 class="order_h1"><i class="fa-solid fa-credit-card" style="color:#49599a;"></i>&nbsp;<span class="order_span1">고캠핑 <b> 예약/결제</b></span></h1>
+<br>
+<div class="order_div">
+<h2 class="order_recipient">Product Info <span class="order_info">상품 정보</span></h2>
+<table border="1" class="order_table1" id="information_table" name="information_table">
 
 	<tr>
-		<td colspan="2">숙소</td>
+		<td colspan="2" class="order_font">숙소</td>
 	</tr>
 	<tr>
-		<td colspan="2" align="center">${param.r_cam_name }</td>
+		<td colspan="2" class="order_font">${param.r_cam_name }</td>
 	</tr>
 	<tr>
-		<td colspan="2">주소</td>
+		<td colspan="2" class="order_font">주소</td>
 	</tr>
 	<tr>
-		<td colspan="2" align="center">${param.r_cam_address }</td>
+		<td colspan="2" class="order_font">${param.r_cam_address }</td>
 	</tr>
 	<tr>
-		<td colspan="2">캠핑장 연락처</td>
+		<td colspan="2" class="order_font">캠핑장 연락처</td>
 	</tr>
 	<tr>
-		<td colspan="2" align="center">${param.r_cam_phonenumber }</td>
+		<td colspan="2" class="order_font">${param.r_cam_phonenumber }</td>
 	</tr>
 	<tr>
-		<td colspan="2"align="center">${param.start } ~ ${param.end }</td>
+		<td colspan="2" class="order_font"> ${param.start } ~ ${param.end }</td>
 	</tr>
 	<tr>
-		<td align="center">인원</td>
-		<td align="center">${param.headcount } 명</td>
+		<td class="order_font">인원</td>
+		<td class="order_font">${param.headcount } 명</td>
 	</tr>
 	<tr>
-		<td align="center">가격</td>
-		<td align="center">${diffDays * param.headcount * param.cam_price } 원</td>
+		<td class="order_font">가격</td>
+		<td class="order_font">${diffDays * param.headcount * param.r_campingprice } 원</td>
 	</tr>
 </table>
 
-<br>
-<h3>예약자 정보</h3>
-<table border="1">
+
+<h2 class="order_recipient">Reservation Info <span class="order_info">예약자 정보</span></h2>
+<table border="1" class="order_table3" id="information_table" name="information_table">
 	<tr>
-		<td>성명</td>
+		<td class="order_font">성명</td>
 	</tr>
 	<tr>
 		<td align="center">${param.r_u_name }</td>
 	</tr>
 	<tr>
-		<td>연락처</td>
+		<td class="order_font">연락처</td>
 	</tr>
 	<tr>
 		<td align="center">${param.r_u_phonenumber }</td>
 	</tr>
 </table>
 <br>
-<button id="check_module" type="button">결제하기</button>
+<button class="order_paymentbtn" id="check_module" type="button">결제하기</button>
+</div>
 </body>
 </html>
