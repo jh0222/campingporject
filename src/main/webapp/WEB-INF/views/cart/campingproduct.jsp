@@ -95,13 +95,16 @@ table, td, th {
 
 </head>
 <body>
-
   <div class="topnav">
   	<a href = "cart">캠핑용품</a>
   	<a href = "mealkit">밀키트</a>
   </div>
   <div class="column middle">
-  
+  <c:choose>
+		<c:when test="${c.ba_no eq null}">
+			<h1>장바구니 내역이 없습니다.</h1>
+		</c:when>
+	<c:otherwise>
 <div class="content_area">
 	<!-- 장바구니 리스트 -->
 	<div class="content_middle_section"></div>
@@ -224,8 +227,9 @@ table, td, th {
 		<input type="hidden" name="ba_no" class="delete_cartId" >
 		<input type="hidden" name="ba_u_bo_id" value="'${c.ba_u_bo_id}'">
 	</form>
-	
 </div>	
+</c:otherwise>
+</c:choose>
 </div>
 <script type="text/javascript">
 		$(document).ready(function(){

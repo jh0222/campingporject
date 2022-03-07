@@ -100,6 +100,11 @@ table, td, th {
   <div class="topnav">
   </div>
   <div class="column middle">
+  <c:choose>
+		<c:when test="${f.f_no eq null}">
+			<h1>작성된 내용이 없습니다.</h1>
+		</c:when>
+	<c:otherwise>
 	<table>
 		<tr>
 			<td class="hidden">번호</td>
@@ -117,6 +122,8 @@ table, td, th {
 		</tr>
 	</c:forEach>
 	</table>
+</c:otherwise>
+</c:choose>
 </div>
 </div>
 </body>

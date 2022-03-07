@@ -98,8 +98,11 @@ table, td, th {
   </div>
 	
   <div class="column middle">
-  <h2></h2>
-  
+  <c:choose>
+	<c:when test="${cr.c_no eq null}">
+		<h1>등록된 리뷰 내역이 없습니다.</h1>
+	</c:when>
+  <c:otherwise>
 	<table>
 		<tr>
 		 	<td class="hidden"></td>
@@ -121,6 +124,8 @@ table, td, th {
 		</tr>
 	</c:forEach>
 	</table>
+</c:otherwise>
+</c:choose>
 </div>
 </div>
 </body>

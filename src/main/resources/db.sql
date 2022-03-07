@@ -75,11 +75,13 @@ create table camping_table(
     cam_liked number(1) default 0 not null
 );
 
+select cam_no from camping_table where cam_bo_id='kim2'
+
 alter table camping_table add cam_liked number(1) default 0 not null;
 
 create sequence camping_seq;
 
-insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','cam.jpg','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40);
+insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','cam.jpg','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40,1);
 
 select * from camping_table;
 
@@ -139,12 +141,11 @@ create table reservation_table(
 
 create sequence reservation_seq;
 
-insert into reservation_table values(reservation_seq.nextval,102,'kim','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
+insert into reservation_table values(reservation_seq.nextval,102,'kim2','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 
 select * from reservation_table;
 select r_u_id from reservation_table where r_cam_no=121 and r_u_id='kim' and  sysdate > r_campingenddate;
 select * from campingheart_table where h_u_id='kim';
-
 
 
 -------------------------------------------------------------------------------------------------------------------------------------

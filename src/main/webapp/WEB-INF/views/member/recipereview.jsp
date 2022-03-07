@@ -103,6 +103,11 @@ table, td, th {
   	<a href = "recipereview?rr_u_id=${sessionScope.loginMember.u_id}">레시피</a>
   </div>
   <div class="column middle">
+  <c:choose>
+		<c:when test="${r.rr_no eq null}">
+			<h1>작성된 내용이 없습니다.</h1>
+		</c:when>
+	<c:otherwise>
 	<table>
 		<tr>
 			<td class="hidden">번호</td>
@@ -122,6 +127,8 @@ table, td, th {
 		</tr>
 	</c:forEach>
 	</table>
+</c:otherwise>
+</c:choose>
 </div>
 </div>
 </body>

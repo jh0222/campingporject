@@ -102,8 +102,12 @@ table, td, th {
   	<a href = "Cbuylist?b_u_bo_id=${sessionScope.loginMember.u_id}">캠핑용품</a>
   	<a href = "Mbuylist?fb_u_bo_id=${sessionScope.loginMember.u_id}">밀키트</a>
   </div>
-	
   <div class="column middle">
+  <c:choose>
+		<c:when test="${buy.b_no eq null}">
+			<h1>구매 내역이 없습니다.</h1>
+		</c:when>
+	<c:otherwise>
 	<table>
 		<tr>
 			<td class="hidden"></td>
@@ -133,6 +137,8 @@ table, td, th {
 		</tr>
 		</c:forEach>
 	</table>
+</c:otherwise>
+</c:choose>
 </div>
 </div>
 </body>

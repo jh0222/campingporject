@@ -104,6 +104,11 @@ table, td, th {
   </div>
 	
   <div class="column middle">
+  <c:choose>
+	<c:when test="${mealbuylist eq null}">
+		<h1>구매 내역이 없습니다.</h1>
+	</c:when>
+	<c:otherwise>
 	<table>
 		<tr>
 			<td class="hidden"></td>
@@ -133,6 +138,8 @@ table, td, th {
 		</tr>
 	</c:forEach>
 	</table>
+</c:otherwise>
+</c:choose>
 </div>
 </div>
 </body>
