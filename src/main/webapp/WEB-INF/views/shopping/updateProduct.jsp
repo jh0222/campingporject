@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>  
-<h3 class="regh3" style="font-size: 30px;"><b>고캠핑 상품수정</b></h3>
+<h3 class="regh3" style="font-size: 30px;"><b>캠핑용품 상품수정</b></h3>
 <form action="update.product?p_no=${p.p_no }&pr_p_no=${p.p_no}" enctype="multipart/form-data" method="post">
     <table border="1" class="pr_regtb ">
         <tr>	
@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td class="pr_regtd" style="font-size: 20px;">상품이미지</td>
-            <td><img src="resources/img/${p.p_picture }" width="100%;" height="100%;" name="p_picture">
+            <td><img src="resources/img/${p.p_picture }" width="300" height="300" name="p_picture">
             	<input name= "p_picture" type="hidden" value= "${p.p_picture}">
             	<input type="file" name= "p_picture2">
             <td>

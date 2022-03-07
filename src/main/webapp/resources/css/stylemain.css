@@ -13,6 +13,7 @@ body{
 table.rank_producttable {
 	display: inline-block;
 	align-items: center;
+	margin-left: 70px;
 	
 }
 
@@ -20,6 +21,17 @@ table.rank_milkittable {
 	display: inline-block;
 	align-items: center;
 	
+}
+
+.rank_font{
+	font-family: 'GowunDodum-Regular';
+    font-size: 15pt;
+}
+
+.rank.font2{
+	font-size: 10pt;
+	border-radius: 5px;
+
 }
 
 @font-face { 

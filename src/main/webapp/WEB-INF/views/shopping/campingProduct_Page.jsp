@@ -28,16 +28,16 @@
       85% {margin-left:-300%;}
       100% {margin-left:0;}
     }
-  </style>
+</style>
 </head>
 <body>
 <div class="p_search">
 	<table>
 		<tr>
 			<td>
-				<form action="search.product">
+				<form action="search.product" name="shoppingsearch" onsubmit="return SearchCheck1();">
 					<input name="p_name" placeholder="&nbsp;상품명 입력" class="main_searchinput">
-					<button class="main_searchbtn"><i class="fa-solid fa-magnifying-glass fa-lg" style="color:#725b53;"></i></button>
+					<input type="submit" class="main_searchbtn" value="검색"></input>
 				</form>
 			</td>
 			<c:if test="${sessionScope.loginMember3.root_id != null}">
@@ -69,7 +69,7 @@
 			<tr>
 				<td><img src="resources/img/${p.p_picture }"
 					class="table_product_picture"
-					onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'"></td>
+					onclick="location.href = 'detail.product?p_no=${p.p_no}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'"></td>
 			</tr>	
 			
 			<tr>

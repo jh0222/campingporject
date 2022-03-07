@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-			<form action="reg.productreview" name="reviewcheck" onsubmit="check();">
+<body>		
+			<form action="reg.productreview" name="reviewcheck" onsubmit="return Check1();">
 			<div class="pr_reviewtd1"><h3 class="pr_reviewh3">리뷰작성</h3></div>
 			<table>
 					<tr>
@@ -17,7 +17,7 @@
 						<input name="p_no" type="hidden" value="${p.p_no }"> 
 						<input name="pr_p_no" type="hidden" value="${p.p_no }">
 					<tr>
-					<td><button class="pr_reviewregbtn">등록</button></td>
+					<td><input type="submit" class="pr_reviewregbtn" value="등록"></td>
 					</tr>
 					
 				

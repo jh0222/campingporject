@@ -92,13 +92,26 @@ public class ShoppingC {
 	public String detailProduct(Reviewinsert ri,Product p,HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		sdao.getProduct(p,req);
-		sdao.getAllProductReview(req);
+		sdao.getAllProductReview(p,req);
 		sdao.reviewwrite(ri,p,req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
 
 		return "main";
 	}
+	
+	//캠핑용품 상세페이지(+리뷰목록)
+		@RequestMapping(value = "detail.oneproduct", method = RequestMethod.GET)
+		public String detailoneProduct(Reviewinsert ri,Product p,HttpServletRequest req) {
+			mDAO.loginCheck(req);
+			sdao.getProduct(p,req);
+			sdao.getAllProductReview(p,req);
+			sdao.reviewwrite(ri,p,req);
+			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
+
+			return "main";
+		}
 	
 	//캠핑용품 수정페이지 이동
 	@RequestMapping(value = "updateproduct.go", method = RequestMethod.GET)
@@ -118,7 +131,7 @@ public class ShoppingC {
 		mDAO.loginCheck(req);
 		sdao.updateProduct(p,req);
 		sdao.getProduct(p, req);
-		sdao.getAllProductReview(req);
+		sdao.getAllProductReview(p,req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
 		return "main";
@@ -130,7 +143,7 @@ public class ShoppingC {
 			mDAO.loginCheck(req);
 			sdao.regProductreview(pr,req); 
 			sdao.getProduct(p, req); 
-			sdao.getAllProductReview(req); 
+			sdao.getAllProductReview(p,req); 
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
@@ -143,7 +156,7 @@ public class ShoppingC {
 			mDAO.loginCheck(req);
 			sdao.delProductreview(pr, req);
 			sdao.getProduct(p,req);
-			sdao.getAllProductReview(req);
+			sdao.getAllProductReview(p,req);
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
@@ -156,7 +169,7 @@ public class ShoppingC {
 			mDAO.loginCheck(req);
 			sdao.updateProductreview(pr, req);
 			sdao.getProduct(p,req);
-			sdao.getAllProductReview(req);
+			sdao.getAllProductReview(p,req);
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
@@ -209,6 +222,8 @@ public class ShoppingC {
 			req.setAttribute("shoppigListPage", "../shopping/Mypage.jsp");
 			return "main";
 		}	
+		
+		
 		
 		
 		

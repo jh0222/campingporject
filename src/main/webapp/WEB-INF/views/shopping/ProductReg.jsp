@@ -7,7 +7,7 @@
 <title>고캠핑 상품등록</title>
 </head>
 <body>
-<body>
+<div class="reglayout">
 <h3 class="regh3" style="font-size: 30px;"><b>상품등록</b></h3>
 <form action="reg.product" enctype="multipart/form-data" method="post">
     <table border="1" class="pr_regtb ">
@@ -30,5 +30,6 @@
     </table>
     <button class="pr_regbtn">등록</button>
 </form>
+</div>
 </body>
 </html>
