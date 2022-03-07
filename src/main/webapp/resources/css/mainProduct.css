@@ -50,11 +50,14 @@ button.table_product_del{
 	right: 30px;
 }
 
-button.main_searchbtn{
+.main_searchbtn{
 	border: none; 
 	background-color: white;
 	width: 30px;
 	height: 30px;
+	font-family: 'Pretendard-Regular';
+	color: black;
+	
 }
 
 div.campingmain_paging{
@@ -70,12 +73,16 @@ h3.Product_h3 {
 	margin-left:135px;
 	margin-top:25px;
 	font-size: 25pt;
-	font-family: 'NEXON Lv2 Gothic';
+	font-family: 'GowunDodum-Regular';
 	color:#66bb6a;
 }
 
+div.reglayout{
+	margin-top: 140px;
+}
+
 div.p_search{
-	margin-left: 700px;
+	margin-left: 630px;
 	margin-top: 10px;
 	
 }
@@ -88,7 +95,7 @@ input.main_searchinput{
 
 span.main_span2{
 	font-size: 25pt;
-	font-family: 'NEXON Lv2 Gothic';
+	font-family: 'GowunDodum-Regular';
 	font-weight:bold;
 	color:black;
 }
@@ -121,6 +128,13 @@ a.paging_num2{
 	font-size: 15pt; 
 	padding-left: 5px;
 	padding-right: 5px;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {

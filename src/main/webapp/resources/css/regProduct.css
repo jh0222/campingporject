@@ -6,16 +6,16 @@ a:hover { text-decoration:none !important }
 h3.regh3{
 	font-family: 'MaruBuri-Regular';
     font-size: 20pt;
-    margin-left: 397px; 
+    margin-left: 350px; 
     FONT-SIZE: 22px;
     COLOR: #ffffff;
     PADDING-BOTTOM: 10px;
     TEXT-ALIGN: center;
     PADDING-TOP: 10px;
     PADDING-LEFT: 10px;
-    BORDER-LEFT: black 8px solid;
+    BORDER-LEFT: #607d8b 8px solid;
     PADDING-RIGHT: 10px;
-    BACKGROUND-COLOR: #8aa6ef;
+    BACKGROUND-COLOR: #607d8b;
     border-radius: 3px;
     width: 50%
 }
@@ -24,10 +24,17 @@ td.pr_regtd{
     margin-bottom: 20px;
     font-size: 15px;
 }
+
+input.pr_reginput{
+	width: 100%;
+	font-family: 'GowunBatang-Regular';
+	border: none;
+}
+
 table.pr_regtb{
-	margin-left: 400px;
+	margin-left: 350px;
     width: 50%;
-    height: 650px;
+    height: 250px;
     font-family: 'GowunBatang-Regular';
     font-size: 15pt;
 }
@@ -48,7 +55,7 @@ button.pr_regbtn{
     font-weight: bold;
     color: white;
     font-family: 'GowunBatang-Regular';
-    margin-left: 720px;
+    margin-left: 610px;
     margin-top: 10px;
 }
 

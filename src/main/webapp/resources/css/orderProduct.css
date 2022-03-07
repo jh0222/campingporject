@@ -2,12 +2,12 @@
 span.order_span1{
 	font-family: 'Pretendard-Regular';
 	font-size: 29pt;
-	color: #ff94c2;
+	color: #373737;
 	
 }
 
 h1.order_h1{
-	margin-left: 660px;
+	margin-left: 600px;
 }
 
 h2.order_h2{
@@ -15,7 +15,7 @@ h2.order_h2{
 }
 
 div.order_div{
-	margin-left: 300px;
+	margin-left: 250px;
 }
 
 .order_font{
@@ -106,13 +106,13 @@ td.order_checkbox2{
 button.order_paymentbtn{
 	width: 350px;
 	height: 60px;
-	background-color: #ff94c2;
+	background-color: #373737;
 	border: none;
 	font-size: 18pt;
 	font-weight: bold;
 	color: white;
 	font-family: 'GowunBatang-Regular';
-	margin-left: 370px;
+	margin-left: 335px;
 }
 
 h2.order_recipient {

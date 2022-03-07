@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+div.detail_div{
+	margin-right: 600px;
+}
+
+div.shoppingdetail_div{
+	margin-right: 150px;
+}
+
 table.detail_picture_table {
 	margin-left: 200px;
 }
@@ -13,12 +21,12 @@ table.detail_table1 {
 }
 
 table.detail_reviewtb {
-	width: 1400px;
-	margin-left: 207px;
+	width: 1150px;
+    margin-left: 200px;
 }
 
 img.detail_img {
-	width: 90%;
+	width: 450px;
 	height: auto;
 	border-radius: 35px;
 }
@@ -31,22 +39,41 @@ td.detail_p_name {
 td.detail_p_name2 {
 	font-size: 15pt;
 	font-family: 'MaruBuri-Regular';
+
+}
+.detail_p_name222{
+	display: flex;
 }
 
-input.detail_sum {
-	margin-left: 280px;
-	color: #ff94c2;
+.detail_p_price{
+	display: inline-block;
+}
+.detail_fpsum {
+	margin-left: 301px;
+	color: #8d8d8d;
 	font-weight: bold;
+	text-align: right;
 }
 
-div.detail_price {
+.detail_psum {
+	margin-left: 305px;
+	color: #8d8d8d;
+	font-weight: bold;
+	text-align: right;
+}
+
+.detail_price {
 	position: absolute;
-	margin-left: 390px;
+	margin-left: 522px;
 }
 
 span.detail_won {
-	color: #ff94c2;
+	color: #8d8d8d;
 	font-weight: bold;
+}
+.detail_buy{
+	display: flex;
+	margin-left: 110px;
 }
 
 .detail_div0 {
@@ -57,12 +84,14 @@ span.detail_won {
 .detail_div1 {
 	font-size: 25pt;
 	font-family: '양진체';
-	color: #558b2f;
+	color: #424242;
+	margin-left: 100px;
 }
 
 .detail_div2 {
 	font-size: 15pt;
 	font-family: 'GowunBatang-Regular';
+	margin-left: 80px;
 }
 
 .detail_div3 {
@@ -70,6 +99,11 @@ span.detail_won {
 	height: 100px;
 	font-size: 15pt;
 	font-family: 'GowunBatang-Regular';
+	margin-left: 80px;
+}
+
+.detail_txt{
+	text-align: center;
 }
 
 h2.detail_h2 {
@@ -80,7 +114,7 @@ h2.detail_h2 {
 }
 
 input.detail_basket {
-	width: 250px;
+	width: 240px;
 	height: 60px;
 	background-color: #424242;
 	border: none;
@@ -92,15 +126,17 @@ input.detail_basket {
 }
 
 input.detail_order {
-	width: 250px;
+	width: 240px;
 	height: 60px;
-	background-color: #ff94c2;
+	background-color: #8d8d8d;
 	border: none;
 	border-radius: 9px;
 	font-size: 18pt;
 	font-weight: bold;
 	color: white;
 	font-family: 'GowunBatang-Regular';
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 input.plus_btn {
@@ -124,7 +160,7 @@ input.plus_btn2:hover {
 }
 
 textarea.pr_reviewtext {
-	margin-left: 600px;
+	margin-left: 500px;
 	height: 60px;
 	resize: none;
 	width: 500px;
@@ -132,7 +168,7 @@ textarea.pr_reviewtext {
 	border: none;
 }
 
-button.pr_reviewregbtn {
+.pr_reviewregbtn {
 	width: 150px;
 	height: 40px;
 	background-color: #c9c8c6;
@@ -142,7 +178,7 @@ button.pr_reviewregbtn {
 	font-weight: bold;
 	color: white;
 	font-family: 'GowunBatang-Regular';
-	margin-left: 950px;
+	margin-left: 670px;
 }
 
 button.detailupdatebtn {
@@ -173,7 +209,7 @@ h3.pr_reviewh3 {
 }
 
 div.pr_reviewtd1 {
-	margin-left: 600px;
+	margin-left: 500px;
 	padding-top: 10px;
 }
 
@@ -191,6 +227,28 @@ hr.detailhr{
     height: 3px;
     background: #ccc;	
 }
+
+div.more_product{
+    margin-left: 1320px;
+}
+
+a.rank_a{
+	  font-family: 'GowunDodum-Regular';
+	  color: black;
+}
+
+h1.rank_h1 {
+	font-family: 'GowunDodum-Regular';
+	display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
 
 @font-face {
     font-family: 'Pretendard-Regular';

@@ -58,7 +58,7 @@
 		<footer class="section fp-auto-height"> <!-- fp-auto-height : 하단구역 클래스 -->
 			<div class="footerr">
 				<h2>Go camping</h2>
-				<h3>team:jihyun  yongsig  minjung  moonyeong</h3>
+				<h3>team:jihyun  yongsik  minjung  moonyeong</h3>
 				<h3>Address:서울특별시 종로구 종로12길 15, 5층(관철동 13-13)</h3>
 				<h3>Phonenumber:010-0000-0000</h3>
 				<h3>github:<a style="color:white;" href="https://github.com/jh0222/campingporject">https://github.com/jh0222/campingporject</a></h3>

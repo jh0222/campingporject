@@ -4,82 +4,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-//체크박스 클릭에 따라 배송지 보여주기
-$(document).ready(function(){
-	let chkOk = true;
-	$("#offline2").change(function(){
-			$("#addr").prop('disabled', true); //비활성화
-			if(chkOk){//true이면
-	           $("#addrtable").show();
-	           chkOk = false;
-	        }else{
-	           $("#addrtable").hide();
-	           chkOk = true;
-	        }
-	    });
-	$("#offline1").change(function(){
-		$("#addr").prop('disabled', false);	//활성화
-		window.location.reload(); //새로고침
-		chkOk = true;
-		if(chkOk){
-           $("#addrtable").hide();
-           chkOk = true;
-        }else{
-        	$("#addrtable").show();
-            chkOk = false;
-        }
-    });
-
-});
-
-//체크박스 중복방지
-function addrCheck(chk){
-    var obj = document.getElementsByName("offline1");//name값
-    for(var i=0; i<obj.length; i++){
-        if(obj[i] != chk){ 
-            obj[i].checked = false;
-        }
-        if(obj[i] = chk){
-        	obj[i].cheked = true;
-        }
-    }
-}
-
-//체크박스 유효성검사
-function CheckForm(check){
-    
-    //체크박스 체크여부 확인 
-    var chk1=document.ordercheck.U_checkAgreement1.checked;
-    var chk2=document.ordercheck.U_checkAgreement2.checked;
-    var chk3=document.ordercheck.U_checkAgreement3.checked;
-    var chk4=document.ordercheck.U_checkAgreement4.checked;
-    
-    if(!chk1){
-        alert('약관1에 동의해 주세요');
-        return false;
-        //e.preventDefault();
-    } 
-    if(!chk2) {
-        alert('약관2에 동의해 주세요');
-        return false;
-       //e.preventDefault();
-    }
-    if(!chk3) {
-        alert('약관3에 동의해 주세요');
-        return false;
-       //e.preventDefault();
-    }
-    if(!chk4) {
-        alert('약관4에 동의해 주세요');
-        return false;
-       //e.preventDefault();
-    }
-}
-</script>
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function OrderCheck(){
+	function isEmpty(input) {
+		return !input.value; 
+	}
+
+    let pr_txt = document.reviewcheck.pr_txt;
+    	if(isEmpty(pr_txt)) {
+        alert('내용을 입력하세요');
+        pr_txt.focus();
+   		return false;
+    }
+    	
+}
+
+</script>
 </head>
 <body>
 <br>
@@ -122,7 +64,7 @@ function CheckForm(check){
 
 <table border="1" id="addrtable" class="order_table2" style="display: none;">
 <tr>
-<td class="order_font3" style="width: 150px;">신규 배송지</td>
+<td class="order_font3" style="width: 132px; border-right: 1px solid;">신규 배송지</td>
 <td class="order_newadrr" colspan="2">
 		<div style="margin-left: 25px;">
 			<input id="addr3Input" readonly="readonly" name="u_addr3" maxlength="5" autocomplete="off" placeholder="우편번호">
@@ -149,8 +91,9 @@ function CheckForm(check){
 · 고캠핑은 기본적으로 대한민국 내 제주도 및 도서 산간 지역 포함  <b>전 지역, 전 상품 무료배송</b>입니다.<br>
 · 해외 배송 상품이나 일부 업체의 경우, 교환/환불 시 반송료가 다를 수 있으며 상품 페이지에 별도 표기되어 있습니다.<br>
 </div>
+
  <br>
-<form name="ordercheck" action=""  onSubmit="return CheckForm(this)">
+ 
 <table border="1" class="order_table3">
 		<thead>
 			<tr>
@@ -160,31 +103,29 @@ function CheckForm(check){
 		</thead>
 		<tbody>
 			<tr>
-				<td class="order_checkbox"><input type="checkbox" name="chk" value="1"></td>
+				<td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk1" value="1"></td>
 				<td colspan="2" class="order_checkbox2">[필수] 개인정보 수집 및 이용 동의 
 				<a onclick="showPopup1();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td class="order_checkbox"><input type="checkbox" name="chk" value="2"></td>
+				<td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk2" value="2"></td>
 				<td class="order_checkbox2">[필수] 개인정보 제 3자 제공 동의 
 				<a onclick="showPopup2();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td class="order_checkbox"><input type="checkbox" name="chk" value="3"></td>
+				<td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk3" value="3"></td>
 				<td class="order_checkbox2">[필수] 전자결제대행 이용 동의 
 				<a onclick="showPopup3();" /><u/><small/>약관보기</a></td>
 			</tr>
 			<tr>
-				<td class="order_checkbox"><input type="checkbox" name="chk" value="4"></td>
+				<td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk4" value="4"></td>
 				<td class="order_checkbox2">[필수] 상품정보, 거래조건 확인 및 구매 진행 동의</td> 
 			</tr>
 		</tbody>
 	</table>
 	<br>
-<button id="check_module" type="button" class="order_paymentbtn" onclick=""><fmt:formatNumber value="${so.sum}"  pattern="###,###,###" />원 결제하기</button>
-
- </form>	
- <br>
+<button id="check_module" class="order_paymentbtn" onclick="return CheckForm(this)"><fmt:formatNumber value="${so.sum}"  pattern="###,###,###" />원 결제하기</button>
+ <br><br>
 <div class="order_text">	
 · 입점업체 배송은 낮은 확률로 상품이 품절일 가능성이 있습니다. 이에 품절 시 빠르게 환불 처리해드립니다.<br>
 · 현금 환불의 경우, 예금정보가 일치해야 환불 처리가 가능합니다. 은행명, 계좌번호, 예금주명을 정확히 기재 부탁드립니다.<br>
@@ -194,7 +135,10 @@ function CheckForm(check){
 
 <!-- 결제하기 -->
 <script>
-$("#check_module").click(function () {
+function call_kakao() {
+	
+
+
 var IMP = window.IMP; // 생략가능
 IMP.init('imp46581722');
 IMP.request_pay({
@@ -220,7 +164,7 @@ var msg = '결제에 실패하였습니다.';
 }
 alert(msg);
 });
-});
+}
 </script>
 </body>
 </html>

@@ -205,8 +205,10 @@ create table product_registration_table(
 	p_name varchar2(20 char) not null,
 	p_price	number(10) not null,
 	p_picture varchar2(200 char) not null,
-	p_txt varchar2(200 char) not null
+	p_txt clob not null
 );
+alter table product_registration_table alter column p_txt clob not null;
+ALTER TABLE product_registration_table MODIFY(p_txt clob not null);
 
 create sequence product_registration_seq;
 
@@ -226,7 +228,7 @@ create table foodproduct_registration_table(
 
 create sequence foodproduct_registration_seq;
 
-insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품1',10000,'ab.jpg','캠핑용품입니다1');
+insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'푸~짐한 UFO 부대찌개',25000,'마라탕.JPG','고캠핑표 부대찌개는 신선한 채소와 깊은 맛을 내는 육수까지 극강의 비주얼을 자랑합니다.');
 insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품2',10000,'bb.jpg','캠핑용품입니다2');
 insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품3',10000,'bc.jpg','캠핑용품입니다3');
 insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품4',10000,'bd.jpg','캠핑용품입니다4');
