@@ -92,6 +92,7 @@ table, td, th {
 	display: none;
 }
 </style>
+
 </head>
 <body>
   <div class="topnav">
@@ -99,6 +100,11 @@ table, td, th {
   	<a href = "mealkit">밀키트</a>
   </div>
   <div class="column middle">
+  <c:choose>
+		<c:when test="${c.ba_no eq null}">
+			<h1>장바구니 내역이 없습니다.</h1>
+		</c:when>
+	<c:otherwise>
 <div class="content_area">
 	<!-- 장바구니 리스트 -->
 	<div class="content_middle_section"></div>
@@ -107,10 +113,10 @@ table, td, th {
 	<div class="content_totalCount_section">
 		<!-- 체크박스 전체 여부 -->
 		<div class="all_check_input_div">
-			<input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
+		<!-- name="allCheck" -->
+			<input name="allCheck" type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
 			<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();">
 		</div>
-		
 		<table class="subject_table">
 			<caption>표 제목 부분</caption>
 			<tbody>
@@ -131,7 +137,8 @@ table, td, th {
 				<c:forEach items="${campingproduct}" var="c">
 					<tr>
 						<td class="td_width_1 cart_info_td">
-							<input name="RowCheck" type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
+						<!-- name="RowCheck" -->
+							<input name="RowCheck" type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked" value="${c.ba_no}">
 							<input type="hidden" class="individual_bookPrice_input" value="${c.ba_price}">
 							<input type="hidden" class="individual_bookCount_input" value="${c.ba_number}">
 							<input type="hidden" class="individual_totalPrice_input" value="${c.ba_price * c.ba_number}">
@@ -220,10 +227,11 @@ table, td, th {
 		<input type="hidden" name="ba_no" class="delete_cartId" >
 		<input type="hidden" name="ba_u_bo_id" value="'${c.ba_u_bo_id}'">
 	</form>
-	
 </div>	
+</c:otherwise>
+</c:choose>
 </div>
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(document).ready(function(){
 			setTotalInfo();
 		});
@@ -299,13 +307,81 @@ table, td, th {
 		});
 		
 		/* 장바구니 삭제 버튼 */
-		$(".delete_btn2").click(function(){
+		$(".delete_btn2").on("click", function(e){
 			let cartId2 = $(this).val();
 			cartId2 = parseInt(cartId2);
-			alert(cartId2);
 			$(".delete_cartId").val(cartId2);
 			$(".quantity_delete_form").submit();
 		});
-	</script>
+		
+</script>
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script>		
+		/* 장바구니 삭제 버튼 */ 
+		$(function(){
+			var chkObj = document.getElementsByName("RowCheck");
+			var rowCnt = chkObj.length;
+			
+			 $("input[name='allCheck']").click(function(){
+				var chk_listArr = $("input[name='RowCheck']");
+				for (var i=0; i<chk_listArr.length; i++){
+					chk_listArr[i].checked = this.checked;
+				}
+			});
+			$("input[name='RowCheck']").click(function(){
+				if($("input[name='RowCheck']:checked").length == rowCnt){
+					$("input[name='allCheck']")[0].checked = true;
+				}
+				else{
+					$("input[name='allCheck']")[0].checked = false;
+				}
+			}); 
+		});  
+		
+		 function deleteValue(){
+			var url = "delete";    // Controller로 보내고자 하는 URL (.dh부분은 자신이 설정한 값으로 변경해야됨)
+			var valueArr = new Array();
+		    var list = $("input[name='RowCheck']");
+		    for(var i = 0; i < list.length; i++){
+		        if(list[i].checked){ //선택되어 있으면 배열에 값을 저장함
+		            valueArr.push(list[i].value);
+		        }
+		    }
+		    /*
+		    location.href='delete?valueArr='+valueArr;
+		    
+		    };*/
+		 
+		    if (valueArr.length == 0){
+		    	alert("선택된 품목이 없습니다.");
+		    }
+		    else{
+				var chk = confirm("정말 삭제하시겠습니까?");
+				if(chk == true){
+				$.ajax({
+				    url : "delete",                    // 전송 URL
+				    type : 'GET',                // GET or POST 방식
+				    traditional : true,
+				    data : {
+				    	valueArr : valueArr        // 보내고자 하는 data 변수 설정
+				    },
+	                success: function(data){
+	                	console.log(data);
+	                    if(data = 1) {
+	                        alert("삭제되었습니다.");
+	                        location.replace("cart")
+	                    }
+	                    else{
+	                        alert("삭제되지않았습니다.");
+	                    }
+	                }
+				});
+			}
+			else{
+				location.replace("cart")
+			}
+		}
+	}
+</script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Go Camping</title>
 <style>
 * {
   box-sizing: border-box;
@@ -91,46 +91,38 @@ table, td, th {
 	display: none;
 }
 </style>
-
 </head>
 <body>
 <div class="row">
   <div class="column side">
-	<jsp:include page="${myPage }"></jsp:include>
+	<jsp:include page="${myPage2 }"></jsp:include>
   </div>
-  
   <div class="topnav">
-  	<a href = "Cproductreview?pr_u_bo_id=${sessionScope.loginMember.u_id}">캠핑용품</a> /
-  	<a href = "Mproductreview?fpr_u_bo_id=${sessionScope.loginMember.u_id}">밀키트</a>
   </div>
-	
   <div class="column middle">
-  <c:choose>
-		<c:when test="${m.fpr_no eq null}">
-			<h1>작성된 내용이 없습니다.</h1>
-		</c:when>
-	<c:otherwise>
 	<table>
 		<tr>
 			<td class="hidden"></td>
-			<td class="td1">내용</td>
-			<td class="td1">작성날짜</td>
-			<td colspan="2" class="td1">수정/삭제</td>
+			<td class="td1">제목</td>
+			<td class="td1">조회수</td>
+			<td class="td1">작성 날짜</td>
 		</tr>
-	<c:forEach var="m" items="${mealreview}">
+	<c:forEach var="ct" items="${campingtip}">
+		<c:choose>
+			<c:when test="${ct.tip_no eq null}">
+				<h1>작성된 내용이 없습니다.</h1>
+		</c:when>
+		<c:otherwise>
 		<tr>
-			<td class="hidden" id="fpru${m.fpr_no}"></td>
-			<td class="td1"><input name="fpr_txt" value="${m.fpr_txt}"></td>
-			<td class="td1"><fmt:formatDate value="${m.fpr_date}"/></td>
-			<td class="td1">
-				<button onclick="mealreviewup('${m.fpr_no}','${m.fpr_u_bo_id}')">수정</button>
-				<button onclick="mealreviewdel('${m.fpr_no}','${m.pr_u_bo_id}')">삭제</button>
-			</td>
+			<td class="hidden"></td>
+			<td class="td1"><a href="">${ct.tip_subject}</a></td>
+			<td class="td1">${ct.tip_readcount}</td>
+			<td class="td1"><fmt:formatDate value="${ct.tip_date}"/></td>
 		</tr>
+		</c:otherwise>
+		</c:choose>
 	</c:forEach>
 	</table>
-</c:otherwise>
-</c:choose>
 </div>
 </div>
 </body>

@@ -18,27 +18,13 @@ public class CartController {
 	@Autowired
 	private MemberDAO Mdao;
 
-	// 사장 장바구니 전체 목록
+	// 장바구니 전체 목록
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String cart(CartBean c, HttpServletRequest request) {
-		if (Mdao.loginCheck(request)) {
+		if(Mdao.loginCheck(request)) {
 			sdao.campingproduct(c, request);
-		} else if (Mdao.loginCheck(request)) {
-			sdao.bosscampingproduct(c, request);
 		}
 		request.setAttribute("contentPage", "cart/campingproduct.jsp");
-		return "main";
-	}
-
-	// 사장 장바구니 전체 목록
-	@RequestMapping(value = "mealkit", method = RequestMethod.GET)
-	public String mealkit(CartBean c, HttpServletRequest request) {
-		if (Mdao.loginCheck(request)) {
-			sdao.mealkit(c, request);
-		} else if (Mdao.loginCheck(request)) {
-			sdao.bossmealkit(c, request);
-		}
-		request.setAttribute("contentPage", "cart/mealkit.jsp");
 		return "main";
 	}
 
@@ -58,5 +44,52 @@ public class CartController {
 			sdao.cartdel(c, request);
 		}
 		return cart(c, request);
+	}
+
+	// 장바구니 선택삭제
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String selectdelete(HttpServletRequest request) {
+		if (Mdao.loginCheck(request)) {
+			sdao.selectdelete(request);
+//			sdao.selectdelete2(request);
+		}
+		return "redirect:cart";
+	}
+
+	// 밀키트 전체 목록
+	@RequestMapping(value = "mealkit", method = RequestMethod.GET)
+	public String mealkit(CartBean c, HttpServletRequest request) {
+		if (Mdao.loginCheck(request)) {
+			sdao.mealkit(c, request);
+		} 
+		request.setAttribute("contentPage", "cart/mealkit.jsp");
+		return "main";
+	}
+
+	// 밀키트 수량 변경
+	@RequestMapping(value = "mealkit.update", method = RequestMethod.POST)
+	public String mealkitup(CartBean c, HttpServletRequest request) {
+		if (Mdao.loginCheck(request)) {
+			sdao.mealkitup(c, request);
+		}
+		return mealkit(c, request);
+	}
+
+	// 밀키트 삭제
+	@RequestMapping(value = "mealkit.delete", method = RequestMethod.GET)
+	public String mealkitdel(CartBean c, HttpServletRequest request) {
+		if (Mdao.loginCheck(request)) {
+			sdao.mealkitdel(c, request);
+		}
+		return mealkit(c, request);
+	}
+
+	// 밀키트 선택삭제
+	@RequestMapping(value = "mealkits.delete", method = RequestMethod.GET)
+	public String mealkitsdelete(HttpServletRequest request) {
+		if (Mdao.loginCheck(request)) {
+			sdao.mealkitSelectdelete(request);
+		}
+		return "redirect:mealkit";
 	}
 }

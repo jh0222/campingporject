@@ -24,6 +24,7 @@
 <script type="text/javascript" src="resources/js/board.js"></script>
 <script type="text/javascript" src="resources/js/validCheck.js"></script>
 <script type="text/javascript" src="resources/js/review.js"></script>
+<script type="text/javascript" src="resources/js/review2.js"></script>
 <script type="text/javascript" src="resources/js/communities.js"></script>
 <script type="text/javascript" src="resources/js/shopping.js"></script>
 <script type="text/javascript" src="resources/js/shoppingorder.js"></script>

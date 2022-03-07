@@ -96,12 +96,12 @@ table, td, th {
 <body>
 <div class="row">
   <div class="column side">
-	<jsp:include page="${myPage }"></jsp:include>
+	<jsp:include page="${myPage2 }"></jsp:include>
   </div>
   
   <div class="topnav">
-  	<a href = "Cproductreview?pr_u_bo_id=${sessionScope.loginMember.u_id}">캠핑용품</a> /
-  	<a href = "Mproductreview?fpr_u_bo_id=${sessionScope.loginMember.u_id}">밀키트</a>
+  	<a href = "Cproductreview2?pr_u_bo_id=${sessionScope.loginMember2.bo_id}">캠핑용품</a> /
+  	<a href = "Mproductreview2?fpr_u_bo_id=${sessionScope.loginMember2.bo_id}">밀키트</a>
   </div>
 	
   <div class="column middle">

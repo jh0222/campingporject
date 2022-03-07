@@ -83,7 +83,7 @@ table, td, th {
     padding : 10px;
 }
 
-.td1 {	
+.td1 {
 	text-align: center;
 }
 
@@ -91,46 +91,37 @@ table, td, th {
 	display: none;
 }
 </style>
-
 </head>
 <body>
 <div class="row">
   <div class="column side">
-	<jsp:include page="${myPage }"></jsp:include>
+	<jsp:include page="${myPage2 }"></jsp:include>
   </div>
-  
   <div class="topnav">
-  	<a href = "Cproductreview?pr_u_bo_id=${sessionScope.loginMember.u_id}">캠핑용품</a> /
-  	<a href = "Mproductreview?fpr_u_bo_id=${sessionScope.loginMember.u_id}">밀키트</a>
+  	<a href = "freeboardreview2?fr_u_id=${sessionScope.loginMember2.bo_id}">자유게시판</a>
+  	<a href = "campingtipreview2?tipr_u_id=${sessionScope.loginMember2.bo_id}">캠핑팁</a>
+  	<a href = "recipereview2?rr_u_id=${sessionScope.loginMember2.bo_id}">레시피</a>
   </div>
-	
   <div class="column middle">
-  <c:choose>
-		<c:when test="${m.fpr_no eq null}">
-			<h1>작성된 내용이 없습니다.</h1>
-		</c:when>
-	<c:otherwise>
 	<table>
 		<tr>
-			<td class="hidden"></td>
+			<td class="hidden">번호</td>
 			<td class="td1">내용</td>
 			<td class="td1">작성날짜</td>
-			<td colspan="2" class="td1">수정/삭제</td>
+			<td colspan="2"  class="td1">수정 / 삭제</td>
 		</tr>
-	<c:forEach var="m" items="${mealreview}">
+	<c:forEach var="r" items="${recipereview}">
 		<tr>
-			<td class="hidden" id="fpru${m.fpr_no}"></td>
-			<td class="td1"><input name="fpr_txt" value="${m.fpr_txt}"></td>
-			<td class="td1"><fmt:formatDate value="${m.fpr_date}"/></td>
-			<td class="td1">
-				<button onclick="mealreviewup('${m.fpr_no}','${m.fpr_u_bo_id}')">수정</button>
-				<button onclick="mealreviewdel('${m.fpr_no}','${m.pr_u_bo_id}')">삭제</button>
+			<td class="hidden" id="ru${r.rr_no}"></td>
+			<td class="td1"><input name="rr_replytxt" value="${r.rr_replytxt}"></td>
+			<td class="td1"><fmt:formatDate value="${r.rr_date}"/></td>
+			<td  class="td1">
+				<button onclick="recipereviewup2'${r.rr_no}','${r.rr_u_id}')">수정</button>
+				<button onclick="recipereviewdel2'${r.rr_no}','${r.rr_u_id}')">삭제</button>
 			</td>
 		</tr>
 	</c:forEach>
 	</table>
-</c:otherwise>
-</c:choose>
 </div>
 </div>
 </body>

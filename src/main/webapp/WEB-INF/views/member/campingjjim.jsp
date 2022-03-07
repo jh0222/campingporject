@@ -114,7 +114,11 @@ $('#heart a').click(function(){
   </div>
 	
   <div class="column middle">
-  <h2></h2>
+  <c:choose>
+		<c:when test="${cj.h_no eq null}">
+			<h1>좋아요 목록이 없습니다.</h1>
+		</c:when>
+	<c:otherwise>
 	<table>
 		<tr>
 			<td class="hidden"></td>
@@ -137,6 +141,8 @@ $('#heart a').click(function(){
 		</tr>
 	</c:forEach>
 	</table>
+</c:otherwise>
+</c:choose>
 </div>
 </div>
 </body>

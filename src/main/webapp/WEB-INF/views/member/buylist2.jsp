@@ -83,6 +83,10 @@ table, td, th {
     padding : 10px;
 }
 
+.td1 {
+	text-align: center;
+}
+
 .hidden {
 	display: none;
 }
@@ -100,22 +104,27 @@ table, td, th {
   </div>
 	
   <div class="column middle">
+  <c:choose>
+	<c:when test="${mealbuylist eq null}">
+		<h1>구매 내역이 없습니다.</h1>
+	</c:when>
+	<c:otherwise>
 	<table>
 		<tr>
 			<td class="hidden"></td>
-			<td>상품명</td>
-			<td>상품수량</td>
-			<td>구매가격</td>
-			<td>구매주소지</td>
-			<td>구매날짜</td>
-			<td colspan="2" align="center">취소/환불</td>
+			<td class="td1">상품명</td>
+			<td class="td1">상품수량</td>
+			<td class="td1">구매가격</td>
+			<td class="td1">구매주소지</td>
+			<td class="td1">구매날짜</td>
+			<td colspan="2" class="td1">취소/환불</td>
 		</tr>
 	<c:forEach var="buy" items="${mealbuylist }">
 		<tr>
 			<td class="hidden"></td>
-			<td>${buy.fb_p_name }</td>
-			<td>${buy.fb_number }</td>
-			<td>${buy.fb_number * buy.fb_price}</td>
+			<td class="td1">${buy.fb_p_name }</td>
+			<td class="td1">${buy.fb_number }</td>
+			<td class="td1">${buy.fb_number * buy.fb_price}</td>
 			<c:choose>
 				<c:when test="${buy.fb_new_address !=null}">
 					<td>${buy.fb_new_address}</td>
@@ -124,11 +133,13 @@ table, td, th {
 					<td>${buy.fb_u_address}</td>
 				</c:otherwise>
 			</c:choose>
-			<td><fmt:formatDate value="${buy.fb_date }"/></td>
-			<td><button onclick="buymealdel('${buy.fb_no}','${buy.fb_u_bo_id }')">취소/환불</button></td>
+			<td class="td1"><fmt:formatDate value="${buy.fb_date }"/></td>
+			<td class="td1"><button onclick="buymealdel('${buy.fb_no}','${buy.fb_u_bo_id }')">취소/환불</button></td>
 		</tr>
 	</c:forEach>
 	</table>
+</c:otherwise>
+</c:choose>
 </div>
 </div>
 </body>
