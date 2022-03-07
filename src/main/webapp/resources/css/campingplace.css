@@ -1,10 +1,19 @@
 @charset "UTF-8";
 
-body{
-	margin:0; /*배경이미지 여백을 없애줌 , 바디영역이 디폴트값 margin:8px정도 들어가있기 때문 */
-	height:2000px; /*바디영역의 높이를 높게 줘서 스크롤할수있도록*/
+.place_list{
+	display: flex;
+	margin-left: 100px;
 }
 
+.place_list_detail{
+	display: block;
+	margin-left: 30px;
+	font-size: 30px;
+}
+.place_list_detail_title{
+	font-size: 50px;
+	margin-bottom: 15px;
+}
 
 /*이미지*/
 .place {
@@ -17,4 +26,128 @@ body{
 
 .view_map {
 	position: absolute;
+}
+div.place_search{
+	margin-top: 15px;
+	margin-bottom:15px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-size: 20px;
+	vertical-align: middle;
+}
+.place_search input{
+	height:25px;
+}
+.place_search select{
+	height: 25px;
+}
+.place_search_p{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.place_search_star_btn{
+	font-size: 20px;
+}
+.place_search_btn{
+	width: 50px;
+	font-size: 20px;
+}
+.paging{
+    display: flex;
+	justify-content:center;
+	align-items:center;
+}
+.place_reviwReg{
+  display: flex;
+  align-items:center;
+  margin-left:500px;
+  font-size: 15pt;
+  font-family: 'GowunBatang-Regular';
+}
+
+td.reserve_btn {
+}
+
+
+.review_id {
+	margin-right:30px;
+}
+
+.review_id textarea{
+	width: 400px;
+            height: 70px;
+            box-sizing: border-box;
+            border: 1px solid grey;
+            font-size: 12px;
+            font-weight: bold;
+            text-indent: 5px;
+
+}
+
+table.detail_div2 {
+	font-size: 15pt;
+	font-family: 'GowunBatang-Regular';
+}
+.detail_div1_1 {
+	font-size: 25pt;
+	font-family: '양진체';
+	color: #558b2f;
+	float:left;
+}
+
+.place_detail_bossBtn button{
+	
+	margin-right: 100px;
+	font-size: 20px;
+	
+}
+.view_map{
+	display: flex;
+  	align-items:center;
+  	margin-left:200px;
+}
+
+table.table_place{
+  /*display: flex;
+  justify-content:center;
+  align-items: center;
+  position: relative;
+  margin: 5px;
+  padding: 25px;*/
+  width: 100%;
+  border: 1px solid #444444;
+  border-collapse: collapse;
+}
+
+table.table_place td{
+	text-align:center;
+	border: 1px solid #444444;
+    padding: 10px;
+	
+}
+
+img.table_place_pic{
+	width: 400px; 
+	height: 300px;
+    border-radius: 15px;
+
+}
+
+img.table_place_pic:hover{
+	background-color:#CCCCCC;
+	transform: scale(0.9);
+    transition: all 0.2s;
+}
+
+td.table_place_name{
+	font-weight:bold;
+	font-size: 40px;
+	text-align:center;
+	
+}
+
+
+img.mainpicture{
+	height: 500px; width: 1000px; display: block; margin: 0px auto;
 }

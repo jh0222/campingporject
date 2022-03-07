@@ -40,88 +40,88 @@ $(function() {
 #heart a.on {
 	color: red;
 }
+
+*{margin:0;padding:0;}
+    ul,li{list-style:none;}
+    .slide{height:500px;overflow:hidden;margin-top: 15px;}
+    .slide ul{width:calc(100% * 4);display:flex;animation:slide 17s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
+    .slide li{width:calc(100% / 4);height:300px;}
+    .slide li:nth-child(1){background:#f5f5f5; background-color: white} /*background-image:url(resources/css/xx.jpg);*/
+    .slide li:nth-child(2){background:#f5f5f5; background-color: white}
+    .slide li:nth-child(3){background:#f5f5f5; background-color: white}
+    .slide li:nth-child(4){background:#f5f5f5; background-color: white}
+    @keyframes slide {
+      0% {margin-left:0;} /* 0 ~ 10  : 정지 */
+      10% {margin-left:0;} /* 10 ~ 25 : 변이 */
+      25% {margin-left:-100%;} /* 25 ~ 35 : 정지 */
+      35% {margin-left:-100%;} /* 35 ~ 50 : 변이 */
+      50% {margin-left:-200%;}
+      60% {margin-left:-200%;}
+      75% {margin-left:-300%;}
+      85% {margin-left:-300%;}
+      100% {margin-left:0;}
+    }
 </style>
 <meta charset="UTF-8">
 <title>CampingPlace</title>
 </head>
 <body>
-<h2>캠핑장 목록</h2>
-${result }
-<button onclick="location.href='place.search?searchplace=star'">별점 높은 순</button>
-<form action="place.search">
-	가격 : <input name="from_p"> ~ <input name="to_p">
-	<input name="searchplace" value="p" type="hidden">
-	<button>검색</button> 
-</form>
 
-<form action="place.search">
-		<select name="searchplace">
-	    	<option value="placename">캠핑장 이름</option>	  
-	    	<option value="placearea">캠핑장 주소</option>
-	    </select>
-		<input name="search"> <button>검색</button>
-</form>
-<!-- 
-<form action="place.search">
-	<select name="place">
-	    	<option value="inSeoul">서울</option>
-	    	<option value="inGyeonggi">경기도</option>
-	        <option value="inGangwon">강원도</option>
-	    	<option value="inIncheon">인천</option>
-	    	<option value="inChungbuk">충청북도</option>
-	    	<option value="inChungnam">충청남도</option>
-	    	<option value="inGyeongbuk">경상북도</option>
-	    	<option value="inGyeongnam">경상남도</option>
-	    	<option value="inJeonbuk">전라북도</option>
-	    	<option value="inJeonnam">전라남도</option>
-	    	<option value="inJeju">제주</option>
-	</select>
-	<button>검색</button>
-</form>
- -->
-<table border="1">
-	<tr>
-		<th>이름</th> 
-		<th>상세설명</th>
-		<th>연락처</th>
-		<th>가격</th>
-		<th>주소</th>
-		<th>별점</th>
-	</tr>
-	
-	<c:forEach var="c" items="${places}">
-		<tr>
-			<td><a href='placedetail.go?r_cam_no=${c.cam_no }&r_u_id=${sessionScope.loginMember.u_id}&cam_no=${c.cam_no }&c_cam_no=${c.cam_no }&cr_cam_no=${c.cam_no }'>${c.cam_name }</a></td>
-			<td>${c.cam_txt }</td>
-			<td>${c.cam_phonenumber }</td>
-			<td><fmt:formatNumber value="${c.cam_price}" pattern="###,###,###" type="currency" /></td>
-			<td>${c.cam_address }</td>
-			<td><fmt:formatNumber value="${c.star }" pattern="0.0"/></td>
-			<td>
-	
-				<c:if test="${sessionScope.loginMember.u_id != null}">
-	                  <c:choose>
-			               <c:when test="${c.cam_liked == 1 }">
-			                  <p id="heart">
-			                     <a href="#" value="1" style="color: red;">♥</a>
-				<input type="hidden" class="cam_no" value="${c.cam_no }" />
-			                  </p>
-			               </c:when>
-			               <c:otherwise>
-			                  <p id="heart">
-			                     <a href="#" value="0">♥</a>
-			                     <input type="hidden" class="cam_no" value="${c.cam_no }" />
-			                  </p>  
-			               </c:otherwise>
-			            </c:choose>
-   
-				</c:if>
-			</td>
-		</tr>
-	</c:forEach>
-	
-</table>
-<c:choose>
+<div class="slide">
+	<ul>
+      <li><img src="resources/css/placemain/campingplace1.jpg" class="mainpicture"></li>
+      <li><img src="resources/css/placemain/campingplace2.jpg" class="mainpicture"></li>
+      <li><img src="resources/css/placemain/campingplace3.jpg" class="mainpicture"></li>
+      <li><img src="resources/css/placemain/campingplace4.jpg" class="mainpicture"></li>
+    </ul>
+</div>
+<br>
+<c:if test="${sessionScope.loginMember3.root_id != null || sessionScope.loginMember2.bo_id != null}">
+	<button onclick="location.href='placereg.go'">캠핑장 등록하기</button>
+</c:if>
+<div class="place_search">
+	<div><button class="place_search_star_btn" onclick="location.href='place.search?searchplace=star'">별점 높은 순으로 보기</button></div>
+	<div class="place_search_p">
+	<form action="place.search">
+		가격 : <input name="from_p"> ~ <input name="to_p">
+		<input name="searchplace" value="p" type="hidden">
+		<button class="place_search_btn">검색</button> 
+	</form>
+	</div>
+	<div>
+	<form action="place.search">
+			<select name="searchplace">
+		    	<option value="placename">캠핑장 이름</option>	  
+		    	<option value="placearea">캠핑장 주소</option>
+		    </select>
+			<input name="search"> <button class="place_search_btn">검색</button>
+	</form>
+	</div>
+</div>
+
+<br>
+<c:forEach var="c" items="${places}">
+	<div class="place_list">
+		<div>
+			<img src="resources/img/${c.cam_picture }" class="table_place_pic"
+			onclick="location.href='placedetail.go?r_cam_no=${c.cam_no }&r_u_id=${sessionScope.loginMember.u_id}&cam_no=${c.cam_no }&c_cam_no=${c.cam_no }&cr_cam_no=${c.cam_no }'">
+		</div>
+		<div class="place_list_detail">
+			<div class="place_list_detail_title"><a href='placedetail.go?r_cam_no=${c.cam_no }&r_u_id=${sessionScope.loginMember.u_id}&cam_no=${c.cam_no }&c_cam_no=${c.cam_no }&cr_cam_no=${c.cam_no }'>
+			<strong>${c.cam_name }</strong>
+			</a>
+			</div>
+			<div>별점 : <fmt:formatNumber value="${c.star }" pattern="0.0"/></div>
+			<div>주소 : ${c.cam_address }</div>
+			<div>전화번호 : ${c.cam_phonenumber }</div>
+			<div>가격 : <fmt:formatNumber value="${c.cam_price}" pattern="###,###,###" type="currency" /></div>
+		</div>
+	</div>
+	<br>
+</c:forEach>	
+
+<div class="paging">
+	<c:choose>
 		<c:when test = "${pg > block}">
             [<a href="${c }pg=1">◀◀</a>]
             [<a href="${c }pg=${fromPage -1}">◀</a>] 
@@ -151,18 +151,8 @@ ${result }
             [<span style="color:gray">▶▶</span>]
        	</c:otherwise>       
     </c:choose>
-    
-<c:if test="${sessionScope.loginMember3.root_id != null || sessionScope.loginMember2.bo_id != null}">
-	<button onclick="location.href='placereg.go'">캠핑장 등록하기</button>
-</c:if>
-
-<script>
-
-
-</script>
-
-
-
+</div>   
+ 
 
 </body>
 </html>

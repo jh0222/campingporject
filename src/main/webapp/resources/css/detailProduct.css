@@ -54,6 +54,7 @@ span.detail_won {
 	margin-right: 1500px;
 }
 
+
 .detail_div1 {
 	font-size: 25pt;
 	font-family: '양진체';
@@ -190,6 +191,9 @@ hr.detailhr{
  	border: 0;
     height: 3px;
     background: #ccc;	
+}
+.reply_boss{
+	font-size: 15pt;
 }
 
 @font-face {

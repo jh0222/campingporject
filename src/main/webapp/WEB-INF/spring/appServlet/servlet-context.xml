@@ -30,8 +30,8 @@
 		<beans:property name="url"
 			value="jdbc:oracle:thin:@localhost:1521:xe" />
 
-		<beans:property name="username" value="c##jh" />
-		<beans:property name="password" value="jh" />
+		<beans:property name="username" value="c##mj" />
+		<beans:property name="password" value="mj" />
 
 
 	</beans:bean>
@@ -46,7 +46,7 @@
 		<beans:property name="typeAliasesPackage" value="com.fi.pj" />
 		<beans:property name="mapperLocations">
 			<beans:list>
-				<beans:value>classpath:memberMapper.xml</beans:value>
+				<beans:value>classpath:memberMapper.xml</beans:value>  
 				<beans:value>classpath:cartMapper.xml</beans:value>
 				<beans:value>classpath:buylistMapper.xml</beans:value>
 				<beans:value>classpath:communitiesMapper.xml</beans:value>
