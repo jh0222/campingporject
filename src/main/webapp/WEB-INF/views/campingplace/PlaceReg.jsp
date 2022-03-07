@@ -52,9 +52,9 @@ $(function(){
 	<div class="board_write_subject2">정원 수
 	<input name="cam_headcount"></div>
 	<br>
-	<div class="board_write_subject2">				
+	<div style="text-align: center;">				
 		<input type="hidden" name="cam_bo_id" value="${sessionScope.loginMember2.bo_id }">
-		<button>등록</button>
+		<button  class="board_write_btn">등록</button>
 	</div>
 </div>	
 </form>
