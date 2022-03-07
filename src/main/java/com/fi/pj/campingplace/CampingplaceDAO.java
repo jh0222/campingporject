@@ -289,16 +289,16 @@ public class CampingplaceDAO {
 	}
 	
 
-	public void likePlace(Campingplace p,HttpServletRequest req) {
-		if (ss.getMapper(PlaceMapper.class).placeLike(p) == 1) {
+	public void likePlace(campingLike cl,HttpServletRequest req) {
+		if (ss.getMapper(PlaceMapper.class).placeLike(cl) == 1) {
 			req.setAttribute("result", "찜 성공");
 		} else {
 			req.setAttribute("result", "찜 실패");
 		}		
 	}
 	
-	public void likePlace_del(Campingplace p, HttpServletRequest req) {
-		if (ss.getMapper(PlaceMapper.class).placeLike_del(p) == 1) {
+	public void likePlace_del(campingLike cl, HttpServletRequest req) {
+		if (ss.getMapper(PlaceMapper.class).placeLike_del(cl) == 1) {
 			req.setAttribute("result", "찜 삭제성공");
 		} else {
 			req.setAttribute("result", "찜 삭제실패");
@@ -308,6 +308,11 @@ public class CampingplaceDAO {
 	//찜 있는지 없는지
 	public void getheart(campingLike cl, HttpServletRequest req) {
 		String heart = ss.getMapper(PlaceMapper.class).getheart(cl);
+		req.setAttribute("heart", heart);		
+	}
+	
+	public void getheart2(campingLike cl, HttpServletRequest req) {
+		String heart = ss.getMapper(PlaceMapper.class).getheart2(cl);
 		req.setAttribute("heart", heart);		
 	}
 

@@ -5,32 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-$(function() {  
-	//하트찜	
-	$('#heart a').click(function(){ 
-	    let FormVisible = $(this).attr('value');
-		
-		if (FormVisible == 1) {
-			//value=0 찜취소
-			$(this).parent().children("a").removeClass("on");
-			let cam_no = $(this).next('input').attr('value');
-		    location.href="placelike.delgo2?cam_no=" + cam_no;     
-		    FormVisible = $(this).attr('value', '0'); 
-		    console.log($(this).attr("value")); 
-	    } else {
-	    	//value=0 찜
-		    $(this).addClass("on").prevAll("a").addClass("on");
-		    let cam_no = $(this).next('input').attr('value');
-		    location.href="placelike.go2?cam_no=" + cam_no;
-		    FormVisible = $(this).attr('value', '1');
-		    console.log($(this).attr("value")); 
-		} 
-     	 
-		 $('input[name=c_campingstar]').attr('value',$(this).attr("value"));
-	});
-});
-</script>
 <style type="text/css">
 #heart a {
 	text-decoration: none;
@@ -91,32 +65,12 @@ ${result }
 	
 	<c:forEach var="c" items="${places}">
 		<tr>
-			<td><a href='placedetail.go?r_cam_no=${c.cam_no }&r_u_id=${sessionScope.loginMember.u_id}&cam_no=${c.cam_no }&c_cam_no=${c.cam_no }&cr_cam_no=${c.cam_no }'>${c.cam_name }</a></td>
+			<td><a href='placedetail.go?r_cam_no=${c.cam_no }&r_u_id=${sessionScope.loginMember.u_id}&cam_no=${c.cam_no }&c_cam_no=${c.cam_no }&cr_cam_no=${c.cam_no }&h_cam_no=${c.cam_no }&h_u_id=${sessionScope.loginMember.u_id}'>${c.cam_name }</a></td>
 			<td>${c.cam_txt }</td>
 			<td>${c.cam_phonenumber }</td>
 			<td><fmt:formatNumber value="${c.cam_price}" pattern="###,###,###" type="currency" /></td>
 			<td>${c.cam_address }</td>
 			<td><fmt:formatNumber value="${c.star }" pattern="0.0"/></td>
-			<td>
-	
-				<c:if test="${sessionScope.loginMember.u_id != null}">
-	                  <c:choose>
-			               <c:when test="${c.cam_liked == 1 }">
-			                  <p id="heart">
-			                     <a href="#" value="1" style="color: red;">♥</a>
-				<input type="hidden" class="cam_no" value="${c.cam_no }" />
-			                  </p>
-			               </c:when>
-			               <c:otherwise>
-			                  <p id="heart">
-			                     <a href="#" value="0">♥</a>
-			                     <input type="hidden" class="cam_no" value="${c.cam_no }" />
-			                  </p>  
-			               </c:otherwise>
-			            </c:choose>
-   
-				</c:if>
-			</td>
 		</tr>
 	</c:forEach>
 	

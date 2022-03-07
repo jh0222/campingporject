@@ -12,7 +12,7 @@
 <div class="recipe_popular_board">
 <h1>인기 레시피 게시판</h1>
 <div class="more_board_recipe">
-<a href="freeboard.go">
+<a href="recipe.go">
 	더보기>
 </a>
 </div>
@@ -64,7 +64,7 @@
 	<div class="text_board_1">
 		<h1>인기 캠핑팁 게시판</h1>
 		<div class="more_board">
-			<a href="freeboard.go">
+			<a href="campingtip.go">
 				더보기>
 			</a>
 		</div>

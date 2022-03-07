@@ -38,18 +38,25 @@ $(function() {
 	$('#heart a').click(function(){ 
 	    let FormVisible = $(this).attr('value');
 		
-		if (FormVisible == 1) {
+	    if (FormVisible == 1) {
 			//value=0 찜취소
 			$(this).parent().children("a").removeClass("on");
-			let cam_no = $("#cam_no").val();
-		    location.href="placelike.delgo?cam_no=" + cam_no;     
+			let h_cam_no = $("#cam_no").val();
+		    let h_u_id = $("#h_u_id").val();
+		    location.href="placelike.delgo?h_cam_no=" + h_cam_no + "&h_u_id=" + h_u_id
+		   				 + "&cam_no=" + h_cam_no + "&c_cam_no=" + h_cam_no;     
 		    FormVisible = $(this).attr('value', '0'); 
 		    console.log($(this).attr("value")); 
 	    } else {
 	    	//value=0 찜
 		    $(this).addClass("on").prevAll("a").addClass("on");
-		    let cam_no = $("#cam_no").val();
-		    location.href="placelike.go?cam_no=" + cam_no;
+		    let h_cam_no = $("#cam_no").val();
+		    let h_u_id = $("#h_u_id").val();
+		    let h_cam_address =  $("#h_cam_address").val();
+		    let h_cam_name =  $("#h_cam_name").val();
+		    let h_campingheart = 0;
+		    location.href="placelike.go?h_cam_no=" + h_cam_no + "&h_u_id=" + h_u_id + "&h_cam_address=" + h_cam_address +"&h_cam_name=" + h_cam_name + "&h_campingheart=0"
+		    		+ "&cam_no=" + h_cam_no + "&c_cam_no=" + h_cam_no;
 		    FormVisible = $(this).attr('value', '1');
 		    console.log($(this).attr("value")); 
 		} 
@@ -174,7 +181,7 @@ $(function() {
  					
  					<c:if test="${sessionScope.loginMember.u_id != null}">
 					<c:choose>
-						<c:when test="${places.cam_liked == 1}">
+						<c:when test="${heart != null}">
 							<p id="heart">
 								<a href="#" value="1" style="color: red;">♥</a>
 							</p>

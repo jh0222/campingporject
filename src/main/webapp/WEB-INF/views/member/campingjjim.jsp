@@ -86,6 +86,23 @@ table, td, th {
 	display: none;
 }
 </style>
+<script type="text/javascript">
+$(function() {   
+//하트찜	
+$('#heart a').click(function(){ 
+
+		//value=0 찜취소
+		$(this).parent().children("a").removeClass("on");
+		let h_no = $("#h_no").val();
+	    let h_u_id = $("#h_u_id").val();
+	    location.href="campingjjim.del?h_no=" + h_no + "&h_u_id=" + h_u_id;     
+	    FormVisible = $(this).attr('value', '0'); 
+	    console.log($(this).attr("value")); 
+ 	 
+	 $('input[name=c_campingstar]').attr('value',$(this).attr("value"));
+});
+});
+</script>
 </head>
 <body>
 <div class="row">
@@ -110,7 +127,13 @@ table, td, th {
 			<td id="cj${cj.h_no}" class="hidden"></td>
 			<td><a href="">${cj.h_cam_name}</a></td>
 			<td>${cj.h_cam_address }</td>
-			<td><button value="${cj.h_campingheart }" onclick="jjimdel('${cj.h_no }','${cj.h_u_id }')">삭제</button></td>
+			<td>
+				<input type="hidden" id="h_no" value="${cj.h_no }">
+				<input type="hidden" id="h_u_id" value="${sessionScope.loginMember.u_id}" /> 
+ 					<p id="heart">
+							<a href="#" value="1" style="color: red;">♥</a>
+						</p>
+				
 		</tr>
 	</c:forEach>
 	</table>

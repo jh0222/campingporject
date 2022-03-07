@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fi.pj.campingplace.CampingplaceDAO;
+import com.fi.pj.campingplace.campingLike;
+
 @Controller
 public class MemberController {
 
 	@Autowired
 	private MemberDAO mDAO;
-
+	@Autowired
+	private CampingplaceDAO cdao;
 	// 로그인 페이지로
 	@RequestMapping(value = "login.go", method = RequestMethod.GET)
 	public String gologin(UserMember m, HttpServletRequest req) {
@@ -233,9 +237,10 @@ public class MemberController {
 
 	// 캠핑찜
 	@RequestMapping(value = "campingjjim", method = RequestMethod.GET)
-	public String campingJjim(Communities c, HttpServletRequest request) {
+	public String campingJjim(Communities c,campingLike cl, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		mDAO.campingJjim(c, request);
+		cdao.getheart2(cl, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingjjim.jsp");
 

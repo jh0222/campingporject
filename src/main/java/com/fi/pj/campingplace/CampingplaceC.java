@@ -73,12 +73,13 @@ public class CampingplaceC {
 	}
 	
 	@RequestMapping(value = "placedetail.go", method = RequestMethod.GET)
-	public String placeDetailGo(placeReserve pre,Campingplace p,placeReview pr, placeReply re, HttpServletRequest req) {
+	public String placeDetailGo(campingLike cl,placeReserve pre,Campingplace p,placeReview pr, placeReply re, HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		cdao.getOnePlace(p,req);
 		cdao.getAllReview(pr, req);
 		cdao.getAllReply(re,req);
 		cdao.reserveCheck(pre,req);
+		cdao.getheart(cl, req);
 		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
 		return "main";
 	}
@@ -141,11 +142,12 @@ public class CampingplaceC {
 	}
 	
 	@RequestMapping(value = "placelike.go", method = RequestMethod.GET)
-	public String placeLike(Campingplace p, placeReview pr, HttpServletRequest req) {
+	public String placeLike(Campingplace p, campingLike cl, placeReview pr, HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		cdao.likePlace(p,req);
+		cdao.likePlace(cl,req);
 		cdao.getOnePlace(p,req);
 		cdao.getAllReview(pr, req);
+		cdao.getheart(cl, req);
 		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
 		return "main";
 	}
@@ -153,9 +155,10 @@ public class CampingplaceC {
 	@RequestMapping(value = "placelike.delgo", method = RequestMethod.GET)
 	public String placeLikedel(Campingplace p, placeReview pr, campingLike cl, HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		cdao.likePlace_del(p,req);
+		cdao.likePlace_del(cl,req);
 		cdao.getOnePlace(p,req);
 		cdao.getAllReview(pr, req);
+		cdao.getheart(cl, req);
 		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
 		return "main";
 	}
@@ -163,7 +166,7 @@ public class CampingplaceC {
 	@RequestMapping(value = "placelike.go2", method = RequestMethod.GET)
 	public String placeLike2(Campingplace p, placeReview pr, HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		cdao.likePlace(p,req);
+		//cdao.likePlace(p,req);
 		cdao.getAllPlace(req);
 		req.setAttribute("contentPage", "campingplace/campingplace.jsp");
 		return "main";
@@ -172,7 +175,7 @@ public class CampingplaceC {
 	@RequestMapping(value = "placelike.delgo2", method = RequestMethod.GET)
 	public String placeLikedel2(Campingplace p, placeReview pr, campingLike cl, HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		cdao.likePlace_del(p,req);
+		//cdao.likePlace_del(p,req);
 		cdao.getAllPlace(req);
 		req.setAttribute("contentPage", "campingplace/campingplace.jsp");
 		return "main";

@@ -6,6 +6,20 @@ section .first_section {
    
 }
 
+section .first_section2 {
+   height: 100vh; /*view height*/
+   background-image:url('../img/wallpaperbetter (4).jpg'); 
+   background-size : cover /*배경 꽉 채우게(배경이 반복되는현상 방지*/
+   
+}
+
+section .first_section3 {
+   height: 100vh; /*view height*/
+   background-image:url('../img/wallpaperbetter (5).jpg'); 
+   background-size : cover /*배경 꽉 채우게(배경이 반복되는현상 방지*/
+   
+}
+
 .footerr{
 	background-color: black; 
 	height: 250px; 
@@ -36,6 +50,9 @@ section .first_section {
 	font-size: 40px;
 }
 
+.first_section{
+  
+}
 
 .second_section {
   padding: 0 300px;
@@ -58,6 +75,16 @@ section .first_section {
   font-weight: bolder;
   text-align: center;
   padding: 50px 0;
+}
+
+.section_box:hover {
+  background-color: white;
+  width: 280px;
+  height: 330px;
+  border: 1px;
+  border-radius: 10px;
+  box-shadow: 0 1px 15px grey;
+  margin: 0 20px 0 30px;
 }
 
 section .third_section {

@@ -11,15 +11,19 @@
 <main id="fullpage">
 		<section class="section">
 				<div class="slide">
-				 <section class="first_section"> 
+				<section class="first_section"> 
   				 <!--  <h1 class="text1">고캠핑에서 당신을 초대합니다<br>지금 바로 시작하세요</h1> -->
 				</section>
 				</div>		
 				<div class="slide">
-				<h3>slide 02</h3>
+				<section class="first_section2"> 
+  				 <!--  <h1 class="text1">고캠핑에서 당신을 초대합니다<br>지금 바로 시작하세요</h1> -->
+				</section>
 				</div>
 				<div class="slide">
-				<h3>slide 03</h3>
+				<section class="first_section3"> 
+  				 <!--  <h1 class="text1">고캠핑에서 당신을 초대합니다<br>지금 바로 시작하세요</h1> -->
+				</section>
 				</div>		
 		</section>
 		
@@ -30,23 +34,22 @@
 			</div>
 			<br>
 				<section class="second_section"> 
-  					<div class="section_box">
+	  				<div class="section_box">
+  					<a href="place.go?h_u_id=${sessionScope.loginMember.u_id}">
   						<p>쉽고 빠른 <br> 캠핑장 예약</p>
+  					</a>
   					</div>
   					<div class="section_box">
-  						<p>밀키트 <br> & <br> 캠핑용품</p>
+  					<a href="shopping.go">
+  						<p>밀키트 <br> 캠핑용품</p>
+  					</a>
   					</div>
   					<div class="section_box">
+  					<a href="board.go">
   						<p>게시판으로 <br> 소통을</p>
+  					</a>
   					</div>
 				</section>				
-		</section>
-		<section class="section">
-			<section class="third_section">
-					<section class="third_section">
-						
-					</section>				
-			</section>
 		</section>
 		<section class="section">
 				<section class="fourth_section">

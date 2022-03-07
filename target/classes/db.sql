@@ -87,7 +87,7 @@ IF  THEN
 처리문
 ELSIF 조건2 THEN
 처리문
-
+select * from campingheart_table a,campingheart_table b where h_u_id = 'kim'
 	select rn,c.*
 		from(select Rownum as rn,a.*,star
 			from camping_table a,
@@ -261,7 +261,17 @@ select rn,cam_no,cam_name,cam_txt,cam_phonenumber,cam_price, cam_address
 	order by cam_no desc))
 	where RN >=1 and RN <=10;
 	
-	
+	select rn,c.*
+		from(select Rownum as rn,a.*,star
+			from camping_table a,campingheart_table d,
+				(select c_cam_no, avg(c_campingstar) as star
+				from campingreview_table 
+				group by c_cam_no) b
+			where a.cam_no=b.c_cam_no(+) and a.cam_no=d.h_cam_no
+			ORDER BY a.cam_no desc) c
+		where RN >=1 and RN <=10;
+		 h_cam_no
+		
 select rn,c.*
 		from(select Rownum as rn,a.*,star
 			from camping_table a, campingheart_table d,

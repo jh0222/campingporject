@@ -67,16 +67,15 @@
 	#{r_cam_phonenumber}, #{r_cam_address})
 </insert>
 
-<update id ="placeLike" parameterType="com.fi.pj.campingplace.Campingplace">
-	update camping_table
-	set cam_liked = 1 
-	where cam_no = ${cam_no}
-</update>
-<update id ="placeLike_del" parameterType="com.fi.pj.campingplace.Campingplace">
-	update camping_table
-	set cam_liked = 0 
-	where cam_no = ${cam_no}
-</update>
+<insert id ="placeLike" parameterType="com.fi.pj.campingplace.campingLike">
+insert into campingheart_table
+values (campingheart_seq.nextval, #{h_cam_no}, #{h_u_id}, #{h_cam_name}, #{h_cam_address}, #{h_campingheart})
+</insert>
+
+<delete id="placeLike_del" parameterType="com.fi.pj.campingplace.campingLike">
+	delete from campingheart_table where h_cam_no=#{h_cam_no} and h_u_id=#{h_u_id}
+</delete>
+
 <select id ="getHeartList" resultType="com.fi.pj.campingplace.campingLike" parameterType="com.fi.pj.campingplace.campingLike">
 	select * from campingheart_table order by h_no desc
 </select>
@@ -84,7 +83,9 @@
 <select id="getheart" resultType="String" parameterType="com.fi.pj.campingplace.campingLike">
 	select h_cam_name from campingheart_table where h_cam_no=#{h_cam_no} and h_u_id=#{h_u_id}
 </select>
-
+<select id="getheart2" resultType="String" parameterType="com.fi.pj.campingplace.campingLike">
+	select h_cam_name from campingheart_table where h_cam_no=#{h_cam_no} and h_u_id=#{h_u_id}
+</select>
 
 <select id ="Search_place" resultType="com.fi.pj.campingplace.Campingplace" parameterType="com.fi.pj.campingplace.placeSearch">
 	select rn,c.*

@@ -53,12 +53,12 @@
 <body>
 ${result }
 <c:choose>
-<c:when test="${contentPage eq 'home.jsp' }">
-	<div class="main_home">
-</c:when>
-<c:otherwise>
-	<div class="main_other">
-</c:otherwise>
+	<c:when test="${contentPage eq 'home.jsp' }">
+		<div class="main_home">
+	</c:when>
+	<c:otherwise>
+		<div class="main_other">
+	</c:otherwise>
 </c:choose>
 <header>
       <div class="gnb-inner">       
@@ -68,15 +68,18 @@ ${result }
         <div class="gnb">
         <div class="menu">       
           <ul class="menu_list">
-			<li><a href="place.go?h_u_id=${sessionScope.loginMember.u_id}">캠핑예약</a>
+			<li>
+				<a href="place.go?h_u_id=${sessionScope.loginMember.u_id}">캠핑예약</a>
 			</li>
-			<li><a href="shopping.go">밀키트/캠핑용품</a>
+			<li>
+				<a href="shopping.go">밀키트/캠핑용품</a>
 				<ul class="sub">
 					<li><a href="camping.milkit">밀키트</a></li>
 					<li><a href="camping.product">캠핑용품</a></li>
 				</ul>
 			</li>
-			<li><a href="board.go">게시판</a>
+			<li>
+				<a href="board.go">게시판</a>
 				<ul class="sub">
 					<li><a href="freeboard.go">자유게시판</a></li>
 					<li><a href="campingtip.go">캠핑팁게시판</a></li>
