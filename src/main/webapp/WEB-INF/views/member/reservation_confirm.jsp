@@ -120,12 +120,13 @@ table, td, th {
 		<tr>
 			<td id="cr${cr.r_no }" class="hidden"></td>
 			<td class = "td1">${cr.r_u_name}</td>
-			<td class = "td1">${cr.r_u_phonenumber}</td>
-			<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 0, 3)}"></c:out>
-			-
-			<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 3, 7)}"></c:out>
-         	-
-         	<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 7, 11)}"></c:out>
+			<td class = "td1">
+				<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 0, 3)}"></c:out>
+				-
+				<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 3, 7)}"></c:out>
+         		-
+         		<c:out value="${fn:substring(sessionScope.loginMember.u_phonenumber, 7, 11)}"></c:out>
+         	</td>
 			<td class = "td1">${cr.r_cam_name}</td>
 			<td class = "td1"><fmt:formatDate value="${cr.r_campingstartdate}"/> ~ <fmt:formatDate value="${cr.r_campingenddate}"/></td>
 			<td class = "td1">${cr.r_campingheadcount}</td>

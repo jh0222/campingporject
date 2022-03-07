@@ -139,13 +139,7 @@ create table reservation_table(
 
 create sequence reservation_seq;
 
-<<<<<<< HEAD
-insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
-insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
-insert into reservation_table values(reservation_seq.nextval,121,'kim','김태희','01012341234','난지캠핑장','20220301','20220302',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
-=======
 insert into reservation_table values(reservation_seq.nextval,102,'kim','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
->>>>>>> b014189a14a24ea8a85c94bb45dcc54afe10552e
 
 select * from reservation_table;
 select r_u_id from reservation_table where r_cam_no=121 and r_u_id='kim' and  sysdate > r_campingenddate;
@@ -389,9 +383,11 @@ create table guest_foodproduct_buy_table(
 
 create sequence g_fp_buy_seq;
 
-insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
-insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim2',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
-insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',273,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',1,'떡볶이',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',273,'신라면',1000,5,'서울특별시 종로구',null,'20220306');
+
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim2',34,'누룽지',7500,2,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim2',25,'마쉬멜로우',5000,3,'서울특별시 종로구',null,'20220306');
 
 select * from guest_foodproduct_buy_table;
 
@@ -423,7 +419,6 @@ create table guest_product_basket_table(
 	ba_price number(10) not null, /*(수량*p_price)*/
 	ba_number number(5) not null /* 갯수 */
 );
-select * from guest_product_basket_table;
 create sequence product_basket_seq;
 
 insert into guest_product_basket_table values (product_basket_seq.nextval,3,'kim','캠핑용품','b.jpg',10000,1);

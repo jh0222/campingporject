@@ -1,4 +1,4 @@
-// 캠핑 리뷰 업데이트
+// 캠핑 리뷰 수정
 function campingreviewupdate(no, id) {
 	let str = $("#cru" + no).next().children().val();
 	location.href = "campingreview.update?c_no=" + no + "&c_campingreview=" + str + "&c_u_id=" + id;
@@ -12,7 +12,7 @@ function campingreviewdel(no, id) {
 	}
 }
 
-//캠핑용품 리뷰 업데이트
+//캠핑용품 리뷰 수정
 function productreviewup(no, id) {
 	let txt = $("#pru" + no).next().children().val();
 	location.href = "productreview.update?pr_no=" + no + "&pr_txt=" + txt + "&pr_u_bo_id=" + id + "&fpr_u_bo_id=" + id;
@@ -26,7 +26,7 @@ function productreviewdel(no, id) {
 	}
 }
 
-//밀키트 리뷰 업데이트
+//밀키트 리뷰 수정
 function mealreviewup(no, id) {
 	let txt = $("#fpru" + no).next().children().val();
 	location.href = "mealreview.update?fpr_no=" + no + "&fpr_txt=" + txt + "&pr_u_bo_id=" + id + "&fpr_u_bo_id=" + id;
@@ -41,13 +41,13 @@ function mealreviewdel(no, id) {
 }
 
 
-//자유게시판 리뷰 업데이트
+//자유게시판 댓글 수정
 function freeboardreviewup(no, id) {
 	let str = $("#fu" + no).next().children().val();
 	location.href = "freeboardreview.update?fr_no=" + no + "&fr_replytxt=" + str + "&fr_u_id=" + id;
 }
 
-//자유게시판 리뷰 삭제
+//자유게시판 댓글 삭제
 function freeboardreviewdel(no, id) {
 	let ok = confirm("리뷰를 삭제하시겠습니까?");
 	if(ok){
@@ -55,13 +55,13 @@ function freeboardreviewdel(no, id) {
 	}
 }
 
-//캠핑팁 리뷰 업데이트
+//캠핑팁 댓글 수정
 function campingtipreviewup(no, id) {
 	let str = $("#ctpu" + no).next().children().val();
 	location.href = "campingtipreview.update?tipr_no=" + no + "&tipr_replytxt=" + str + "&tipr_u_id=" + id;
 }
 
-//캠핑팁 리뷰 삭제
+//캠핑팁 댓글 삭제
 function campingtipreviewdel(no, id) {
 	let ok = confirm("리뷰를 삭제하시겠습니까?");
 	if(ok){
@@ -69,13 +69,13 @@ function campingtipreviewdel(no, id) {
 	}
 }
 
-//레시피 리뷰 업데이트
+//레시피 댓글 수정
 function recipereviewup(no, id) {
 	let str = $("#ru" + no).next().children().val();
 	location.href = "recipereview.update?rr_no=" + no + "&rr_replytxt=" + str + "&rr_u_id=" + id;
 }
 
-//레시피 리뷰 삭제
+//레시피 댓글 삭제
 function recipereviewdel(no, id) {
 	let ok = confirm("리뷰를 삭제하시겠습니까?");
 	if(ok){

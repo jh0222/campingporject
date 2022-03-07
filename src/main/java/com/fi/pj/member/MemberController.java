@@ -92,12 +92,12 @@ public class MemberController {
 		req.setAttribute("contentPage", "member/pwsearch.jsp");
 		return "main";
 	}
-	
-	//비번찾기
+
+	// 비번찾기
 	@RequestMapping(value = "pw_search", method = RequestMethod.POST)
 	public String Pwsearch(HttpServletRequest req) {
-		String email = (String)req.getParameter("email");
-		String id = (String)req.getParameter("id");
+		String email = (String) req.getParameter("email");
+		String id = (String) req.getParameter("id");
 
 		UserMember vo = mDAO.selectMember_U(email);
 		BossMember vo2 = mDAO.selectMember_B(email);
@@ -105,7 +105,7 @@ public class MemberController {
 		if (vo.getU_id().equals(id)) {
 			req.setAttribute("sucess", id);
 			req.setAttribute("division", "U");
-		}else if(vo2.getBo_id().equals(id)) {
+		} else if (vo2.getBo_id().equals(id)) {
 			req.setAttribute("sucess", id);
 			req.setAttribute("division", "B");
 		}
@@ -113,33 +113,32 @@ public class MemberController {
 		req.setAttribute("contentPage", "member/pwsearch_result.jsp");
 		return "main";
 	}
-	
-	//비번 찾기 페이지로
+
+	// 비번 찾기 페이지로
 	@RequestMapping(value = "pw_search_update", method = RequestMethod.POST)
-	public String Pwsearchupdate(Login l,HttpServletRequest req,HttpServletResponse response) throws IOException {
+	public String Pwsearchupdate(Login l, HttpServletRequest req, HttpServletResponse response) throws IOException {
 		System.out.println(l.getId());
 		System.out.println(l.getPw());
 		String division = req.getParameter("division");
 		System.out.println(division);
-		if(division.equals("U")) {
-			mDAO.pwUpdate_U(l,req);
-		}else{
-			mDAO.pwUpdate_B(l,req);
+		if (division.equals("U")) {
+			mDAO.pwUpdate_U(l, req);
+		} else {
+			mDAO.pwUpdate_B(l, req);
 		}
 		response.setContentType("text/html; charset=UTF-8");
-		 
+
 		PrintWriter out = response.getWriter();
-		 
-		out.println("<script>alert('비밀번호가 재설정 되었습니다."
-				+ " 다시 로그인하세요.');</script>");
-		 
+
+		out.println("<script>alert('비밀번호가 재설정 되었습니다." + " 다시 로그인하세요.');</script>");
+
 		out.flush();
 
 		req.setAttribute("contentPage", "home.jsp");
 		return "main";
 	}
-	
-	//로그아웃
+
+	// 로그아웃
 	@RequestMapping(value = "member.logout", method = RequestMethod.GET)
 	public String logout(UserMember m, HttpServletRequest req) {
 		mDAO.logout(req);
@@ -322,17 +321,6 @@ public class MemberController {
 		return "main";
 	}
 
-	// 내글
-	@RequestMapping(value = "communities", method = RequestMethod.GET)
-	public String communities(Communities c, HttpServletRequest request) {
-		mDAO.loginCheck(request);
-		mDAO.communities(c, request);
-		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("contentPage", "member/UserCommunities.jsp");
-
-		return "main";
-	}
-
 	// 자유게시판
 	@RequestMapping(value = "freeboard", method = RequestMethod.GET)
 	public String freeboard(Communities c, HttpServletRequest request) {
@@ -411,17 +399,6 @@ public class MemberController {
 
 		return "main";
 	}
-	
-	// 밀키트 후기
-	@RequestMapping(value = "Mproductreview", method = RequestMethod.GET)
-	public String Mproductreview(Communities c, HttpServletRequest request) {
-		mDAO.loginCheck(request);
-		mDAO.Mproductreview(c, request);
-		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("contentPage", "member/productreview2.jsp");
-
-		return "main";
-	}
 
 	// 캠핑용품 후기 수정
 	@RequestMapping(value = "productreview.update", method = RequestMethod.GET)
@@ -443,6 +420,17 @@ public class MemberController {
 		mDAO.Cproductreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/productreview.jsp");
+
+		return "main";
+	}
+
+	// 밀키트 후기
+	@RequestMapping(value = "Mproductreview", method = RequestMethod.GET)
+	public String Mproductreview(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.Mproductreview(c, request);
+		request.setAttribute("myPage", "../member/mypage.jsp");
+		request.setAttribute("contentPage", "member/productreview2.jsp");
 
 		return "main";
 	}
@@ -471,7 +459,7 @@ public class MemberController {
 		return "main";
 	}
 
-	// 자유게시판 리뷰
+	// 자유게시판 댓글
 	@RequestMapping(value = "freeboardreview", method = RequestMethod.GET)
 	public String freeboardreview(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
@@ -482,7 +470,7 @@ public class MemberController {
 		return "main";
 	}
 
-	// 자유게시판 리뷰 수정
+	// 자유게시판 댓글 수정
 	@RequestMapping(value = "freeboardreview.update", method = RequestMethod.GET)
 	public String freeboardreviewupdate(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
@@ -494,7 +482,7 @@ public class MemberController {
 		return "main";
 	}
 
-	// 자유게시판 리뷰 삭제
+	// 자유게시판 댓글 삭제
 	@RequestMapping(value = "freeboardreview.delete", method = RequestMethod.GET)
 	public String freeboardreviewdel(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
@@ -506,7 +494,7 @@ public class MemberController {
 		return "main";
 	}
 
-	// 캠핑팁 리뷰
+	// 캠핑팁 댓글
 	@RequestMapping(value = "campingtipreview", method = RequestMethod.GET)
 	public String campingtipreview(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
@@ -517,7 +505,7 @@ public class MemberController {
 		return "main";
 	}
 
-	// 캠핑팁 리뷰 수정
+	// 캠핑팁 댓글 수정
 	@RequestMapping(value = "campingtipreview.update", method = RequestMethod.GET)
 	public String campingtipreviewupdate(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
@@ -529,7 +517,7 @@ public class MemberController {
 		return "main";
 	}
 
-	// 캠핑팁 리뷰 삭제
+	// 캠핑팁 댓글 삭제
 	@RequestMapping(value = "campingtipreview.delete", method = RequestMethod.GET)
 	public String campingtipreviewdel(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
@@ -541,7 +529,7 @@ public class MemberController {
 		return "main";
 	}
 
-	// 레시피 리뷰
+	// 레시피 댓글
 	@RequestMapping(value = "recipereview", method = RequestMethod.GET)
 	public String recipereview(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
@@ -552,7 +540,7 @@ public class MemberController {
 		return "main";
 	}
 
-	// 레시피 리뷰 수정
+	// 레시피 댓글 수정
 	@RequestMapping(value = "recipereview.update", method = RequestMethod.GET)
 	public String recipereviewupdate(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);
@@ -564,7 +552,7 @@ public class MemberController {
 		return "main";
 	}
 
-	// 레시피 리뷰 삭제
+	// 레시피 댓글 삭제
 	@RequestMapping(value = "recipereview.delete", method = RequestMethod.GET)
 	public String recipereviewdel(Communities c, HttpServletRequest request) {
 		mDAO.loginCheck(request);

@@ -12,7 +12,7 @@ public class BossCommunitiesController {
 
 	@Autowired
 	private BossCommunitiresDAO bcDAO;
-	
+
 	@Autowired
 	private MemberDAO mDAO;
 
@@ -66,222 +66,256 @@ public class BossCommunitiesController {
 		return "main";
 	}
 
-	// 구매목록
-	@RequestMapping(value = "boss_buylist", method = RequestMethod.GET)
-	public String buylist(BossCommunities bc, HttpServletRequest req) {
-		mDAO.loginCheck(req);
-		bcDAO.buylist(bc, req);
-
-		req.setAttribute("mypage2", "../member/mypage2.jsp");
-		req.setAttribute("contentPage", "member/BossBuylist.jsp");
+	// 구매목록조회 - 캠핑용품
+	@RequestMapping(value = "boss_Cbuylist", method = RequestMethod.GET)
+	public String CBuylist(Buy b, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.CBuylist(b, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/buylist3.jsp");
 
 		return "main";
 	}
 
-	// 내글
-	@RequestMapping(value = "boss_communities", method = RequestMethod.GET)
-	public String communities(BossCommunities bc, HttpServletRequest request) {
+	// 구매목록조회 - 밀키트
+	@RequestMapping(value = "boss_Mbuylist", method = RequestMethod.GET)
+	public String MBuylist(Buy b, HttpServletRequest request) {
 		mDAO.loginCheck(request);
-		bcDAO.communities(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossFreeboard.jsp");
+		mDAO.MBuylist(b, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/buylist4.jsp");
+
+		return "main";
+	}
+
+	// 구매목록 삭제 - 캠핑용품
+	@RequestMapping(value = "boss_Cbuylist.del", method = RequestMethod.GET)
+	public String buyproductDel(Buy b, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.buyproductDel(b, request);
+		mDAO.CBuylist(b, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/buylist3.jsp");
+
+		return "main";
+	}
+
+	// 구매목록 삭제 - 밀키트
+	@RequestMapping(value = "boss_Mbuylist.del", method = RequestMethod.GET)
+	public String buymealDel(Buy b, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.buymealDel(b, request);
+		mDAO.MBuylist(b, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/buylist4.jsp");
+
+		return "main";
+	}
+
+	// 캠핑용품 후기
+	@RequestMapping(value = "Cproductreview2", method = RequestMethod.GET)
+	public String Cproductreview(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.Cproductreview(c, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/productreview3.jsp");
+
+		return "main";
+	}
+
+	// 캠핑용품 후기 수정
+	@RequestMapping(value = "productreview.update2", method = RequestMethod.GET)
+	public String productreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.productreviewupdate(c, request);
+		mDAO.Cproductreview(c, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/productreview3.jsp");
+
+		return "main";
+	}
+
+	// 캠핑용품 후기 삭제
+	@RequestMapping(value = "productreview.delete2", method = RequestMethod.GET)
+	public String productreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.productreviewdel(c, request);
+		mDAO.Cproductreview(c, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/productreview3.jsp");
+
+		return "main";
+	}
+
+	// 밀키트 후기
+	@RequestMapping(value = "Mproductreview2", method = RequestMethod.GET)
+	public String Mproductreview(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.Mproductreview(c, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/productreview4.jsp");
+
+		return "main";
+	}
+
+	// 밀키트 후기 수정
+	@RequestMapping(value = "mealreview.update2", method = RequestMethod.GET)
+	public String mealreviewupdate(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.mealreviewupdate(c, request);
+		mDAO.Mproductreview(c, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/productreview4.jsp");
+
+		return "main";
+	}
+
+	// 밀키트 후기 삭제
+	@RequestMapping(value = "mealreview.delete2", method = RequestMethod.GET)
+	public String mealreviewdel(Communities c, HttpServletRequest request) {
+		mDAO.loginCheck(request);
+		mDAO.mealreviewdel(c, request);
+		mDAO.Mproductreview(c, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/productreview4.jsp");
 
 		return "main";
 	}
 
 	// 자유게시판
-	@RequestMapping(value = "boss_freeboard", method = RequestMethod.GET)
-	public String freeboard(BossCommunities bc, HttpServletRequest request) {
+	@RequestMapping(value = "freeboard2", method = RequestMethod.GET)
+	public String freeboard2(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
-		bcDAO.Bfreeboard(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossFreeboard.jsp");
+		bcDAO.freeboard2(bc, request);
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/freeboard2.jsp");
 
 		return "main";
 	}
 
 	// 캠핑팁
-	@RequestMapping(value = "boss_campingtip", method = RequestMethod.GET)
+	@RequestMapping(value = "campingtip2", method = RequestMethod.GET)
 	public String campingtip(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.campingtip(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossCampingtip.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/campingtip2.jsp");
 
 		return "main";
 	}
 
 	// 레시피
-	@RequestMapping(value = "boss_recipe", method = RequestMethod.GET)
+	@RequestMapping(value = "recipe2", method = RequestMethod.GET)
 	public String recipe(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.recipe(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossRecipe.jsp");
-
-		return "main";
-	}
-
-	// 구매용품 리뷰
-	@RequestMapping(value = "boss_productreview", method = RequestMethod.GET)
-	public String productreview(BossCommunities bc, HttpServletRequest request) {
-		mDAO.loginCheck(request);
-		bcDAO.productreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossProductreview.jsp");
-
-		return "main";
-	}
-
-	// 캠핑용품 리뷰 수정
-	@RequestMapping(value = "boss_productreview.update", method = RequestMethod.GET)
-	public String productreviewupdate(BossCommunities bc, HttpServletRequest request) {
-		mDAO.loginCheck(request);
-		bcDAO.productreviewupdate(bc, request);
-		bcDAO.productreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossProductreview.jsp");
-
-		return "main";
-	}
-
-	// 캠핑용품 리뷰 삭제
-	@RequestMapping(value = "boss_productreview.delete", method = RequestMethod.GET)
-	public String productreviewdel(BossCommunities bc, HttpServletRequest request) {
-		mDAO.loginCheck(request);
-		bcDAO.productreviewdel(bc, request);
-		bcDAO.productreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossProductreview.jsp");
-
-		return "main";
-	}
-
-	// 밀키트 리뷰 수정
-	@RequestMapping(value = "boss_mealreview.update", method = RequestMethod.GET)
-	public String mealreviewupdate(BossCommunities bc, HttpServletRequest request) {
-		mDAO.loginCheck(request);
-		bcDAO.mealreviewupdate(bc, request);
-		bcDAO.productreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossProductreview.jsp");
-
-		return "main";
-	}
-
-	// 밀키트 리뷰 삭제
-	@RequestMapping(value = "boss_mealreview.delete", method = RequestMethod.GET)
-	public String mealreviewdel(BossCommunities bc, HttpServletRequest request) {
-		mDAO.loginCheck(request);
-		bcDAO.mealreviewdel(bc, request);
-		bcDAO.productreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossProductreview.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/recipe2.jsp");
 
 		return "main";
 	}
 
 	// 자유게시판 댓글
-	@RequestMapping(value = "boss_freeboardreview", method = RequestMethod.GET)
+	@RequestMapping(value = "freeboardreview2", method = RequestMethod.GET)
 	public String freeboardreview(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.freeboardreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossFreeboardreview.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/freeboardreview2.jsp");
 
 		return "main";
 	}
 
 	// 자유게시판 댓글 수정
-	@RequestMapping(value = "boss_freeboardreview.update", method = RequestMethod.GET)
+	@RequestMapping(value = "freeboardreview.update2", method = RequestMethod.GET)
 	public String freeboardreviewupdate(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.freeboardreviewupdate(bc, request);
 		bcDAO.freeboardreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossFreeboardreview.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/freeboardreview2.jsp");
 
 		return "main";
 	}
 
 	// 자유게시판 댓글 삭제
-	@RequestMapping(value = "boss_freeboardreview.delete", method = RequestMethod.GET)
+	@RequestMapping(value = "freeboardreview.delete2", method = RequestMethod.GET)
 	public String freeboardreviewdel(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.freeboardreviewdel(bc, request);
 		bcDAO.freeboardreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossFreeboardreview.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/freeboardreview2.jsp");
 
 		return "main";
 	}
 
 	// 캠핑팁 댓글
-	@RequestMapping(value = "boss_campingtipreview", method = RequestMethod.GET)
+	@RequestMapping(value = "campingtipreview2", method = RequestMethod.GET)
 	public String campingtipreview(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.campingtipreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossCampingtipreview.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/campingtipreview2.jsp");
 
 		return "main";
 	}
 
 	// 캠핑팁 댓글 수정
-	@RequestMapping(value = "boss_campingtipreview.update", method = RequestMethod.GET)
+	@RequestMapping(value = "campingtipreview.update2", method = RequestMethod.GET)
 	public String campingtipreviewupdate(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.campingtipreviewupdate(bc, request);
 		bcDAO.campingtipreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossCampingtipreview.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/campingtipreview2.jsp");
 
 		return "main";
 	}
 
 	// 캠핑팁 댓글 삭제
-	@RequestMapping(value = "boss_campingtipreview.delete", method = RequestMethod.GET)
+	@RequestMapping(value = "campingtipreview.delete2", method = RequestMethod.GET)
 	public String campingtipreviewdel(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.campingtipreviewdel(bc, request);
 		bcDAO.campingtipreview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossCampingtipreview.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/campingtipreview2.jsp");
 
 		return "main";
 	}
 
 	// 레시피 댓글
-	@RequestMapping(value = "boss_recipereview", method = RequestMethod.GET)
+	@RequestMapping(value = "recipereview2", method = RequestMethod.GET)
 	public String recipereview(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.recipereview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossRecipereview.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/recipereview2.jsp");
 
 		return "main";
 	}
 
 	// 레시피 댓글 수정
-	@RequestMapping(value = "boss_recipereview.update", method = RequestMethod.GET)
+	@RequestMapping(value = "recipereview.update2", method = RequestMethod.GET)
 	public String recipereviewupdate(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.recipereviewupdate(bc, request);
 		bcDAO.recipereview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossRecipereview.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/recipereview2.jsp");
 
 		return "main";
 	}
 
 	// 레시피 댓글 삭제
-	@RequestMapping(value = "boss_recipereview.delete", method = RequestMethod.GET)
+	@RequestMapping(value = "recipereview.delete2", method = RequestMethod.GET)
 	public String recipereviewdel(BossCommunities bc, HttpServletRequest request) {
 		mDAO.loginCheck(request);
 		bcDAO.recipereviewdel(bc, request);
 		bcDAO.recipereview(bc, request);
-		request.setAttribute("mypage2", "../member/mypage2.jsp");
-		request.setAttribute("contentPage", "member/BossRecipereview.jsp");
+		request.setAttribute("myPage2", "../member/mypage2.jsp");
+		request.setAttribute("contentPage", "member/recipereview2.jsp");
 
 		return "main";
 	}

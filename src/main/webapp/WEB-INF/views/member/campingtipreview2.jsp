@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -95,41 +95,30 @@ table, td, th {
 <body>
 <div class="row">
   <div class="column side">
-	<jsp:include page="${myPage }"></jsp:include>
+	<jsp:include page="${myPage2 }"></jsp:include>
   </div>
-  
   <div class="topnav">
-  	<a href = "Cbuylist?b_u_bo_id=${sessionScope.loginMember.u_id}">캠핑용품</a> /
-  	<a href = "Mbuylist?fb_u_bo_id=${sessionScope.loginMember.u_id}">밀키트</a>
+  	<a href = "freeboardreview2?fr_u_id=${sessionScope.loginMember2.bo_id}">자유게시판</a>
+  	<a href = "campingtipreview2?tipr_u_id=${sessionScope.loginMember2.bo_id}">캠핑팁</a>
+  	<a href = "recipereview2?rr_u_id=${sessionScope.loginMember2.bo_id}">레시피</a>
   </div>
-	
   <div class="column middle">
 	<table>
 		<tr>
 			<td class="hidden"></td>
-			<td class="td1">상품명</td>
-			<td class="td1">상품수량</td>
-			<td class="td1">구매가격</td>
-			<td class="td1">구매주소지</td>
-			<td class="td1">구매날짜</td>
-			<td colspan="2" class="td1">취소/환불</td>
+			<td class="td1">내용</td>
+			<td class="td1">작성날짜</td>
+			<td colspan="2"  class="td1">수정 / 삭제</td>
 		</tr>
-	<c:forEach var="buy" items="${mealbuylist }">
+	<c:forEach var="ctp" items="${campingtipreview}">
 		<tr>
-			<td class="hidden"></td>
-			<td class="td1">${buy.fb_p_name }</td>
-			<td class="td1">${buy.fb_number }</td>
-			<td class="td1">${buy.fb_number * buy.fb_price}</td>
-			<c:choose>
-				<c:when test="${buy.fb_new_address !=null}">
-					<td>${buy.fb_new_address}</td>
-				</c:when>
-				<c:otherwise>
-					<td>${buy.fb_u_address}</td>
-				</c:otherwise>
-			</c:choose>
-			<td class="td1"><fmt:formatDate value="${buy.fb_date }"/></td>
-			<td class="td1"><button onclick="buymealdel('${buy.fb_no}','${buy.fb_u_bo_id }')">취소/환불</button></td>
+			<td class="hidden" id="ctpu${ctp.tipr_no}"></td>
+			<td class="td1"><input name="tipr_replytxt" value="${ctp.tipr_replytxt}"></td>
+			<td class="td1"><fmt:formatDate value="${ctp.tipr_date}"/></td>
+			<td class="td1">
+				<button onclick="campingtipreviewup2'${ctp.tipr_no}','${ctp.tipr_u_id}')">수정</button>
+				<button onclick="campingtipreviewdel2('${ctp.tipr_no}','${ctp.tipr_u_id}')">삭제</button>
+			</td>
 		</tr>
 	</c:forEach>
 	</table>

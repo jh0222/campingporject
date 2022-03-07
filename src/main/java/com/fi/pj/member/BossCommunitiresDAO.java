@@ -143,7 +143,7 @@ public class BossCommunitiresDAO {
 	}
 
 	// 자유게시판
-	public void Bfreeboard(BossCommunities bc, HttpServletRequest request) {
+	public void freeboard2(BossCommunities bc, HttpServletRequest request) {
 
 		List<BossCommunities> freeboard = ss.getMapper(BossCommunitiesMapper.class).freeboard(bc);
 		request.setAttribute("freeboard", freeboard);

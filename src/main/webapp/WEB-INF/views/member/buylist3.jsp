@@ -83,6 +83,10 @@ table, td, th {
     padding : 10px;
 }
 
+.td1 {
+	text-align: center;
+}
+
 .hidden {
 	display: none;
 }
@@ -91,12 +95,12 @@ table, td, th {
 <body>
 <div class="row">
   <div class="column side">
-	<jsp:include page="${myPage }"></jsp:include>
+	<jsp:include page="${myPage2 }"></jsp:include>
   </div>
   
   <div class="topnav">
-  	<a href = "Cbuylist?b_u_bo_id=${sessionScope.loginMember.u_id}">캠핑용품</a> /
-  	<a href = "Mbuylist?fb_u_bo_id=${sessionScope.loginMember.u_id}">밀키트</a>
+  	<a href = "boss_Cbuylist?b_u_bo_id=${sessionScope.loginMember2.bo_id}">캠핑용품</a> 
+  	<a href = "boss_Mbuylist?fb_u_bo_id=${sessionScope.loginMember2.bo_id}">밀키트</a>
   </div>
 	
   <div class="column middle">
@@ -110,24 +114,24 @@ table, td, th {
 			<td>구매날짜</td>
 			<td colspan="2" align="center">취소/환불</td>
 		</tr>
-	<c:forEach var="buy" items="${mealbuylist }">
+	<c:forEach var="buy" items="${userbuylist }">
 		<tr>
 			<td class="hidden"></td>
-			<td>${buy.fb_p_name }</td>
-			<td>${buy.fb_number }</td>
-			<td>${buy.fb_number * buy.fb_price}</td>
+			<td class="td1">${buy.b_p_name }</td>
+			<td class="td1">${buy.b_number }</td>
+			<td class="td1">${buy.b_number * buy.b_price}</td>		
 			<c:choose>
-				<c:when test="${buy.fb_new_address !=null}">
-					<td>${buy.fb_new_address}</td>
+				<c:when test="${buy.b_new_address !=null}">
+					<td class="td1">${buy.b_new_address}</td>
 				</c:when>
 				<c:otherwise>
-					<td>${buy.fb_u_address}</td>
+					<td class="td1">${buy.b_u_address}</td>
 				</c:otherwise>
 			</c:choose>
-			<td><fmt:formatDate value="${buy.fb_date }"/></td>
-			<td><button onclick="buymealdel('${buy.fb_no}','${buy.fb_u_bo_id }')">취소/환불</button></td>
+			<td class="td1"><fmt:formatDate value="${buy.b_date }"/></td>
+			<td class="td1"><button onclick="buyproductdel('${buy.b_no}','${buy.b_u_bo_id}')">취소/환불</button></td>
 		</tr>
-	</c:forEach>
+		</c:forEach>
 	</table>
 </div>
 </div>
