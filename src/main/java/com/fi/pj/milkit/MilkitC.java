@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fi.pj.member.Login;
 import com.fi.pj.member.MemberDAO;
 import com.fi.pj.member.UserMember;
 import com.fi.pj.shopping.Product;
@@ -180,5 +181,29 @@ public class MilkitC {
 			req.setAttribute("shoppigListPage", "../shopping/Mypage.jsp");
 			return "main";
 		}	
+		
+		//디테일 로그인
+		@RequestMapping(value = "login.milkitgo", method = RequestMethod.GET)
+		public String gologin(UserMember m,Milkit fp,HttpServletRequest req) {
+			req.setAttribute("fp", fp);
+			req.setAttribute("contentPage", "shopping_milkit/Milkitlogin.jsp");
+			return "main";
+		}
+		
+		//로그인하면 디테일로 이동
+		@RequestMapping(value = "member.milkitlogin", method = RequestMethod.POST)
+		public String login(Login l,Milkit fp,MilkitReviewinsert fri, HttpServletRequest req) {
+			mDAO.login(l, req);
+			mDAO.loginCheck(req);
+			kdao.getMilkit(fp,req);
+			kdao.getAllMilkitReview(req);
+			kdao.reviewwrite2(fri,fp,req);
+			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+			req.setAttribute("shoppigListPage", "../shopping_milkit/detailMilkit.jsp");	
+			return "main";
+		}
+		
+		
+		
 		
 }

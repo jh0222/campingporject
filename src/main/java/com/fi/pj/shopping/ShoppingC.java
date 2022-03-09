@@ -92,7 +92,7 @@ public class ShoppingC {
 	public String detailProduct(Reviewinsert ri,Product p,HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		sdao.getProduct(p,req);
-		sdao.getAllProductReview(p,req);
+		sdao.getAllProductReview(req);
 		sdao.reviewwrite(ri,p,req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
@@ -105,7 +105,7 @@ public class ShoppingC {
 		public String detailoneProduct(Reviewinsert ri,Product p,HttpServletRequest req) {
 			mDAO.loginCheck(req);
 			sdao.getProduct(p,req);
-			sdao.getAllProductReview(p,req);
+			sdao.getAllProductReview(req);
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
@@ -131,7 +131,7 @@ public class ShoppingC {
 		mDAO.loginCheck(req);
 		sdao.updateProduct(p,req);
 		sdao.getProduct(p, req);
-		sdao.getAllProductReview(p,req);
+		sdao.getAllProductReview(req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
 		return "main";
@@ -143,7 +143,7 @@ public class ShoppingC {
 			mDAO.loginCheck(req);
 			sdao.regProductreview(pr,req); 
 			sdao.getProduct(p, req); 
-			sdao.getAllProductReview(p,req); 
+			sdao.getAllProductReview(req); 
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
@@ -156,7 +156,7 @@ public class ShoppingC {
 			mDAO.loginCheck(req);
 			sdao.delProductreview(pr, req);
 			sdao.getProduct(p,req);
-			sdao.getAllProductReview(p,req);
+			sdao.getAllProductReview(req);
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
@@ -169,7 +169,7 @@ public class ShoppingC {
 			mDAO.loginCheck(req);
 			sdao.updateProductreview(pr, req);
 			sdao.getProduct(p,req);
-			sdao.getAllProductReview(p,req);
+			sdao.getAllProductReview(req);
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");

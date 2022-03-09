@@ -26,7 +26,7 @@
 				<td style="text-align: center;" class="rank_font"><b>${p.ROWNUM }위</b></td>
 			</tr>
 			<tr>				
-				<td><img src="resources/img/${p.p_picture }" width="200" height="200" onclick="location.href = 'detail.product?p_no=${p.p_no}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'"></td>
+				<td><img src="resources/img/${p.p_picture }" class="shopping_rankimg" width="200" height="200" onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'"></td>
 			</tr>
 			<tr>
 				<td class="rank_font">${p.p_name }</td>
@@ -52,7 +52,7 @@
 				<td style="text-align: center;" class="rank_font"><b>${fp.ROWNUM }위</b></td>
 			</tr>
 			<tr>				
-				<td><img src="resources/img/${fp.fp_picture }" width="200" height="200" onclick="location.href = 'detail.milkit?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&MilkitName=${fp.fp_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'"></td>
+				<td><img src="resources/img/${fp.fp_picture }" class="shopping_rankimg"  width="200" height="200" onclick="location.href = 'detail.milkit?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }'"></td>
 			</tr>
 			<tr>
 				<td class="rank_font" >${fp.fp_name }</td>

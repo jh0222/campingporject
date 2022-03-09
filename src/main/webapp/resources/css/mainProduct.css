@@ -31,6 +31,17 @@ img.table_product_picture:hover{
     transition: all 0.2s;
 }
 
+.shopping_rankimg{
+	border-radius: 15px;
+}
+.shopping_rankimg:hover{
+	background-color:#CCCCCC;
+	transform: scale(0.9);
+    transition: all 0.2s;
+}
+
+
+
 img.mainpicture{
 	height: 500px; width: 1300px; display: block; margin: 0px auto;
 }
@@ -53,12 +64,23 @@ button.table_product_del{
 .main_searchbtn{
 	border: none; 
 	background-color: white;
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 	font-family: 'Pretendard-Regular';
 	color: black;
 	
 }
+
+.loginsuccess1{
+	font-family: 'GowunDodum-Regular';
+    color: #1a1919;
+}
+
+.loginsuccess2{
+	font-family: 'GowunDodum-Regular';
+    color: #1a1919;
+}
+
 
 div.campingmain_paging{
 	margin-left: 670px;	
@@ -88,7 +110,7 @@ div.p_search{
 }
 
 input.main_searchinput{
-	border:2px solid #a1887f;
+	border:2px solid gray;
 	height: 40px;
 	width: 250px;
 }

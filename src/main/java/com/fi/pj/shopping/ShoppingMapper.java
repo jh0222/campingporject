@@ -21,7 +21,7 @@ public interface ShoppingMapper {
 	//상품수정
 	public int updateProduct(Product p);
 	//상품리뷰목록
-	public List<ProductReview> getAllProductReview(Page pr);
+	public List<ProductReview> getAllProductReview(String pr);
 	//상품리뷰(구매계정)
 	public int Productreview_id_select(Reviewinsert ri);
 	//상품리뷰등록
@@ -41,7 +41,6 @@ public interface ShoppingMapper {
 	//상품랭킹(최다구매)
 	public List<ProductRank> ProductRank();
 	
-	public int getAllProductreviewcnt(Page pr);
 	
 	
 	

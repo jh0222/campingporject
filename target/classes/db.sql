@@ -228,7 +228,7 @@ create table foodproduct_registration_table(
 
 create sequence foodproduct_registration_seq;
 
-insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'푸~짐한 UFO 부대찌개',25000,'마라탕.JPG','고캠핑표 부대찌개는 신선한 채소와 깊은 맛을 내는 육수까지 극강의 비주얼을 자랑합니다.');
+insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'푸~짐한 UFO 부대찌개',25000,'부대찌개.JPG','고캠핑표 부대찌개는 신선한 채소와 깊은 맛을 내는 육수까지 극강의 비주얼을 자랑합니다.');
 insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품2',10000,'bb.jpg','캠핑용품입니다2');
 insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품3',10000,'bc.jpg','캠핑용품입니다3');
 insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품4',10000,'bd.jpg','캠핑용품입니다4');
@@ -298,7 +298,7 @@ create table guest_foodproduct_buy_table(
 create sequence g_fp_buy_seq;
 
 insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
-insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim2',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim2',49,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',273,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_foodproduct_buy_table;

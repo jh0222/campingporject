@@ -121,13 +121,14 @@ function change () {
 						<table border="0" style="border-collapse: collapse";>
 						<tr>
 							<td class="detail_p_name2">
-									 <input type=hidden name="sell_price" value="${p.p_price }" class="detail_price"><div class="detail_price">${p.p_price }원</div>
-									  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								         수량&nbsp;&nbsp; <input type="text" name="amount" value="1" size="1" onchange="change();"></div> 
+							<div class="detail_pricediv" style="width: 570px;">
+									 <input type=hidden name="sell_price" value="${p.p_price }" class="detail_price"><div class="detail_pprice" style="right: 148px;">${p.p_price }원</div>
+									 
+								         수량&nbsp;&nbsp; <input type="text" name="amount" value="1" size="1" onchange="change();">
 								 	 <input type="button" value=" + " class="plus_btn" onclick="plus();"><input type="button" value=" - " class="plus_btn2" onclick="minus();"><br>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								총 결제 금액<input type="text" name="sum" size="7" id="sum" readonly style="border:none;" class="detail_psum"><span class=detail_won>원</span>
-							
+								
+								총 결제 금액<input type="text" name="sum" size="7" id="sum" readonly style="border:none;" class="detail_fpsum"><span class=detail_won>원</span>
+							</div>
 									 <input type="hidden" name="p_no" value="${p.p_no}">
 									 <input type="hidden" name="p_name" value="${p.p_name}">
 									 <input type="hidden" name="p_price" value="${p.p_price }">
@@ -140,11 +141,13 @@ function change () {
 					<td colspan="2" align="center" width="800px;">
 					<br>
 					<div class="detail_buy">
+					<c:if test="${sessionScope.loginMember2.bo_id != null || sessionScope.loginMember.u_id != null}">
  					<input type="button" value="장바구니" class="detail_basket" onclick='mySubmit(2)' />
 					<input type="button" value="구매하기" class="detail_order" onclick='mySubmit(1)' />
+					</c:if>
 					<c:if test="${sessionScope.loginMember3.root_id != null}">
-					<button class="detailupdatebtn" type="button"
-							onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }&pr_p_no=${p.p_no}'"><i class="fa-solid fa-pen-to-square"></i></button>
+					<button class="detail_updatebtn" type="button"
+							onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }&pr_p_no=${p.p_no}'"><i class="fa-solid fa-pen-to-square"></i>상품수정</button>
 					</c:if>
 					</div>
 					</td>

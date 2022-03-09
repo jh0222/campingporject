@@ -31,7 +31,7 @@
  				
         </tr> 
     </table>
-	<button class="pr_regbtn">수정</button>    
+	<button class="detail_updatebtn" style="left: 450px;margin-top: 20px;border-radius: 15px;width: 250px;">수정</button>    <!-- class="pr_regbtn" -->
 
 	
 </form>
