@@ -45,7 +45,10 @@ function OrderCheck(){
 		</tr>
 		<tr>
 			<td id="addrname" class="order_font">배송지 주소</td>
-			<td colspan="2" class="order_font2"><input name="addr" id="addr" size="61" value="${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }"></td>		
+			<td colspan="2" class="order_font2">
+				
+			
+			<input name="addr" id="addr" size="61" value="${u_addr[0] }&nbsp;${u_addr[1] }${bo_addr[0] }&nbsp;${bo_addr[1] }"></td>		
 		</tr>
 
 		<tr>

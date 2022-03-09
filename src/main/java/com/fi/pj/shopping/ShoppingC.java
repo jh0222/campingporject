@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fi.pj.Cart.CartBean;
 import com.fi.pj.Cart.CartDAO;
+import com.fi.pj.member.BossMember;
 import com.fi.pj.member.MemberDAO;
 import com.fi.pj.member.UserMember;
 
@@ -98,7 +99,7 @@ public class ShoppingC {
 	public String detailProduct(Reviewinsert ri,Product p,HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		sdao.getProduct(p,req);
-		sdao.getAllProductReview(p,req);
+		sdao.getAllProductReview(req);
 		sdao.reviewwrite(ri,p,req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
@@ -111,7 +112,7 @@ public class ShoppingC {
 		public String detailoneProduct(Reviewinsert ri,Product p,HttpServletRequest req) {
 			mDAO.loginCheck(req);
 			sdao.getProduct(p,req);
-			sdao.getAllProductReview(p,req);
+			sdao.getAllProductReview(req);
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
@@ -137,7 +138,7 @@ public class ShoppingC {
 		mDAO.loginCheck(req);
 		sdao.updateProduct(p,req);
 		sdao.getProduct(p, req);
-		sdao.getAllProductReview(p,req);
+		sdao.getAllProductReview(req);
 		req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 		req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
 		return "main";
@@ -149,7 +150,7 @@ public class ShoppingC {
 			mDAO.loginCheck(req);
 			sdao.regProductreview(pr,req); 
 			sdao.getProduct(p, req); 
-			sdao.getAllProductReview(p,req); 
+			sdao.getAllProductReview(req); 
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
@@ -162,7 +163,7 @@ public class ShoppingC {
 			mDAO.loginCheck(req);
 			sdao.delProductreview(pr, req);
 			sdao.getProduct(p,req);
-			sdao.getAllProductReview(p,req);
+			sdao.getAllProductReview(req);
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
@@ -175,7 +176,7 @@ public class ShoppingC {
 			mDAO.loginCheck(req);
 			sdao.updateProductreview(pr, req);
 			sdao.getProduct(p,req);
-			sdao.getAllProductReview(p,req);
+			sdao.getAllProductReview(req);
 			sdao.reviewwrite(ri,p,req);
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");
@@ -184,8 +185,19 @@ public class ShoppingC {
 		
 	//캠핑용품 구매페이지 이동
 		@RequestMapping(value = "orderproduct.go", method = RequestMethod.GET)
-		public String orderproductgo(Product p, UserMember u, ShoppingOrder so, HttpServletRequest req) {
+		public String orderproductgo(Product p, UserMember u,BossMember b, ShoppingOrder so, HttpServletRequest req) {
 			mDAO.loginCheck(req);
+			UserMember m = (UserMember) req.getSession().getAttribute("loginMember");
+			b = (BossMember) req.getSession().getAttribute("loginMember2");
+			if(m != null) {
+				String u_addr = m.getU_address();
+				String[] u_addr2 = u_addr.split("!");
+				req.setAttribute("u_addr", u_addr2);
+			}else {
+				String bo_addr = b.getBo_address();
+				String[] bo_addr2 = bo_addr.split("!");
+				req.setAttribute("bo_addr", bo_addr2);
+			}
 			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
 			req.setAttribute("shoppigListPage", "../shopping/orderProduct.jsp");
 			req.setAttribute("u", u);

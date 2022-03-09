@@ -315,11 +315,11 @@ select * from campingreview_bossreply_table;
 8. 캠핑용품 등록(관리자만)
 drop table product_registration_table
 create table product_registration_table(
-	p_no number(5) primary key,
-	p_name varchar2(20 char) not null,
-	p_price	number(10) not null,
-	p_picture varchar2(200 char) not null,
-	p_txt clob not null
+    p_no number(5) primary key,
+    p_name varchar2(20 char) not null,
+    p_price    number(10) not null,
+    p_picture varchar2(200 char) not null,
+    p_txt clob not null
 );
 alter table product_registration_table alter column p_txt clob not null;
 ALTER TABLE product_registration_table MODIFY(p_txt clob not null);
@@ -333,16 +333,16 @@ select * from product_registration_table;
 9. 밀키트 등록(관리자만)
 drop table foodproduct_registration_table
 create table foodproduct_registration_table(
-	fp_no number(5) primary key,
-	fp_name varchar2(20 char) not null,
-	fp_price	number(10) not null,
-	fp_picture varchar2(200 char) not null,
-	fp_txt varchar2(200 char) not null
+    fp_no number(5) primary key,
+    fp_name varchar2(20 char) not null,
+    fp_price    number(10) not null,
+    fp_picture varchar2(200 char) not null,
+    fp_txt varchar2(200 char) not null
 );
 
 create sequence foodproduct_registration_seq;
 
-insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'푸~짐한 UFO 부대찌개',25000,'마라탕.JPG','고캠핑표 부대찌개는 신선한 채소와 깊은 맛을 내는 육수까지 극강의 비주얼을 자랑합니다.');
+insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'푸~짐한 UFO 부대찌개',25000,'부대찌개.JPG','고캠핑표 부대찌개는 신선한 채소와 깊은 맛을 내는 육수까지 극강의 비주얼을 자랑합니다.');
 insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품2',10000,'bb.jpg','캠핑용품입니다2');
 insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품3',10000,'bc.jpg','캠핑용품입니다3');
 insert into foodproduct_registration_table values(foodproduct_registration_seq.nextval,'캠핑용품4',10000,'bd.jpg','캠핑용품입니다4');
@@ -413,9 +413,11 @@ create sequence g_fp_buy_seq;
 
 insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',1,'떡볶이',10000,1,'서울특별시 종로구',null,'20220306');
 insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',273,'신라면',1000,5,'서울특별시 종로구',null,'20220306');
-
 insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim2',34,'누룽지',7500,2,'서울특별시 종로구',null,'20220306');
 insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim2',25,'마쉬멜로우',5000,3,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',1,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim2',49,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(g_fp_buy_seq.nextval,'kim',273,'캠핑용품',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_foodproduct_buy_table;
 
@@ -454,7 +456,6 @@ insert into guest_product_basket_table values (product_basket_seq.nextval,2,'kim
 insert into guest_product_basket_table values (product_basket_seq.nextval,45,'kim','텐트','b.jpg',100000,1);
 insert into guest_product_basket_table values (product_basket_seq.nextval,24,'kim','접의식의자','b.jpg',30000,4);
 insert into guest_product_basket_table values (product_basket_seq.nextval,22,'kim','수저세트','b.jpg',5000,5);
-
 insert into guest_product_basket_table values (product_basket_seq.nextval,3,'kim2','캠핑용품','b.jpg',10000,1);
 insert into guest_product_basket_table values (product_basket_seq.nextval,2,'kim2','램프','b.jpg',5000,3);
 insert into guest_product_basket_table values (product_basket_seq.nextval,45,'kim2','텐트','b.jpg',100000,1);
@@ -467,7 +468,6 @@ select * from guest_product_basket_table;
 drop table guest_foodproduct_basket_table;
 
 create table guest_foodproduct_basket_table(
-
 	fba_no number(5) primary key, /*밀키트 장바구니 번호*/
 	fba_fp_no number(5) not null, /*밀키트 등록 번호*/
 	fba_u_bo_id varchar2(20 char) not null, /*사용자와 사장 id*/
@@ -485,7 +485,6 @@ insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,45,
 insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,35,'kim','밀키트','a.jpg',21000,6);
 insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,2,'kim','밀키트','a.jpg',21000,2);
 insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,67,'kim','밀키트','a.jpg',10000,5);
-
 insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,1,'kim2','밀키트','a.jpg',10000,1);
 insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,3,'kim2','밀키트','a.jpg',5000,3);
 insert into guest_foodproduct_basket_table values(product_basket_seq.nextval,45,'kim2','밀키트','a.jpg',13000,3);
@@ -547,13 +546,10 @@ create table free_board_table(
 
 create sequence free_board_seq;
 
-<<<<<<< HEAD
 insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유자유','h.jpg',0,'20220110');
 insert into free_board_table values(free_board_seq.nextval,'kim2','자유게시판','자유자유자유','h.jpg',0,'20220110');
 insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유',0,'20220110');
-=======
 insert into free_board_table values(free_board_seq.nextval,'kim','자유게시판','자유자유자유',0,'20220110');
->>>>>>> 5d9eaf9a42f07a9b5362930044ff2ae005281223
 
 select * from free_board_table;
 -------------------------------------------------------------------------------------------------------------------------------------

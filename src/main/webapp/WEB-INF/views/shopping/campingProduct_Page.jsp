@@ -61,7 +61,6 @@
 
 </div>
 	<h4 class="main_click"><i class="fa-solid fa-computer-mouse"></i>&nbsp;상품이미지를 <span class="main_span"><b>클릭</b></span>하면 자세히 볼 수 있어요.</h4>
-	
 <div>
 
 	<c:forEach var="p" items="${products}">
@@ -69,11 +68,11 @@
 			<tr>
 				<td><img src="resources/img/${p.p_picture }"
 					class="table_product_picture"
-					onclick="location.href = 'detail.product?p_no=${p.p_no}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'"></td>
+					onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'"></td>
 			</tr>	
 			
 			<tr>
-				<td class="table_product_td1" onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&ProductName=${p.p_name}&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'">${p.p_name }</td>
+				<td class="table_product_td1" onclick="location.href = 'detail.product?p_no=${p.p_no}&pr_p_no=${p.p_no }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'">${p.p_name }</td>
 			</tr>		
 			<tr>
 				<td class="table_product_td2"><fmt:formatNumber value="${p.p_price}" type="currency" /> </td>

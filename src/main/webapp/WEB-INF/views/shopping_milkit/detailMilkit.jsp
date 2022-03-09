@@ -118,13 +118,15 @@ function change () {
 						<table border="0" style="border-collapse: collapse";>
 						<tr>
 							<td class="detail_p_name2">
-									 <input type=hidden name="sell_price" value="${fp.fp_price }" class="detail_price"><div class="detail_price">${fp.fp_price }원</div>
-									  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								         수량&nbsp;&nbsp; <input type="text" name="amount" value="1" size="1" onchange="change();"></div> 
+							<div class="detail_pricediv" style="width: 570px;">
+									 <input type=hidden name="sell_price" value="${fp.fp_price }" class="detail_price">
+									 <div class="detail_mprice"style="right: 148px;">${fp.fp_price }원</div>
+									 
+								         수량&nbsp;&nbsp; <input type="text" name="amount" value="1" size="1" onchange="change();">
 								 	 <input type="button" value=" + " class="plus_btn" onclick="plus();"><input type="button" value=" - " class="plus_btn2" onclick="minus();"><br>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								
 								총 결제 금액<input type="text" name="sum" size="7" id="sum" readonly style="border:none;" class="detail_fpsum"><span class=detail_won>원</span>
-							
+							</div>
 									 <input type="hidden" name="fp_no" value="${fp.fp_no}">
 									 <input type="hidden" name="fp_name" value="${fp.fp_name}">
 									 <input type="hidden" name="fp_price" value="${fp.fp_price }">
@@ -137,12 +139,20 @@ function change () {
 					<td colspan="2" align="center" width="800px;">
 					<br>
 					<div class="detail_buy">
+					<c:if test="${sessionScope.loginMember2.bo_id != null || sessionScope.loginMember.u_id != null}">
  					<input type="button" value="장바구니" class="detail_basket" onclick='mySubmit(2)' />
 					<input type="button" value="구매하기" class="detail_order" onclick='mySubmit(1)' />
-					<c:if test="${sessionScope.loginMember3.root_id != null}">
-					<button class="detailupdatebtn" type="button"
-							onClick="location.href='updatemilkit.go?fp_no=${fp.fp_no}&fp_name=${fp.fp_name}&fp_picture=${fp.fp_picture }&fp_price=${fp.fp_price }&fp_txt=${fp.fp_txt }&fpr_p_no=${fp.fp_no}'"><i class="fa-solid fa-pen-to-square"></i></button>
 					</c:if>
+					
+					<c:if test="${sessionScope.loginMember3.root_id != null}">
+					<button class="detail_updatebtn" type="button"
+							onClick="location.href='updatemilkit.go?fp_no=${fp.fp_no}&fp_name=${fp.fp_name}&fp_picture=${fp.fp_picture }&fp_price=${fp.fp_price }&fp_txt=${fp.fp_txt }&fpr_p_no=${fp.fp_no}'"><i class="fa-solid fa-pen-to-square"></i>수정하기</button>
+					</c:if>
+					
+					<c:if test="${sessionScope.loginMember2.bo_id == null && sessionScope.loginMember3.root_id == null && sessionScope.loginMember.u_id == null}">
+					<button class="detail_loginbtn" type="button" onclick="location.href='login.milkitgo?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'">로그인</button>
+					</c:if>
+					
 					</div>
 					</td>
 						</tr>
@@ -162,7 +172,6 @@ function change () {
 			<div class="detail_div">		
 			<table border="0" class="detail_reviewtb" >
 				<tr>
-					<th class="pr_reviewselect">No</th>
 					<th class="pr_reviewselect">ID</th>
 					<th class="pr_reviewselect">Content</th>	
 					<th class="pr_reviewselect">Date</th>
@@ -171,13 +180,12 @@ function change () {
 				<tr><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td><td><hr class="detailhr"></td></tr>
 					<c:forEach var="fp" items="${milkitreviews }">
 				<tr>
-					<td class="pr_reviewselect2">${fp.fpr_no }</td>
 					<td class="pr_reviewselect2">${fp.fpr_u_bo_id }</td>
 					<td class="pr_reviewselect2">${fp.fpr_txt }</td>
 				<td class="pr_reviewselect2"><fmt:formatDate value="${fp.fpr_date }" dateStyle="short"/></td>
 					<c:if test="${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id == fp.fpr_u_bo_id }">
-					<td class="pr_reviewselect2" onclick="updatereview('${fp.fpr_no}','${fp.fpr_txt }')">수정</td>
-					<td class="pr_reviewselect2"  onclick="delreview(${fp.fpr_no})">삭제</td>
+					<td class="pr_reviewselect2" onclick="updatereviewmilkit('${fp.fpr_no}','${fp.fpr_txt }')">수정</td>
+					<td class="pr_reviewselect2"  onclick="delreviewmilkit(${fp.fpr_no})">삭제</td>
 				</c:if>
 				</tr>
 				<tr>

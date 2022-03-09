@@ -11,13 +11,13 @@
 <c:choose>
 <c:when test="${sessionScope.loginMember.u_id != null}">
 	<table>
-		<tr>	
-			<td>${sessionScope.loginMember.u_id }</td>
-			<td>(${sessionScope.loginMember.u_name })</td>
+		<tr>		
+			<td class="loginsuccess1">${sessionScope.loginMember.u_id }</td>
+			<td class="loginsuccess1">(${sessionScope.loginMember.u_name })</td>
 			<td>
-				<button onclick="location.href='cart'">장바구니</button>
-				<button onclick="location.href='user.info'">마이페이지</button>
-				<button onclick="logout()">로그아웃</button>
+				<button onclick="location.href='cart'" class="loginsuccess2">장바구니</button>
+				<button onclick="location.href='user.info'" class="loginsuccess2">마이페이지</button>
+				<button onclick="logout()" class="loginsuccess2">로그아웃</button>
 			</td>
 		<tr>
 	</table>

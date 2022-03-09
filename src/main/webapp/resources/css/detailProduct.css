@@ -62,9 +62,18 @@ td.detail_p_name2 {
 	text-align: right;
 }
 
-.detail_price {
+.detail_pprice {
 	position: absolute;
-	margin-left: 522px;
+	margin-left: 452px;
+}
+
+.detail_mprice {
+	position: absolute;
+	margin-left: 445px;
+}
+
+.detail_pricediv{
+	margin-left: 110px;
 }
 
 span.detail_won {
@@ -147,6 +156,73 @@ input.detail_order {
 	margin-right: 10px;
 }
 
+.detail_loginbtn{
+	width: 450px;
+	height: 60px;
+	background-color: black;
+	border: thick black;
+	font-size: 18pt;
+	font-weight: bold;
+	color: white;
+	font-family: 'GowunBatang-Regular';
+	margin-left: 45px;
+	margin-right: 10px;
+}
+
+.detail_updatebtn1{
+	width: 350px;
+    height: 60px;
+    background-color: #1e2730;
+    border-radius: 9px;
+    border: thick #1c1a1a;
+    font-size: 18pt;
+    font-weight: bold;
+    color: #ffffff;
+    font-family: 'GowunBatang-Regular';
+    margin-left: 100px;
+    margin-right: 10px;
+}
+<!-- -->
+.detail_updatebtn{
+  background:#646464;
+  color:#fff;
+  border:none;
+  position:relative;
+  border-radius:19px;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  margin-left: 170px;
+}
+.detail_updatebtn:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+.detail_updatebtn:before,.detail_updatebtn:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+.detail_updatebtn:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.detail_updatebtn:hover:before,.detail_updatebtn:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+<!-- -->
 input.plus_btn {
 	background-color: #ffffff;
 	border: none;
@@ -166,6 +242,7 @@ input.plus_btn2:hover {
 	color: white;
 	background-color: #c5e1a5;
 }
+
 
 textarea.pr_reviewtext {
 	margin-left: 500px;

@@ -13,8 +13,8 @@
 
 <!-- 상품등록 -->
 <insert id="regProduct" parameterType="com.fi.pj.shopping.Product">
-	insert into product_registration_table(p_no,p_name,p_price,p_picture,p_txt)
-	values (product_registration_table_seq.nextval,#{p_name},#{p_price},#{p_picture},#{p_txt})
+	insert into product_registration_table
+	values (product_registration_seq.nextval,#{p_name},#{p_price},#{p_picture},#{p_txt})
 </insert>
 
 <!-- 상품검색  -->
@@ -43,12 +43,8 @@
 </update>
 
 <!-- 리뷰목록 -->
- <select id="getAllProductReview" resultType="com.fi.pj.shopping.ProductReview" parameterType="com.fi.pj.shopping.Page"> 
+ <select id="getAllProductReview" resultType="com.fi.pj.shopping.ProductReview" parameterType="String"> 
   	select * from product_review_table where pr_p_no = #{p_no} order by pr_no DESC
-</select>
-
- <select id="getAllProductreviewcnt" resultType="Integer" parameterType="com.fi.pj.shopping.Page"> 
-  	select count(*) from product_review_table where pr_p_no = #{p_no} order by pr_no DESC
 </select>
 
 <!-- 리뷰등록:(구매계정)쿼리 -->

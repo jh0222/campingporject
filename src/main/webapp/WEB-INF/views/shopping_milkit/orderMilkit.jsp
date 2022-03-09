@@ -29,7 +29,9 @@
 		</tr>
 		<tr>
 			<td id="addrname" class="order_font">배송지 주소</td>
-			<td colspan="2" class="order_font2"><input name="addr" id="addr" size="61" value="${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }"></td>		
+			<td colspan="2" class="order_font2">
+			<input name="addr" id="addr" size="61" value="${u_addr[0] }&nbsp;${u_addr[1] }${bo_addr[0] }&nbsp;${bo_addr[1] }"></td>	
+
 		</tr>
 
 		<tr>
@@ -141,7 +143,7 @@ var msg = '결제가 완료되었습니다.';
 let new_addr1 = document.getElementById('u_addr2').value;
 let new_addr = document.getElementById('addr1Input').value;
 let new_addr3 = document.getElementById('addr3Input').value;
-location.href='reg.,milkitbuy?b_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&fb_fp_no=${fp.fp_no }&fb_fp_name=${fp.fp_name }&fb_price=${mso.sum}&fb_number=${mso.amount}&b_u_address=${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }&b_new_address=' + new_addr + new_addr1 + new_addr3;
+location.href='reg.milkitbuy?fb_u_bo_id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }&fb_fp_no=${fp.fp_no }&fb_fp_name=${fp.fp_name }&fb_price=${mso.sum}&fb_number=${mso.amount}&fb_u_address=${sessionScope.loginMember2.bo_address }${sessionScope.loginMember.u_address }&fb_new_address=' + new_addr + new_addr1 + new_addr3;
 }else {
 var msg = '결제에 실패하였습니다.';
 //alert('[에러]'+rsp.error_msg);
