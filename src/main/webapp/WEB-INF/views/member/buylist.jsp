@@ -104,7 +104,7 @@ table, td, th {
   </div>
   <div class="column middle">
   <c:choose>
-		<c:when test="${buy.b_no eq null}">
+		<c:when test="${empty userbuylist}">
 			<h1>구매 내역이 없습니다.</h1>
 		</c:when>
 	<c:otherwise>

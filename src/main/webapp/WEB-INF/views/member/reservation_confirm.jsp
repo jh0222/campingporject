@@ -105,7 +105,7 @@ table, td, th {
 	
   <div class="column middle">
   <c:choose>
-		<c:when test="${cr.r_no eq null}">
+		<c:when test="${empty campingreserve}">
 			<h1>작성된 내용이 없습니다.</h1>
 		</c:when>
 	<c:otherwise>

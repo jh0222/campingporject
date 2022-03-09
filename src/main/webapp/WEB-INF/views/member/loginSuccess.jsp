@@ -12,7 +12,6 @@
 <c:when test="${sessionScope.loginMember.u_id != null}">
 	<table>
 		<tr>	
-			<td onclick="location.href='home'">홈</td>		
 			<td>${sessionScope.loginMember.u_id }</td>
 			<td>(${sessionScope.loginMember.u_name })</td>
 			<td>

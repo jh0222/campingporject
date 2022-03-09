@@ -54,7 +54,7 @@
 		<section class="section">
 				<section class="fourth_section">
 					<div class="reserve_box">
-						<a href="place.go">캠핑 예약하러가기</a>
+						<a href="place.go?h_u_id=${sessionScope.loginMember.u_id}">캠핑 예약하러가기</a>
 					</div>
 				</section>				
 		</section>

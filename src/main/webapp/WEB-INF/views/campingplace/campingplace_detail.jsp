@@ -190,40 +190,44 @@ $(function() {
 				<div class="detail_div2"><b>주소&nbsp;&nbsp;</b>${places.cam_address }</div><hr><br>
 				<div class="detail_div2"><b>가격&nbsp;&nbsp;</b>  ${places.cam_price}원</div><hr><br>
 				<div class="detail_div2"><b>연락처&nbsp;&nbsp;</b>${places.cam_phonenumber }</div><hr><br>
-				<div class="detail_div2"><b>소개&nbsp;&nbsp;</b></div>
-				<div class="detail_div2" style="width: 500px;">${places.cam_txt }</div><hr><br>
+				<div class="detail_div2"><b>소개&nbsp;&nbsp;</b>${places.cam_txt }</div>
+				<div class="detail_div2" style="width: 500px;"></div><hr><br>
 				
 			</div>
 				<form action="reservation.go">
-								<table border="0" style="border-collapse: collapse";>
-									<tr>
-										<td><strong>체크인</strong></td>
-										<td><strong>체크아웃</strong></td>
-									</tr>
-									<tr>
-										<td><input type="text" name="start" id="fromDate" class="inputtype1"></td>
-										<td><input type="text" name="end" id="toDate" class="inputtype1"></td>
-									</tr>
-									<tr>
-										<td><strong>인원</strong></td>
-										<td><input type="number" min="1" max="10"
-											value="r_campingheadcount" name="headcount"></td>
-									</tr>
-									<tr>
-										<td class="reserve_btn">
-											<input type="hidden" name="r_cam_no" value="${places.cam_no }" />
-											<input type="hidden" name="r_campingprice" value="${places.cam_price }" />
-											<input type="hidden" name="r_cam_name" value="${places.cam_name }" /> 
-											<input type="hidden" name="r_u_id" value="${sessionScope.loginMember.u_id}" /> 
-											<input type="hidden" name="r_cam_phonenumber" value="${places.cam_phonenumber }" /> 
-											<input type="hidden" name="r_cam_address" value="${places.cam_address }" /> 
-											<input type="hidden" name="r_u_name" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_name}" />
-											<input type="hidden" name="r_u_phonenumber" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_phonenumber}" />
-											<input type="submit" class="detail_basket" value="예약하기"/>
-										</td>
-									</tr>
-								</table>
+			<div class="reservation_table">
+				<div class="reservation_table1">
+					<div class="innerDIV">
+						<strong>체크인</strong>
+						<input type="text" name="start" id="fromDate" class="inputtype1">
+					</div>
+					<div class="innerDIV">
+						<strong>체크아웃</strong>
+						<input type="text" name="end" id="toDate" class="inputtype1">
+					</div>
+					<div class="innerDIV">
+						<strong>인원</strong>
+						<input type="number" min="1" max="10"
+						value="r_campingheadcount" name="headcount">
+					</div>
+				</div>
+				<div>
+					<button class="reserve_btn">예약하기</button>
+				</div>
+				
+						<input type="hidden" name="r_cam_no" value="${places.cam_no }" />
+						<input type="hidden" name="r_campingprice" value="${places.cam_price }" />
+						<input type="hidden" name="r_cam_name" value="${places.cam_name }" /> 
+						<input type="hidden" name="r_u_id" value="${sessionScope.loginMember.u_id}" /> 
+						<input type="hidden" name="r_cam_phonenumber" value="${places.cam_phonenumber }" /> 
+						<input type="hidden" name="r_cam_address" value="${places.cam_address }" /> 
+						<input type="hidden" name="r_u_name" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_name}" />
+						<input type="hidden" name="r_u_phonenumber" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_phonenumber}" />
+				
+				</div>
+						
 				</form>
+				
 	</tr>
 </table>
 <!-- 자신의 아이디일 경우 -->

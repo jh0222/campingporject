@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fi.pj.member.BuylistMapper">
+
+<select id="userbuylist" resultType="com.fi.pj.member.Buy" parameterType="com.fi.pj.member.Buy">
+	select * from guest_product_buy_table
+	where b_u_bo_id = #{b_u_bo_id}
+</select>
+
+<select id="mealbuylist" resultType="com.fi.pj.member.Buy" parameterType="com.fi.pj.member.Buy">
+	select * from guest_foodproduct_buy_table
+	where fb_u_bo_id = #{fb_u_bo_id}
+</select>
+
+<delete id="buyproductdel" parameterType="com.fi.pj.member.Buy">
+	delete from guest_product_buy_table where b_no = #{b_no}
+</delete>
+
+<delete id="buymealdel" parameterType="com.fi.pj.member.Buy">
+	delete from guest_foodproduct_buy_table where fb_no = #{fb_no}
+</delete>
+
+</mapper>

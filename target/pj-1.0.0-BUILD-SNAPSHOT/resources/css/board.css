@@ -1,0 +1,257 @@
+@charset "UTF-8";
+.first_board_title{
+  display: flex;
+}
+.board_search{
+  margin: 10px 0 10px 300px;
+}
+.board_search2{
+  margin: 10px 0 10px 280px;
+}
+.board_search3{
+  margin: 10px 0 10px 990px;
+}
+.board_write_go{
+  margin-top: 10px;
+  margin-left: 1080px;
+}
+.board_write_go2{
+  margin-top: 10px;
+  margin-left: 1300px;
+}
+
+.recipe_board{
+  margin-left: 80px;
+  margin-top: 10px;
+}
+.recipe_title{
+  font-size: 30px;
+}
+.text_board{
+  display: flex;
+  align-items: center;
+  
+}
+.more_board{
+  margin-left: 500px;
+}
+.more_board_recipe{
+  margin-left: 1150px;
+}
+
+.text_board_1{
+  margin: 0 80px 0 60px;
+}
+.popular_board{
+  font-size: 20px;
+  display: flex;
+}
+
+.popular_subject{
+  width: 500px;
+}
+.recipe_popular_board{
+  margin-left: 70px;
+}
+
+.table_recipe{
+  margin-right: 40px;
+}
+
+.title{
+  font-size:30px;
+  margin: 0 0 10px 410px;
+}
+
+.board_page{
+  margin: 10px 0 0 0;
+  text-align: center;
+  width: 100wv;
+}
+
+.board {
+  vertical-align: center;
+  position: relative;
+  margin: 0.5% 0 0 0;
+  align-items: center;
+}
+table.table{  	
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  margin-left : auto;
+  margin-right: auto;
+}
+table.table th {
+  height: 30px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #fff;
+  background: #eee;
+}
+table.table td {
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+.subject{
+  width: 500px;
+}
+
+.board_subject{
+  font-size: 50px;
+  margin-left: 30px;
+  text-align: left;
+}
+.board_detail{
+  font-size: 16px;
+  display: block;
+  margin-left: 30px;
+}
+.board_id{
+  font-size: 20px;
+  margin-left: 30px;
+}
+.board_txt{
+  margin-left: 30px;
+}
+.board_chat{
+  margin-left: 30px;
+  font-size: 20px;
+}
+table.table_recipe{
+  display: inline-block;
+  align-items: center;
+}
+
+.reply_img{
+  width:50px;
+  height:50px;
+  border-radius: 30px;
+  margin: 0 0 0 10px;
+}
+
+.reply_img2{
+  width:40px;
+  height:40px;
+  border-radius: 30px;
+  margin: 0 0 0 10px;
+}
+
+.reply_insert{
+  margin: 10px 0 10px 30px;
+  display: flex;
+  width:1040px;
+  height:70px;
+  border-radius: 10px;
+  background-color: #e4e4e4;
+  align-items:center;
+}
+
+
+.reply_txt_css{
+  margin: 0 10px 0 10px;
+}
+
+.reply_txt_css2{
+  width:900px;
+  height:50px;
+}
+
+.reply_txt_css2_2{
+  width:900px;
+  height:40px;
+}
+
+
+.reply_select{
+  margin: 10px 0 10px 30px;
+  display: flex;
+}
+
+.reply_select_2{
+  display: block;
+  margin-left: 10px;
+}
+.reply_select_txt{
+  margin: 3px 0 3px 0;
+}
+
+.register{
+  width:50px;
+  height:50px;
+}
+.register2{
+  width:45px;
+  height:40px;
+}
+
+.register3{
+  width:45px;
+  height:40px;
+  margin-top: 24px; 
+}
+.reply_insert2{
+  margin: 10px 0 10px 90px;
+  display: flex;
+  align-items:center;
+}
+.reply_insert2_2{
+  margin: 10px 0 10px 90px;
+  display: flex;
+}
+.reply_select_txt_css_head{
+  display: flex;
+}
+
+.reply_insert3{
+  margin: 10px 0 10px 100px;
+  display: flex;
+}
+
+.one_board_page{
+  text-align: center;
+}
+.board_one{
+  min-height: 600px;
+}
+
+.board_write_title{
+  font-size: 30px;
+  margin: 10px 10px 0 380px;
+}
+.board_write_content{
+  display: flex;
+  justify-content: center;
+}
+.board_write_content2{
+  display: block;
+  margin: 0 auto;
+}
+.board_write_subject{
+  font-size: 20px;
+    margin: 10px 10px 0 30px;
+}
+.board_write_subject2{
+  margin: 10px 0 10px 380px;
+  font-size: 20px;
+}
+.board_write_txt1{
+  height:30px;
+  width: 750px;
+  margin: 10px 10px 0 2px;
+}
+.board_write_txt2{
+  margin-left: 50%;
+  transform:translate(-50%,0);
+}
+.board_write_btn{
+  margin-left: 30px;
+  margin-top:20px;
+  height: 30px;
+  width: 200px;
+}

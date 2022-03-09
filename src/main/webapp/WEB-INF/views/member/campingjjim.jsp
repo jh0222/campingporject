@@ -115,10 +115,11 @@ $('#heart a').click(function(){
 	
   <div class="column middle">
   <c:choose>
-		<c:when test="${cj.h_no eq null}">
-			<h1>좋아요 목록이 없습니다.</h1>
-		</c:when>
+	<c:when test="${empty campingjjim}">
+		<h1>좋아요 목록이 없습니다.</h1>
+	</c:when>
 	<c:otherwise>
+	<c:forEach var="cj" items="${campingjjim}">
 	<table>
 		<tr>
 			<td class="hidden"></td>
@@ -126,7 +127,6 @@ $('#heart a').click(function(){
 			<td>캠핑주소</td>
 			<td></td>
 		</tr>
-	<c:forEach var="cj" items="${campingjjim}">
 		<tr>	
 			<td id="cj${cj.h_no}" class="hidden"></td>
 			<td><a href="">${cj.h_cam_name}</a></td>
@@ -137,10 +137,9 @@ $('#heart a').click(function(){
  					<p id="heart">
 							<a href="#" value="1" style="color: red;">♥</a>
 						</p>
-				
 		</tr>
-	</c:forEach>
 	</table>
+	</c:forEach>
 </c:otherwise>
 </c:choose>
 </div>

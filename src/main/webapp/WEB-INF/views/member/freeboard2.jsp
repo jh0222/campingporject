@@ -101,7 +101,7 @@ table, td, th {
   </div>
   <div class="column middle">
 <c:choose>
-	<c:when test="${freeboard eq null}">
+	<c:when test="${empty freeboard}">
 		<h1>작성한 내용이 없습니다.</h1>
 	</c:when>
 	<c:otherwise>
@@ -115,7 +115,7 @@ table, td, th {
 	<c:forEach var="f" items="${freeboard}">
 		<tr>
 			<td class="hidden"></td>
-			<td class="td1"><a href="">${f.f_subject }</a></td>
+			<td class="td1"><a href="fbwrite.onego?f_no=${f.f_no}&f_readcount=${f.f_readcount}">${f.f_subject }</a></td>
 			<!-- 제목 클릭하면 내가 쓴 자유게시판으로 넘어가기 -->
 			<td class="td1">${f.f_readcount }</td>
 			<td class="td1"><fmt:formatDate value="${f.f_date}"/></td>

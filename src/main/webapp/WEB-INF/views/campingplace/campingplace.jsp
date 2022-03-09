@@ -92,7 +92,6 @@ $(function() {
 	<form action="place.search">
 			<select name="searchplace">
 		    	<option value="placename">캠핑장 이름</option>	  
-		    	<option value="placearea">캠핑장 주소</option>
 		    </select>
 			<input name="search"> <button class="place_search_btn">검색</button>
 	</form>

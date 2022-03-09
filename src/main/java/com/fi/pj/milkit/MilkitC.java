@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fi.pj.Cart.CartBean;
+import com.fi.pj.Cart.CartDAO;
 import com.fi.pj.member.MemberDAO;
 import com.fi.pj.member.UserMember;
 import com.fi.pj.shopping.Product;
@@ -25,6 +27,9 @@ public class MilkitC {
 	private MemberDAO mDAO;
 	@Autowired
 	private SqlSession ss;
+	@Autowired
+	private CartDAO sdao;
+
 	
 	//밀키트 목록페이지
 	@RequestMapping(value = "camping.milkit", method = RequestMethod.GET)
@@ -152,11 +157,13 @@ public class MilkitC {
 		
 		 //장바구니 등록
 		@RequestMapping(value = "reg.milkitbasket", method = RequestMethod.POST)
-		public String productbasketgo(MilkitBasket fpb, HttpServletRequest req) {
+		public String productbasketgo(CartBean c,MilkitBasket fpb, HttpServletRequest req) {
 			mDAO.loginCheck(req);
 			kdao.regBasketbasket(fpb,req);
-			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
-			req.setAttribute("shoppigListPage", "../shopping/productbasket.jsp");
+			if (mDAO.loginCheck(req)) {
+				sdao.mealkit(c, req);
+			}
+			req.setAttribute("contentPage", "cart/mealkit.jsp");
 			return "main";
 		}	
 		//밀키트 구매페이지 이동

@@ -1,0 +1,152 @@
+@charset "UTF-8";
+span.order_span1{
+	font-family: 'Pretendard-Regular';
+	font-size: 29pt;
+	color: #373737;
+	
+}
+
+h1.order_h1{
+	margin-left: 600px;
+}
+
+h2.order_h2{
+	font-family: 'MinSans-Medium';
+}
+
+div.order_div{
+	margin-left: 250px;
+}
+
+.order_font{
+	font-family: 'MinSans-Medium';
+	font-size: 15pt;
+	text-align: center;
+}
+
+.order_font2{
+	font-family: 'WONDotum';
+	font-size: 14pt;
+	padding-left: 30px;
+}
+
+.order_font3{
+	font-family: 'MinSans-Medium';
+	font-size: 15pt;
+	text-align: center;
+	
+}
+
+
+div.order_text{
+	font-family: 'MinSans-Medium';
+	font-size: 15pt;
+}
+
+td.order_newadrr{
+	font-family: 'MinSans-Medium';
+	font-size: 15pt;
+}
+
+span.order_info{
+	font-family: 'MaruBuri-Regular';
+	font-size: 13pt;
+}
+
+input.order_input{
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+}
+
+table.order_table1{
+	width:80%; 
+	height:500px;
+	border-collapse: collapse; 
+	border:1px #c0c0c0 solid;
+}
+
+table.order_table2{
+	width:80%; 
+	height:100px;
+	border-collapse: collapse; 
+	border:1px #c0c0c0 solid;
+}
+
+table.order_table3{
+	width:80%; 
+	height:auto;
+	border-collapse: collapse; 
+	border:1px #c0c0c0 solid;
+
+}
+
+td.order_productinfo{
+	font-family: 'WONDotum';
+	font-size: 15pt;
+	text-align: center;
+}
+
+td.order_infocontent{
+	font-family: 'Pretendard-Regular';
+	font-size: 15pt;
+	text-align: center;
+}
+
+td.order_checkbox{
+	width: 20px;
+	text-align: center;
+}
+
+td.order_checkbox2{
+	font-family: 'Pretendard-Regular';
+	font-size: 15pt;
+}
+
+button.order_paymentbtn{
+	width: 350px;
+	height: 60px;
+	background-color: #373737;
+	border: none;
+	font-size: 18pt;
+	font-weight: bold;
+	color: white;
+	font-family: 'GowunBatang-Regular';
+	margin-left: 335px;
+}
+
+h2.order_recipient {
+	font-family: 'MaruBuri-Regular';
+	font-size: 20pt;
+	COLOR: #ffffff;
+	PADDING-BOTTOM: 10px;
+	/* TEXT-ALIGN: center; */
+	PADDING-TOP: 10px;
+	PADDING-LEFT: 10px;
+	PADDING-RIGHT: 10px;
+	BACKGROUND-COLOR: #8d8d8d;
+	border-radius: 3px;
+	width: 80%;
+}
+
+@font-face {
+    font-family: 'WONDotum';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/WONDotum.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MinSans-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+

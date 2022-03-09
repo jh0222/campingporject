@@ -109,13 +109,13 @@ table, td, th {
 		</tr>
 	<c:forEach var="ct" items="${campingtip}">
 		<c:choose>
-			<c:when test="${ct.tip_no eq null}">
+			<c:when test="${empty campingtip}">
 				<h1>작성된 내용이 없습니다.</h1>
 		</c:when>
 		<c:otherwise>
 		<tr>
 			<td class="hidden"></td>
-			<td class="td1"><a href="">${ct.tip_subject}</a></td>
+			<td class="td1"><a href="ctwrite.onego?tip_no=${ct.tip_no}&tip_readcount=${ct.tip_readcount}">${ct.tip_subject}</a></td>
 			<td class="td1">${ct.tip_readcount}</td>
 			<td class="td1"><fmt:formatDate value="${ct.tip_date}"/></td>
 		</tr>

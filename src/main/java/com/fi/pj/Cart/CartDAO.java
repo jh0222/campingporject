@@ -85,10 +85,10 @@ public class CartDAO {
 		BossMember b = (BossMember) request.getSession().getAttribute("loginMember2");
 
 		if(u != null) {
-			c.setBa_u_bo_id(u.getU_id());
+			c.setFba_u_bo_id(u.getU_id());
 		}
 		if(b != null) {
-			c.setBa_u_bo_id(b.getBo_id());
+			c.setFba_u_bo_id(b.getBo_id());
 		}
 		if (c.getFba_u_bo_id() != null) {
 			List<CartBean> mealkit = ss.getMapper(CartMapper.class).mealkit(c);

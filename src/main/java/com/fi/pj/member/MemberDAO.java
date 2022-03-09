@@ -379,6 +379,7 @@ public class MemberDAO {
 			}
 
 			if (ss.getMapper(MemberMapper.class).bossUpdate(b) == 1) {
+				request.getSession().setAttribute("birth", mr.getParameter("newbirth"));
 				request.setAttribute("result", "수정성공");
 			} else {
 				request.setAttribute("result", "수정실패");

@@ -110,9 +110,11 @@ table, td, th {
 	</c:when>
 	
 	<c:otherwise>
-	<form action="boss_camping.infoupdate?cam_no=${campinginfo.cam_no }&cam_bo_id=${campinginfo.cam_bo_id}"
+	<form action="boss_camping.infoupdate"
 		method="post" enctype="multipart/form-data" name="updateCampingForm" onsubmit="return updateCampingCheck();">
 	<table class="cd1">
+	<input type="hidden" name="cam_no" value="${campinginfo.cam_no }">
+	<input type="hidden" name="cam_bo_id" value="${campinginfo.cam_bo_id}">
 			<tr>
 				<td class="td1">캠핑명</td>
 				<td><input name="name" value="${campinginfo.cam_name }"></td>
@@ -156,6 +158,10 @@ table, td, th {
                      			<option value="064">064</option>
                      			<option value="070">070</option>
               				</select>
+              				-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 2, 5)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 5, 9)}"></c:out>">
             			</c:when>
             		<c:when test="${fn:substring(campinginfo.cam_phonenumber, 0, 3) eq '031'}">
                			<select name="up_phonenumber1">
@@ -171,6 +177,10 @@ table, td, th {
                      			<option value="064">064</option>
                      			<option value="070">070</option>
                			</select>
+               			-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 6, 10)}"></c:out>">
             		</c:when>
             		<c:when test="${fn:substring(campinginfo.cam_phonenumber, 0, 3) eq '033'}">
                			<select name="up_phonenumber1">
@@ -186,6 +196,10 @@ table, td, th {
                      			<option value="064">064</option>
                      			<option value="070">070</option>
                			</select>
+               			-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 6, 10)}"></c:out>">
             		</c:when>
             		<c:when test="${fn:substring(campinginfo.cam_phonenumber, 0, 3) eq '043'}">
               			<select name="up_phonenumber1">
@@ -201,6 +215,10 @@ table, td, th {
                      			<option value="064">064</option>
                      			<option value="070">070</option>
                			</select>
+               			-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 6, 10)}"></c:out>">
             		</c:when>
             		<c:when test="${fn:substring(campinginfo.cam_phonenumber, 0, 3) eq '041'}">
                			<select name="up_phonenumber1">
@@ -216,6 +234,10 @@ table, td, th {
                      			<option value="064">064</option>
                      			<option value="070">070</option>
                			</select>
+               			-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 6, 10)}"></c:out>">
             		</c:when>
             		<c:when test="${fn:substring(campinginfo.cam_phonenumber, 0, 3) eq '054'}">
                			<select name="up_phonenumber1">
@@ -231,6 +253,10 @@ table, td, th {
                      			<option value="064">064</option>
                      			<option value="070">070</option>
                			</select>
+               			-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 6, 10)}"></c:out>">
             		</c:when>
             		<c:when test="${fn:substring(campinginfo.cam_phonenumber, 0, 3) eq '055'}">
                			<select name="up_phonenumber1">
@@ -246,6 +272,10 @@ table, td, th {
                      			<option value="064">064</option>
                      			<option value="070">070</option>
                			</select>
+               			-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 6, 10)}"></c:out>">
             		</c:when>
             		<c:when test="${fn:substring(campinginfo.cam_phonenumber, 0, 3) eq '063'}">
                			<select name="up_phonenumber1">
@@ -261,6 +291,10 @@ table, td, th {
                      			<option value="064">064</option>
                      			<option value="070">070</option>
                			</select>
+               			-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 6, 10)}"></c:out>">
             		</c:when>
             		<c:when test="${fn:substring(campinginfo.cam_phonenumber, 0, 3) eq '061'}">
                			<select name="up_phonenumber1">
@@ -276,6 +310,10 @@ table, td, th {
                      			<option value="064">064</option>
                      			<option value="070">070</option>
                			</select>
+               			-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 6, 10)}"></c:out>">
             		</c:when>
             		<c:when test="${fn:substring(campinginfo.cam_phonenumber, 0, 3) eq '064'}">
                			<select name="up_phonenumber1">
@@ -291,6 +329,10 @@ table, td, th {
                      			<option value="064" selected>064</option>
                      			<option value="070">070</option>
                			</select>
+               			-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 6, 10)}"></c:out>">
             		</c:when>
             	<c:otherwise>
                		<select name="up_phonenumber1">
@@ -306,12 +348,13 @@ table, td, th {
                      			<option value="064">064</option>
                      			<option value="070" selected>070</option>
                		</select>
+               		-
+         	<input name="up_phonenumber2"class="phonenumber" maxlength='3' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
+         	-
+         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 6, 10)}"></c:out>">
             	</c:otherwise>
          	</c:choose>               
-         	-
-         	<input name="up_phonenumber2"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 3, 6)}"></c:out>">
-         	-
-         	<input name="up_phonenumber3"class="phonenumber" maxlength='4' value="<c:out value="${fn:substring(campinginfo.cam_phonenumber, 7, 11)}"></c:out>">
+         	
 			</tr>
 			<tr>
 				<td class="td1">기본가격</td>

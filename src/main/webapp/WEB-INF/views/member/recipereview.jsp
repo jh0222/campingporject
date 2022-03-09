@@ -104,7 +104,7 @@ table, td, th {
   </div>
   <div class="column middle">
   <c:choose>
-		<c:when test="${r.rr_no eq null}">
+		<c:when test="${empty recipereview}">
 			<h1>작성된 내용이 없습니다.</h1>
 		</c:when>
 	<c:otherwise>

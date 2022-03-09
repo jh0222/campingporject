@@ -22,29 +22,40 @@ public class BossCommunitiresDAO {
 
 	// 등록된 캠핑 정보
 	public void CampingInfo(BossCommunities bc, HttpServletRequest req) {
-		
-		req.setAttribute("campinginfo", ss.getMapper(BossCommunitiesMapper.class).campinginfo(bc));
+		// 사용자 db에 저장된 주소
+		BossCommunities b = ss.getMapper(BossCommunitiesMapper.class).campinginfo(bc);
+		String addr = b.getCam_address();
+		String[] addr2 = addr.split("!");
+		req.setAttribute("addr", addr2);
+		req.setAttribute("campinginfo", b);
 		
 	}
 
 	// 캠핑 정보 수정
 	public void CampingInfoUp(BossCommunities bc, HttpServletRequest req) {
-		System.out.println(bc.getCam_no());
-		System.out.println(bc.getCam_name());
 		String path = req.getSession().getServletContext().getRealPath("resources/img");
 		MultipartRequest mr = null;
-		String oldFile = bc.getCam_picture();
+		String oldFile = null;
 		String newFile = null;
 		try {
 			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
 			int cam_no = Integer.parseInt(mr.getParameter("cam_no"));
+			oldFile = mr.getParameter("oldpicture");
+			String cam_bo_id =mr.getParameter("cam_bo_id");
 			String cam_name = mr.getParameter("name");
 			String cam_txt = mr.getParameter("txt");
-			String cam_phonenumber = mr.getParameter("phonenumber");
 			int cam_price = Integer.parseInt(mr.getParameter("price"));
-			String cam_address = mr.getParameter("address");
+			String addr1 = mr.getParameter("up_addr1");
+			String addr2 = mr.getParameter("up_addr2");
+			String addr3 = mr.getParameter("up_addr3");
+			String cam_address = addr1 + "!" + addr2 + "!" + addr3;
+			String phone1 = mr.getParameter("up_phonenumber1");
+			String phone2 = mr.getParameter("up_phonenumber2");
+			String phone3 = mr.getParameter("up_phonenumber3");
+			String cam_phonenumber = phone1 + phone2 + phone3;
 			
 			bc.setCam_no(cam_no);
+			bc.setCam_bo_id(cam_bo_id);
 			bc.setCam_name(cam_name);
 			bc.setCam_txt(cam_txt);
 			bc.setCam_phonenumber(cam_phonenumber);
@@ -60,40 +71,19 @@ public class BossCommunitiresDAO {
 				newFile = URLEncoder.encode(newFile, "utf-8");
 				newFile = newFile.replace("+", " ");
 			}
+			
+			if (ss.getMapper(BossCommunitiesMapper.class).campinginformationupdate(bc) == 1) {
+				req.setAttribute("result", "수정성공");
+			} else {
+				req.setAttribute("result", "수정실패");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("result", "수정실패");
 			return;
 		}
 
-		try {
-			String cam_name = mr.getParameter("name");
-			String cam_address = mr.getParameter("address");
-			String cam_txt = mr.getParameter("txt");
-			String cam_phonenumber = mr.getParameter("phonenumber");
-			String oldpicture = mr.getParameter("oldpicture");
-			String newpicture = mr.getFilesystemName("newpicture");
-
-			bc.setCam_name(cam_name);
-			bc.setCam_address(cam_address);
-			bc.setCam_txt(cam_txt);
-			bc.setCam_phonenumber(cam_phonenumber);
-
-			if (newpicture != null) {
-				bc.setCam_picture(newpicture);
-			} else {
-				bc.setCam_picture(oldpicture);
-			}
-
-			if (ss.getMapper(BossCommunitiesMapper.class).campinginformationupdate(bc) == 1) {
-				req.setAttribute("result", "수정성공");
-			} else {
-				req.setAttribute("result", "수정실패");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			req.setAttribute("result", "수정실패");
-		}
 	}
 
 	// 캠핑정보 삭제
@@ -129,6 +119,9 @@ public class BossCommunitiresDAO {
 	// 구매 목록
 	public void buylist(BossCommunities bc, HttpServletRequest req) {
 		List<BossCommunities> pbyulist = ss.getMapper(BossCommunitiesMapper.class).pbuylist(bc);
+		String addr = ((BossCommunities) pbyulist).getCam_address();
+		String[] addr2 = addr.split("!");
+		req.setAttribute("addr", addr2);
 		req.setAttribute("pbuylist", pbyulist);
 
 		List<BossCommunities> mbyulist = ss.getMapper(BossCommunitiesMapper.class).mbuylist(bc);

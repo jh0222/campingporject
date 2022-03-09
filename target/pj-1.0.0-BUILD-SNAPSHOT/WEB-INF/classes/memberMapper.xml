@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fi.pj.member.MemberMapper">
+	<select id="getMemberByUID" parameterType="com.fi.pj.member.Login" resultType="com.fi.pj.member.UserMember">
+		select * from user_table where u_id = #{id}
+	</select>
+
+	<select id="getMemberByBOID" parameterType="com.fi.pj.member.Login" resultType="com.fi.pj.member.BossMember">
+		select * from boss_table where bo_id = #{id}
+	</select>
+	
+	<select id="getMemberByR" parameterType="com.fi.pj.member.Login" resultType="com.fi.pj.member.Root">
+		select * from root_table where root_id = #{id}
+	</select>
+
+	<select id="getMemberNum" parameterType="com.fi.pj.member.UserMember" resultType="java.lang.Integer">
+		select count(*) from user_table where u_id = #{u_id}
+	</select>
+	
+	<select id="getBMemberNum" parameterType="com.fi.pj.member.BossMember" resultType="java.lang.Integer">
+		select count(*) from boss_table where bo_id = #{bo_id}
+	</select>
+	
+	<insert id="Userjoin" parameterType="com.fi.pj.member.UserMember">
+		insert into user_table values(user_seq.nextval,#{u_name},#{u_id},#{u_pw},#{u_email},#{u_address},#{u_phonenumber},#{u_birth},#{u_picture},0)
+	</insert>
+	
+	<insert id="Bossjoin" parameterType="com.fi.pj.member.BossMember">
+		insert into boss_table values(boss_seq.nextval,#{bo_name},#{bo_id},#{bo_pw},#{bo_email},#{bo_address},#{bo_phonenumber},#{bo_birth},#{bo_picture},0)
+	</insert>
+
+	<delete id="userBye" parameterType="com.fi.pj.member.UserMember">
+		delete from user_table where u_id = #{u_id}
+	</delete>
+	
+	<update id="userUpdate" parameterType="com.fi.pj.member.UserMember">
+		update user_table 
+		set u_pw = #{u_pw}, u_email = #{u_email}, u_address = #{u_address}, u_phonenumber = #{u_phonenumber}, u_picture = #{u_picture}, u_birth = #{u_birth}
+		where u_id = #{u_id}
+	</update>
+	
+	<delete id="bossBye" parameterType="com.fi.pj.member.BossMember">
+		delete from boss_table where bo_id = #{bo_id}
+	</delete>
+	
+	<update id="bossUpdate" parameterType="com.fi.pj.member.BossMember">
+		update boss_table 
+		set bo_pw = #{bo_pw}, bo_email = #{bo_email}, bo_address = #{bo_address}, bo_phonenumber = #{bo_phonenumber}, bo_picture = #{bo_picture}, bo_birth = #{bo_birth}
+		where bo_id = #{bo_id}
+	</update>
+
+	<!-- 아이디 찾기 -->
+	<select id="idsearch" resultType="String" parameterType="com.fi.pj.member.Login">
+		select u_id from user_table 
+        where u_name = #{name} and u_phonenumber = #{phonenumber}
+	</select>
+
+	<!-- 아이디 찾기 -->
+	<select id="bo_idsearch" resultType="String" parameterType="com.fi.pj.member.Login">
+		select bo_id from boss_table 
+        where bo_name = #{name} and bo_phonenumber = #{phonenumber}
+	</select>
+	
+	<select id="selectMember_U" resultType="com.fi.pj.member.UserMember" parameterType="String">
+		select * from user_table 
+        where u_email = #{email}
+	</select>
+	
+	<select id="selectMember_B" resultType="com.fi.pj.member.BossMember" parameterType="String">
+		select * from boss_table 
+        where bo_email = #{email}
+	</select>
+	
+	<update id="pwUpdate_U" parameterType="com.fi.pj.member.Login">
+		update user_table set u_pw=#{pw} where u_id=#{id}
+	</update>
+	
+	<update id="pwUpdate_B" parameterType="com.fi.pj.member.Login">
+		update boss_table set bo_pw=#{pw} where bo_id=#{id}
+	</update>
+</mapper>

@@ -107,7 +107,7 @@ table, td, th {
 			<tr>
 				<td>PW</td>
 				<td>
-					<input name="up_pw" value="${sessionScope.loginMember2.bo_pw }" placeholder="필수, 숫자 하나이상 반드시"  maxlength="10" autocomplete="off">
+					<input name="up_pw" value="${sessionScope.loginMember2.bo_pw }" placeholder="필수, 숫자 하나이상 반드시" type="password"  maxlength="10" autocomplete="off">
 				</td>
 			</tr>
 			<tr>

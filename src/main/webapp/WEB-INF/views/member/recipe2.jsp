@@ -110,7 +110,7 @@ table, td, th {
 	<c:forEach var="r" items="${recipe}">
 		<tr>
 			<td class="hidden">${r.rb_no}</td>
-			<td class="td1"><a href="">${r.rb_subject}</a></td>
+			<td class="td1"><a href="rwrite.onego?rb_no=${r.rb_no}&rb_readcount=${r.rb_readcount}">${r.rb_subject}</a></td>
 			<td class="td1">${r.rb_readcount}</td>
 			<td class="td1"><fmt:formatDate value="${r.rb_date}"/></td>
 		</tr>

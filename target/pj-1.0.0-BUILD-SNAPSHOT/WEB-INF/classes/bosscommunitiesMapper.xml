@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fi.pj.member.BossCommunitiesMapper">
+
+<!-- 캠핑정보 -->
+<select id="campinginfo" parameterType="com.fi.pj.member.BossCommunities" resultType="com.fi.pj.member.BossCommunities">
+	select * from camping_table where cam_bo_id = #{cam_bo_id}
+</select>
+
+<!-- 캠핑정보수정 -->
+<update id="campinginformationupdate" parameterType="com.fi.pj.member.BossCommunities">
+	update camping_table 
+	set cam_name = #{cam_name}, cam_address = #{cam_address}, cam_picture = #{cam_picture}, cam_txt = #{cam_txt}, 
+	    cam_phonenumber = #{cam_phonenumber}, cam_price = #{cam_price}
+	where cam_no = #{cam_no}
+</update>
+
+<!-- 캠핑정보삭제 -->
+<delete id="campinginfodel" parameterType="com.fi.pj.member.BossCommunities">
+	delete from camping_table where cam_no = #{cam_no}
+</delete>
+
+<!-- 캠핑예약정보 -->
+<select id="campingreserve" parameterType="com.fi.pj.member.BossCommunities" resultType="com.fi.pj.member.BossCommunities">
+	select * from reservation_table
+	where r_cam_no = (select cam_no from camping_table where cam_bo_id=#{cam_bo_id})
+</select>
+
+<!-- 캠핑용품 구매 목록 -->  
+<select id="pbuylist" parameterType="com.fi.pj.member.BossCommunities" resultType="com.fi.pj.member.BossCommunities">
+	select * from guest_product_buy_table where b_u_bo_id = #{b_u_bo_id}
+</select>
+
+<!-- 밀키트 구매 목록 -->
+<select id="mbuylist" parameterType="com.fi.pj.member.BossCommunities" resultType="com.fi.pj.member.BossCommunities">
+	select * from guest_foodproduct_buy_table where fb_u_bo_id = #{fb_u_bo_id}
+</select>
+
+<!-- 자유게시판 -->
+<select id="communities" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
+	select * from free_board_table where f_u_id = #{f_u_id}
+</select>
+
+<!-- 자유게시판 -->
+<select id="freeboard" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
+	select * from free_board_table where f_u_id = #{f_u_id}
+</select>
+
+<!-- 캠핑팁 -->
+<select id="campingtip" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
+	select * from campingtip_board_table where tip_u_id = #{tip_u_id}
+</select>
+
+<!-- 레시피 리뷰 -->
+<select id="recipe" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
+	select * from recipe_board_table where rb_u_id = #{rb_u_id}
+</select>
+
+<!-- 캠핑용품 리뷰 -->
+<select id="productreview" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
+	select * from product_review_table where pr_u_bo_id = #{pr_u_bo_id}
+</select>
+
+<!-- 밀키트 리뷰 -->
+<select id="mealreview" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
+	select * from foodproduct_review_table where fpr_u_bo_id = #{fpr_u_bo_id}
+</select>
+
+<!-- 자유게시판 댓글 -->
+<select id="freeboardreview" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
+	select * from free_board_reply_table where fr_u_id = #{fr_u_id}
+</select>
+
+<!-- 캠핑팁 리뷰 -->
+<select id="campingtipreview" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
+	select * from campingtip_board_reply_table where tipr_u_id = #{tipr_u_id}
+</select>
+
+<!-- 레시피 리뷰 -->
+<select id="recipereview" resultType="com.fi.pj.member.BossCommunities" parameterType="com.fi.pj.member.BossCommunities">
+	select * from recipe_board_reply_table where rr_u_id = #{rr_u_id}
+</select>
+
+<!-- 캠핑용품 리뷰 수정 -->
+<update id="productreviewupdate" parameterType="com.fi.pj.member.BossCommunities">
+	update product_review_table set pr_txt = #{pr_txt} where pr_no = #{pr_no}
+</update>
+
+<!-- 캠핑용품 리뷰 삭제 -->
+<delete id="productreviewdel" parameterType="com.fi.pj.member.BossCommunities">
+	delete from product_review_table where pr_no = #{pr_no}
+</delete>
+
+<!-- 밀키트 리뷰 수정 -->
+<update id="mealreviewupdate" parameterType="com.fi.pj.member.BossCommunities">
+	update foodproduct_review_table set fpr_txt = #{fpr_txt} where fpr_no = #{fpr_no}
+</update>
+
+<!-- 밀키트 리뷰 삭제 -->
+<delete id="mealreviewdel" parameterType="com.fi.pj.member.BossCommunities">
+	delete from foodproduct_review_table where fpr_no = #{fpr_no}
+</delete>
+
+<!-- 자유게시판 댓글 수정 -->
+<update id="freeboardreviewupdate" parameterType="com.fi.pj.member.BossCommunities">
+	update free_board_reply_table set fr_replytxt = #{fr_replytxt} where fr_no = #{fr_no} and fr_u_id = #{fr_u_id}
+</update>
+
+<!-- 자유게시판 댓글 삭제 -->
+<delete id="freeboardreviewdel" parameterType="com.fi.pj.member.BossCommunities">
+	delete from free_board_reply_table where fr_no = #{fr_no}
+</delete>
+
+<!-- 레시피 댓글 수정 -->
+<update id="recipereviewupdate" parameterType="com.fi.pj.member.BossCommunities">
+	update recipe_board_reply_table set rr_replytxt = #{rr_replytxt} where rr_no = #{rr_no}
+</update>
+
+<!-- 레시피 댓글 삭제 -->
+<delete id="recipereviewdel" parameterType="com.fi.pj.member.BossCommunities">
+	delete from recipe_board_reply_table where rr_no = #{rr_no}
+</delete>
+
+<!-- 캠핑팁 댓글 수정  -->
+<update id="campingtipreviewupdate" parameterType="com.fi.pj.member.BossCommunities">
+	update campingtip_board_reply_table set tipr_replytxt = #{tipr_replytxt} where tipr_no = #{tipr_no}
+</update>
+
+<!--캠핑팁 댓글 삭제  -->
+<delete id="campingtipreviewdel" parameterType="com.fi.pj.member.BossCommunities">
+	delete from campingtip_board_reply_table where tipr_no = #{tipr_no}
+</delete>
+</mapper>

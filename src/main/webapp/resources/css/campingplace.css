@@ -151,3 +151,33 @@ td.table_place_name{
 img.mainpicture{
 	height: 500px; width: 1000px; display: block; margin: 0px auto;
 }
+
+.reservation_table{
+	width:600px;
+	margin-left: 80px;
+	display: inline-flex;
+	
+}
+
+
+.reservation_table1 .innerDIV{
+	margin-bottom: 10px;
+	margin-top: 10px;
+	display: block;
+}
+
+.reservation_table div input{
+	position : absolute;
+	left: 900px;
+}
+
+.reserve_btn{
+	margin-left: 220px;
+	margin-top: 10px;
+	width: 100px;
+	height: 80px;
+	background-color: black;
+	color: white;
+	font-size: 20px;
+}
+

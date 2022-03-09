@@ -102,7 +102,7 @@ table, td, th {
   </div>
   <div class="column middle">
   <c:choose>
-		<c:when test="${c.ba_no eq null}">
+		<c:when test="${empty mealkit}">
 			<h1>장바구니 내역이 없습니다.</h1>
 		</c:when>
 	<c:otherwise>

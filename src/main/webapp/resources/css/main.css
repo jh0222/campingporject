@@ -116,3 +116,9 @@ section .fourth_section {
   transform: translateX(-50%);
   padding: 10px 0;
 }
+
+button {
+	background-color: transparent;
+	border: 0.8px solid black;
+	border-radius: 2px;
+}

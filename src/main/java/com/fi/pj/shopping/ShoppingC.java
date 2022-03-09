@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fi.pj.Cart.CartBean;
+import com.fi.pj.Cart.CartDAO;
 import com.fi.pj.member.MemberDAO;
 import com.fi.pj.member.UserMember;
 
@@ -24,6 +26,10 @@ public class ShoppingC {
 	
 	@Autowired
 	private SqlSession ss;
+	
+	@Autowired
+	private CartDAO cdao;
+
 	
 	//쇼핑페이지 이동,구매순위
 	@RequestMapping(value = "shopping.go", method = RequestMethod.GET)
@@ -205,11 +211,13 @@ public class ShoppingC {
 		
 	    //장바구니 등록
 		@RequestMapping(value = "reg.productbasket", method = RequestMethod.POST)
-		public String productbasketgo(ProductBasket pb, HttpServletRequest req) {
+		public String productbasketgo(CartBean c,ProductBasket pb, HttpServletRequest req) {
 			mDAO.loginCheck(req);
 			sdao.regProductbasket(pb,req);
-			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
-			req.setAttribute("shoppigListPage", "../shopping/productbasket.jsp");
+			if(mDAO.loginCheck(req)) {
+				cdao.campingproduct(c, req);
+			}
+			req.setAttribute("contentPage", "cart/campingproduct.jsp");
 			return "main";
 		}	
 		

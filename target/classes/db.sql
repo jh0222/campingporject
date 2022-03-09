@@ -71,8 +71,7 @@ create table camping_table(
     cam_address varchar2(100 char) not null,
     cam_latitude varchar2(30 char) not null,   
     cam_longitude varchar2(30 char) not null,    
-    cam_headcount number(5) not null,
-    cam_liked number(1) default 0 not null
+    cam_headcount number(5) not null
 );
 
 select cam_no from camping_table where cam_bo_id='kim2'
@@ -81,7 +80,7 @@ alter table camping_table add cam_liked number(1) default 0 not null;
 
 create sequence camping_seq;
 
-insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','cam.jpg','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40,1);
+insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','cam.jpg','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40);
 
 select * from camping_table;
 
@@ -108,6 +107,19 @@ select * from campingheart_table a,campingheart_table b where h_u_id = 'kim'
 				group by c_cam_no) b
 			where a.cam_no=b.c_cam_no
 			ORDER BY a.cam_no desc
+			
+			select *
+				from campingreview_table
+			
+		select rn,c.*
+		from(select Rownum as rn,a.*,star
+			from camping_table a,
+				(select c_cam_no, avg(c_campingstar) as star
+				from campingreview_table 
+				group by c_cam_no) b
+			where a.cam_no=b.c_cam_no
+			ORDER BY star desc) c
+		where RN >=1 and RN <=10 and c.cam_price>=1000 and c.cam_price<=50000
 
 -------------------------------------------------------------------------------------------------------------------------------------
 4. 예약 테이블
@@ -181,10 +193,13 @@ create table campingreview_table(
 	c_campingstar number(5) not null,
 	c_date date not null
 );
-
+	constraint recipe
+		foreign key(rr_rb_no)
+		references recipe_board_table(rb_no)
+		on delete cascade
 create sequence campingreview_seq;
 
-insert into campingreview_table values(campingreview_seq.nextval,1,'kim','좋아요',5,sysdate);
+insert into campingreview_table values(campingreview_seq.nextval,81,'kim','좋아요',5,sysdate);
 
 select * from campingreview_table;
 
@@ -482,13 +497,13 @@ select * from guest_foodproduct_basket_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 14. 캠핑용품 리뷰
 drop table product_review_table
-create table product_review_table(	
-	pr_no number(5)	primary key,
-	pr_p_no number(5) not null, 
-	pr_u_bo_id varchar2(20 char) not null,
-	pr_txt varchar2(100 char) not null,
-	pr_star number(5) not null,
-	pr_date	date not null
+create table product_review_table(
+    pr_no number(5)    primary key,
+    pr_p_no number(5) not null, 
+    pr_u_bo_id varchar2(20 char) not null,
+    pr_txt varchar2(100 char) not null,
+    pr_star number(5) not null,
+    pr_date    date not null
 );
 
 drop table product_review_table;
@@ -502,12 +517,12 @@ select * from product_review_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 15. 밀키트 리뷰
 drop table foodproduct_review_table
-create table foodproduct_review_table(	
-	fpr_no number(5) primary key,
-	fpr_fp_no number(5) not null, -----------------수정
-	fpr_u_bo_id varchar2(20 char) not null,
-	fpr_txt varchar2(100 char) not null,
-	fpr_date date not null
+create table foodproduct_review_table(
+    fpr_no number(5) primary key,
+    fpr_fp_no number(5) not null, -----------------수정
+    fpr_u_bo_id varchar2(20 char) not null,
+    fpr_txt varchar2(100 char) not null,
+    fpr_date date not null
 );
 
 drop table foodproduct_review_table;
