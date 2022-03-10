@@ -21,7 +21,7 @@
 <insert id="PlaceReg" parameterType="com.fi.pj.campingplace.Campingplace">
 	insert into camping_table 
 	values(camping_seq.nextval,#{cam_bo_id},#{cam_name},#{cam_picture}
-	,#{cam_txt},#{cam_phonenumber},#{cam_price},#{cam_address},#{cam_latitude},#{cam_longitude},#{cam_headcount})
+	,#{cam_txt},#{cam_phonenumber},#{cam_price},#{cam_address},#{cam_latitude},#{cam_longitude},#{cam_headcount},#{cam_liked })
 </insert>
 
 <delete id="PlaceDel" parameterType="com.fi.pj.campingplace.Campingplace">

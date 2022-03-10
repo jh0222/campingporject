@@ -23,24 +23,6 @@ public class placeReserve {
 		// TODO Auto-generated constructor stub
 	}
 
-	public placeReserve(int r_no, int r_cam_no, String r_u_id, String r_u_name, String r_u_phonenumber,
-			String r_cam_name, Date r_campingstartdate, Date r_campingenddate, int r_campingheadcount,
-			int r_campingprice, String r_cam_phonenumber, String r_cam_address) {
-		super();
-		this.r_no = r_no;
-		this.r_cam_no = r_cam_no;
-		this.r_u_id = r_u_id;
-		this.r_u_name = r_u_name;
-		this.r_u_phonenumber = r_u_phonenumber;
-		this.r_cam_name = r_cam_name;
-		this.r_campingstartdate = r_campingstartdate;
-		this.r_campingenddate = r_campingenddate;
-		this.r_campingheadcount = r_campingheadcount;
-		this.r_campingprice = r_campingprice;
-		this.r_cam_phonenumber = r_cam_phonenumber;
-		this.r_cam_address = r_cam_address;
-	}
-
 	public int getR_no() {
 		return r_no;
 	}
@@ -136,7 +118,24 @@ public class placeReserve {
 	public void setR_cam_address(String r_cam_address) {
 		this.r_cam_address = r_cam_address;
 	}
-	
-	
+
+	public placeReserve(int r_no, int r_cam_no, String r_u_id, String r_u_name, String r_u_phonenumber,
+			String r_cam_name, Date r_campingstartdate, Date r_campingenddate, int r_campingheadcount,
+			int r_campingprice, String r_cam_phonenumber, String r_cam_address) {
+		super();
+		this.r_no = r_no;
+		this.r_cam_no = r_cam_no;
+		this.r_u_id = r_u_id;
+		this.r_u_name = r_u_name;
+		this.r_u_phonenumber = r_u_phonenumber;
+		this.r_cam_name = r_cam_name;
+		this.r_campingstartdate = r_campingstartdate;
+		this.r_campingenddate = r_campingenddate;
+		this.r_campingheadcount = r_campingheadcount;
+		this.r_campingprice = r_campingprice;
+		this.r_cam_phonenumber = r_cam_phonenumber;
+		this.r_cam_address = r_cam_address;
+	}
+
 }
 

@@ -65,7 +65,7 @@ create table camping_table(
     cam_bo_id varchar2(20 char) not null,
     cam_name varchar2(30 char) not null,
     cam_picture varchar2(200 char) not null,
-    cam_txt varchar2(200 char) not null,
+    cam_txt varchar2(1000 char) not null,
     cam_phonenumber varchar2(30 char) not null,
     cam_price number(10) not null,
     cam_address varchar2(100 char) not null,
@@ -79,7 +79,7 @@ alter table camping_table add cam_liked number(1) default 0 not null;
 
 create sequence camping_seq;
 
-insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','cam.jpg','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40);
+insert into camping_table values(camping_seq.nextval,'kim2','난지캠핑장','cam.jpg','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40,0);
 
 select * from camping_table;
 
@@ -123,7 +123,6 @@ create table reservation_table(
 	r_u_name varchar2(20 char) not null,
 	r_u_phonenumber varchar2(30 char) not null,
 	r_cam_name varchar2(30 char) not null,
-	r_cam_picture varchar2(200 char) not null,   /* 캠핑장 사진 추가*/
 	r_campingstartdate date not null,
 	r_campingenddate date not null,
 	r_campingheadcount number(5) not null,
@@ -134,7 +133,7 @@ create table reservation_table(
 
 create sequence reservation_seq;
 
-insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
+insert into reservation_table values(reservation_seq.nextval,164,'kim','김태희','01012341234','난지캠핑장','cam25.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 insert into reservation_table values(reservation_seq.nextval,121,'kim','김태희','01012341234','난지캠핑장','20220301','20220302',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 
@@ -180,7 +179,8 @@ create table campingreview_table(
 
 create sequence campingreview_seq;
 
-insert into campingreview_table values(campingreview_seq.nextval,1,'kim','좋아요',5,sysdate);
+insert into campingreview_table values(campingreview_seq.nextval,165,'kim','좋아요',5,sysdate);
+insert into campingreview_table values(campingreview_seq.nextval,164,'kim','괜찮아요',4,sysdate);
 
 select * from campingreview_table;
 

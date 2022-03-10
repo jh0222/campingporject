@@ -11,6 +11,68 @@ $(function(){
 		height : 300, width : 800
 	});
 });
+
+function placeCheck() {
+	var form = document.placeForm;
+	if (form.cam_name.value == ""){
+		alert("캠핑장 이름을 입력해 주세요.");
+		form.cam_name.focus();
+		return false;
+	} else if (form.cam_txt.value == "") {
+		alert("캠핑장 상세설명을 입력해 주세요.");
+		form.cam_txt.focus();
+		return false;
+	} else if (form.cam_picture.value == "") {
+		alert("캠핑장 사진을 입력해 주세요.");
+		form.cam_picture.focus();
+		return false;
+	} else if (form.cam_phonenumber.value == "") {
+		alert("캠핑장 연락처를 입력해 주세요.");
+		form.cam_phonenumber.focus();
+		return false;
+	} else if (isNaN(form.cam_phonenumber.value)) {
+		alert("캠핑장 연락처는 숫자만 입력 가능합니다.");
+		form.cam_phonenumber.select();
+		return false;
+	} else if (form.cam_price.value == "") {
+		alert("캠핑장 가격을 입력해 주세요.");
+		form.cam_price.focus();
+		return false;
+	} else if (isNaN(form.cam_price.value)) {
+		alert("캠핑장 가격은 숫자만 입력 가능합니다.");
+		form.cam_price.select();
+		return false;
+	} else if (form.cam_address.value == "") {
+		alert("캠핑장 주소를 입력해 주세요.");
+		form.cam_address.focus();
+		return false;
+	} else if (form.cam_latitude.value == "") {
+		alert("위도를 입력해 주세요.");
+		form.cam_latitude.focus();
+		return false;
+	}else if (isNaN(form.cam_latitude.value)) {
+		alert("위도는 숫자만 입력 가능합니다.");
+		form.cam_latitude.select();
+		return false;
+	} else if (form.cam_longitude.value == "") {
+		alert("경도를 입력해 주세요.");
+		form.cam_longitude.focus();
+		return false;
+	}else if (isNaN(form.cam_longitude.value)) {
+		alert("경도는 숫자만 입력 가능합니다.");
+		form.cam_longitude.select();
+		return false;
+	} else if (form.cam_headcount.value == "") {
+		alert("정원 수를 입력해 주세요.");
+		form.cam_headcount.focus();
+		return false;
+	}else if (isNaN(form.cam_headcount.value)) {
+		alert("정원 수는 숫자만 입력 가능합니다.");
+		form.cam_headcount.select();
+		return false;
+	}
+//form.submit();
+}
 </script>
 </head>
 <body>
