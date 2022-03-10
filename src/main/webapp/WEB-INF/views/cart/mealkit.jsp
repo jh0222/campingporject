@@ -80,7 +80,6 @@
 
 table, td, th {
     border-collapse : collapse;
-    border-bottom: 1px solid black;
     padding : 10px;
 }
 
@@ -142,9 +141,9 @@ table, td, th {
 							<input type="hidden" class="individual_bookCount_input" value="${c.fba_number}">
 							<input type="hidden" class="individual_totalPrice_input" value="${c.fba_price * c.fba_number}">
 						</td>
-						<td class="td_width_2"><img src="resources/img/${c.fba_fp_picture }" width="100" height="100"></td>
-						<td class="td_width_3">${c.fba_fp_name}</td>
-						<td class="td_width_4 price_td">
+						<td class="td_width_2 table_text_align_center"><img src="resources/img/${c.fba_fp_picture }" width="100" height="100"></td>
+						<td class="td_width_3 table_text_align_center">${c.fba_fp_name}</td>
+						<td class="td_width_4 price_td table_text_align_center">
 							판매가 : <fmt:formatNumber	value="${c.fba_price}" pattern="#,### 원" />
 						</td>
 						<td class="td_width_4 table_text_align_center">
@@ -187,31 +186,33 @@ table, td, th {
 							<tbody>
 								<tr>
 									<td>총 상품 가격</td>
-									<td><span class="totalPrice_span">${c.fba_price * c.fba_number}</span>원</td>
+									<td align="right"><span class="totalPrice_span">${c.fba_price * c.fba_number}</span>원</td>
 								</tr>
 								<tr>
 									<td>총 주문 상품수</td>
-									<td><span class="totalCount_span">${c.fba_number}</span>개</td>
+									<td align="right"><span class="totalCount_span">${c.fba_number}</span>개</td>
 								</tr>	
 								<tr>
 									<td>
 										<strong>총 결제 예상 금액</strong>				
 									</td>
-									<td>
+									<td align="right">
 										<span class="finalTotalPrice_span">${c.fba_price * c.fba_number}</span> 원
 									</td>
 								</tr>
+								<tr>
+										<td colspan="2"  align="right">
+										<div class="content_btn_section">
+											<a>주문하기</a>
+										</div>
+										</td>
+									</tr>
 							</tbody>
 						</table>
 					</td>
 				</tr>
 			</table>
 		</div>
-	</div>
-	
-	<!-- 구매 버튼 영역 -->
-	<div class="content_btn_section">
-		<a>주문하기</a>
 	</div>
 	
 	<!-- 수량 조정 form -->

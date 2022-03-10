@@ -101,7 +101,7 @@ $(document).ready(function(){
 	}
 
 	//체크박스 유효성검사
-	function CheckForm(check){
+	function CheckFrom(check){
 	    //체크박스 체크여부 확인 
 	    var chk1=document.getElementById('chk1').checked;
 	    var chk2=document.getElementById('chk2').checked;

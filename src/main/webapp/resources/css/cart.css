@@ -1,223 +1,222 @@
+.content_area{
+    margin-left: 200px;
+}
+
 table {
-	border-collapse: collapse;
-	width: 100%;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 .table_text_align_center {
-	text-align: center;
+    text-align: center;
 }
 
 caption {
-	visibility: hidden;
-	width: 0;
-	height: 0;
-	font-size: 0;
-	line-height: 0;
-	overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
 }
 
 .content_subject {
-	height: 110px;
-	line-height: 110px;
-	background-color: #5080bd;
-	margin-bottom: 60px;
+    height: 110px;
+    line-height: 110px;
+    background-color: #000000;
+    margin-bottom: 60px;
 }
 
 .content_subject span {
-	padding-left: 30 px;
-	display: inline-block;
-	color: white;
-	font-size: 50px;
-	font-weight: bolder;
+    padding-left: 30 px;
+    display: inline-block;
+    color: white;
+    font-size: 50px;
+    font-weight: bolder;
 }
 
 .content_totalCount_section {
-	margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .content_btn_section {
-	margin-top: 20px;
-	text-align: right;
+    height: 50px;
+    width: 100px;
+    color: #fefeff;
+    background-color: #000000;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 230px;
 }
-
 .content_btn_section a {
-	color: #fefeff;
-	background-color: #365fdd;
-	min-width: 125px;
-	padding: 17px 25px;
-	display: inline-block;
-	height: 39px;
-	font-size: 23px;
-	font-weight: bold;
-	text-align: center;
-	margin-right: 14px;
-	line-height: 39px;
+    height: 100px;
+    width: 300px;
+    color: #fefeff;
+    background-color: #000000;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align:  middle;
 }
 
 .subject_table {
-	font-size: 14px;
-	line-height: 20px;
-	width: 100%;
-	text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    width: 1100px;
+    text-align: center;
+    border-bottom: 1px solid black;
 }
 
 th {
-	text-align: center;
-	color: #333;
-	border-bottom: 1px solid #e7e7e7;
-	border-top: 1px solid #3084d9;
-	background: #f4f9fd;
-	padding: 2px 0;
+    text-alin: center;
+    color: #000000;
+    border-top: 1px solid #000000;
+    background: #ffffff;
+    padding: 2px 0;
 }
 
 .td_width_1 {
-	width: 5%;
+    width: 5%;
 }
 
 .td_width_2 {
-	width: 10%;
+    width: 10%;
 }
 
 .td_width_3 {
-	width: 25%;
+    width: 25%;
 }
 
 .td_width_4 {
-	width: 15%;
+    width: 15%;
 }
 
 .cart_table {
-	font-size: 14px;
-	line-height: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    width: 1100px;
+    border-bottom: 1px solid black;
 }
-
 .cart_table tr {
-	height: 110px;
+    height: 110px;
 }
 
 .price_td {
-	padding-left: 5px;
+    padding-left: 5px;
 }
 
 .red_color {
-	color: red;
+    color: red;
 }
 
-.green_color {
-	color: green;
-}
-
-.cart_table td {
-	border-bottom: 1px solid #e7e7e7;
-}
 
 .quantity_div {
-	position: relative;
-	width: 42px;
-	height: 25px;
-	text-align: left;
-	margin: 5px auto;
+    position: relative;
+    width: 42px;
+    height: 25px;
+    text-align: left;
+    margin: 5px auto;
 }
 
 .quantity_input {
-	position: absolute;
-	width: 27px;
-	height: 23px;
-	text-align: center;
-	border: 1px solid #c6c6c6;
-	border-right: 0px;
-	line-height: 19px;
-	font-size: 12px;
-	color: #4c4848;
-	left: 0;
+    position: absolute;
+    width: 27px;
+    height: 25px;
+    text-align: center;
+    border: 1px solid #c6c6c6;
+    border-right: 0px;
+    line-height: 19px;
+    font-size: 12px;
+    color: #4c4848;
+    left: 0;
 }
 
 .quantity_btn {
-	position: absolute;
-	border: 1px solid #aaa;
-	color: #3a60df;
-	width: 14px;
-	height: 13px;
-	padding: 0px;
-	background-color: #fff;
-	font-weight: bold;
-	font-size: 7px;
-	line-height: 6px;
-	vertical-align: middle;
+    position: absolute;
+    border: 1px solid #aaa;
+    color: #3a60df;
+    width: 14px;
+    height: 13px;
+    padding: 0px;
+    background-color: #fff;
+    font-weight: bold;
+    font-size: 7px;
+    line-height: 6px;
+    vertical-align: middle;
 }
 
 .plus_btn {
-	top: 0;
-	right: 0
+    top: 0;
+    right: 0
 }
 
 .minus_btn {
-	bottom: 0;
-	right: 0
+    bottom: 0;
+    right: 0
 }
 
 .quantity_modify_btn {
-	border: 1px solid #d0d0d0;
-	height: 13px;
-	line-height: 13px;
-	background-color: #fff;
-	text-align: center;
-	width: 28px;
-	display: inline-block;
-	padding: 3px 6px 2px;
-	margin-top: 3px;
+    border: 1px solid #d0d0d0;
+    height: 20px;
+    line-height: 13px;
+    background-color: #fff;
+    text-align: center;
+    width: 40px;
+    display: inline-block;
+    margin-top: 3px;
 }
 
 .table_text_align_center {
-	text-align: center;
+    text-align: center;
 }
 
 .delete_btn {
-	width: 40px;
+    width: 40px;
 }
 
 .content_total_section {
-	background-color: rgb(227, 237, 247);
+    width: 1100px;
 }
 
 .total_wrap {
-	width: 80%;
-	margin: auto;
-	padding: 10px 0 10px 0;
+    width: 1100px;
+    margin: auto;
+    padding: 10px 0 10px 0;
 }
 
 .total_wrap td {
-	width: 50%;
+    width: 50%;
 }
 
 .finalTotalPrice_span {
-	color: #854A72;
-	font-size: 17px;
-	font-weight: bold;
+    color: #854A72;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .totalPoint_span {
-	font-size: 17px;
-	font-weight: bold;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .boundary_div {
-	font-size: 0;
-	border: 1px dotted #d1c7c7;
-	margin: 5px 0 5px 0;
+    font-size: 0;
+    border: 1px dotted #d1c7c7;
+    margin: 5px 0 5px 0;
 }
 
 .input_size_20 {
-	width: 20px;
-	height: 20px;
+    width: 20px;
+    height: 20px;
 }
 
 .all_check_input {
-	margin: 18px 0 18px 18px;
+    margin: 18px 0 18px 18px;
 }
 
 .all_chcek_span {
-	padding-left: 8px;
-	font-size: 20px;
-	font-weight: bold;
+    padding-left: 8px;
+    font-size: 20px;
+    font-weight: bold;
 }

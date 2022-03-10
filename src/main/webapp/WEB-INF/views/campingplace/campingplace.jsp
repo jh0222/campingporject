@@ -96,7 +96,8 @@ function place_searchCheck2() {
 	<div>
 	<form action="place.search" name="place_searchForm2" onsubmit="return place_searchCheck2();">
 			<select name="searchplace">
-		    	<option value="placename">캠핑장 이름</option>	  
+		    	<option value="placename">캠핑장 이름</option>	
+		    	<option value="placearea">캠핑장 주소</option>  
 		    </select>
 			<input name="search"> <button class="place_search_btn">검색</button>
 	</form>
