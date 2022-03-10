@@ -8,7 +8,6 @@
 <head>
 <link rel="stylesheet"	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <!-- <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -27,16 +26,47 @@
   } 
 </style>
 <script>
-
+function reviewCheck2() {
+	/*
+	<input type="hidden" id="c_cam_no"  name="c_cam_no" value="${places.cam_no }"> 
+	<input type="hidden" id="cam_no"  name="cam_no" value="${places.cam_no }"> 
+<input type="hidden" id="c_u_id"  name="c_u_id" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}">
+	<input type="hidden" id="c_campingstar"  name="c_campingstar" value=""/>
+	<input type="hidden" id="cr_cam_no"  name="cr_cam_no" value="${places.cam_no }"/>
+	<input type="hidden" id="r_cam_no"  name="r_cam_no" value="${places.cam_no }"/>
+	<input type="hidden" id="r_u_id" 
+	*/
+	let form = document.reviewForm;
+	let c_campingstar = form.c_campingstar;
+	let c_campingreview2 = $("#c_campingreview2").val();
+	if(!c_campingstar.value){
+		alert("별점을 입력하세요")
+		return false;
+	}
+	if(!c_campingreview2){
+		alert("내용을 입력하세요")
+		return false;
+	}
+	
+	form.submit();
+	}
 $(function() {   
-
+	let starPlace = 0;
 	$('#star a').click(function(){ 
 		 $(this).parent().children("a").removeClass("on");    
 		 $(this).addClass("on").prevAll("a").addClass("on");
 		 console.log($(this).attr("value"));
-		 
+		 starPlace = $(this).attr("value");
 		 $('input[name=c_campingstar]').attr('value',$(this).attr("value"));
 	});
+	
+
+
+	
+
+	
+	
+	
 //하트찜	
 	$('#heart a').click(function(){ 
 	    let FormVisible = $(this).attr('value');
@@ -97,9 +127,10 @@ $(function() {
         }
     });
 
-});
+
 
 function reserveCheck() {
+	
 	var form = document.reserveForm;
 	if (form.start.value == ""){
 		alert("체크인 날짜를 입력해 주세요.");
@@ -116,18 +147,6 @@ function reserveCheck() {
 	}
 }
 
-function reviewCheck() {
-	var form = document.reviewForm;
-	if (form.star.value == ""){
-		alert("별점을 입력하지 않았습니다.");
-		form.star.focus();
-		return false;
-	} else if (form.c_campingreview.value == "") {
-		alert("댓글 내용을 입력하지 않았습니다.");
-		form.c_campingreview.focus();
-		return false;
-	} 
-}
 
 function replyCheck() {
 	var form = document.replyForm;
@@ -137,6 +156,8 @@ function replyCheck() {
 		return false;
 	}
 }
+
+});
 </script>
 
 
@@ -280,30 +301,30 @@ function replyCheck() {
 			<h2 class="detail_h2">캠핑장 리뷰</h2>
 		<hr><br> 
 		<c:if test="${reserve != null }">
-			<form action="review.Reg" name="reviewForm" onsubmit="return reviewCheck();">	
+			<form action="review.Reg" name="reviewForm">	
 				<div class="place_reviwReg">
 					<div class="review_id">ID:${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}</div>
 					<div class="review_id">별점
 								<p id="star" name="star">
-									<a href="#" value="1">★</a>
-									<a href="#" value="2">★</a> 
-									<a href="#" value="3">★</a> 
-									<a href="#" value="4">★</a> 
-									<a href="#" value="5">★</a>
+									<a class="aa" href="#" value="1">★</a>
+									<a class="aa"  href="#" value="2">★</a> 
+									<a class="aa"  href="#" value="3">★</a> 
+									<a class="aa"  href="#" value="4">★</a> 
+									<a class="aa"  href="#" value="5">★</a>
 								<p>
 					</div>
 					<div class="review_id">
-								<textarea name="c_campingreview" id="c_campingreview"></textarea>
+								<textarea name="c_campingreview" id="c_campingreview2"></textarea>
 					</div>
 					<div>
-								<input type="hidden" name="c_cam_no" value="${places.cam_no }"> 
-								<input type="hidden" name="cam_no" value="${places.cam_no }"> 
-								<input type="hidden" name="c_u_id" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}">
-								<input type="hidden" name="c_campingstar" value=""/>
-								<input type="hidden" name="cr_cam_no" value="${places.cam_no }"/>
-								<input type="hidden" name="r_cam_no" value="${places.cam_no }"/>
-								<input type="hidden" name="r_u_id" value="${sessionScope.loginMember.u_id}"/>
-								<input type="submit" name="submit" value="등록">
+								<input type="hidden" id="c_cam_no"  name="c_cam_no" value="${places.cam_no }"> 
+								<input type="hidden" id="cam_no"  name="cam_no" value="${places.cam_no }"> 
+								<input type="hidden" id="c_u_id"  name="c_u_id" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}">
+								<input type="hidden" id="c_campingstar"  name="c_campingstar" value=""/>
+								<input type="hidden" id="cr_cam_no"  name="cr_cam_no" value="${places.cam_no }"/>
+								<input type="hidden" id="r_cam_no"  name="r_cam_no" value="${places.cam_no }"/>
+								<input type="hidden" id="r_u_id"  name="r_u_id" value="${sessionScope.loginMember.u_id}"/>
+								<button type="button" onclick="reviewCheck2()">등록</button>
 					</div>
 				</div>
 			</form>
@@ -411,7 +432,7 @@ function replyCheck() {
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0005adacefd1f11b5b2c5683fdc3d59c"></script>
-<script>
+<!-- <script>
 var container = document.getElementById('container'), // 지도와 로드뷰를 감싸고 있는 div 입니다
     mapWrapper = document.getElementById('mapWrapper'), // 지도를 감싸고 있는 div 입니다
     btnRoadview = document.getElementById('btnRoadview'), // 지도 위의 로드뷰 버튼, 클릭하면 지도는 감춰지고 로드뷰가 보입니다 
@@ -474,7 +495,7 @@ function toggleMap(active) {
         container.className = "view_roadview"   
     }
 }
-</script>
+</script> -->
 
 </body>
 </html>

@@ -152,7 +152,7 @@ create table reservation_table(
 
 create sequence reservation_seq;
 
-insert into reservation_table values(reservation_seq.nextval,102,'kim2','김태희','01012341234','난지캠핑장','a.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
+insert into reservation_table values(reservation_seq.nextval,81,'kim','김태희','01012341234','난지캠핑장1','20220301','20220302',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 insert into reservation_table values(reservation_seq.nextval,164,'kim','김태희','01012341234','난지캠핑장','cam25.jpg','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 insert into reservation_table values(reservation_seq.nextval,1,'kim','김태희','01012341234','난지캠핑장','20220318','20220320',2,40000,'02-373-2021','서울 마포구 한강난지로 28');
 insert into reservation_table values(reservation_seq.nextval,121,'kim','김태희','01012341234','난지캠핑장','20220301','20220302',2,40000,'02-373-2021','서울 마포구 한강난지로 28');

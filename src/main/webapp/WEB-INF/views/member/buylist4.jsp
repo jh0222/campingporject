@@ -129,7 +129,7 @@ table, td, th {
 				</c:otherwise>
 			</c:choose>
 			<td class="td1"><fmt:formatDate value="${buy.fb_date }"/></td>
-			<td class="td1"><button onclick="buymealdel('${buy.fb_no}','${buy.fb_u_bo_id }')">취소/환불</button></td>
+			<td class="td1"><button onclick="buymealdel2('${buy.fb_no}','${buy.fb_u_bo_id }')">취소/환불</button></td>
 		</tr>
 	</c:forEach>
 	</table>
