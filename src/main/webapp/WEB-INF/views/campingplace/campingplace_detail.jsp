@@ -304,8 +304,8 @@ $(function() {
 						</c:if>
 				    </td>
 					<c:if test="${sessionScope.loginMember.u_id == r.c_u_id}">
-					<td class="pr_reviewselect2" onclick="reviewupdate(${r.c_no},'${r.c_campingreview }',${places.cam_no },${sessionScope.loginMember.u_id});">수정</td>
-					<td class="pr_reviewselect2"  onclick="reviewdelete(${r.c_no},${places.cam_no },${sessionScope.loginMember.u_id});">삭제</td>
+					<td style="cursor:pointer;" class="pr_reviewselect2" onclick="reviewupdate_place('${r.c_no}','${r.c_campingreview }','${places.cam_no }','${sessionScope.loginMember.u_id}')">수정</td>
+					<td style="cursor:pointer;" class="pr_reviewselect2"  onclick="reviewdelete_place('${r.c_no}','${places.cam_no }','${sessionScope.loginMember.u_id}')">삭제</td>
 				</c:if>
 				</tr>
 				

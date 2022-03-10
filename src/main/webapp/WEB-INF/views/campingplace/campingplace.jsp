@@ -6,30 +6,35 @@
 <html>
 <head>
 <script type="text/javascript">
-$(function() {  
-	//하트찜	
-	$('#heart a').click(function(){ 
-	    let FormVisible = $(this).attr('value');
-		
-		if (FormVisible == 1) {
-			//value=0 찜취소
-			$(this).parent().children("a").removeClass("on");
-			let cam_no = $(this).next('input').attr('value');
-		    location.href="placelike.delgo2?cam_no=" + cam_no;     
-		    FormVisible = $(this).attr('value', '0'); 
-		    console.log($(this).attr("value")); 
-	    } else {
-	    	//value=0 찜
-		    $(this).addClass("on").prevAll("a").addClass("on");
-		    let cam_no = $(this).next('input').attr('value');
-		    location.href="placelike.go2?cam_no=" + cam_no;
-		    FormVisible = $(this).attr('value', '1');
-		    console.log($(this).attr("value")); 
-		} 
-     	 
-		 $('input[name=c_campingstar]').attr('value',$(this).attr("value"));
-	});
-});
+function place_searchCheck1() {
+	var form = document.place_searchForm1;
+	if (form.from_p.value == ""){
+		alert("가격을 입력하지 않았습니다.");
+		form.from_p.focus();
+		return false;
+	}else if (isNaN(form.from_p.value)) {
+		alert("가격은 숫자만 입력 가능합니다.");
+		form.from_p.select();
+		return false;
+	} else if (form.to_p.value == ""){
+		alert("가격을 입력하지 않았습니다.");
+		form.to_p.focus();
+		return false;
+	} else if (isNaN(form.to_p.value)) {
+		alert("가격은 숫자만 입력 가능합니다.");
+		form.to_p.select();
+		return false;
+	}
+}
+
+function place_searchCheck2() {
+	var form = document.place_searchForm2;
+	if (form.search.value == ""){
+		alert("검색어를 입력해 주세요.");
+		form.search.focus();
+		return false;
+	} 
+}
 </script>
 <style type="text/css">
 #heart a {
@@ -82,16 +87,17 @@ $(function() {
 <div class="place_search">
 	<div><button class="place_search_star_btn" onclick="location.href='place.search?searchplace=star'">별점 높은 순으로 보기</button></div>
 	<div class="place_search_p">
-	<form action="place.search">
+	<form action="place.search" name="place_searchForm1" onsubmit="return place_searchCheck1();">
 		가격 : <input name="from_p"> ~ <input name="to_p">
 		<input name="searchplace" value="p" type="hidden">
 		<button class="place_search_btn">검색</button> 
 	</form>
 	</div>
 	<div>
-	<form action="place.search">
+	<form action="place.search" name="place_searchForm2" onsubmit="return place_searchCheck2();">
 			<select name="searchplace">
-		    	<option value="placename">캠핑장 이름</option>	  
+		    	<option value="placename">캠핑장 이름</option>	
+		    	<option value="placearea">캠핑장 주소</option>  
 		    </select>
 			<input name="search"> <button class="place_search_btn">검색</button>
 	</form>
