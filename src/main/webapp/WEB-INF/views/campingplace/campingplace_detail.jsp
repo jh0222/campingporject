@@ -67,10 +67,7 @@ $(function() {
 		 $('input[name=c_campingstar]').attr('value',$(this).attr("value"));
 	});
 
-	
-	
-    
-   
+
     //datepicker 한국어로 사용하기 위한 언어설정
     $.datepicker.setDefaults($.datepicker.regional['ko']); 
 
@@ -102,6 +99,44 @@ $(function() {
 
 });
 
+function reserveCheck() {
+	var form = document.reserveForm;
+	if (form.start.value == ""){
+		alert("체크인 날짜를 입력해 주세요.");
+		form.start.focus();
+		return false;
+	} else if (form.end.value == "") {
+		alert("체크아웃 날짜를 입력해 주세요.");
+		form.end.focus();
+		return false;
+	} else if (form.headcount.value == "") {
+		alert("인원을 입력해 주세요.");
+		form.headcount.focus();
+		return false;
+	}
+}
+
+function reviewCheck() {
+	var form = document.reviewForm;
+	if (form.star.value == ""){
+		alert("별점을 입력하지 않았습니다.");
+		form.star.focus();
+		return false;
+	} else if (form.c_campingreview.value == "") {
+		alert("댓글 내용을 입력하지 않았습니다.");
+		form.c_campingreview.focus();
+		return false;
+	} 
+}
+
+function replyCheck() {
+	var form = document.replyForm;
+	if (form.cr_replytxt.value == ""){
+		alert("댓글 내용을 입력하지 않았습니다.");
+		form.cr_replytxt.focus();
+		return false;
+	}
+}
 </script>
 
 
@@ -111,6 +146,7 @@ $(function() {
     margin-left:5px; vertical-align:middle; cursor:pointer;
     }
 </style>
+
 <style type="text/css">
 #star a {
 	text-decoration: none;
@@ -188,7 +224,10 @@ $(function() {
 				
 				<br><br>
 				<div class="detail_div2"><b>주소&nbsp;&nbsp;</b>${places.cam_address }</div><hr><br>
-				<div class="detail_div2"><b>가격&nbsp;&nbsp;</b>  ${places.cam_price}원</div><hr><br>
+				
+				<div class="detail_div2"><b>가격&nbsp;&nbsp;</b>
+				<fmt:formatNumber value="${places.cam_price}" pattern="###,###,###" type="currency" />원
+				</div><hr><br>
 				<div class="detail_div2"><b>연락처&nbsp;&nbsp;</b>${places.cam_phonenumber }</div><hr><br>
 				<div class="detail_div2"><b>소개&nbsp;&nbsp;</b>${places.cam_txt }</div>
 				<div class="detail_div2" style="width: 500px;"></div><hr><br>
@@ -225,7 +264,6 @@ $(function() {
 						<input type="hidden" name="r_u_phonenumber" value="${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_phonenumber}" />
 				
 				</div>
-						
 				</form>
 				
 	</tr>
@@ -242,11 +280,11 @@ $(function() {
 			<h2 class="detail_h2">캠핑장 리뷰</h2>
 		<hr><br> 
 		<c:if test="${reserve != null }">
-			<form action="review.Reg">	
+			<form action="review.Reg" name="reviewForm" onsubmit="return reviewCheck();">	
 				<div class="place_reviwReg">
 					<div class="review_id">ID:${sessionScope.loginMember2.bo_id}${sessionScope.loginMember.u_id}</div>
 					<div class="review_id">별점
-								<p id="star">
+								<p id="star" name="star">
 									<a href="#" value="1">★</a>
 									<a href="#" value="2">★</a> 
 									<a href="#" value="3">★</a> 
@@ -255,7 +293,7 @@ $(function() {
 								<p>
 					</div>
 					<div class="review_id">
-								<textarea name="c_campingreview"></textarea>
+								<textarea name="c_campingreview" id="c_campingreview"></textarea>
 					</div>
 					<div>
 								<input type="hidden" name="c_cam_no" value="${places.cam_no }"> 
@@ -305,7 +343,7 @@ $(function() {
 				    </td>
 					<c:if test="${sessionScope.loginMember.u_id == r.c_u_id}">
 					<td class="pr_reviewselect2" onclick="reviewupdate(${r.c_no},'${r.c_campingreview }',${places.cam_no },${sessionScope.loginMember.u_id});">수정</td>
-					<td class="pr_reviewselect2"  onclick="reviewdelete(${r.c_no},${places.cam_no },${sessionScope.loginMember.u_id});">삭제</td>
+					<td class="pr_reviewselect2" onclick="reviewdelete(${r.c_no},${places.cam_no },${sessionScope.loginMember.u_id});">삭제</td>
 				</c:if>
 				</tr>
 				
@@ -313,11 +351,11 @@ $(function() {
 				
 				<!-- 사장님 답글 insert-->
 					<c:if test="${sessionScope.loginMember2.bo_id == places.cam_bo_id}">
-						<form action="replytxt.Reg">
+						<form action="replytxt.Reg" name="replyForm" onsubmit="return replyCheck();">
 									<tr>
 										<td>ID : ${sessionScope.loginMember2.bo_id}</td>
 										<td width="200" height="50">
-											<textarea name="cr_replytxt"></textarea>
+											<textarea name="cr_replytxt" id="cr_replytxt"></textarea>
 										</td>
 										<td width="93" align="center">
 											<input type="hidden" name="cr_c_no" value="${r.c_no }"> 
