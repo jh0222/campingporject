@@ -16,8 +16,8 @@ public class Buy {
 	
 	private int fb_no;
 	private String fb_u_bo_id;
-	private int fb_p_no;
-	private String fb_p_name;
+	private int fb_fp_no;
+	private String fb_fp_name;
 	private int fb_price;
 	private int fb_number;
 	private String fb_u_address;
@@ -29,7 +29,7 @@ public class Buy {
 	}
 
 	public Buy(int b_no, String b_u_bo_id, int b_p_no, String b_p_name, int b_price, int b_number, String b_u_address,
-			String b_new_address, Date b_date, int fb_no, String fb_u_bo_id, int fb_p_no, String fb_p_name,
+			String b_new_address, Date b_date, int fb_no, String fb_u_bo_id, int fb_fp_no, String fb_fp_name,
 			int fb_price, int fb_number, String fb_u_address, String fb_new_address, Date fb_date) {
 		super();
 		this.b_no = b_no;
@@ -43,8 +43,8 @@ public class Buy {
 		this.b_date = b_date;
 		this.fb_no = fb_no;
 		this.fb_u_bo_id = fb_u_bo_id;
-		this.fb_p_no = fb_p_no;
-		this.fb_p_name = fb_p_name;
+		this.fb_fp_no = fb_fp_no;
+		this.fb_fp_name = fb_fp_name;
 		this.fb_price = fb_price;
 		this.fb_number = fb_number;
 		this.fb_u_address = fb_u_address;
@@ -140,20 +140,20 @@ public class Buy {
 		this.fb_u_bo_id = fb_u_bo_id;
 	}
 
-	public int getFb_p_no() {
-		return fb_p_no;
+	public int getFb_fp_no() {
+		return fb_fp_no;
 	}
 
-	public void setFb_p_no(int fb_p_no) {
-		this.fb_p_no = fb_p_no;
+	public void setFb_fp_no(int fb_fp_no) {
+		this.fb_fp_no = fb_fp_no;
 	}
 
-	public String getFb_p_name() {
-		return fb_p_name;
+	public String getFb_fp_name() {
+		return fb_fp_name;
 	}
 
-	public void setFb_p_name(String fb_p_name) {
-		this.fb_p_name = fb_p_name;
+	public void setFb_fp_name(String fb_fp_name) {
+		this.fb_fp_name = fb_fp_name;
 	}
 
 	public int getFb_price() {
@@ -195,5 +195,5 @@ public class Buy {
 	public void setFb_date(Date fb_date) {
 		this.fb_date = fb_date;
 	}
-	
+
 }

@@ -301,6 +301,8 @@ public class MemberController {
 
 		return "main";
 	}
+	
+	
 
 	// 구매목록 삭제 - 캠핑용품
 	@RequestMapping(value = "buyproduct.del", method = RequestMethod.GET)
@@ -321,7 +323,7 @@ public class MemberController {
 		mDAO.buymealDel(b, request);
 		mDAO.MBuylist(b, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
-		request.setAttribute("contentPage", "member/buylist.jsp");
+		request.setAttribute("contentPage", "member/buylist2.jsp");
 
 		return "main";
 	}

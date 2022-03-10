@@ -418,12 +418,36 @@ public class MemberDAO {
 	// 구매목록
 	public void CBuylist(Buy b, HttpServletRequest request) {
 		List<Buy> userbuylist = ss.getMapper(BuylistMapper.class).userbuylist(b);
+		UserMember m = (UserMember) request.getSession().getAttribute("loginMember");
+		BossMember bm = (BossMember) request.getSession().getAttribute("loginMember2");
+		if(m != null) {
+			String u_addr = m.getU_address();
+			String[] u_addr2 = u_addr.split("!");
+			request.setAttribute("u_addr", u_addr2);
+		}else {
+			String bo_addr = bm.getBo_address();
+			String[] bo_addr2 = bo_addr.split("!");
+			request.setAttribute("bo_addr", bo_addr2);
+		}
 		request.setAttribute("userbuylist", userbuylist);
 	}
 	
 	// 구매목록
 	public void MBuylist(Buy b, HttpServletRequest request) {
 		List<Buy> mealbuylist = ss.getMapper(BuylistMapper.class).mealbuylist(b);
+		UserMember m = (UserMember) request.getSession().getAttribute("loginMember");
+		BossMember bm = (BossMember) request.getSession().getAttribute("loginMember2");
+		if(m != null) {
+			String u_addr = m.getU_address();
+			String[] u_addr2 = u_addr.split("!");
+			request.setAttribute("u_addr", u_addr2);
+		}else {
+			String bo_addr = bm.getBo_address();
+			String[] bo_addr2 = bo_addr.split("!");
+			request.setAttribute("bo_addr", bo_addr2);
+		}
+
+		
 		request.setAttribute("mealbuylist", mealbuylist);		
 	}
 

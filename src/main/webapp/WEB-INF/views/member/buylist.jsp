@@ -129,7 +129,7 @@ table, td, th {
 					<td class="td1">${buy.b_new_address}</td>
 				</c:when>
 				<c:otherwise>
-					<td class="td1">${buy.b_u_address}</td>
+					<td class="td1">${u_addr[0] }&nbsp;${u_addr[1] }</td>
 				</c:otherwise>
 			</c:choose>
 			<td class="td1"><fmt:formatDate value="${buy.b_date }"/></td>

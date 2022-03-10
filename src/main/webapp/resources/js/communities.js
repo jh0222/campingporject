@@ -18,7 +18,7 @@ function buymealdel(no, id){
 function buyproductdel(no, id){
 	let ok = confirm("정말 취소/환불하시겠습니까?");
 	if (ok) {
-		location.href = "boss_Cbuylist.del?b_no=" + no + "&b_u_bo_id=" + id;
+		location.href = "buyproduct.del?b_no=" + no + "&b_u_bo_id=" + id;
 	}
 }
 
@@ -26,7 +26,7 @@ function buyproductdel(no, id){
 function buymealdel(no, id){
 	let ok = confirm("정말 취소/환불하시겠습니까?");
 	if (ok) {
-		location.href = "boss_Mbuylist.del?fb_no=" + no + "&fb_u_bo_id=" + id + "&b_u_bo_id=" + id;
+		location.href = "Mbuylist.del?fb_no=" + no + "&fb_u_bo_id=" + id + "&b_u_bo_id=" + id;
 	}
 }
 

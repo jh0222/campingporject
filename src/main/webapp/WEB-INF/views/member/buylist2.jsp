@@ -122,7 +122,7 @@ table, td, th {
 	<c:forEach var="buy" items="${mealbuylist }">
 		<tr>
 			<td class="hidden"></td>
-			<td class="td1">${buy.fb_p_name }</td>
+			<td class="td1">${buy.fb_fp_name }</td>
 			<td class="td1">${buy.fb_number }</td>
 			<td class="td1">${buy.fb_number * buy.fb_price}</td>
 			<c:choose>
@@ -130,7 +130,7 @@ table, td, th {
 					<td>${buy.fb_new_address}</td>
 				</c:when>
 				<c:otherwise>
-					<td>${buy.fb_u_address}</td>
+					<td>${u_addr[0] }&nbsp;${u_addr[1] }</td>
 				</c:otherwise>
 			</c:choose>
 			<td class="td1"><fmt:formatDate value="${buy.fb_date }"/></td>
