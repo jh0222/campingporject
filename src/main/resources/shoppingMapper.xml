@@ -31,6 +31,11 @@
 	delete product_registration_table where p_no = #{p_no}
 </delete>
 
+<!-- 상품 장바구니 삭제 -->
+<delete id="delProduct_basket" parameterType="com.fi.pj.shopping.Product">
+	delete guest_product_basket_table where ba_p_no = #{p_no}
+</delete>
+
 <!-- 상품수정 -->
 <update id="updateProduct" parameterType="com.fi.pj.shopping.Product" >
  update product_registration_table

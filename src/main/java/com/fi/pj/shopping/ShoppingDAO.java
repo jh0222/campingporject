@@ -122,7 +122,8 @@ public class ShoppingDAO {
 			String fileName = pp.getP_picture();
 			File f = new File(path + "/" + fileName);
 
-			if (ss.getMapper(ShoppingMapper.class).delProduct(p) == 1) {
+			if (ss.getMapper(ShoppingMapper.class).delProduct(p) == 1 &&
+					ss.getMapper(ShoppingMapper.class).delProduct_basket(p) == 1) {
 				System.out.println("삭제 성공");
 				f.delete();
 				req.setAttribute("r", "삭제 성공!");

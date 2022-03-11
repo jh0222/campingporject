@@ -40,6 +40,8 @@ public interface ShoppingMapper {
 	public int getAllProductReviewcnt();
 	//상품랭킹(최다구매)
 	public List<ProductRank> ProductRank();
+	//캠핑용품 삭제시 장바구니도 삭제
+	public int delProduct_basket(Product p);
 	
 	
 	

@@ -449,7 +449,7 @@ create table guest_product_basket_table(
 	ba_p_no	number(5) not null,  /* 캠핑용품 등록 번호*/
 	ba_u_bo_id varchar2(20 char) not null, /* 사용자와 사장 id*/
 	ba_p_name varchar2(20 char) not null, /*캠핑용품 이름*/
-	ba_p_picture varchar2(20 char) not null,
+	ba_p_picture varchar2(200 char) not null,
 	ba_price number(10) not null, /*(수량*p_price)*/
 	ba_number number(5) not null /* 갯수 */
 );
@@ -476,7 +476,7 @@ create table guest_foodproduct_basket_table(
 	fba_fp_no number(5) not null, /*밀키트 등록 번호*/
 	fba_u_bo_id varchar2(20 char) not null, /*사용자와 사장 id*/
 	fba_fp_name varchar2(20 char) not null,/*밀키트 이름*/
-	fba_fp_picture varchar2(20 char) not null,
+	fba_fp_picture varchar2(200 char) not null,
 	fba_price number(5) not null, /*(수량*p_price)*/
 	fba_number number(5) not null /*갯수*/
 );

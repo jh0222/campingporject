@@ -24,9 +24,11 @@ public class BossCommunitiresDAO {
 	public void CampingInfo(BossCommunities bc, HttpServletRequest req) {
 		// 사용자 db에 저장된 주소
 		BossCommunities b = ss.getMapper(BossCommunitiesMapper.class).campinginfo(bc);
+		if(b != null) {
 		String addr = b.getCam_address();
 		String[] addr2 = addr.split("!");
 		req.setAttribute("addr", addr2);
+		}
 		req.setAttribute("campinginfo", b);
 		
 	}

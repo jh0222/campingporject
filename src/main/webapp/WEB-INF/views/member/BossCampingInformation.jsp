@@ -104,9 +104,9 @@ table, td, th {
 	
   <div class="column middle">
 <c:choose>
-	<c:when test="${campinginfo eq null}">
+	<c:when test="${addr[0] == null}">
 		<h1>등록된 정보가 없습니다.</h1>
-		<button onclick="">캠핑 등록하기</button>
+		<button onclick="location.href='placereg.go'">캠핑 등록하기</button>
 	</c:when>
 	
 	<c:otherwise>
