@@ -16,7 +16,7 @@ function delreviewmilkit(no) {
 
 function updatereviewmilkit(no,t) {
 	let txt = prompt("수정할 내용을 적어주세요",t);
-	if(txt != ""){
+	if(txt != null){
 		location.href = "update.milkitreview?fpr_no=" + no + "&fpr_txt=" + txt + "&fp_no=" + ${fp.fp_no} + "&fpr_fp_no=" + ${fp.fp_no};
 	}
 }
@@ -146,7 +146,7 @@ function change () {
 					
 					<c:if test="${sessionScope.loginMember3.root_id != null}">
 					<button class="detail_updatebtn" type="button"
-							onClick="location.href='updatemilkit.go?fp_no=${fp.fp_no}&fp_name=${fp.fp_name}&fp_picture=${fp.fp_picture }&fp_price=${fp.fp_price }&fp_txt=${fp.fp_txt }&fpr_p_no=${fp.fp_no}'"><i class="fa-solid fa-pen-to-square"></i>수정하기</button>
+							onClick="location.href='updatemilkit.go?fp_no=${fp.fp_no}&fp_name=${fp.fp_name}&fp_picture=${fp.fp_picture }&fp_price=${fp.fp_price }&fp_txt=${fp.fp_txt }&fpr_p_no=${fp.fp_no}'"><i class="fa-solid fa-pen-to-square"></i>상품수정</button>
 					</c:if>
 					
 					<c:if test="${sessionScope.loginMember2.bo_id == null && sessionScope.loginMember3.root_id == null && sessionScope.loginMember.u_id == null}">

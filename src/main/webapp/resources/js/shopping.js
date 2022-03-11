@@ -65,7 +65,7 @@ function Check2(){
 		return !input.value; 
 	}
 
-    let pr_txt = document.reviewcheck.fpr_txt;
+    let fpr_txt = document.reviewcheck.fpr_txt;
     	if(isEmpty(fpr_txt)) {
         alert('내용을 입력하세요');
         fpr_txt.focus();

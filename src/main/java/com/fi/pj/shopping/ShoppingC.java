@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.fi.pj.Cart.CartBean;
 import com.fi.pj.Cart.CartDAO;
 import com.fi.pj.member.BossMember;
+import com.fi.pj.member.Login;
 import com.fi.pj.member.MemberDAO;
 import com.fi.pj.member.UserMember;
+import com.fi.pj.milkit.Milkit;
+import com.fi.pj.milkit.MilkitReviewinsert;
 
 
 
@@ -243,7 +246,26 @@ public class ShoppingC {
 			return "main";
 		}	
 		
-		
+		//디테일 로그인
+		@RequestMapping(value = "login.productgo", method = RequestMethod.GET)
+		public String gologin(UserMember m,Product p,HttpServletRequest req) {
+			req.setAttribute("p", p);
+			req.setAttribute("contentPage", "shopping/Productlogin.jsp");
+			return "main";
+		}
+				
+				//로그인하면 디테일로 이동
+		@RequestMapping(value = "member.productlogin", method = RequestMethod.POST)
+		public String login(Login l,Product p,Reviewinsert ri, HttpServletRequest req) {
+			mDAO.login(l, req);
+			mDAO.loginCheck(req);
+			sdao.getProduct(p,req);
+			sdao.getAllProductReview(req);
+			sdao.reviewwrite(ri,p,req);
+			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
+			return "main";
+		}
 		
 		
 		
