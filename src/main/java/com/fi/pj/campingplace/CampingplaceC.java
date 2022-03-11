@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fi.pj.member.Communities;
 import com.fi.pj.member.MemberDAO;
+import com.fi.pj.member.UserMember;
 import com.fi.pj.TokenMaker;
 
 
@@ -86,31 +88,33 @@ public class CampingplaceC {
 	
 	
 	@RequestMapping(value = "review.Reg", method = RequestMethod.GET)
-	public String reviewReg(placeReserve pre,Campingplace p, placeReview pr, placeReply re, HttpServletRequest req) {
+	public String reviewReg(campingLike cl,placeReserve pre,Campingplace p, placeReview pr, placeReply re, HttpServletRequest req) {
 		mDAO.loginCheck(req);		
 		cdao.regReview(pr, req);
 		cdao.getOnePlace(p,req);
 		cdao.getAllReview(pr, req);
 		cdao.getAllReply(re, req);
 		cdao.reserveCheck(pre,req);
+		cdao.getheart(cl, req);
 		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
 		return "main";
 		
 	}
 	
 	@RequestMapping(value = "review.del", method = RequestMethod.GET)
-	public String reviewDel(placeReserve pre,Campingplace p, placeReview pr, HttpServletRequest req) {
+	public String reviewDel(campingLike cl,placeReserve pre,Campingplace p, placeReview pr, HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		cdao.delReview(pr, req); 
 		cdao.getOnePlace(p,req);
 		cdao.getAllReview(pr, req);
 		cdao.reserveCheck(pre,req);
+		cdao.getheart(cl, req);
 		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
 		return "main";
 	}
 	
 	@RequestMapping(value = "review.update", method = RequestMethod.GET)
-	public String snsUpdate(placeReserve pre,Campingplace p, placeReview pr, HttpServletRequest req) {
+	public String snsUpdate(campingLike cl,placeReserve pre,Campingplace p, placeReview pr, HttpServletRequest req) {
 		TokenMaker.make(req);
 		//int n = Integer.parseInt(req.getParameter("n"));
 		if (mDAO.loginCheck(req)) {
@@ -119,6 +123,7 @@ public class CampingplaceC {
 		cdao.getOnePlace(p,req);
 		cdao.getAllReview(pr, req);
 		cdao.reserveCheck(pre,req);
+		cdao.getheart(cl, req);
 		req.setAttribute("contentPage", "campingplace/campingplace_detail.jsp");
 		return "main";
 	}
@@ -132,12 +137,14 @@ public class CampingplaceC {
 	}
 	
 	@RequestMapping(value = "reserve.insert", method = RequestMethod.GET)
-	public String placeReserve(placeReserve res, HttpServletRequest req) {
+	public String placeReserve(Communities c,placeReserve res, HttpServletRequest req) {
 		
 		System.out.println(res.getR_cam_name());
 		mDAO.loginCheck(req);
 		cdao.reserve(res,req);
-		req.setAttribute("contentPage", "campingplace/PlaceReserve.jsp");
+		mDAO.campingReserve(c, req);
+		req.setAttribute("myPage", "../member/mypage.jsp");
+		req.setAttribute("contentPage", "member/reservation_confirm.jsp");
 		return "main";
 	}
 	

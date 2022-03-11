@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.fi.pj.board.BoardMapper;
 import com.fi.pj.board.BoardPage;
 import com.fi.pj.board.Freeboard;
+import com.fi.pj.member.UserMember;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -191,7 +192,12 @@ public class CampingplaceDAO {
 	}
 
 	public void getOnePlace(Campingplace p, HttpServletRequest req) {
-		req.setAttribute("places", ss.getMapper(PlaceMapper.class).getOnePlace(p));
+		Campingplace place = ss.getMapper(PlaceMapper.class).getOnePlace(p);
+		String addr = place.getCam_address();
+		String[] addr2 = addr.split("!");
+
+		req.setAttribute("addr", addr2);
+		req.setAttribute("places", place);
 		
 	}
 

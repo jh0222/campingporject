@@ -127,10 +127,6 @@ $(function() {
         }
     });
 
-
-
-
-
 });
 
 function reserveCheck() {
@@ -223,7 +219,13 @@ function replyCheck() {
 					<input type="hidden" id="h_cam_address" value="${places.cam_address }" /> 
 					<input type="hidden" id="c_cam_no" value="${places.cam_no}" /> 
 					<input type="hidden" id="campingheart" value='0' /> 
- 					<div>${places.cam_name }&nbsp;&nbsp;</div>
+ 					<div>
+ 						${places.cam_name }&nbsp;&nbsp;
+ 						<c:if test="${sessionScope.loginMember2.bo_id == places.cam_bo_id || sessionScope.loginMember3.root_id != null}">
+							<button class="place_btn" onclick="location.href='placeup.go?cam_no=${places.cam_no}'">수정</button>
+							<button class="place_btn" onclick="placedelete(${places.cam_no});">삭제</button>
+						</c:if>
+ 					</div>
  					<div>
  					<c:if test="${sessionScope.loginMember.u_id != null}">
 					<c:choose>
@@ -246,7 +248,7 @@ function replyCheck() {
 					</div>	
 				
 				<br><br>
-				<div class="detail_div2"><b>주소&nbsp;&nbsp;</b>${places.cam_address }</div><hr><br>
+				<div class="detail_div2"><b>주소&nbsp;&nbsp;</b>${addr[0] }&nbsp;${addr[1] }&nbsp;${addr[2] }</div><hr><br>
 				
 				<div class="detail_div2"><b>가격&nbsp;&nbsp;</b>
 				<fmt:formatNumber value="${places.cam_price}" pattern="###,###,###" type="currency" />원
@@ -256,7 +258,8 @@ function replyCheck() {
 				<div class="detail_div2" style="width: 500px;"></div><hr><br>
 				
 			</div>
-				<form action="reservation.go">
+			<c:if test="${sessionScope.loginMember.u_id != null}">
+				<form action="reservation.go"  name="reserveForm" onsubmit="return reserveCheck();">
 			<div class="reservation_table">
 				<div class="reservation_table1">
 					<div class="innerDIV">
@@ -288,15 +291,13 @@ function replyCheck() {
 				
 				</div>
 				</form>
+				</c:if>
 				
 	</tr>
 </table>
 <!-- 자신의 아이디일 경우 -->
 
-	<c:if test="${sessionScope.loginMember2.bo_id == places.cam_bo_id}">
-		<div class="place_detail_bossBtn"><button onclick="placedelete(${places.cam_no});">삭제</button>
-		<button onclick="location.href='placeup.go?cam_no=${places.cam_no}'">수정</button></div>
-	</c:if>
+	
 
 				
 		<hr size="3">
@@ -326,6 +327,8 @@ function replyCheck() {
 								<input type="hidden" id="cr_cam_no"  name="cr_cam_no" value="${places.cam_no }"/>
 								<input type="hidden" id="r_cam_no"  name="r_cam_no" value="${places.cam_no }"/>
 								<input type="hidden" id="r_u_id"  name="r_u_id" value="${sessionScope.loginMember.u_id}"/>
+								<input type="hidden" id="h_cam_no"  name="h_cam_no" value="${places.cam_no }"/>
+								<input type="hidden" id="h_u_id"  name="h_u_id" value="${sessionScope.loginMember.u_id}"/>
 								<button type="button" onclick="reviewCheck2()">등록</button>
 					</div>
 				</div>
@@ -371,44 +374,44 @@ function replyCheck() {
 				</tr>
 				
 				
+						<!-- 사장님 답글 select -->
+						<c:forEach var="reply" items="${reply}">
+						<c:if test="${r.c_no==reply.cr_c_no }">
+							<tr class="reply_boss">			
+								<td align="center">└ 사장님</td>
+								<td>${reply.cr_replytxt }</td>
+				 				<td><fmt:formatDate value="${reply.cr_date }" dateStyle="short"/></td>
+								<td>
+								<c:if test="${sessionScope.loginMember2.bo_id == reply.cr_bo_id}">
+										<button onclick="replyupdate(${reply.cr_no},'${reply.cr_replytxt }',${reply.cr_cam_no });">수정</button>
+										<button onclick="replydelete(${reply.cr_no},${reply.cr_cam_no },${reply.cr_c_no });">삭제</button>
+								</c:if>
+				 				</td>
+							</tr>
+						</c:if>
+						</c:forEach>
 				
 				<!-- 사장님 답글 insert-->
 					<c:if test="${sessionScope.loginMember2.bo_id == places.cam_bo_id}">
 						<form action="replytxt.Reg" name="replyForm" onsubmit="return replyCheck();">
 									<tr>
 										<td>ID : ${sessionScope.loginMember2.bo_id}</td>
-										<td width="200" height="50">
-											<textarea name="cr_replytxt" id="cr_replytxt"></textarea>
+										<td>
+											<textarea cols="100" name="cr_replytxt" id="cr_replytxt"></textarea>
 										</td>
-										<td width="93" align="center">
+										<td align="left">
 											<input type="hidden" name="cr_c_no" value="${r.c_no }"> 
 											<input type="hidden" name="cr_cam_no" value="${places.cam_no }"> 
 											<input type="hidden" name="cr_bo_id" value="${sessionScope.loginMember2.bo_id}">
 											<input type="hidden" name="cam_no" value="${places.cam_no }">
 											<input type="hidden" name="c_cam_no" value="${places.cam_no }">
-											<input type="submit" name="submit"  value="등록">
+											<button>등록</button>
 										</td>
 									</tr>
 							</form>
 						</c:if>
 						
 						
-						<!-- 사장님 답글 select -->
-						<c:forEach var="reply" items="${reply}">
-						<c:if test="${r.c_no==reply.cr_c_no }">
-							<tr class="reply_boss">			
-								<td align="center">└ 사장님</td>
-								<td height="50">${reply.cr_replytxt }</td>
-				 				<td><fmt:formatDate value="${reply.cr_date }" dateStyle="short"/></td>
-								<c:if test="${sessionScope.loginMember2.bo_id == reply.cr_bo_id}">
-									<td colspan="2" width="100" align="center">
-										<button onclick="replydelete(${reply.cr_no},${reply.cr_cam_no },${reply.cr_c_no });">삭제</button>
-										<button onclick="replyupdate(${reply.cr_no},'${reply.cr_replytxt }',${reply.cr_cam_no });">수정</button>
-									</td>
-								</c:if>
-							</tr>
-						</c:if>
-						</c:forEach>
 				</c:forEach>
 			</table>
 				

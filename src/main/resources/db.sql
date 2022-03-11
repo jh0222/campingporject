@@ -58,7 +58,7 @@ select * from boss_TABLE;
 3. 캠핑 테이블
 /*
  * db에서 가져올때 cam_no=cam_no -> update cam_number-headcont
-*/
+*/  
 drop table camping_table;
 create table camping_table(
     cam_no number(5) primary key,

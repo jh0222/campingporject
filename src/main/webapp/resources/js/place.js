@@ -10,7 +10,7 @@ function placedelete(no) {
 function reviewdelete_place(no,n,id) {
 	let ok = confirm("삭제 하시겠습니까?")
 	if(ok){
-		location.href='review.del?c_no=' + no + '&c_cam_no=' + n + '&cam_no=' + n + '&r_cam_no=' + n + '&r_u_id=' + id;
+		location.href='review.del?c_no=' + no + '&c_cam_no=' + n + '&cam_no=' + n + '&r_cam_no=' + n + '&r_u_id=' + id +'&h_cam_no=' + n + '&h_u_id=' + id;
 	}
 }
 
@@ -18,7 +18,7 @@ function reviewdelete_place(no,n,id) {
 function reviewupdate_place(no, t, n,id) {
 	t = prompt("수정할 내용을 입력하세요.", t);
 	if (t != null && t.length > 0 && t.length < 250) {
-		location.href = 'review.update?c_no=' + no + '&c_campingreview=' + t + '&c_cam_no=' + n + '&cam_no=' + n + '&r_cam_no=' + n + '&r_u_id=' + id;
+		location.href = 'review.update?c_no=' + no + '&c_campingreview=' + t + '&c_cam_no=' + n + '&cam_no=' + n + '&r_cam_no=' + n + '&r_u_id=' + id +'&h_cam_no=' + n + '&h_u_id=' + id;
 	}
 }
 

@@ -61,22 +61,22 @@ function call_kakao() {
 			<td colspan="2" class="order_font">숙소</td>
 		</tr>
 		<tr>
-			<td colspan="2" class="order_font2">${param.r_cam_name }</td>
+			<td colspan="2" class="order_font2" align="center">${param.r_cam_name }</td>
 		</tr>
 		<tr>
 			<td colspan="2" class="order_font">주소</td>
 		</tr>
 		<tr>
-			<td colspan="2" class="order_font2">${param.r_cam_address }</td>
+			<td colspan="2" class="order_font2" align="center">${param.r_cam_address }</td>
 		</tr>
 		<tr>
 			<td colspan="2" class="order_font">캠핑장 연락처</td>
 		</tr>
 		<tr>
-			<td colspan="2" class="order_font2">${param.r_cam_phonenumber }</td>
+			<td colspan="2" class="order_font2" align="center">${param.r_cam_phonenumber }</td>
 		</tr>
 		<tr>
-			<td colspan="2" class="order_font2"> ${param.start } ~ ${param.end }</td>
+			<td colspan="2" class="order_font2" align="center"> ${param.start } ~ ${param.end }</td>
 		</tr>
 		<tr>
 			<td class="order_font">인원</td>

@@ -1,5 +1,22 @@
 @charset "UTF-8";
 
+
+.camping_write_txt1{
+  height:30px;
+  width: 680px;
+  margin: 10px 10px 0 2px;
+}
+.camping_write_subject2 {
+    margin: 10px 10px 0 30px;
+  font-size: 20px;
+}
+.camping_write_subject2 input{
+  margin-left:20px;
+  font-size: 20px;
+}
+.place_btn{
+	font-size: 18px;
+}
 .place_list{
 	display: flex;
 	margin-left: 100px;
@@ -46,12 +63,19 @@ div.place_search{
 	margin-left: 20px;
 	margin-right: 20px;
 }
+
 .place_search_star_btn{
-	font-size: 20px;
+	font-size: 16px;
+	width: 180px;
+}
+.place_search_star_btn2{
+	font-size: 16px;
+	width: 130px;
+	margin-left: 20px;
 }
 .place_search_btn{
 	width: 50px;
-	font-size: 20px;
+	font-size: 16px;
 }
 .paging{
     display: flex;

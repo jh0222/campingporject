@@ -74,16 +74,14 @@ function place_searchCheck2() {
 
 <div class="slide">
 	<ul>
-      <li><img src="resources/css/placemain/campingplace1.jpg" class="mainpicture"></li>
-      <li><img src="resources/css/placemain/campingplace2.jpg" class="mainpicture"></li>
-      <li><img src="resources/css/placemain/campingplace3.jpg" class="mainpicture"></li>
-      <li><img src="resources/css/placemain/campingplace4.jpg" class="mainpicture"></li>
+      <li><img src="resources/css/placemain/place.png" class="mainpicture"></li>
+      <li><img src="resources/css/placemain/place2.png" class="mainpicture"></li>
+      <li><img src="resources/css/placemain/place3.png" class="mainpicture"></li>
+      <li><img src="resources/css/placemain/place4.png" class="mainpicture"></li>
     </ul>
 </div>
 <br>
-<c:if test="${sessionScope.loginMember3.root_id != null || sessionScope.loginMember2.bo_id != null}">
-	<button onclick="location.href='placereg.go'">캠핑장 등록하기</button>
-</c:if>
+
 <div class="place_search">
 	<div><button class="place_search_star_btn" onclick="location.href='place.search?searchplace=star'">별점 높은 순으로 보기</button></div>
 	<div class="place_search_p">
@@ -101,6 +99,11 @@ function place_searchCheck2() {
 		    </select>
 			<input name="search"> <button class="place_search_btn">검색</button>
 	</form>
+	</div>
+	<div>
+		<c:if test="${sessionScope.loginMember2.bo_id != null}">
+			<button class="place_search_star_btn2" onclick="location.href='placereg.go'">캠핑장 등록하기</button>
+		</c:if>
 	</div>
 </div>
 
