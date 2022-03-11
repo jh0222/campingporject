@@ -101,18 +101,18 @@ table, td, th {
   </div>
   <div class="column middle">
 	<table>
-		<tr>
-			<td class="hidden"></td>
-			<td class="td1">제목</td>
-			<td class="td1">조회수</td>
-			<td class="td1">작성 날짜</td>
-		</tr>
 	<c:forEach var="ct" items="${campingtip}">
 		<c:choose>
 			<c:when test="${empty campingtip}">
 				<h1>작성된 내용이 없습니다.</h1>
 		</c:when>
 		<c:otherwise>
+		<tr>
+			<td class="hidden"></td>
+			<td class="td1">제목</td>
+			<td class="td1">조회수</td>
+			<td class="td1">작성 날짜</td>
+		</tr>
 		<tr>
 			<td class="hidden"></td>
 			<td class="td1"><a href="ctwrite.onego?tip_no=${ct.tip_no}&tip_readcount=${ct.tip_readcount}">${ct.tip_subject}</a></td>
