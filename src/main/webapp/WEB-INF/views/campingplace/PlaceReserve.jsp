@@ -9,8 +9,9 @@
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script>
-function call_kakao() {
-	
+function call_kakao2() {
+	let campingprice = $(".r_campingprice").val();
+	alert(campingprice);
 	IMP.init('imp46581722');
 
 	IMP.request_pay({
@@ -36,7 +37,7 @@ function call_kakao() {
 	if (rsp.success) { //if ~ 결제성공하면
 	var msg = '결제가 완료되었습니다.';
 	location.href='reserve.insert?r_cam_no=${param.r_cam_no }&r_u_id=${param.r_u_id }&r_u_name=${param.r_u_name }&r_u_phonenumber=${param.r_u_phonenumber }&r_cam_name=${param.r_cam_name }'
-                  + '&r_campingstartdate11=${param.start }&r_campingenddate11=${param.end }&r_campingheadcount=${param.headcount }&r_campingprice=${diffDays * param.headcount * param.cam_price }'
+                  + '&r_campingstartdate11=${param.start }&r_campingenddate11=${param.end }&r_campingheadcount=${param.headcount }&r_campingprice='+campingprice
                   + '&r_cam_phonenumber=${param.r_cam_phonenumber }&r_cam_address=${param.r_cam_address }'
 	} else {
 	var msg = '결제에 실패하였습니다.';
@@ -136,28 +137,29 @@ function call_kakao() {
         </thead>
         <tbody>
             <tr>
-                <td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk1" value="1"></td>
+                <td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk01" value="1"></td>
                 <td colspan="2" class="order_checkbox2">[필수] 개인정보 수집 및 이용 동의 
                 <a onclick="showPopup1();" /><u/><small/>약관보기</a></td>
             </tr>
             <tr>
-                <td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk2" value="2"></td>
+                <td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk02" value="2"></td>
                 <td class="order_checkbox2">[필수] 개인정보 제 3자 제공 동의 
                 <a onclick="showPopup2();" /><u/><small/>약관보기</a></td>
             </tr>
             <tr>
-                <td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk3" value="3"></td>
+                <td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk03" value="3"></td>
                 <td class="order_checkbox2">[필수] 전자결제대행 이용 동의 
                 <a onclick="showPopup3();" /><u/><small/>약관보기</a></td>
             </tr>
             <tr>
-                <td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk4" value="4"></td>
+                <td class="order_checkbox"><input type="checkbox" class="chkclass" id="chk04" value="4"></td>
                 <td class="order_checkbox2">[필수] 상품정보, 거래조건 확인 및 구매 진행 동의</td> 
             </tr>
         </tbody>
     </table>
 		<br>
-	<button id="check_module" class="order_paymentbtn" onclick="return CheckFrom(this)">
+	<button id="check_module" class="order_paymentbtn" onclick="return CheckFrom1(this)">
+	<input type="hidden" value="${diffDays * param.headcount * param.r_campingprice }" class="r_campingprice">
 	<fmt:formatNumber value="${diffDays * param.headcount * param.r_campingprice }" pattern="###,###,###" type="currency"/>
 	원 결제하기</button>
 	 	

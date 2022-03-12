@@ -41,7 +41,7 @@
 </select>
 
 <select id ="getAllReview" resultType="com.fi.pj.campingplace.placeReview" parameterType="com.fi.pj.campingplace.placeReview">
-	select * from campingreview_table where c_cam_no = ${c_cam_no} order by c_no desc
+	select * from campingreview_table where c_cam_no = ${c_cam_no} order by c_date desc
 </select>
 
 <insert id="ReviewReg" parameterType="com.fi.pj.campingplace.placeReview" >

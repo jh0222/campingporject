@@ -127,7 +127,7 @@ function OrderCheck(){
 		</tbody>
 	</table>
 	<br>
-<button id="check_module" class="order_paymentbtn" onclick="return CheckForm(this)"><fmt:formatNumber value="${so.sum}"  pattern="###,###,###" />원 결제하기</button>
+<button id="check_module" class="order_paymentbtn" onclick="return checkForm(this)"><fmt:formatNumber value="${so.sum}"  pattern="###,###,###" />원 결제하기</button>
  <br><br>
 <div class="order_text">	
 · 입점업체 배송은 낮은 확률로 상품이 품절일 가능성이 있습니다. 이에 품절 시 빠르게 환불 처리해드립니다.<br>
@@ -138,9 +138,32 @@ function OrderCheck(){
 
 <!-- 결제하기 -->
 <script>
-function call_kakao() {
+function call_kakao1() {
 	
-
+/*
+ * 
+ getallpr
+ select prod
+ 
+ 상품1   pk 1
+ 상품2    pk 2
+ 
+  장바구니
+  1
+  2
+List<> 구매확정한것들 = ss.get().getSelectedProd  
+  주문
+  1
+  
+  for 구매확정것들
+  	ss.regOrderedProduct
+ 
+ 
+ 
+ 
+ 
+ 
+ */
 
 var IMP = window.IMP; // 생략가능
 IMP.init('imp46581722');

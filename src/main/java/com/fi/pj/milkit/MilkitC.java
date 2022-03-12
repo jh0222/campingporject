@@ -1,6 +1,9 @@
 package com.fi.pj.milkit;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.fi.pj.Cart.CartBean;
 import com.fi.pj.Cart.CartDAO;
 import com.fi.pj.member.BossMember;
+import com.fi.pj.member.Buy;
 import com.fi.pj.member.Login;
 import com.fi.pj.member.MemberDAO;
 import com.fi.pj.member.UserMember;
@@ -187,11 +191,12 @@ public class MilkitC {
 		
 		//상품구매
 		@RequestMapping(value = "reg.milkitbuy", method = RequestMethod.GET)
-		public String regproductbuy(MilkitBuy mbuy, HttpServletRequest req) {
+		public String regproductbuy(Buy b,MilkitBuy mbuy, HttpServletRequest req) {
 			mDAO.loginCheck(req);
 			kdao.regMilkitbuy(mbuy,req);
-		    req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
-			req.setAttribute("shoppigListPage", "../shopping/Mypage.jsp");
+			mDAO.MBuylist(b, req);
+			req.setAttribute("myPage", "../member/mypage.jsp");
+			req.setAttribute("contentPage", "member/buylist2.jsp");
 			return "main";
 		}	
 		
@@ -205,8 +210,8 @@ public class MilkitC {
 		
 		//로그인하면 디테일로 이동
 		@RequestMapping(value = "member.milkitlogin", method = RequestMethod.POST)
-		public String login(Login l,Milkit fp,MilkitReviewinsert fri, HttpServletRequest req) {
-			mDAO.login(l, req);
+		public String login(Login l,Milkit fp,MilkitReviewinsert fri, HttpServletRequest req, HttpServletResponse response) throws IOException {
+			mDAO.login(l, req,response);
 			mDAO.loginCheck(req);
 			kdao.getMilkit(fp,req);
 			kdao.getAllMilkitReview(req);

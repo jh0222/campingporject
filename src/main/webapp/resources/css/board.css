@@ -232,11 +232,16 @@ table.table_recipe{
   display: block;
   margin: 0 auto;
 }
+.board_write_content3{
+  display: block;
+  margin-left: 350px;
+}
 .board_write_subject{
   font-size: 20px;
   margin: 10px 10px 0 35px;
 }
-.board_write_subject3{
+
+.board_write_subject4{
   font-size: 20px;
   margin: 10px 10px 0 100px;
 }

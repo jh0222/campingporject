@@ -31,8 +31,8 @@ public class MemberController {
 
 	// 로그인 하기
 	@RequestMapping(value = "member.login", method = RequestMethod.POST)
-	public String login(Login l, HttpServletRequest req) {
-		mDAO.login(l, req);
+	public String login(Login l, HttpServletRequest req, HttpServletResponse response) throws IOException {
+		mDAO.login(l, req, response);
 		mDAO.loginCheck(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "main";
@@ -61,18 +61,32 @@ public class MemberController {
 
 	// 회원가입 하기(사용자)
 	@RequestMapping(value = "usermember.join", method = RequestMethod.POST)
-	public String usermemberJoin(UserMember m, HttpServletRequest req) {
+	public String usermemberJoin(UserMember m, HttpServletRequest req, HttpServletResponse response) throws IOException {
 		mDAO.userjoin(m, req);
 		mDAO.loginCheck(req);
+		response.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
+
+		out.println("<script>alert('회원가입이 완료 되었습니다. 로그인하세요.');</script>");
+
+		out.flush();
 		req.setAttribute("contentPage", "home.jsp");
 		return "main";
 	}
 
 	// 회원가입 하기(사장님)
 	@RequestMapping(value = "bossmember.join", method = RequestMethod.POST)
-	public String memberJoin(BossMember m, HttpServletRequest req) {
+	public String memberJoin(BossMember m, HttpServletRequest req, HttpServletResponse response) throws IOException {
 		mDAO.bossjoin(m, req);
 		mDAO.loginCheck(req);
+		response.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
+
+		out.println("<script>alert('회원가입이 완료 되었습니다. 로그인하세요.');</script>");
+
+		out.flush();
 		req.setAttribute("contentPage", "home.jsp");
 		return "main";
 	}
@@ -137,7 +151,7 @@ public class MemberController {
 		out.println("<script>alert('비밀번호가 재설정 되었습니다." + " 다시 로그인하세요.');</script>");
 
 		out.flush();
-
+		mDAO.loginCheck(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "main";
 	}
@@ -368,7 +382,6 @@ public class MemberController {
 		mDAO.campingreview(c, request);
 		request.setAttribute("myPage", "../member/mypage.jsp");
 		request.setAttribute("contentPage", "member/campingreview.jsp");
-
 		return "main";
 	}
 

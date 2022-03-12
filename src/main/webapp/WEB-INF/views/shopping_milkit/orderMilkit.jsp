@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="resources/js/shoppingorder.js"></script>
 </head>
 <body>
 <br>
@@ -110,7 +111,7 @@
 		</tbody>
 	</table>
 	<br>
-<button id="check_module" class="order_paymentbtn" onclick="return CheckForm(this)"><fmt:formatNumber value="${mso.sum}"  pattern="###,###,###" />원 결제하기</button>
+<button id="check_module" class="order_paymentbtn" onclick="return checkForm(this)"><fmt:formatNumber value="${mso.sum}"  pattern="###,###,###" />원 결제하기</button>
  <br><br>
 <div class="order_text">	
 · 입점업체 배송은 낮은 확률로 상품이 품절일 가능성이 있습니다. 이에 품절 시 빠르게 환불 처리해드립니다.<br>
@@ -121,9 +122,7 @@
 
 <!-- 결제하기 -->
 <script>
-function call_kakao() {
-	
-
+function call_kakao1() {
 
 var IMP = window.IMP; // 생략가능
 IMP.init('imp46581722');
@@ -134,7 +133,7 @@ merchant_uid: 'merchant_' + new Date().getTime(),
 //https://docs.iamport.kr/implementation/payment
 
 name: '상품명:${fp.fp_name}',
-amount: ${mso.sum} ,
+amount: '${mso.sum}'
 //가격
 }, function (rsp) {
 console.log(rsp);

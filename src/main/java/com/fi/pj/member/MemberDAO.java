@@ -1,6 +1,8 @@
 package com.fi.pj.member;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -8,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +29,7 @@ public class MemberDAO {
 	private SqlSession ss;
 
 	// 로그인하기
-	public void login(Login l, HttpServletRequest req) {
+	public void login(Login l, HttpServletRequest req, HttpServletResponse response) throws IOException {
 		UserMember dbMember = ss.getMapper(MemberMapper.class).getMemberByUID(l);
 		System.out.println(dbMember);
 		BossMember dbMember2 = ss.getMapper(MemberMapper.class).getMemberByBOID(l);
@@ -41,24 +44,48 @@ public class MemberDAO {
 				req.getSession().setAttribute("birth", sdf.format(dbMember.getU_birth()));
 				req.getSession().setMaxInactiveInterval(60 * 10);
 			} else {
-				req.setAttribute("result", "로그인 실패(PW오류)");
+				response.setContentType("text/html; charset=UTF-8");
+
+				PrintWriter out = response.getWriter();
+
+				out.println("<script>alert('비밀번호가 틀렸습니다.');</script>");
+
+				out.flush();
 			}
 		} else if (dbMember2 != null) {
 			if (l.getPw().equals(dbMember2.getBo_pw())) {
 				req.getSession().setAttribute("loginMember2", dbMember2);
 				req.getSession().setMaxInactiveInterval(60 * 10);
 			} else {
-				req.setAttribute("result", "로그인 실패(PW오류)");
+				response.setContentType("text/html; charset=UTF-8");
+
+				PrintWriter out = response.getWriter();
+
+				out.println("<script>alert('비밀번호가 틀렸습니다.');</script>");
+
+				out.flush();
 			}
 		} else if (dbMember3 != null) {
 			if (l.getPw().equals(dbMember3.getRoot_pw())) {
 				req.getSession().setAttribute("loginMember3", dbMember3);
 				req.getSession().setMaxInactiveInterval(60 * 10);
 			} else {
-				req.setAttribute("result", "로그인 실패(PW오류)");
+				response.setContentType("text/html; charset=UTF-8");
+
+				PrintWriter out = response.getWriter();
+
+				out.println("<script>alert('비밀번호가 틀렸습니다.');</script>");
+
+				out.flush();
 			}
 		} else {
-			req.setAttribute("result", "로그인 실패(미가입ID)");
+			response.setContentType("text/html; charset=UTF-8");
+
+			PrintWriter out = response.getWriter();
+
+			out.println("<script>alert('아이디가 틀렸습니다.');</script>");
+
+			out.flush();
 		}
 
 	}
@@ -142,6 +169,9 @@ public class MemberDAO {
 			m.setU_phonenumber(u_phonenumber);
 			m.setU_birth(u_birth);
 			m.setU_picture(u_picture);
+
+			
+
 
 			if (ss.getMapper(MemberMapper.class).Userjoin(m) == 1) {
 				req.setAttribute("result", "가입성공");

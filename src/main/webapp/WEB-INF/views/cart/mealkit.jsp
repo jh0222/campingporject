@@ -203,7 +203,7 @@ table, td, th {
 								<tr>
 										<td colspan="2"  align="right">
 										<div class="content_btn_section">
-											<a>주문하기</a>
+											<a href="ordermilkit.go?sell_price=10000&amount=1&sum=10000&fp_no=43&fp_name=4&fp_price=10000&fp_picture=DSC01504.jpg&fu_id=kim">주문하기</a>
 										</div>
 										</td>
 									</tr>

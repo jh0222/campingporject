@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -115,7 +116,7 @@ table, td, th {
 		<div class="all_check_input_div">
 		<!-- name="allCheck" -->
 			<input name="allCheck" type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
-			<input type="button" value="선택삭제" class="btn-outline-info" onclick="deleteValue();">
+			<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();">
 		</div>
 		<table class="subject_table">
 			<caption>표 제목 부분</caption>
@@ -143,9 +144,9 @@ table, td, th {
 							<input type="hidden" class="individual_bookCount_input" value="${c.ba_number}">
 							<input type="hidden" class="individual_totalPrice_input" value="${c.ba_price * c.ba_number}">
 						</td>
-						<td class="td_width_2 table_text_align_center"><img src="resources/img/${c.ba_p_picture }" width="100" height="100"></td>
-						<td class="td_width_3 table_text_align_center">${c.ba_p_name}</td>
-						<td class="td_width_4 price_td table_text_align_center">
+						<td class="td_width_2"><img src="resources/img/${c.ba_p_picture }" width="100" height="100"></td>
+						<td class="td_width_3">${c.ba_p_name}</td>
+						<td class="td_width_4 price_td">
 							판매가 : <fmt:formatNumber	value="${c.ba_price}" pattern="#,### 원" />
 						</td>
 						<td class="td_width_4 table_text_align_center">
@@ -154,9 +155,7 @@ table, td, th {
 								<button class="quantity_btn plus_btn">+</button>
 								<button class="quantity_btn minus_btn">-</button>
 							</div>
-							<div>
 								<button class="quantity_modify_btn" data-cartId="${c.ba_no}">변경</button>
-							</div>
 						</td>
 						<td class="td_width_4 table_text_align_center">
 							<fmt:formatNumber value="${c.ba_price * c.ba_number}" pattern="#,### 원" /></td>
@@ -176,18 +175,25 @@ table, td, th {
 			<table>
 				<tr>
 					<td>
-						
+						<table>
+							<tbody>
+								<tr>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
 					</td>
 					<td>
 						<table>
 							<tbody>
 								<tr>
 									<td>총 상품 가격</td>
-									<td align="right"><span class="totalPrice_span">${c.ba_price * c.ba_number}</span>원</td>
+									<td align="right">${c.ba_price * c.ba_number}원</td>
 								</tr>
 								<tr>
 									<td>총 주문 상품수</td>
-									<td align="right"><span class="totalCount_span">${c.ba_number}</span>개</td>
+									<td align="right">${c.ba_number}개</td>
 								</tr>	
 								<tr>
 									<td>
@@ -200,23 +206,17 @@ table, td, th {
 									<tr>
 										<td colspan="2"  align="right">
 										<div class="content_btn_section">
-											<a>주문하기</a>
+											<span onclick="gogossing()">주문하기</span>
 										</div>
 										</td>
 									</tr>
 							</tbody>
 						</table>
-						
 					</td>
 				</tr>
 			</table>
 		</div>
-	<!-- <!-- 구매 버튼 영역 
-	<div class="content_btn_section">
-		<a>주문하기</a>
-	</div> -->
 	</div>
-	
 	
 	<!-- 수량 조정 form -->
 	<form action="cart.update" method="post" class="quantity_update_form">

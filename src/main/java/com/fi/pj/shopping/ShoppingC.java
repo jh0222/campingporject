@@ -1,6 +1,9 @@
 package com.fi.pj.shopping;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.fi.pj.Cart.CartBean;
 import com.fi.pj.Cart.CartDAO;
 import com.fi.pj.member.BossMember;
+import com.fi.pj.member.Buy;
+import com.fi.pj.member.Login;
 import com.fi.pj.member.MemberDAO;
 import com.fi.pj.member.UserMember;
+import com.fi.pj.milkit.Milkit;
+import com.fi.pj.milkit.MilkitReviewinsert;
 
 
 
@@ -235,15 +242,35 @@ public class ShoppingC {
 		
 		//상품구매
 		@RequestMapping(value = "reg.productbuy", method = RequestMethod.GET)
-		public String regproductbuy(ProductBuy pbuy, HttpServletRequest req) {
+		public String regproductbuy(Buy b,ProductBuy pbuy, HttpServletRequest req) {
 			mDAO.loginCheck(req);
 			sdao.regProductbuy(pbuy,req);
-		    req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
-			req.setAttribute("shoppigListPage", "../shopping/Mypage.jsp");
+			mDAO.CBuylist(b, req);
+			req.setAttribute("myPage", "../member/mypage.jsp");
+			req.setAttribute("contentPage", "member/buylist.jsp");
 			return "main";
 		}	
 		
-		
+		//디테일 로그인
+		@RequestMapping(value = "login.productgo", method = RequestMethod.GET)
+		public String gologin(UserMember m,Product p,HttpServletRequest req) {
+			req.setAttribute("p", p);
+			req.setAttribute("contentPage", "shopping/Productlogin.jsp");
+			return "main";
+		}
+				
+				//로그인하면 디테일로 이동
+		@RequestMapping(value = "member.productlogin", method = RequestMethod.POST)
+		public String login(Login l,Product p,Reviewinsert ri, HttpServletRequest req, HttpServletResponse response) throws IOException {
+			mDAO.login(l, req,response);
+			mDAO.loginCheck(req);
+			sdao.getProduct(p,req);
+			sdao.getAllProductReview(req);
+			sdao.reviewwrite(ri,p,req);
+			req.setAttribute("contentPage", "shopping/shoppingMain.jsp");
+			req.setAttribute("shoppigListPage", "../shopping/detailProduct.jsp");	
+			return "main";
+		}
 		
 		
 		

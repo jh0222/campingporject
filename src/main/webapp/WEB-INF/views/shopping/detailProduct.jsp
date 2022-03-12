@@ -17,7 +17,7 @@ function delreview(no) {
 
 function updatereview(no,t) {
 	let txt = prompt("수정할 내용을 적어주세요",t);
-	if(txt != ""){
+	if(txt != null){
 		location.href = "update.productreview?pr_no=" + no + "&pr_txt=" + txt + "&p_no=" + ${p.p_no} + "&pr_p_no=" + ${p.p_no};
 	}
 }
@@ -145,12 +145,14 @@ function change () {
  					<input type="button" value="장바구니" class="detail_basket" onclick='mySubmit(2)' />
 					<input type="button" value="구매하기" class="detail_order" onclick='mySubmit(1)' />
 					</c:if>
+					
 					<c:if test="${sessionScope.loginMember3.root_id != null}">
 					<button class="detail_updatebtn" type="button"
 							onClick="location.href='updateproduct.go?p_no=${p.p_no}&p_name=${p.p_name}&p_picture=${p.p_picture }&p_price=${p.p_price }&p_txt=${p.p_txt }&pr_p_no=${p.p_no}'"><i class="fa-solid fa-pen-to-square"></i>상품수정</button>
 					</c:if>
+					
 					<c:if test="${sessionScope.loginMember2.bo_id == null && sessionScope.loginMember3.root_id == null && sessionScope.loginMember.u_id == null}">
-					<button class="detail_loginbtn" type="button" onclick="location.href='login.milkitgo?fp_no=${fp.fp_no}&fpr_fp_no=${fp.fp_no }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'">로그인</button>
+					<button class="detail_loginbtn" type="button" onclick="location.href='login.productgo?p_no=${p.p_no}&pr_p_no=${p.p_no }&id=${sessionScope.loginMember2.bo_id }${sessionScope.loginMember.u_id }${sessionScope.loginMember3.root_id }'">로그인</button>
 					</c:if>
 					
 					</div>

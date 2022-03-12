@@ -27,10 +27,11 @@ $(function(){
 			<div class="board_write_subject2">내용</div>
 			<div class="board_write_txt2"><textarea name="txt" id="txt" rows="10" cols="80"></textarea></div>         	
 		</div>
+		<div class="board_write_content3">
 		<c:if test="${r != null }">
-			<div class="board_write_subject">썸네일 사진</div>
-			<input name="picture" type="file">
+			<div class="board_write_subject">썸네일 사진&nbsp;&nbsp;<input name="picture" type="file"></div>
 		</c:if>
+		</div>
 		<div style="text-align: center;">
 			<button class="board_write_btn">등록</button>
 		</div>

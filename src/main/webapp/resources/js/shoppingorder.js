@@ -101,7 +101,7 @@ $(document).ready(function(){
 	}
 
 	//체크박스 유효성검사
-	function CheckFrom(check){
+	function checkForm(check){
 	    //체크박스 체크여부 확인 
 	    var chk1=document.getElementById('chk1').checked;
 	    var chk2=document.getElementById('chk2').checked;
@@ -126,7 +126,39 @@ $(document).ready(function(){
 	    }
 	    
 	/*     alert('aaa'); */
-	    call_kakao();
+	    call_kakao1();
+	    
+	    
+	    
+	}	
+	
+	//체크박스 유효성검사
+	function CheckFrom1(check){
+	    //체크박스 체크여부 확인 
+	    var chk1=document.getElementById('chk01').checked;
+	    var chk2=document.getElementById('chk02').checked;
+	    var chk3=document.getElementById('chk03').checked;
+	    var chk4=document.getElementById('chk04').checked;
+	    
+	    if(!chk01){
+	        alert('약관1에 동의해 주세요');
+	        return false;
+	    } 
+	    if(!chk02) {
+	        alert('약관2에 동의해 주세요');
+	        return false;
+	    }
+	    if(!chk03) {
+	        alert('약관3에 동의해 주세요');
+	        return false;
+	    }
+	    if(!chk04) {
+	        alert('약관4에 동의해 주세요');
+	        return false;
+	    }
+	    
+	/*     alert('aaa'); */
+	    call_kakao2();
 	    
 	    
 	    

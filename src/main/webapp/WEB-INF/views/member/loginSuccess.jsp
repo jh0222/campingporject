@@ -7,10 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+.login_tableee tr {
+    border-bottom: 1px solid white;
+}
+</style>
 <body>
 <c:choose>
 <c:when test="${sessionScope.loginMember.u_id != null}">
-	<table>
+	<table class="login_tableee">
 		<tr>		
 			<td class="loginsuccess1">${sessionScope.loginMember.u_id }</td>
 			<td class="loginsuccess1">(${sessionScope.loginMember.u_name })</td>
@@ -23,7 +28,7 @@
 	</table>
 </c:when>
 <c:when test="${sessionScope.loginMember2.bo_id != null}">
-	<table>
+	<table class="login_tableee">
 		<tr>			
 			<td>${sessionScope.loginMember2.bo_id }사장님</td>
 			<td>(${sessionScope.loginMember2.bo_name })</td>
@@ -36,7 +41,7 @@
 	</table>
 </c:when>
 <c:when test="${sessionScope.loginMember3.root_id != null}">
-	<table>
+	<table class="login_tableee">
 		<tr>			
 			<td>${sessionScope.loginMember3.root_id }</td>
 			<td>(관리자)</td>

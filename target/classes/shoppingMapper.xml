@@ -28,7 +28,9 @@
 
 <!-- 상품삭제 -->
 <delete id="delProduct" parameterType="com.fi.pj.shopping.Product">
-	delete product_registration_table where p_no = #{p_no}
+	delete product_registration_table where p_no = #{p_no} 
+
+	
 </delete>
 
 <!-- 상품 장바구니 삭제 -->

@@ -333,6 +333,7 @@ create sequence product_registration_seq;
 insert into product_registration_table values(product_registration_seq.nextval,'캠핑용품',10000,'b.jpg','캠핑용품입니다');
 
 select * from product_registration_table;
+
 -------------------------------------------------------------------------------------------------------------------------------------
 9. 밀키트 등록(관리자만)
 drop table foodproduct_registration_table
@@ -381,6 +382,8 @@ insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim2',1,'캠핑�
 insert into guest_product_buy_table values(g_p_buy_seq.nextval,'kim',109,'gd',10000,1,'서울특별시 종로구',null,'20220306');
 
 select * from guest_product_buy_table;
+delete product_registration_table where p_no = #{p_no}  and delete guest_product_buy_table where b_no = #{p_no}
+
 
 select ROWNUM, A.*
 from 
@@ -452,8 +455,13 @@ create table guest_product_basket_table(
 	ba_p_picture varchar2(200 char) not null,
 	ba_price number(10) not null, /*(수량*p_price)*/
 	ba_number number(5) not null /* 갯수 */
+	
 );
 create sequence product_basket_seq;
+
+
+ALTER TABLE guest_product_basket_table ADD CONSTRAINT FOREIGN KEY (ba_p_no) REFERENCES product_registration_table(p_no) ON DELETE CASCADE;
+
 
 insert into guest_product_basket_table values (product_basket_seq.nextval,3,'kim','캠핑용품','b.jpg',10000,1);
 insert into guest_product_basket_table values (product_basket_seq.nextval,2,'kim','램프','b.jpg',5000,3);
