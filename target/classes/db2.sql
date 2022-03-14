@@ -80,7 +80,6 @@ create table camping_table(
 );
 
 create sequence camping_seq;
-drop sequence camping_seq;
 
 insert into camping_table values(1,'kim2','난지캠핑장','nanji.jpg','캠핑장','02-373-2021',20000,'서울 마포구 한강난지로 28','37.57035','126.87264',40);
 insert into camping_table values(2,'kim22','중람캠핑숲','중랑캠핑숲.jpg','서울 근교 프라이빗한 산속 캠핑장과 독채펜션','0507-1348-8138',60000,'서울 중랑구 망우로87길 110','37.60468107569335', '127.10961189798245',20);
@@ -88,7 +87,6 @@ insert into camping_table values(3,'lee2','산청 지리산 자양보 오토캠�
 insert into camping_table values(4,'che2','단양 솔티천캠핑&펜션','단양 솔티천캠핑&펜션.jpg','소백산자연속 캠핑과힐링 만천하스카이,카페산,패러 액티비티를 동시에!단양솔티천 캠핑&펜션','043-421-5789',40000,'충북 단양군 단양읍 천동4길 10-7','36.96603532652186','128.41932535095748',12);
 insert into camping_table values(5,'lee3','지리산반내골오토캠핑장','지리산반내골오토캠핑장.jpg','지리산 중산리 계곡의 맑은 시냇물과 지리산 정기가 어우러진 물맑고 조용한 오토캠핑장.','061-781-5400',80000,'전남 구례군 문척면 중산로 555','35.14651274571855','127.50233817959402',40);
 insert into camping_table values(6,'you2','산중오토캠핑장','산중오토캠핑장.jpg','거창 산속을 제대로 느낄 수 있는 신축 캠핑장','02-373-2021',50000,'경남 거창군 북상면 송계사길 63-107','35.82298790994905','127.79912836041417',5);
-insert into camping_table values(camping_seq.nextval,'you2','산중오토캠핑장','산중오토캠핑장.jpg','거창 산속을 제대로 느낄 수 있는 신축 캠핑장','02-373-2021',50000,'경남 거창군 북상면 송계사길 63-107','35.82298790994905','127.79912836041417',5);
 
 select * from camping_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -271,6 +269,27 @@ create table product_registration_table(
 
 create sequence product_registration_seq;
 
+insert into product_registration_table values(1,'카트리나 천연테이블',16000,'camping/카트리나테이블.JPG','감성을 더해주는 천연원목테이블은 고캠핑 인기상품 중 하나입니다.');
+insert into product_registration_table values(2,'이누잇콜드침낭',63000,'camping/이누잇콜드베드.JPG','푹신함과 높은 보온력으로 추운겨울도 불사한 동계용 침낭입니다.');
+insert into product_registration_table values(3,'새턴2룸텐트',850000,'camping/텐트.JPG','전면개방이 가능한 넓은 실내공간을 가진 인기있는 텐트입니다.');
+insert into product_registration_table values(4,'오픈형 카텐트',210000,'camping/카텐트.JPG','내부에서도 바깥이 보이는 TPU창을 이용한 카캠핑을 즐겨보세요.');
+insert into product_registration_table values(5,'가족형 터널텐트',300000,'camping/터널텐트.JPG','터널형 텐트의 장점인 빠른 설치와 철수가 가능하며, 4인 가족이 사용하기에 충분한 넓은 리빙공간을 제공합니다.');
+insert into product_registration_table values(6,'익스트림 돔텐트',165000,'camping/돔텐트.JPG','시원하고 넓은 개방감을 가진 돔텐트는 가족에서 쓰기 적합합니다.');
+insert into product_registration_table values(7,'프리미엄 디럭스텐트',389000,'camping/디럭스텐트.JPG','블랙 이너텐트로 리뉴얼 되어 햇빛 차광력이 뛰어나며 기존 미라클패밀리텐트에서 실내공간 30% 확장시킨 프라임디럭스텐트 입니다.');
+insert into product_registration_table values(8,'포티스 텐트',250000,'camping/포티스텐트.JPG','익스텐션 업라이트 적용으로 넓은 공간 활용 과 6면 개방형으로 공기 순환이 원활한 사계절용 포티스 텐트 입니다.');
+insert into product_registration_table values(9,'카트리나 천연테이블',16000,'camping/카트리나테이블.JPG','감성을 더해주는 천연원목테이블은 고캠핑 인기상품 중 하나입니다.');
+insert into product_registration_table values(10,'프리미엄 나무테이블',32000,'camping/프리미엄테이블.JPG','고급나무자재로 만든 나무테이블은 안전하고 튼튼한 테이블입니다.');
+insert into product_registration_table values(11,'화로대그릴세트',64000,'camping/화로대.JPG','내식성, 내구성이 우수한 스테인레스 소재로 잦은 사용에도 녹 발생 및 고열에 변형이 없는 화로대그릴세트입니다.');
+insert into product_registration_table values(12,'고급 멀티토치',21000,'camping/토치.JPG','세밀한 화력조절로 간편하고 안전한 고급형 멀티토치입니다.');
+insert into product_registration_table values(13,'트윙클 멀티랜턴',23000,'camping/트윙클랜턴.JPG','트윙클 가스랜턴은 반짝이는 유리글로브의 느낌을 최대한 살려내기 위해 고품질 글래스로 제작해 투명함이 오래갑니다.');
+insert into product_registration_table values(14,'트리오 랜턴',32000,'camping/트리오랜턴.JPG','하드우드 중 높은 등급에 속하는 호두나무로 제작된 우드케이스는 감성적인 디자인 효과를 더해줍니다.');
+insert into product_registration_table values(15,'엔조이캠핑웨건',132000,'camping/웨건.JPG','광폭 휠이 장착되어 자갈, 파쇄석, 비포장 도로에서도 주행이 가능하며 원터치 폴딩으로 손쉬운 설치&수납이 가능한 엔조이캠핑웨건 입니다.');
+insert into product_registration_table values(16,'BBQ아이언 팬',79000,'camping/아이언팬.JPG','하드우드 중 높은 등급에 속하는 호두나무로 제작된 우드케이스는 감성적인 디자인 효과를 더해줍니다.');
+insert into product_registration_table values(17,'핑크 로우체어',17000,'camping/로우체어.JPG','천연목재 팔걸이로 편안한 착석이 가능하며 접이식 체어로 휴대가 간편하며 안정된 구조의 로우체어입니다.');
+insert into product_registration_table values(18,'벤자민 2단선반',77000,'camping/벤자민테이블.JPG','실내에서도 실외에서도 감성적인 분위기를 더해주는 자바라식 원액션 구조로 설치 및 수납이 간편합니다.');
+insert into product_registration_table values(19,'엔조이 미니팬히터',65000,'camping/난로.JPG','PTC 히터 적용으로 주변의 온도에 맞춰 유지시켜주며, 불꽃이 생기지 않는 방식으로 안전하게 어디서나 사용하기 좋습니다.');
+insert into product_registration_table values(20,'아웃도어 티타늄컵3종세트',47000,'camping/아웃도어컵.JPG','이중구조로 열전도율이 낮아 보온과 보냉을 오래 유지시켜주는 컴팩트한 사이즈의 컵입니다.');
+
 select * from product_registration_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 9. 밀키트 등록(관리자만)
@@ -284,6 +303,27 @@ create table foodproduct_registration_table(
 );
 
 create sequence foodproduct_registration_seq;
+
+insert into foodproduct_registration_table values(1,'푸~짐한 UFO 부대찌개',25000,'부대찌개.JPG','고캠핑표 부대찌개는 신선한 채소와 깊은 맛을 내는 육수까지 극강의 비주얼을 자랑합니다.');
+insert into foodproduct_registration_table values(2,'파송송 닭볶음탕',19000,'닭볶음탕.JPG','양념이 쏙쏙 배인 닭볶음탕은 캠핑가서 술안주로 손색이 없습니다.');
+insert into foodproduct_registration_table values(3,'직화불고기 떡볶이',19000,'직화불고기.JPG','불고기의 고소한 풍미까지 더한 매콤하고 맛있는 직화불고기 떡볶이는 남녀노소에게 사랑받는 밀키트입니다.');
+insert into foodproduct_registration_table values(4,'스페니시 감바스 알아히요',16500,'감바스.JPG','캠핑가서 느끼는 통통한 새우와 올리브오일에 찍어 먹는 색다른 맛의 감바스 밀키트입니다.');
+insert into foodproduct_registration_table values(5,'해물 마라탕',25000,'마라탕.JPG','이곳은 한국인가 중국인가? 캠핑가서 즐기는 맛있게 매운 해물마라탕 밀키트입니다.');
+insert into foodproduct_registration_table values(6,'고캠핑 양장피',22000,'양장피.JPG','화려한 비주얼과 상큼한 맛을 자랑하는 고캠핑 양장피는 신선한 다양한 재료를 사용합니다');
+insert into foodproduct_registration_table values(7,'트러플 버섯 파스타',22000,'파스타.JPG','세계 3대 진미 트러플의 풍미를 한 접시에 담았습니다. 레스토랑에서 맛보던 깊은 풍미를 캠핑가서 즐겨보세요.');
+insert into foodproduct_registration_table values(8,'산더미소고기 콩불',15000,'콩불.JPG','소고기를 콩나물,채소 위에 수북이 쌓아올린 산더미 소고미 콩불입니다.');
+insert into foodproduct_registration_table values(9,'비프스테이크&샐러드',42000,'비프.JPG','푸짐한 전복과 스테이크와 달콤한 샐러드로 건강을 챙기세요');
+insert into foodproduct_registration_table values(10,'새우&매생이  크림파스타',45000,'매생이.JPG','바다 향 가득한 매생이를 넣어 고소한 풍미 입안 가득 맴도는 크림을 즐기세요.');
+insert into foodproduct_registration_table values(11,'바냐카우다 플래터',10000,'플래터.JPG','올리브오일과 앤초비,마늘을 넣은 소스에 다양한 재료를 찍어 먹는 이탈리아 요리입니다.');
+insert into foodproduct_registration_table values(12,'갑오징어 무침&소면',18000,'갑오징어.JPG','새콤달콤 입맛 돋우는 반찬 요리가 먹고 싶은 날엔 쫄깃한 갑오징어 무침&소면을 즐겨보세요.');
+insert into foodproduct_registration_table values(13,'그릭 피타브레드 샐러드',10500,'그릭파스타.JPG','그리스의 시원한 풍경을 생각나게 하는 그릭 피타브레드 샐러드를 캠핑에서 즐겨보세요.');
+insert into foodproduct_registration_table values(14,'매콤 로제 스테이크',30000,'로제스테이크.JPG','부드러운 우유와 매콤한 소스로 장미꽃의 색을 띄는 특제 로제 소스에 스테이크를 더하세요.');
+insert into foodproduct_registration_table values(15,'닭가슴살 두부전 샐러드',13000,'닭가슴살.JPG','쫄깃한 곤약면과 신선한 채소에 홀그레인 머스터드 드레싱을 뿌려 입안에서 톡톡 터지는 고급샐러드를 즐겨보세요.');
+insert into foodproduct_registration_table values(16,'안동식 순살찜닭',19000,'찜닭.JPG','달콤하면서 짭조름한 찜닭 소스에 순살 닭고기와 신선한 채소를 즐겨보세요.');
+insert into foodproduct_registration_table values(17,'밀푀유 샤브전골',28000,'밀푀유.JPG','천개의 잎사귀를 뜻하는 밀푀유 샤브전골은 다채로운 색감과 조화로운 맛의 요리입니다.');
+insert into foodproduct_registration_table values(18,'비프 데미카레',13000,'카레.JPG','깊고 풍부한 맛의 데미글라스 소스와 국산 채소가 만나 탄생한 인도식카레입니다.');
+insert into foodproduct_registration_table values(19,'두툼 벌집껍데기',22000,'껍데기.JPG','개성 넘치는 비주얼에 쫄깃한 식감이 매력적인 껍데기를 콩가루와 특제소스에 찍어드세요');
+
 select * from foodproduct_registration_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 10. 캠핑용품 구매목록
@@ -302,6 +342,41 @@ create table guest_product_buy_table(
 
 create sequence g_p_buy_seq;
 
+insert into guest_product_buy_table values(1,'kim',20,'아웃도어 티타늄컵3종세트',47000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(2,'seo',20,'아웃도어 티타늄컵3종세트',47000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_product_buy_table values(3,'cho',20,'아웃도어 티타늄컵3종세트',47000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_product_buy_table values(4,'kang',20,'아웃도어 티타늄컵3종세트',47000,1,'서울특별시 강북구 번동 463-44',null,'20220308');
+insert into guest_product_buy_table values(5,'kwon',20,'아웃도어 티타늄컵3종세트',47000,1,'서울특별시 노원구 공릉동 172',null,'20220309');
+insert into guest_product_buy_table values(6,'lee',20,'아웃도어 티타늄컵3종세트',47000,1,'서울특별시 종로구 관철동 13-13',null,'20220310');
+
+insert into guest_product_buy_table values(7,'kim',19,'엔조이 미니팬히터',65000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(8,'seo',19,'엔조이 미니팬히터',65000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_product_buy_table values(9,'cho',19,'엔조이 미니팬히터',65000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_product_buy_table values(10,'kang',19,'엔조이 미니팬히터',65000,1,'서울특별시 강북구 번동 463-44',null,'20220308');
+insert into guest_product_buy_table values(11,'kwon',19,'엔조이 미니팬히터',65000,1,'서울특별시 노원구 공릉동 172',null,'20220309');
+insert into guest_product_buy_table values(12,'lee',19,'엔조이 미니팬히터',65000,1,'서울특별시 종로구 관철동 13-13',null,'20220310');
+
+insert into guest_product_buy_table values(13,'kim',7,'프리미엄 디럭스텐트',389000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(14,'seo',7,'프리미엄 디럭스텐트',389000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_product_buy_table values(15,'cho',7,'프리미엄 디럭스텐트',389000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_product_buy_table values(16,'kang',7,'프리미엄 디럭스텐트',389000,1,'서울특별시 강북구 번동 463-44',null,'20220308');
+insert into guest_product_buy_table values(17,'kwon',7,'프리미엄 디럭스텐트',389000,1,'서울특별시 노원구 공릉동 172',null,'20220309');
+insert into guest_product_buy_table values(18,'lee',7,'프리미엄 디럭스텐트',389000,1,'서울특별시 종로구 관철동 13-13',null,'20220310');
+
+insert into guest_product_buy_table values(19,'kim',10,'프리미엄 나무테이블',32000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(20,'seo',10,'프리미엄 나무테이블',32000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_product_buy_table values(21,'cho',10,'프리미엄 나무테이블',32000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_product_buy_table values(22,'kang',10,'프리미엄 나무테이블',32000,1,'서울특별시 강북구 번동 463-44',null,'20220308');
+insert into guest_product_buy_table values(23,'kwon',10,'프리미엄 나무테이블',32000,1,'서울특별시 노원구 공릉동 172',null,'20220309');
+insert into guest_product_buy_table values(24,'lee',10,'프리미엄 나무테이블',32000,1,'서울특별시 종로구 관철동 13-13',null,'20220310');
+
+insert into guest_product_buy_table values(25,'kim',11,'화로대그릴세트',64000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_product_buy_table values(26,'seo',11,'화로대그릴세트',64000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_product_buy_table values(27,'cho',11,'화로대그릴세트',64000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_product_buy_table values(28 ,'kang',11,'화로대그릴세트',64000,1,'서울특별시 강북구 번동 463-44',null,'20220308');
+insert into guest_product_buy_table values(29,'kwon',11,'화로대그릴세트',64000,1,'서울특별시 노원구 공릉동 172',null,'20220309');
+insert into guest_product_buy_table values(30,'lee',11,'화로대그릴세트',64000,1,'서울특별시 종로구 관철동 13-13',null,'20220310');
+
 select * from guest_product_buy_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 11. 밀키트 구매목록
@@ -319,6 +394,40 @@ create table guest_foodproduct_buy_table(
 );
 create sequence g_fp_buy_seq;
 
+insert into guest_foodproduct_buy_table values(1,'kim',18,'비프 데미카레',13000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(2,'kim',18,'비프 데미카레',13000,1,'서울특별시 종로구',null,'20220307');
+insert into guest_foodproduct_buy_table values(3,'kim',18,'비프 데미카레',13000,1,'서울특별시 종로구',null,'20220305');
+insert into guest_foodproduct_buy_table values(4,'kim',18,'비프 데미카레',13000,1,'서울특별시 종로구',null,'20220303');
+insert into guest_foodproduct_buy_table values(5,'kim',18,'비프 데미카레',13000,1,'서울특별시 종로구',null,'20220308');
+
+insert into guest_foodproduct_buy_table values(6,'kim',19,'두툼 벌집껍데기',22000,1,'서울특별시 종로구',null,'20220306');
+insert into guest_foodproduct_buy_table values(7,'seo',19,'두툼 벌집껍데기',22000,1,'서울특별시 영등포구 신길동 285-1',null,'20220307');
+insert into guest_foodproduct_buy_table values(8,'cho',19,'두툼 벌집껍데기',22000,1,'서울특별시 강북구 번동 463-44',null,'20220308');
+insert into guest_foodproduct_buy_table values(9,'kang',19,'두툼 벌집껍데기',22000,1,'서울특별시 종로구 연건동 28-21',null,'20220309');
+insert into guest_foodproduct_buy_table values(10,'kwon',19,'두툼 벌집껍데기',22000,1,'서울특별시 노원구 공릉동 172',null,'20220310');
+insert into guest_foodproduct_buy_table values(11,'lee',19,'두툼 벌집껍데기',22000,1,'서울특별시 종로구 관철동 13-13',null,'20220312');
+
+insert into guest_foodproduct_buy_table values(12,'kim',17,'밀푀유 샤브전골',28000,1,'서울특별시 종로구 관철동 13-13',null,'20220312');
+insert into guest_foodproduct_buy_table values(13,'seo',17,'밀푀유 샤브전골',28000,1,'서울특별시 영등포구 신길동 285-1',null,'20220314');
+insert into guest_foodproduct_buy_table values(14,'cho',17,'밀푀유 샤브전골',28000,1,'서울특별시 강북구 번동 463-44',null,'20220315');
+insert into guest_foodproduct_buy_table values(15,'kang',17,'밀푀유 샤브전골',28000,1,'서울특별시 종로구 연건동 28-21',null,'20220312');
+insert into guest_foodproduct_buy_table values(16,'kwon',17,'밀푀유 샤브전골',28000,1,'서울특별시 노원구 공릉동 172',null,'20220310');
+insert into guest_foodproduct_buy_table values(17,'lee',17,'밀푀유 샤브전골',28000,1,'서울특별시 종로구 관철동 13-13',null,'20220312');
+
+insert into guest_foodproduct_buy_table values(18,'kim',16,'안동식 순살찜닭',19000,1,'서울특별시 종로구 관철동 13-13',null,'20220312');
+insert into guest_foodproduct_buy_table values(19,'seo',16,'안동식 순살찜닭',19000,1,'서울특별시 영등포구 신길동 285-1',null,'20220314');
+insert into guest_foodproduct_buy_table values(20,'cho',16,'안동식 순살찜닭',19000,1,'서울특별시 강북구 번동 463-44',null,'20220315');
+insert into guest_foodproduct_buy_table values(21,'kang',16,'안동식 순살찜닭',19000,1,'서울특별시 종로구 연건동 28-21',null,'20220312');
+insert into guest_foodproduct_buy_table values(22,'kwon',16,'안동식 순살찜닭',19000,1,'서울특별시 노원구 공릉동 172',null,'20220310');
+insert into guest_foodproduct_buy_table values(23,'lee',16,'안동식 순살찜닭',19000,1,'서울특별시 종로구 관철동 13-13',null,'20220312');
+
+insert into guest_foodproduct_buy_table values(24,'kim',15,'닭가슴살 두부전 샐러드',13000,1,'서울특별시 종로구 관철동 13-13',null,'20220312');
+insert into guest_foodproduct_buy_table values(25,'seo',15,'닭가슴살 두부전 샐러드',13000,1,'서울특별시 영등포구 신길동 285-1',null,'20220314');
+insert into guest_foodproduct_buy_table values(26,'cho',15,'닭가슴살 두부전 샐러드',13000,1,'서울특별시 강북구 번동 463-44',null,'20220315');
+insert into guest_foodproduct_buy_table values(27,'kang',15,'닭가슴살 두부전 샐러드',13000,1,'서울특별시 종로구 연건동 28-21',null,'20220312');
+insert into guest_foodproduct_buy_table values(28,'kwon',15,'닭가슴살 두부전 샐러드',13000,1,'서울특별시 노원구 공릉동 172',null,'20220310');
+insert into guest_foodproduct_buy_table values(29,'lee',15,'닭가슴살 두부전 샐러드',13000,1,'서울특별시 종로구 관철동 13-13',null,'20220312');
+
 select * from guest_foodproduct_buy_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 12. 캠핑용품 장바구니
@@ -335,10 +444,19 @@ create table guest_product_basket_table(
 
 create sequence product_basket_seq;
 
-insert into guest_product_basket_table values(1,1,'kim','캠핑용품1','a.jpg',2000,2);
-insert into guest_product_basket_table values(2,2,'kim','캠핑용품2','a.jpg',2000,2);
-insert into guest_product_basket_table values(3,3,'kim','캠핑용품3','a.jpg',2000,2);
-insert into guest_product_basket_table values(4,4,'kim','캠핑용품4','a.jpg',2000,2);
+insert into guest_product_basket_table values (1,11,'kim','화로대그릴세트','camping/화로대.JPG',64000,1);
+insert into guest_product_basket_table values (2,11,'seo','화로대그릴세트','camping/화로대.JPG',64000,1);
+insert into guest_product_basket_table values (3,11,'cho','화로대그릴세트','camping/화로대.JPG',64000,1);
+insert into guest_product_basket_table values (4,11,'kang','화로대그릴세트','camping/화로대.JPG',64000,1);
+insert into guest_product_basket_table values (5,11,'kwon','화로대그릴세트','camping/화로대.JPG',64000,1);
+insert into guest_product_basket_table values (6,11,'lee','화로대그릴세트','camping/화로대.JPG',64000,1);
+
+insert into guest_product_basket_table values (7,19,'kim','엔조이 미니팬히터','camping/난로.JPG',65000,1);
+insert into guest_product_basket_table values (8,19,'seo','엔조이 미니팬히터','camping/난로.JPG',65000,1);
+insert into guest_product_basket_table values (9,19,'cho','엔조이 미니팬히터','camping/난로.JPG',65000,1);
+insert into guest_product_basket_table values (10,19,'kang','엔조이 미니팬히터','camping/난로.JPG',65000,1);
+insert into guest_product_basket_table values (11,19,'kwon','엔조이 미니팬히터','camping/난로.JPG',65000,1);
+insert into guest_product_basket_table values (12,19,'lee','엔조이 미니팬히터','camping/난로.JPG',65000,1);
 
 select * from guest_product_basket_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -356,6 +474,20 @@ create table guest_foodproduct_basket_table(
 
 create sequence foodproduct_basket_seq;
 
+insert into guest_foodproduct_basket_table values(1,18,'kim','비프 데미카레','카레.JPG',13000,1);
+insert into guest_foodproduct_basket_table values(2,18,'seo','비프 데미카레','카레.JPG',13000,1);
+insert into guest_foodproduct_basket_table values(3,18,'cho','비프 데미카레','카레.JPG',13000,1);
+insert into guest_foodproduct_basket_table values(4,18,'kang','비프 데미카레','카레.JPG',13000,1);
+insert into guest_foodproduct_basket_table values(5,18,'kwon','비프 데미카레','카레.JPG',13000,1);
+insert into guest_foodproduct_basket_table values(6,18,'lee','비프 데미카레','카레.JPG',13000,1);
+
+insert into guest_foodproduct_basket_table values(7,19,'kim','두툼 벌집껍데기','껍데기.JPG',22000,1);
+insert into guest_foodproduct_basket_table values(8,19,'seo','두툼 벌집껍데기','껍데기.JPG',22000,1);
+insert into guest_foodproduct_basket_table values(9,19,'cho','두툼 벌집껍데기','껍데기.JPG',22000,1);
+insert into guest_foodproduct_basket_table values(10,19,'kang','두툼 벌집껍데기','껍데기.JPG',22000,1);
+insert into guest_foodproduct_basket_table values(11,19,'kwon','두툼 벌집껍데기','껍데기.JPG',22000,1);
+insert into guest_foodproduct_basket_table values(12,19,'lee','두툼 벌집껍데기','껍데기.JPG',22000,1);
+
 select * from guest_foodproduct_basket_table;
 -------------------------------------------------------------------------------------------------------------------------------------
 14. 캠핑용품 리뷰
@@ -365,11 +497,38 @@ create table product_review_table(
     pr_p_no number(5) not null, 
     pr_u_bo_id varchar2(20 char) not null,
     pr_txt varchar2(100 char) not null,
-    pr_star number(5) not null,
     pr_date    date not null
 );
 
 create sequence product_review_seq;
+
+insert into product_review_table values(1,11,'kim','솔직하게 리뷰 안쓰는데 너무 좋아서 써요','20220301');
+insert into product_review_table values(2,11,'seo','가격도 싸니 가성비가 좋네요~','20220304');
+insert into product_review_table values(3,11,'cho','배달도 빠르고 포장도 너무 꼼꼼하게 해주셨어요','20220308');
+insert into product_review_table values(4,11,'kang','오늘부터 고캠핑에서만 구매하려고 합니다. 즐겨찾기했어요','20220309');
+insert into product_review_table values(5,11,'kwon','아들넘이 너무 좋아하네요~^^... 다음에 또 이용할게요..^^','20220309');
+insert into product_review_table values(6,11,'lee','좋아서 감탄했네요! 오래오래 쓸게요~~~','20220311');
+
+insert into product_review_table values(7,10,'kim','솔직하게 리뷰 안쓰는데 너무 좋아서 써요','20220305');
+insert into product_review_table values(8,10,'seo','가격도 싸니 가성비가 좋네요~','20220306');
+insert into product_review_table values(9,10,'cho','배달도 빠르고 포장도 너무 꼼꼼하게 해주셨어요','20220308');
+insert into product_review_table values(10,10,'kang','오늘부터 고캠핑에서만 구매하려고 합니다. 즐겨찾기했어요','20220307');
+insert into product_review_table values(11,10,'kwon','아들넘이 너무 좋아하네요~^^... 다음에 또 이용할게요..^^','20220308');
+insert into product_review_table values(12,10,'lee','좋아서 감탄했네요! 오래오래 쓸게요~~~','20220311');
+
+insert into product_review_table values(13,20,'kim','솔직하게 리뷰 안쓰는데 너무 좋아서 써요','20220305');
+insert into product_review_table values(14,20,'seo','가격도 싸니 가성비가 좋네요~','20220307');
+insert into product_review_table values(15,20,'cho','배달도 빠르고 포장도 너무 꼼꼼하게 해주셨어요','20220309');
+insert into product_review_table values(16,20,'kang','오늘부터 고캠핑에서만 구매하려고 합니다. 즐겨찾기했어요','20220311');
+insert into product_review_table values(17,20,'kwon','아들넘이 너무 좋아하네요~^^... 다음에 또 이용할게요..^^','20220314');
+insert into product_review_table values(18,20,'lee','좋아서 감탄했네요! 오래오래 쓸게요~~~','20220316');
+
+insert into product_review_table values(19,19,'kim','솔직하게 리뷰 안쓰는데 너무 좋아서 써요','20220305');
+insert into product_review_table values(20,19,'seo','가격도 싸니 가성비가 좋네요~','20220306');
+insert into product_review_table values(21,19,'cho','배달도 빠르고 포장도 너무 꼼꼼하게 해주셨어요','20220308');
+insert into product_review_table values(22,19,'kang','오늘부터 고캠핑에서만 구매하려고 합니다. 즐겨찾기했어요','20220311');
+insert into product_review_table values(23,19,'kwon','아들넘이 너무 좋아하네요~^^... 다음에 또 이용할게요..^^','20220312');
+insert into product_review_table values(24,19,'lee','좋아서 감탄했네요! 오래오래 쓸게요~~~','20220314');
 
 select * from product_review_table;
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -384,6 +543,41 @@ create table foodproduct_review_table(
 );
 
 create sequence foodproduct_review_seq;
+
+insert into foodproduct_review_table values(1,19,'kim','밀키트가 아이스팩으로 배송와서 좋아요','20220305');
+insert into foodproduct_review_table values(2,19,'seo','가격도 싸니 가성비가 좋네요~','20220307');
+insert into foodproduct_review_table values(3,19,'cho','배달도 빠르고 포장도 너무 꼼꼼하게 해주셨어요','20220309');
+insert into foodproduct_review_table values(4,19,'kang','오늘부터 고캠핑에서만 구매하려고 합니다. 즐겨찾기했어요','20220311');
+insert into foodproduct_review_table values(5,19,'kwon','아들넘이 너무 좋아하네요~^^... 다음에 또 이용할게요..^^','20220313');
+insert into foodproduct_review_table values(6,19,'lee','솔좋아서 감탄했네요! 맛있게 먹을게요~~~','20220305');
+
+insert into foodproduct_review_table values(7,18,'kim','밀키트가 아이스팩으로 배송와서 좋아요','20220305');
+insert into foodproduct_review_table values(8,18,'seo','가격도 싸니 가성비가 좋네요~','20220307');
+insert into foodproduct_review_table values(9,18,'cho','배달도 빠르고 포장도 너무 꼼꼼하게 해주셨어요','20220309');
+insert into foodproduct_review_table values(10,18,'kang','오늘부터 고캠핑에서만 구매하려고 합니다. 즐겨찾기했어요','20220311');
+insert into foodproduct_review_table values(11,18,'kwon','아들넘이 너무 좋아하네요~^^... 다음에 또 이용할게요..^^','20220313');
+insert into foodproduct_review_table values(12,18,'lee','솔좋아서 감탄했네요! 맛있게 먹을게요~~~','20220305');
+
+insert into foodproduct_review_table values(13,17,'kim','밀키트가 아이스팩으로 배송와서 좋아요','20220305');
+insert into foodproduct_review_table values(14,17,'seo','가격도 싸니 가성비가 좋네요~','20220307');
+insert into foodproduct_review_table values(15,17,'cho','배달도 빠르고 포장도 너무 꼼꼼하게 해주셨어요','20220309');
+insert into foodproduct_review_table values(16,17,'kang','오늘부터 고캠핑에서만 구매하려고 합니다. 즐겨찾기했어요','20220311');
+insert into foodproduct_review_table values(17,17,'kwon','아들넘이 너무 좋아하네요~^^... 다음에 또 이용할게요..^^','20220313');
+insert into foodproduct_review_table values(18,17,'lee','솔좋아서 감탄했네요! 맛있게 먹을게요~~~','20220305');
+
+insert into foodproduct_review_table values(19,16,'kim','밀키트가 아이스팩으로 배송와서 좋아요','20220305');
+insert into foodproduct_review_table values(20,16,'seo','가격도 싸니 가성비가 좋네요~','20220307');
+insert into foodproduct_review_table values(21,16,'cho','배달도 빠르고 포장도 너무 꼼꼼하게 해주셨어요','20220309');
+insert into foodproduct_review_table values(22,16,'kang','오늘부터 고캠핑에서만 구매하려고 합니다. 즐겨찾기했어요','20220311');
+insert into foodproduct_review_table values(23,16,'kwon','아들넘이 너무 좋아하네요~^^... 다음에 또 이용할게요..^^','20220313');
+insert into foodproduct_review_table values(24,16,'lee','솔좋아서 감탄했네요! 맛있게 먹을게요~~~','20220305');
+
+insert into foodproduct_review_table values(25,15,'kim','밀키트가 아이스팩으로 배송와서 좋아요','20220305');
+insert into foodproduct_review_table values(26,15,'seo','가격도 싸니 가성비가 좋네요~','20220307');
+insert into foodproduct_review_table values(27,15,'cho','배달도 빠르고 포장도 너무 꼼꼼하게 해주셨어요','20220309');
+insert into foodproduct_review_table values(28,15,'kang','오늘부터 고캠핑에서만 구매하려고 합니다. 즐겨찾기했어요','20220311');
+insert into foodproduct_review_table values(29,15,'kwon','아들넘이 너무 좋아하네요~^^... 다음에 또 이용할게요..^^','20220313');
+insert into foodproduct_review_table values(30,15,'lee','솔좋아서 감탄했네요! 맛있게 먹을게요~~~','20220305');
 
 select * from foodproduct_review_table;
 -------------------------------------------------------------------------------------------------------------------------------------

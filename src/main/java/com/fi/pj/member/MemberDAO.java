@@ -42,7 +42,7 @@ public class MemberDAO {
 				req.getSession().setAttribute("loginMember", dbMember);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				req.getSession().setAttribute("birth", sdf.format(dbMember.getU_birth()));
-				req.getSession().setMaxInactiveInterval(60 * 10);
+				req.getSession().setMaxInactiveInterval(60 * 100);
 			} else {
 				response.setContentType("text/html; charset=UTF-8");
 
@@ -55,7 +55,7 @@ public class MemberDAO {
 		} else if (dbMember2 != null) {
 			if (l.getPw().equals(dbMember2.getBo_pw())) {
 				req.getSession().setAttribute("loginMember2", dbMember2);
-				req.getSession().setMaxInactiveInterval(60 * 10);
+				req.getSession().setMaxInactiveInterval(60 * 100);
 			} else {
 				response.setContentType("text/html; charset=UTF-8");
 
@@ -68,7 +68,7 @@ public class MemberDAO {
 		} else if (dbMember3 != null) {
 			if (l.getPw().equals(dbMember3.getRoot_pw())) {
 				req.getSession().setAttribute("loginMember3", dbMember3);
-				req.getSession().setMaxInactiveInterval(60 * 10);
+				req.getSession().setMaxInactiveInterval(60 * 100);
 			} else {
 				response.setContentType("text/html; charset=UTF-8");
 

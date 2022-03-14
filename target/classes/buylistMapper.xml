@@ -4,12 +4,12 @@
 
 <select id="userbuylist" resultType="com.fi.pj.member.Buy" parameterType="com.fi.pj.member.Buy">
 	select * from guest_product_buy_table
-	where b_u_bo_id = #{b_u_bo_id}
+	where b_u_bo_id = #{b_u_bo_id} order by b_date desc
 </select>
 
 <select id="mealbuylist" resultType="com.fi.pj.member.Buy" parameterType="com.fi.pj.member.Buy">
 	select * from guest_foodproduct_buy_table
-	where fb_u_bo_id = #{fb_u_bo_id}
+	where fb_u_bo_id = #{fb_u_bo_id} order by fb_date desc
 </select>
 
 <delete id="buyproductdel" parameterType="com.fi.pj.member.Buy">

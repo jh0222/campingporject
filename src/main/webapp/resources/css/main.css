@@ -30,7 +30,6 @@ section .first_section3 {
 .main_home{
 	position : absolute; 
 	z-index : 1; /*다른 요소들보다 앞에 배치*/ 
-	opacity: 0.7;
 	box-shadow: 0 0.5px 6px grey;
 }
 

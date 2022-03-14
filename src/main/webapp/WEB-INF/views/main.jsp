@@ -55,7 +55,6 @@
 
 </head>
 <body>
-${result }
 <c:choose>
 	<c:when test="${contentPage eq 'home.jsp' }">
 		<div class="main_home">

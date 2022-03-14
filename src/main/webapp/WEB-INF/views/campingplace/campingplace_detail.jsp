@@ -9,6 +9,7 @@
 <link rel="stylesheet"	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=58913db958e651ed6f1211f7dc043016"></script>
 <!-- <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
@@ -24,6 +25,18 @@
   #star a.on{
    color: red;
   } 
+</style>
+<style>
+    .screen_out {display:block;overflow:hidden;position:absolute;left:-9999px;width:1px;height:1px;font-size:0;line-height:0;text-indent:-9999px}
+    .wrap_content {overflow:hidden;height:330px}
+    .wrap_map {width:60%;height:300px;float:left;position:relative;}
+    .wrap_roadview {width:60%;height:300px;float:left;position:relative}
+    .wrap_button {position:absolute;left:15px;top:12px;z-index:2}
+    .btn_comm {float:left;display:block;width:70px;height:27px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/sample_button_control.png) no-repeat}
+    .btn_linkMap {background-position:0 0;}
+    .btn_resetMap {background-position:-69px 0;}
+    .btn_linkRoadview {background-position:0 0;}
+    .btn_resetRoadview {background-position:-69px 0;}
 </style>
 <script>
 function reviewCheck2() {
@@ -184,16 +197,6 @@ function replyCheck() {
 #heart a.on {
 	color: red;
 }
-</style>
-<!-- 지도&로드뷰 css-->
-<style>
-#container {overflow:hidden;height:300px;position:relative;}
-#btnRoadview,  #btnMap {position:absolute;top:5px;left:5px;padding:7px 12px;font-size:14px;border: 1px solid #dbdbdb;background-color: #fff;border-radius: 2px;box-shadow: 0 1px 1px rgba(0,0,0,.04);z-index:1;cursor:pointer;}
-#btnRoadview:hover,  #btnMap:hover{background-color: #fcfcfc;border: 1px solid #c1c1c1;}
-#container.view_map #mapWrapper {z-index: 10;}
-#container.view_map #btnMap {display: none;}
-#container.view_roadview #mapWrapper {z-index: 0;}
-#container.view_roadview #btnRoadview {display: none;}
 </style>
 <meta charset="UTF-8">
 <title>CampingPlace</title>
@@ -419,88 +422,92 @@ function replyCheck() {
 <hr size="3">
 	<h2 class="detail_h2">캠핑장 위치</h2>
 <hr><br> 
-<!-- 캠핑장 지도 -->
-<p>
-    <em class="link">
-        <a type=""></a>
-    </em>
-</p>
-<div id="container" class="view_map">
-    <div id="mapWrapper" style="justify-content:center;display: flex;align-items:center;width:1200px;height:700px;position:absolute;">
-        <div id="map" style="justify-content:center;display: flex;align-items:center;width:1200px;height:700px"></div> <!-- 지도를 표시할 div 입니다 -->
-        <input type="button" id="btnRoadview" onclick="toggleMap(false)" title="로드뷰 보기" value="로드뷰">
+	<div class="wrap_content">
+    <div class="wrap_map" style="margin-left: 300px;">
+        <div id="map" style="width:100%;height:100%"></div> 
+        <div class="wrap_button">
+            <a href="javascript:;" class="btn_comm btn_linkMap" target="_blank" onclick="moveKakaoMap(this)"><span class="screen_out">지도 크게보기</span></a> 
+            <a href="javascript:;" class="btn_comm btn_resetMap" onclick="resetKakaoMap()"><span class="screen_out">지도 초기화</span></a> 
+        </div>
     </div>
-    <div id="rvWrapper" style="justify-content:center;display: flex;align-items:center;width:1200px;height:700px;position:absolute;">
-        <div id="roadview" style="justify-content:center;display: flex;align-items:center;height:700px"></div> <!-- 로드뷰를 표시할 div 입니다 -->
-        <input type="button" id="btnMap" onclick="toggleMap(true)" title="지도 보기" value="지도">
+    </div>
+    <div class="wrap_roadview" style="margin-left: 300px;">
+        <div id="roadview" style="width:100%;height:100%"></div>
+        <div class="wrap_button">
+            <a href="javascript:;" class="btn_comm btn_linkRoadview" target="_blank" onclick="moveKakaoRoadview(this)"><span class="screen_out">로드뷰 크게보기</span></a> 
+            <a href="javascript:;" class="btn_comm btn_resetRoadview" onclick="resetRoadview()"><span class="screen_out">로드뷰 크게보기</span></a> 
     </div>
 </div>
+<script>
+var mapContainer = document.getElementById('map'), 
+    mapCenter = new kakao.maps.LatLng(${places.cam_latitude} , ${places.cam_longitude}), 
+    mapOption = {
+        center: mapCenter, 
+        level: 4 
+    };
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0005adacefd1f11b5b2c5683fdc3d59c"></script>
-<!-- <script>
-var container = document.getElementById('container'), // 지도와 로드뷰를 감싸고 있는 div 입니다
-    mapWrapper = document.getElementById('mapWrapper'), // 지도를 감싸고 있는 div 입니다
-    btnRoadview = document.getElementById('btnRoadview'), // 지도 위의 로드뷰 버튼, 클릭하면 지도는 감춰지고 로드뷰가 보입니다 
-    btnMap = document.getElementById('btnMap'), // 로드뷰 위의 지도 버튼, 클릭하면 로드뷰는 감춰지고 지도가 보입니다 
-    rvContainer = document.getElementById('roadview'), // 로드뷰를 표시할 div 입니다
-    mapContainer = document.getElementById('map'); // 지도를 표시할 div 입니다
-
-// 지도와 로드뷰 위에 마커로 표시할 특정 장소의 좌표입니다 
-var placePosition = new kakao.maps.LatLng(${places.cam_latitude },${places.cam_longitude });
-
-// 지도 옵션입니다 
-var mapOption = {
-    center: placePosition, // 지도의 중심좌표 
-    level: 3 // 지도의 확대 레벨
-};
-
-// 지도를 표시할 div와 지도 옵션으로 지도를 생성합니다
 var map = new kakao.maps.Map(mapContainer, mapOption);
 
-// 로드뷰 객체를 생성합니다 
-var roadview = new kakao.maps.Roadview(rvContainer);
-
-// 로드뷰의 위치를 특정 장소를 포함하는 파노라마 ID로 설정합니다
-// 로드뷰의 파노라마 ID는 Wizard를 사용하면 쉽게 얻을수 있습니다 
-roadview.setPanoId(1023434522, placePosition);
-
-// 특정 장소가 잘보이도록 로드뷰의 적절한 시점(ViewPoint)을 설정합니다 
-// Wizard를 사용하면 적절한 로드뷰 시점(ViewPoint)값을 쉽게 확인할 수 있습니다
-roadview.setViewpoint({
-    pan: 321,
-    tilt: 0,
-    zoom: 0
+var rvContainer = document.getElementById('roadview'); 
+var rv = new kakao.maps.Roadview(rvContainer); 
+var rc = new kakao.maps.RoadviewClient(); 
+var rvResetValue = {} 
+rc.getNearestPanoId(mapCenter, 50, function(panoId) {
+    rv.setPanoId(panoId, mapCenter);
+    rvResetValue.panoId = panoId;
 });
 
-// 지도 중심을 표시할 마커를 생성하고 특정 장소 위에 표시합니다 
-var mapMarker = new kakao.maps.Marker({
-    position: placePosition,
-    map: map
-});
+kakao.maps.event.addListener(rv, 'init', function() {
 
-// 로드뷰 초기화가 완료되면 
-kakao.maps.event.addListener(roadview, 'init', function() {
-
-    // 로드뷰에 특정 장소를 표시할 마커를 생성하고 로드뷰 위에 표시합니다 
-    var rvMarker = new kakao.maps.Marker({
-        position: placePosition,
-        map: roadview
+    var rMarker = new kakao.maps.Marker({
+        position: mapCenter,
+        map: rv 
     });
+
+    var rLabel = new kakao.maps.InfoWindow({
+        position: mapCenter,
+        content: '${places.cam_name }'
+    });
+    rLabel.open(rv, rMarker);
+
+    var projection = rv.getProjection(); 
+    
+    var viewpoint = projection.viewpointFromCoords(rMarker.getPosition(), rMarker.getAltitude());
+    rv.setViewpoint(viewpoint); 
+
+    rvResetValue.pan = viewpoint.pan;
+    rvResetValue.tilt = viewpoint.tilt;
+    rvResetValue.zoom = viewpoint.zoom;
 });
 
-// 지도와 로드뷰를 감싸고 있는 div의 class를 변경하여 지도를 숨기거나 보이게 하는 함수입니다 
-function toggleMap(active) {
-    if (active) {
+function moveKakaoMap(self){
+    
+    var center = map.getCenter(), 
+        lat = center.getLat(),
+        lng = center.getLng();
 
-        // 지도가 보이도록 지도와 로드뷰를 감싸고 있는 div의 class를 변경합니다
-        container.className = "view_map"
-    } else {
-
-        // 지도가 숨겨지도록 지도와 로드뷰를 감싸고 있는 div의 class를 변경합니다
-        container.className = "view_roadview"   
-    }
+    self.href = 'https://map.kakao.com/link/map/' + encodeURIComponent('${places.cam_name }') + ',' + lat + ',' + lng; 
 }
-</script> -->
+
+function resetKakaoMap(){
+    map.setCenter(mapCenter); 
+    map.setLevel(mapOption.level);
+}
+
+function moveKakaoRoadview(self){
+    var panoId = rv.getPanoId(); 
+    var viewpoint = rv.getViewpoint(); 
+    self.href = 'https://map.kakao.com/?panoid='+panoId+'&pan='+viewpoint.pan+'&tilt='+viewpoint.tilt+'&zoom='+viewpoint.zoom; 
+}
+
+function resetRoadview(){
+    rv.setViewpoint({
+        pan: rvResetValue.pan, tilt: rvResetValue.tilt, zoom: rvResetValue.zoom
+    });
+    rv.setPanoId(rvResetValue.panoId);
+}
+</script>
+
 
 </body>
 </html>

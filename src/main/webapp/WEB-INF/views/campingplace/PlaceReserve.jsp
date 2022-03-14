@@ -11,7 +11,6 @@
 <script>
 function call_kakao2() {
 	let campingprice = $(".r_campingprice").val();
-	alert(campingprice);
 	IMP.init('imp46581722');
 
 	IMP.request_pay({

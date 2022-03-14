@@ -115,6 +115,8 @@ public class BossCommunitiresDAO {
 	public void campingreserve(BossCommunities bc, HttpServletRequest req) {
 		List<BossCommunities> campingreserve = ss.getMapper(BossCommunitiesMapper.class).campingreserve(bc);
 		req.setAttribute("campingreserve", campingreserve);
+		List<BossCommunities> campingreserve2 = ss.getMapper(BossCommunitiesMapper.class).campingreserve2(bc);
+		req.setAttribute("campingreserve2", campingreserve2);
 		System.out.println(bc.getR_no());
 	}
 

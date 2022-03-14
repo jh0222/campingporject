@@ -15,6 +15,8 @@ public interface BossCommunitiesMapper {
 
 	// 캠핑 예약정보
 	public List<BossCommunities> campingreserve(BossCommunities bc);
+	// 캠핑 예약정보
+		public List<BossCommunities> campingreserve2(BossCommunities bc);
 
 	// 캠핑용품 구매목록
 	List<BossCommunities> pbuylist(BossCommunities bc);

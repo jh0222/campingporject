@@ -23,7 +23,13 @@
 <!-- 캠핑예약정보 -->
 <select id="campingreserve" parameterType="com.fi.pj.member.BossCommunities" resultType="com.fi.pj.member.BossCommunities">
 	select * from reservation_table
-	where r_cam_no = (select cam_no from camping_table where cam_bo_id=#{cam_bo_id})
+	where r_cam_no = (select cam_no from camping_table where cam_bo_id=#{cam_bo_id}) and r_campingstartdate &gt;= sysdate order by r_campingstartdate desc
+</select>
+ 
+<!-- 캠핑예약정보2 -->
+<select id="campingreserve2" parameterType="com.fi.pj.member.BossCommunities" resultType="com.fi.pj.member.BossCommunities">
+	select * from reservation_table
+	where r_cam_no = (select cam_no from camping_table where cam_bo_id=#{cam_bo_id}) and r_campingenddate &lt; sysdate order by r_campingstartdate desc
 </select>
 
 <!-- 캠핑용품 구매 목록 -->  

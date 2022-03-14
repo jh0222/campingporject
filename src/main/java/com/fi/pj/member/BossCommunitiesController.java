@@ -16,6 +16,18 @@ public class BossCommunitiesController {
 	@Autowired
 	private MemberDAO mDAO;
 
+	// 캠핑예약 삭제
+		@RequestMapping(value = "campingreserve.del2", method = RequestMethod.GET)
+		public String campingreserveDel(Communities c,BossCommunities bc, HttpServletRequest request) {
+			mDAO.loginCheck(request);
+			mDAO.campingreserveDel(c, request);
+			bcDAO.campingreserve(bc, request);
+			request.setAttribute("mypage2", "../member/mypage2.jsp");
+			request.setAttribute("contentPage", "member/BossCampingReserve.jsp");
+
+			return "main";
+		}
+	
 	// 캠핑정보
 	@RequestMapping(value = "boss_camping.info", method = RequestMethod.GET)
 	public String CampingInfo(BossCommunities bc, HttpServletRequest req) {

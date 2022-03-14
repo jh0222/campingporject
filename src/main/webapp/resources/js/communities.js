@@ -38,6 +38,14 @@ function reservedel(no, id){
 	}
 }
 
+//캠핑예약 취소
+function reservedel2(no, id,id2){
+	let ok = confirm("예약을 취소하시겠습니까?");
+	if (ok) {
+		location.href = "campingreserve.del2?r_no=" + no + "&r_u_id=" + id + '&cam_bo_id=' + id2;
+	}
+}
+
 // 캠핑찜 취소
 function jjimdel(no, id){
 	let ok = confirm("찜을 취소하시겠습니까?");

@@ -109,7 +109,7 @@ header a {
   position : absolute;
   z-index : 1; /*다른 요소들보다 앞에 배치*/
   font-weight: 400;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   min-width : 200px;
   color: white; 
 }

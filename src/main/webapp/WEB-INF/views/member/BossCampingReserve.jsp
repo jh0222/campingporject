@@ -125,7 +125,20 @@ table, td, th {
 					<td class="td1"><fmt:formatDate value="${cr.r_campingstartdate}" /> ~ <fmt:formatDate value="${cr.r_campingenddate}" /></td>
 					<td class="td1">${cr.r_campingheadcount}</td>
 					<td class="td1">${cr.r_campingprice}</td>
-					<td class="td1"><button	onclick="reservedel('${cr.r_no}','${cr.r_u_id }')">예약취소</button></td>
+					<td class="td1"><button	onclick="reservedel2('${cr.r_no}','${cr.r_u_id }','${sessionScope.loginMember2.bo_id }')">예약취소</button></td>
+				</tr>
+			</c:forEach>
+			<tr><td>지난 예약건</td></tr>
+			<c:forEach var="cr" items="${campingreserve2}">
+				<tr>
+					<td class="hidden" id="cr${cr.r_no }"></td>
+					<td class="td1">${cr.r_u_name}</td>
+					<td class="td1">${cr.r_u_phonenumber}</td>
+					<td class="td1">${cr.r_cam_name}</td>
+					<td class="td1"><fmt:formatDate value="${cr.r_campingstartdate}" /> ~ <fmt:formatDate value="${cr.r_campingenddate}" /></td>
+					<td class="td1">${cr.r_campingheadcount}</td>
+					<td class="td1">${cr.r_campingprice}</td>
+					<td class="td1"><button	onclick="reservedel2('${cr.r_no}','${cr.r_u_id }','${sessionScope.loginMember2.bo_id }')">예약취소</button></td>
 				</tr>
 			</c:forEach>
 	</table>

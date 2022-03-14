@@ -76,11 +76,11 @@
 			</div>
 			<div class="join_txt">
 				<div class="join_addr">
-					<input id="addr3Input" readonly="readonly" name="u_addr3" maxlength="5" autocomplete="off" placeholder="우편번호">
+					<input id="addr3Input" readonly="readonly" name="addr3" maxlength="5" autocomplete="off" placeholder="우편번호">
 					<span id="addrSearchBtn">[검색]</span><br>
 				</div>
-				<input id="addr1Input" readonly="readonly" name="u_addr1" maxlength="30" autocomplete="off" placeholder="주소"><br>
-				<input name="u_addr2" maxlength="30" autocomplete="off" placeholder="상세주소">
+				<input id="addr1Input" readonly="readonly" name="addr1" maxlength="30" autocomplete="off" placeholder="주소"><br>
+				<input name="addr2" maxlength="30" autocomplete="off" placeholder="상세주소">
 			</div>
 			<div class="join_phonenumber">
 				<div class="join_title2">
