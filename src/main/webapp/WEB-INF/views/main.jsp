@@ -40,6 +40,7 @@
 <link rel="stylesheet" href="resources/jsjs/responsive.css">
 <link rel="stylesheet" href="resources/css/jquery.fullPage.css">
 <link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="resources/css/home.css">
 <link rel="stylesheet" href="resources/css/member_jh.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- font awesome (아이콘) -->
 <link rel="stylesheet" href="resources/css/campingplace.css">

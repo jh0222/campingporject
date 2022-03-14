@@ -12,8 +12,8 @@
 		<section class="section">
 				<div class="slide">
 				<section class="first_section"> 
-  				 <!--  <h1 class="text1">고캠핑에서 당신을 초대합니다<br>지금 바로 시작하세요</h1> -->
-				</section>
+                  <h1 class="hometext">고캠핑에서 당신을 초대합니다<br>지금 바로 시작하세요</h1>
+                </section>
 				</div>		
 				<div class="slide">
 				<section class="first_section2"> 
